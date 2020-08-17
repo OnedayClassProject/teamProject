@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="header.css"> 
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/header.css"> 
 </head>
 <body>
 <header>
