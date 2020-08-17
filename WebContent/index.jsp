@@ -11,8 +11,8 @@
     <title>onedayclass</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="swiper-4.5.1/dist/css/swiper.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/swiper-4.5.1/dist/css/swiper.min.css">
     <script>
         var mql = window.matchMedia("screen and (max-width : 767px");
         mql.addListener(function (e) {
@@ -51,16 +51,16 @@
 <header>
     <div class="head">
         <div class="login_bar">
-            <div>로그인</div>
+            <div><a href="${pageContext.request.contextPath}/login.do">로그인</a></div>
             <div>클래스개설</div>
-            <div>회원가입</div>
+            <div><a href="${pageContext.request.contextPath}/memberOrStore.do">회원가입</a></div>
         </div>
         <div class="click_event">클릭</div>
         <div class="sidemenu"></div>
             <div class="side_menu">
                 <div class="close_menu">X</div>
             </div>
-        <h1>Logo</h1>
+        <h1><a href="${pageContext.request.contextPath}/main.do">Logo</a></h1>
         <div class="search-bar">
             <form>
                 <div class="search-title">SEARCH</div>
@@ -166,11 +166,11 @@
     </div>
 </footer>
 <div class="mini-down-menu">
-    <div>로그인</div>
+    <div><a href="${pageContext.request.contextPath}/login.do">로그인</a></div>
     <div>클래스개설</div>
-    <div>회원가입</div>
+   	<div><a href="${pageContext.request.contextPath}/memberOrStore.do">회원가입</a></div>
 </div>
-<script src="swiper-4.5.1/dist/js/swiper.min.js"></script>
+<script src="${pageContext.request.contextPath}/swiper-4.5.1/dist/js/swiper.min.js"></script>
 <script>
     var swiper = new Swiper('.swiper1', {
         loop: true,

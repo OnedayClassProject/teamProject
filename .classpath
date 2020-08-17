@@ -8,7 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/Users/gyu/Desktop/각종파일/ckeditorjar/CKFinder-2.6.3.jar"/>
 	<classpathentry kind="lib" path="/Users/gyu/Desktop/각종파일/ckeditorjar/CKFinderPlugin-FileEditor-2.6.3.jar"/>
 	<classpathentry kind="lib" path="/Users/gyu/Desktop/각종파일/ckeditorjar/CKFinderPlugin-ImageResize-2.6.3.jar"/>
@@ -16,5 +15,6 @@
 	<classpathentry kind="lib" path="/Users/gyu/Desktop/각종파일/ckeditorjar/commons-io-2.0.1.jar"/>
 	<classpathentry kind="lib" path="/Users/gyu/Desktop/각종파일/ckeditorjar/gson-2.5.jar"/>
 	<classpathentry kind="lib" path="/Users/gyu/Desktop/각종파일/ckeditorjar/thumbnailator-0.4.8.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
