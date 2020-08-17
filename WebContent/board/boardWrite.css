@@ -1,0 +1,45 @@
+.review{
+    width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+#img {
+    width: 400px;
+    height: 400px;
+}
+.file_box label {
+    display: inline-block;
+    background: black;
+    color: white;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 5px;
+    -webkit-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+}
+.file_box input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+@media (max-width: 800px) {
+    .review{
+        width: 90%;
+    }
+    #img{
+        width: 200px;
+        height: 300px;
+    }
+}
