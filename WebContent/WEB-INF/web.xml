@@ -35,5 +35,5 @@
         <url-pattern>/ckfinder/core/connector/java/connector.java</url-pattern>
     </servlet-mapping>
     <!-- CKFINDER END -->    
-         
+    
 </web-app>

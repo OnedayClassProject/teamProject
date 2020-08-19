@@ -7,15 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.command.CommandHandler;
-import com.store.db.StoreBean;
 
-public class memberJoinAction implements CommandHandler {
-
+public class storejoin implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		return "member/memberjoin.jsp";
+		return "store/storejoin.jsp";
 	}
-
 }
