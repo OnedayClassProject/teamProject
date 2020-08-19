@@ -22,11 +22,12 @@
             <div>가게 회원가입</div>
             <hr>
             <div class="join_main">
-                <div class="join_text2">
+            <!-- 일단 이메일 수정은 못하도록 -->
+<!--                 <div class="join_text2">
                     <input type="email" id = "storeemail" name="storeemail" placeholder="EMAIL" required>
                     <input type="button" value="중복확인" onclick="checkEmail()">
                     <input type ="hidden" id = "checkemail" value="emailUnCheck">
-                </div>
+                </div> -->
                 <div><input class="join_text" type="password" id="pass1" name="storepw" placeholder="PASSWORD" required></div>
                 <div><input class="join_text" type="password" id="pass2" placeholder="PASSWORD" required></div>
                 <!-- <div><input class="join_text" type="text" name="username" placeholder="작가명"></div> -->
@@ -99,11 +100,11 @@
             }
         }).open();
     }
-    function checkEmail(){
+    /* function checkEmail(){
     	var check = document.getElementById("checkemail");
 		$.ajax({
 			type: "post",
-			url : "StoreCheckEmail.do",
+			url : "store/checkEmail.jsp",
 			data : { email : $('#storeemail').val()},
 			success : function(data) {
 				if(data == 0){
@@ -117,14 +118,14 @@
 				}
 			}
 		});
-	}
+	} */
     function checkPassword(){
-    	var check = document.getElementById("checkemail");
+    	/* var check = document.getElementById("checkemail");
     	if(check.value=="emailUnCheck"){
     		alert("아이디 중복체크를 해주세요");
     		return false;
-    	}
-    	else if($("#pass1").val() != $("#pass2").val()){
+    	} */
+    	if($("#pass1").val() != $("#pass2").val()){
 			alert("비밀번호가 서로 다릅니다.");
 			$("#pass2").focus();
 			$("#pass2").val("");

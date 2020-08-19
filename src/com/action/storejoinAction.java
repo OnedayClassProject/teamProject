@@ -11,6 +11,7 @@ import com.store.db.StoreBean;
 import com.store.db.StoreDAO;
 import com.sun.beans.editors.IntegerEditor;
 
+//회원가입 수행
 public class storejoinAction implements CommandHandler {
 
 	@Override

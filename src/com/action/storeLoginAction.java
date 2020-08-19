@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.command.CommandHandler;
 import com.store.db.StoreDAO;
 
+//로그인 수행
 public class storeLoginAction implements CommandHandler{
 
 	@Override
@@ -24,7 +25,9 @@ public class storeLoginAction implements CommandHandler{
 		int check = dao.loginStore("test1@test.test", "123");
 		//store DB에 있는 경우
 		if(check == 1){
-			session.setAttribute("email", email);
+			//session.setAttribute("email", email);
+			session.setAttribute("email", "test1@test.test");	
+			System.out.println("확인");
 		//비밀번호가 틀린경우
 		}else if (check == 0){
 			response.setContentType("text/html; charset=UTF-8");

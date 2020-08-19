@@ -57,6 +57,7 @@ public class StoreDAO {
 		}finally {
 			resourceClose();
 		}
+		System.out.println("check : " +check);
 		return check;
 	}
 	
@@ -121,6 +122,7 @@ public class StoreDAO {
 			pstmt.setString(4, bean.getStoreplace());
 			pstmt.setString(5, bean.getStoreemail());
 			pstmt.executeUpdate();
+			
 		} catch (Exception e) {
 			System.out.println("updateStore()에서 예외발생:" + e);
 		}finally{
@@ -128,17 +130,37 @@ public class StoreDAO {
 		}
 	}
 	
-	public void deleteStore(String storepw){
+	public boolean deleteStore(String storeemail, String storepw){
+		int result = 0; //삭제 수행했는지 확인하는 변수
 		try {
 			con = getConnection();
-			String sql = "delete from store where storepw = ?";
+			String sql = "delete from store where storeemail =? and storepw = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, storepw);
-			pstmt.executeUpdate();
+			pstmt.setString(1, storeemail);
+			pstmt.setString(2, storepw);
+			result = pstmt.executeUpdate();
+			if(result != 0)
+				return true;
 		} catch (Exception e) {
 			System.out.println("deleteStore()에서 예외발생:" + e);
 		}finally{
 			resourceClose();
 		}
+		return false;
+	}
+	public StoreBean getStore(String email){
+		StoreBean bean =null;
+		try {
+			con = getConnection();
+			String sql = "select * from store where storeemail = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			
+		} catch (Exception e) {
+			System.out.println("deleteStore()에서 예외발생:" + e);
+		}finally{
+			resourceClose();
+		}
+		return bean;
 	}
 }

@@ -8,12 +8,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.command.CommandHandler;
 
-//회원가입 forward
-public class storejoin implements CommandHandler{
+//회원탈퇴 forward
+public class storeDelete implements CommandHandler{
+
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return "store/storejoin.jsp";
+		
+		return "store/storedelete.jsp";
 	}
+
 }
