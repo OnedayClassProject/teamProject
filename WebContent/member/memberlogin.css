@@ -33,3 +33,12 @@
     font-size: 30px;
     letter-spacing: 4px;
 }
+#form2{
+    display: none;
+}
+.login_choice div{
+    display: inline-block;
+}
+.login_choice div:hover{
+    cursor: pointer;
+}
