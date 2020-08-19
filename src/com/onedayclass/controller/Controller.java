@@ -99,7 +99,8 @@ public class Controller extends HttpServlet {
 		}
 		//properties파일에 /login.do가 있다면 value(class)값을 반환
 		//handler에는 클래스가 들어간다.
-		CommandHandler handler = commandHandlerMap.get(command);
+		CommandHandler handler
+		= commandHandlerMap.get(command);
 		//handler가 null이면 에러페이지이동 
 		if(handler == null) {
 			handler = new NullHandler();

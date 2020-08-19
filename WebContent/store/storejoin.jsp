@@ -14,27 +14,29 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/store/storejoin.css">
 </head>
 <body>
+
 <jsp:include page="../header.jsp"/>
 <section>
     <div class="member_join">
-        <form>
+        <form onsubmit="return checkPassword()" action="./storejoinAction.do"  method="post">
             <div>가게 회원가입</div>
             <hr>
             <div class="join_main">
                 <div class="join_text2">
-                    <input type="email" name="useremail" placeholder="EMAIL">
-                    <input type="button" value="중복확인">
+                    <input type="email" id = "storeemail" name="storeemail" placeholder="EMAIL" required>
+                    <input type="button" value="중복확인" onclick="checkEmail()">
+                    <input type ="hidden" id = "checkemail" value="emailUnCheck">
                 </div>
-                <div><input class="join_text" type="password" name="userpassword" placeholder="PASSWORD"></div>
-                <div><input class="join_text" type="password" placeholder="PASSWORD"></div>
-                <div><input class="join_text" type="text" name="username" placeholder="작가명"></div>
-                <div><input class="join_text" type="text" name="username" placeholder="가게이름"></div>
-                <div><input class="join_text" ype="text" name="phone" placeholder="PHONE NUMBER"></div>
+                <div><input class="join_text" type="password" id="pass1" name="storepw" placeholder="PASSWORD" required></div>
+                <div><input class="join_text" type="password" id="pass2" placeholder="PASSWORD" required></div>
+                <!-- <div><input class="join_text" type="text" name="username" placeholder="작가명"></div> -->
+                <div><input class="join_text" type="text" name="storename" placeholder="가게이름" required></div>
+                <div><input class="join_text" type="text" name="storetel" placeholder="PHONE NUMBER" required></div>
                 <div class="join_text2">
                     <input type="text" id="sample6_postcode" placeholder="우편번호">
                     <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
                 </div>
-                <input class="join_text" type="text" id="sample6_address" placeholder="주소">
+                <input class="join_text" type="text" id="sample6_address" name ="storeplace" placeholder="주소">
                 <div class="join_text3">
                     <input type="text" id="sample6_detailAddress" placeholder="상세주소">
                     <input type="text" id="sample6_extraAddress" placeholder="참고항목">
@@ -47,6 +49,8 @@
     </div>
 </section>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript"
+	src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 <script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -94,6 +98,39 @@
                 document.getElementById("sample6_detailAddress").focus();
             }
         }).open();
+    }
+    function checkEmail(){
+    	var check = document.getElementById("checkemail");
+		$.ajax({
+			type: "post",
+			url : "store/checkEmail.jsp",
+			data : { email : $('#storeemail').val()},
+			success : function(data) {
+				if(data == 0){
+					alert("이메일이 존재합니다");
+					$('#storeemail').focus();
+					$('#storeemail').val("");
+				}
+				else if(data==1){
+					alert("이메일을 사용할 수 있습니다.");
+					check.value = "emailCheck";
+				}
+			}
+		});
+	}
+    function checkPassword(){
+    	var check = document.getElementById("checkemail");
+    	if(check.value=="emailUnCheck"){
+    		alert("아이디 중복체크를 해주세요");
+    		return false;
+    	}
+    	else if($("#pass1").val() != $("#pass2").val()){
+			alert("비밀번호가 서로 다릅니다.");
+			$("#pass2").focus();
+			$("#pass2").val("");
+			return false;
+    	}
+    	return true;
     }
 </script>
 </body>
