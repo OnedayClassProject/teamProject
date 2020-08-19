@@ -26,7 +26,7 @@ public class storeLoginAction implements CommandHandler{
 		//store DB에 있는 경우
 		if(check == 1){
 			//session.setAttribute("email", email);
-			session.setAttribute("email", "test1@test.test");	
+			session.setAttribute("storeid", "test1@test.test");	
 			System.out.println("확인");
 		//비밀번호가 틀린경우
 		}else if (check == 0){

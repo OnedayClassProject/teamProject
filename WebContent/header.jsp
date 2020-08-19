@@ -16,7 +16,7 @@
 <header>
     <div class="head">
     	<div class="login_bar">
-        <c:if test="${empty sessionScope.userid || empty sessionScope.storeid}">
+        <c:if test="${empty sessionScope.userid && empty sessionScope.storeid}">
             <div><a href="${pageContext.request.contextPath}/login.do">로그인</a></div>
             <div><a href="${pageContext.request.contextPath}/memberOrStore.do">회원가입</a></div>
         </c:if>
