@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
@@ -14,10 +15,19 @@
 <body>
 <header>
     <div class="head">
-        <div class="login_bar">
+    	<div class="login_bar">
+        <c:if test="${empty sessionScope.userid || empty sessionScope.storeid}">
             <div><a href="${pageContext.request.contextPath}/login.do">로그인</a></div>
-            <div>클래스개설</div>
             <div><a href="${pageContext.request.contextPath}/memberOrStore.do">회원가입</a></div>
+        </c:if>
+            <c:if test="${not empty sessionScope.userid}">
+        	<div><a href="/mypage.do">내정보</a></div>
+        	<div><a href="/logout.do">로그아웃</a></div>
+        	</c:if>
+        	<c:if test="${not empty sessionScope.storeid}">
+        	<div><a href="/storepage.do">내정보</a></div>
+        	<div><a href="/logout.do">로그아웃</a></div>
+        	</c:if>
         </div>
         <h1><a href="${pageContext.request.contextPath}/main.do">Logo</a></h1>
         <div class="search-bar">
