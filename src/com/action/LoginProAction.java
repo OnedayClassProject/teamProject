@@ -18,24 +18,21 @@ public class LoginProAction implements CommandHandler{
 		
 		HttpSession session = request.getSession();
 		
-		String memtype = request.getParameter("loginmember");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
-		if(memtype != null && memtype == "member"){
-			memberDAO mdao = new memberDAO();
-			int check = mdao.loginCheck(email,password);
-			
-			if(check == 1){
-				
-				session.setAttribute("email", email);
-				session.setAttribute("type", memtype);
-				
-				
-			}
-		}
+		System.out.println(email+password);
+		memberDAO mdao = new memberDAO();
+		int check = mdao.loginCheck(email,password);
 		
-		return "../index.jsp";
+		if(check == 1){
+			session.setAttribute("email", email);
+		}else if(check == 0){
+			return null;
+		}
+		request.setAttribute("check", check);
+		
+		return "/member/loginCheck.jsp";
 	}
 	
 	

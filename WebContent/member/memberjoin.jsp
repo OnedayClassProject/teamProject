@@ -57,9 +57,9 @@
 			var pwdcheck = $("#pwdcheck").val();
 			var username = $("#username").val();
 			var phone = $("#phone").val();
-			var postcode = $("#postcode").val();
-			var address = $("#address").val();
-			var detailadd = $("#detailadd").val();
+			var postcode = $(".postcode").val();
+			var address = $(".address").val();
+			var detailadd = $(".detailadd").val();
 			
 			//정규표현식
 			 //이메일
@@ -143,7 +143,7 @@
 		    	return false;
 		    }
 		    
-			return false;
+			return true;
 		}
 	
 </script>
@@ -167,12 +167,12 @@
                 <div><input class="join_text" type="text" id="username"name="username" placeholder="NAME"></div>
                 <div><input class="join_text" type="text" id="phone" name="phone" placeholder="PHONE NUMBER"></div>
                 <div class="join_text2">
-                    <input type="text" id="sample6_postcode" id="postcode" name="postcode" placeholder="우편번호">
+                    <input type="text" id="sample6_postcode" class="postcode" name="postcode" placeholder="우편번호">
                     <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
                 </div>
-                <input class="join_text" type="text" id="sample6_address" id="address"name="address" placeholder="주소">
+                <input class="join_text" type="text" id="sample6_address" class="address"name="address" placeholder="주소">
                 <div class="join_text3">
-                    <input type="text" id="sample6_detailAddress" id="detailadd" name="detailadd" placeholder="상세주소">
+                    <input type="text" id="sample6_detailAddress" class="detailadd" name="detailadd" placeholder="상세주소">
                     <input type="text" id="sample6_extraAddress" id="extraadd" name="extraadd" placeholder="참고항목">
                 </div>
                 <div class="join_text4">
