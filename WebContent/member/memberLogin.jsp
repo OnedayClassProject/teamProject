@@ -10,8 +10,21 @@
 <head>
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <!-- <link rel="stylesheet" href="../header.css"> -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/member/memberlogin.css">
+     <script>
+        $(function () {
+            $(".store").on("click", function () {
+                    $("#form1").css("display","none");
+                    $("#form2").css("display","block");
+            })
+            $(".member").on("click", function () {
+                $("#form1").css("display","block");
+                $("#form2").css("display","none");
+            })
+        })
+    </script>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
@@ -19,19 +32,34 @@
     <div class="member-login">
         <h2>Logo</h2>
         <hr>
+        <div class="login_choice">
+        <div class="member">회원로그인</div>
+        <div class="store">업체로그인</div>
+        </div>
+        <form id="form1">
+            <h1>회원</h1>
         <div class="login_text">이메일로그인</div>
         <div class="login_box">
         <div><input type="email" placeholder="이메일" name="email"></div>
         <div><input type="password" placeholder="비밀번호" name="password"></div>
         </div>
-        <div class="login_choice">
-        <input type="radio" name="loginmember" value="store">store
-        <input type="radio" name="loginmember" value="member">member
+        <div class="login_button">
+        <button type="button">LOGIN</button>
+        <button type="button" onclick="location.href='${pageContext.request.contextPath}/memberOrStore.do'">CREATE</button>
+        </div>
+        </form>
+        <form id="form2">
+            <h1>업체</h1>
+        <div class="login_text">이메일로그인</div>
+        <div class="login_box">
+        <div><input type="email" placeholder="이메일" name="email"></div>
+        <div><input type="password" placeholder="비밀번호" name="password"></div>
         </div>
         <div class="login_button">
         <button type="button">LOGIN</button>
         <button type="button" onclick="location.href='${pageContext.request.contextPath}/memberOrStore.do'">CREATE</button>
         </div>
+        </form>
     </div>
 </section>
 </body>
