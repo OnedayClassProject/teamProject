@@ -22,8 +22,45 @@ public class StoreDAO {
 		conn=ds.getConnection();
 		return conn;
 	}
+	private void resourceClose(){
+		try {
+			if(con != null) con.close();
+			if(rs != null) rs.close();
+			if(pstmt != null) pstmt.close();
+		} catch (SQLException e) {
+			System.out.println("resourceClose()에서 예외발생 : " + e);
+		}
+	}
+	public int loginStore(String storeemail, String storepw){
+		int check = -1;
+		System.out.println(storeemail);
+		try {
+			con = getConnection();
+			
+			String sql = "select * from store where storeemail=?";
 
-	public boolean insertMember(StoreBean bean) {
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setString(1, storeemail);
+
+			rs = pstmt.executeQuery();
+
+			if(rs.next()){
+				if(storepw.equals(rs.getString("storepw"))){
+					check = 1;
+				}else{
+					check = 0;
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("loginStore()에서 예외발생 : "+ e);
+		}finally {
+			resourceClose();
+		}
+		return check;
+	}
+	
+	public boolean insertStore(StoreBean bean) {
 		int result = 0; //회원가입 성공여부
 		try {
 			con = getConnection();
@@ -46,12 +83,9 @@ public class StoreDAO {
 			if(result != 0)
 				return true;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("insertStore()에서 예외발생:" + e);
 		}finally{
-			//예외상관없이 마무리 작업
-			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
-			if(con!=null)try{con.close();}catch(SQLException ex){}
+			resourceClose();
 		}
 
 		return false;
@@ -69,14 +103,42 @@ public class StoreDAO {
 				check = 0;
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("emailCheck()에서 예외발생:" + e);
 		}finally{
-			//예외상관없이 마무리 작업
-			if(pstmt!=null)try{pstmt.close();}catch(SQLException ex){}
-			if(con!=null)try{con.close();}catch(SQLException ex){}
+			resourceClose();
 		}
 		
 		return check;
+	}
+	public void updateStore(StoreBean bean){
+		try {
+			con = getConnection();
+			String sql = "update store set storepw = ?, storename = ?, storetel = ?, storeplace = ? where storeemail = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bean.getStorepw());
+			pstmt.setString(2, bean.getStorename());
+			pstmt.setString(3, bean.getStoretel());
+			pstmt.setString(4, bean.getStoreplace());
+			pstmt.setString(5, bean.getStoreemail());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("updateStore()에서 예외발생:" + e);
+		}finally{
+			resourceClose();
+		}
+	}
+	
+	public void deleteStore(String storepw){
+		try {
+			con = getConnection();
+			String sql = "delete from store where storepw = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, storepw);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("deleteStore()에서 예외발생:" + e);
+		}finally{
+			resourceClose();
+		}
 	}
 }

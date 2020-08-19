@@ -32,15 +32,16 @@ public class storejoinAction implements CommandHandler {
 		
 		//회원가입 내용을 담고 있는 bean객체를 전달하여..
 		//가입에 성공하면 true리턴, 실패하면 false리턴
-		//result = dao.insertMember(bean);
+		//회원가입 안되도록 일단 주석처리함
+		//result = dao.insertStore(bean);
 	
 		//회원 가입 처리에 실패 했을 경우 null을 반환 한다.
 		if(result == false){
 			System.out.println("회원가입 실패");
-			return "store/storejoin.jsp";
+			return "/storejoin.do";
 		}
 		
-		return "/index.jsp";
+		return "/main.do";
 	}
 	
 }

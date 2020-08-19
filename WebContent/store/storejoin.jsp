@@ -100,6 +100,7 @@
         }).open();
     }
     function checkEmail(){
+    	var check = document.getElementById("checkemail");
 		$.ajax({
 			type: "post",
 			url : "store/checkEmail.jsp",
@@ -112,7 +113,7 @@
 				}
 				else if(data==1){
 					alert("이메일을 사용할 수 있습니다.");
-					$('checkemail').val("emailCheck");
+					check.value = "emailCheck";
 				}
 			}
 		});
