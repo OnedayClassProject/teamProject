@@ -52,13 +52,13 @@
 <header>
     <div class="head">
     <div class="login_bar">
-        <c:if test="${empty sessionScope.userid || empty sessionScope.storeid}">
+        <c:if test="${empty sessionScope.userid && empty sessionScope.storeid}">
             <div><a href="${pageContext.request.contextPath}/login.do">로그인</a></div>
             <div><a href="${pageContext.request.contextPath}/memberOrStore.do">회원가입</a></div>
         </c:if>
             <c:if test="${not empty sessionScope.userid}">
-        	<div><a href="/mypage.do">내정보</a></div>
-        	<div><a href="/logout.do">로그아웃</a></div>
+        	<div><a href="${pageContext.request.contextPath}/mypage.do">내정보</a></div>
+        	<div><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></div>
         	</c:if>
         	<c:if test="${not empty sessionScope.storeid}">
         	<div><a href="/storepage.do">내정보</a></div>

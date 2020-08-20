@@ -11,7 +11,8 @@ public class memberBean {
 	private String phone;
 	private String postcode;
 	private String address;
-	
+	private String detailadd;
+	private String extraadd;
 	
 	private Timestamp joindate;
 	private Timestamp vip_date;
@@ -81,6 +82,18 @@ public class memberBean {
 	}
 	public void setMembership(String membership) {
 		this.membership = membership;
+	}
+	public String getDetailadd() {
+		return detailadd;
+	}
+	public void setDetailadd(String detailadd) {
+		this.detailadd = detailadd;
+	}
+	public String getExtraadd() {
+		return extraadd;
+	}
+	public void setExtraadd(String extraadd) {
+		this.extraadd = extraadd;
 	}
 	
 	

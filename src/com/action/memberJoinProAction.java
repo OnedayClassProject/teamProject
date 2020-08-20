@@ -25,8 +25,9 @@ public class memberJoinProAction implements CommandHandler{
 		mbean.setUsername(request.getParameter("username"));
 		mbean.setPhone(request.getParameter("phone"));
 		mbean.setPostcode(request.getParameter("postcode"));
-		mbean.setAddress(request.getParameter("address")+request.getParameter("detailadd")+request.getParameter("extraadd"));
-		
+		mbean.setAddress(request.getParameter("address"));
+		mbean.setDetailadd(request.getParameter("detailadd"));
+		mbean.setExtraadd(request.getParameter("extraadd"));
 		mbean.setJoindate(new Timestamp(System.currentTimeMillis()));
 		
 		boolean result = false;

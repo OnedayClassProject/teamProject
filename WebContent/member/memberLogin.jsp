@@ -31,8 +31,10 @@
         	var password = $("#password").val();
         	if(email == ""){
         		alert("이메일을 입력하세요.");
+        		return false;
         	}else if(password==""){
         		alert("비밀번호를 입력하세요.");
+        		return false;
         	}else{
         		$.ajax('${pageContext.request.contextPath}/memberLoginPro.do',{
         			type:"post",
@@ -43,6 +45,8 @@
         					location.href="${pageContext.request.contextPath}/main.do"
         				}else{
         					alert("이메일 또는 비밀번호를 확인해주세요.");
+        					$("#email").val(email);
+        					$("#password").val("");
         				}
         			}, error:function(data){
         				alert("에러가 발생했습니다.");
@@ -65,15 +69,15 @@
         
         
         </div>
-        <form id="form1" method="post" onsubmit="return memCheck()">
+        <form id="form1" method="post" >
             <h1>회원</h1>
 	        <div class="login_text">이메일로그인</div>
 	        <div class="login_box">
-	        <div><input type="email" placeholder="이메일" name="email"></div>
-	        <div><input type="password" placeholder="비밀번호" name="password"></div>
+	        <div><input type="email" placeholder="이메일" id="email" name="email"></div>
+	        <div><input type="password" placeholder="비밀번호" id="password" name="password"></div>
 	        </div>
 	        <div class="login_button">
-	        	<button type="submit">LOGIN</button>
+	        	<button type="button" onclick="memCheck()">LOGIN</button>
 	       		<button type="button" onclick="location.href='${pageContext.request.contextPath}/memberOrStore.do'">CREATE</button>
 	        </div>
         </form>
@@ -86,7 +90,7 @@
 	        <div><input type="password" placeholder="비밀번호" name="password"></div>
 	        </div>
 	        <div class="login_button">
-	        <button type="button">LOGIN</button>
+	        <button type="button" >LOGIN</button>
 	        <button type="button" onclick="location.href='${pageContext.request.contextPath}/memberOrStore.do'">CREATE</button>
 	        </div>
         </form>

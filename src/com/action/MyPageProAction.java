@@ -5,12 +5,14 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 import com.command.CommandHandler;
+import com.member.db.memberBean;
 import com.member.db.memberDAO;
 
-public class memberCheckAction implements CommandHandler{
+// 내정보 -> 비밀번호 확인 클릭
+public class MyPageProAction implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
@@ -18,18 +20,21 @@ public class memberCheckAction implements CommandHandler{
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		String email = request.getParameter("email");
+		HttpSession session = request.getSession();
 		
-		System.out.println(email);
+		String email = (String)session.getAttribute("userid");
+		
 		memberDAO mdao = new memberDAO();
 		
-		int result = mdao.checkEmail(email);
-		
-		request.setAttribute("result", result);
 		
 		
-		return "member/memberCheck.jsp";
+		memberBean mbean = mdao.getMember(email);
 		
+		request.setAttribute("getMember",mbean);
+		
+		
+		
+		return "/member/Mypage.jsp";
 	}
 	
 	
