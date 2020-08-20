@@ -17,6 +17,7 @@ public class storeUpdateAction implements CommandHandler{
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("Update");
 		request.setCharacterEncoding("UTF-8");
 		StoreDAO dao = new StoreDAO();
 		StoreBean bean = new StoreBean();
@@ -28,16 +29,9 @@ public class storeUpdateAction implements CommandHandler{
 		bean.setStoreaddress1(request.getParameter("storeaddress1"));
 		bean.setStoreaddress2(request.getParameter("storeaddress2"));
 		bean.setStoreaddress3(request.getParameter("storeaddress3"));
-		dao.updateStore(bean);
-		
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out=response.getWriter();
-		out.println("<script>");
-		out.println("alert('수정완료');");
-		out.println("location.href='./main.do'");
-		out.println("</script>");
-		out.close();
+		int check = dao.updateStore(bean);
+		request.setAttribute("data", check);
 
-		return null;
+		return "/store/checkEmail.jsp";
 	}
 }

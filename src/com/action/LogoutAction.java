@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.command.CommandHandler;
 
-//회원탈퇴 forward
-public class storeDelete implements CommandHandler{
+public class LogoutAction implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		return "store/storedelete.jsp";
+		request.getSession().invalidate();
+		return "/main.do";
 	}
 
 }

@@ -30,37 +30,18 @@ public class storejoinAction implements CommandHandler {
 		bean.setStoreaddress1(request.getParameter("storeaddress1"));
 		bean.setStoreaddress2(request.getParameter("storeaddress2"));
 		bean.setStoreaddress3(request.getParameter("storeaddress3"));
-		
+
 		//회원가입 성공 여부를 담을 변수 선언
-		boolean result = false;
+		int check = 0;
 		
 		StoreDAO dao=new StoreDAO();
 		
-		//회원가입 내용을 담고 있는 bean객체를 전달하여..
-		//가입에 성공하면 true리턴, 실패하면 false리턴
-		//회원가입 안되도록 일단 주석처리함
-		result = dao.insertStore(bean);
-	
-		//회원 가입 처리에 실패 했을 경우 null을 반환 한다.
-		if(result == false){
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out=response.getWriter();
-			out.println("<script>");
-			out.println("alert('회원가입 실패');");
-			out.println("location.href='./storejoin.do'");
-			out.println("</script>");
-			out.close();
-			return null;
-		}else{
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out=response.getWriter();
-			out.println("<script>");
-			out.println("alert('회원가입 성공');");
-			out.println("location.href='./main.do'");
-			out.println("</script>");
-			out.close();
-			return null;
-		}
+		//회원 가입 처리에 실패 했을 경우 0을 반환 한다.
+		//회원가입에 성공하면 1을 반환한다
+		check = dao.insertStore(bean);
+		request.setAttribute("data", check);
+		
+		return "/store/checkEmail.jsp";
 	}
 	
 }

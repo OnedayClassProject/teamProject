@@ -14,18 +14,41 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/store/storejoin.css">
 </head>
 <body>
-
+<script>
+	function deleteCheck() {
+		var form = $("#deleteform").serialize();
+		var password = $("#password").val();
+		if(password==""){
+    		alert("비밀번호를 입력하세요.");
+    	}else{
+			$.ajax('${pageContext.request.contextPath}/storeDeleteAction.do',{
+				type:"post",
+				data:form,
+				success:function(data){
+					if(data == 1){
+						alert("회원탈퇴하셨습니다.");
+						location.href="${pageContext.request.contextPath}/main.do"
+					}else{
+						alert("비밀번호가 틀렸습니다.");
+					}
+				}, error:function(data){
+					alert("에러가 발생했습니다.");
+				}
+			});
+    	}
+	}
+</script>
 <jsp:include page="../header.jsp"/>
 <section>
     <div class="member_join">
-        <form action="./storeDeleteAction.do"  method="post">
-            <div>가게 회원탈퇴</div>
+        <form id = "deleteform" method="post">
+            <div>회원탈퇴</div>
             <hr>
             <div class="join_main">
-            	<input type="hidden" name="storeemail" value = "${sessionScope.email }">
-                <div><input class="join_text" type="password" id="pass1" name="storepw" placeholder="PASSWORD" required ></div>
+            	<input type="hidden" id = "email" name="storeemail" value = "${storeid}">
+                <div><input class="join_text" type="password" id="password" name="storepw" placeholder="PASSWORD" required ></div>
                 <div class="join_text4">
-                    <input type="submit" value="회원탈퇴">
+                    <input type="button" onclick="deleteCheck()" value="회원탈퇴">
                 </div>
             </div>
         </form>

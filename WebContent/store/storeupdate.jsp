@@ -18,16 +18,15 @@
 <jsp:include page="../header.jsp"/>
 <section>
     <div class="member_join">
-        <form onsubmit="return checkPassword()" action="./storeUpdateAction.do"  method="post">
-            <div>가게 회원가입</div>
+        <form id ="updateform" method="post">
+            <div>정보수정</div>
             <hr>
             <div class="join_main">
-            	<input type="hidden" name ="storeemail" value ="${sessionScope.storeid }">
+            	<input type="hidden" id ="email" name ="storeemail" value ="${storeid}">
                 <div><input class="join_text" type="password" id="pass1" name="storepw" placeholder="PASSWORD" required></div>
                 <div><input class="join_text" type="password" id="pass2" placeholder="PASSWORD" required></div>
-                <!-- <div><input class="join_text" type="text" name="username" placeholder="작가명"></div> -->
-                <div><input class="join_text" type="text" name="storename" placeholder="가게이름" required value ="${store.storename}"}></div>
-                <div><input class="join_text" type="text" name="storetel" placeholder="PHONE NUMBER" required value ="${store.storetel}"></div>
+                <div><input class="join_text" type="text" id="name" name="storename" placeholder="가게이름" required value ="${store.storename}"}></div>
+                <div><input class="join_text" type="text" id="tel" name="storetel" placeholder="PHONE NUMBER" required value ="${store.storetel}"></div>
                 <div class="join_text2">
                     <input type="text" name = "storepostcode" id="sample6_postcode" placeholder="우편번호" value ="${store.storepostcode}">
                     <input type="button"  onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
@@ -38,7 +37,7 @@
                     <input type="text" name ="storeaddress3" id="sample6_extraAddress" placeholder="참고항목" value ="${store.storeaddress3}">
                 </div>
                 <div class="join_text4">
-                    <input type="submit" value="UPDATE">
+                    <input type="button" onclick = "return checkPassword()" value="UPDATE">
                 </div>
             </div>
         </form>
@@ -100,8 +99,31 @@
 			$("#pass2").focus();
 			$("#pass2").val("");
 			return false;
+    	}else{
+    		alert("회원수정 실패.");
+    		return false;
     	}
     	return true;
+    }
+    
+    function updateCheck(){
+    	var form = $("#updateform").serialize();
+   		$.ajax('${pageContext.request.contextPath}/storeUpdateAction.do',{
+   			type:"post",
+   			data:form,
+   			success:function(data){
+   				if(data == 1){
+   					alert("회원수정완료.");
+   					location.href="${pageContext.request.contextPath}/main.do"
+   				}else{
+   					alert("회원수정실패.");
+   					return false;
+   				}
+   			}, error:function(data){
+   				alert("에러가 발생했습니다.");
+   				return false;
+   			}
+   		});
     }
 </script>
 </body>
