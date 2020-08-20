@@ -14,44 +14,36 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/store/storejoin.css">
 </head>
 <body>
-
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <jsp:include page="../header.jsp"/>
 <section>
     <div class="member_join">
-        <form onsubmit="return checkPassword()" action="./storejoinAction.do"  method="post">
-            <div>가게 회원가입</div>
+        <form id ="updateform" method="post">
+            <div>정보수정</div>
             <hr>
             <div class="join_main">
-            <!-- 일단 이메일 수정은 못하도록 -->
-<!--                 <div class="join_text2">
-                    <input type="email" id = "storeemail" name="storeemail" placeholder="EMAIL" required>
-                    <input type="button" value="중복확인" onclick="checkEmail()">
-                    <input type ="hidden" id = "checkemail" value="emailUnCheck">
-                </div> -->
+            	<input type="hidden" id ="email" name ="storeemail" value ="${storeid}">
                 <div><input class="join_text" type="password" id="pass1" name="storepw" placeholder="PASSWORD" required></div>
                 <div><input class="join_text" type="password" id="pass2" placeholder="PASSWORD" required></div>
-                <!-- <div><input class="join_text" type="text" name="username" placeholder="작가명"></div> -->
-                <div><input class="join_text" type="text" name="storename" placeholder="가게이름" required></div>
-                <div><input class="join_text" type="text" name="storetel" placeholder="PHONE NUMBER" required></div>
+                <div><input class="join_text" type="text" id="name" name="storename" placeholder="가게이름" required value ="${store.storename}"}></div>
+                <div><input class="join_text" type="text" id="tel" name="storetel" placeholder="PHONE NUMBER" required value ="${store.storetel}"></div>
                 <div class="join_text2">
-                    <input type="text" id="sample6_postcode" placeholder="우편번호">
-                    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+                    <input type="text" name = "storepostcode" id="sample6_postcode" placeholder="우편번호" value ="${store.storepostcode}">
+                    <input type="button"  onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
                 </div>
-                <input class="join_text" type="text" id="sample6_address" name ="storeplace" placeholder="주소">
+                <input class="join_text" type="text" name ="storeaddress1" id="sample6_address" placeholder="주소" value ="${store.storeaddress1}">
                 <div class="join_text3">
-                    <input type="text" id="sample6_detailAddress" placeholder="상세주소">
-                    <input type="text" id="sample6_extraAddress" placeholder="참고항목">
+                    <input type="text" name ="storeaddress2" id="sample6_detailAddress" placeholder="상세주소" value ="${store.storeaddress2}">
+                    <input type="text" name ="storeaddress3" id="sample6_extraAddress" placeholder="참고항목" value ="${store.storeaddress3}">
                 </div>
                 <div class="join_text4">
-                    <input type="submit" value="CREATE">
+                    <input type="button" onclick = "return checkPassword()" value="UPDATE">
                 </div>
             </div>
         </form>
     </div>
 </section>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript"
-	src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 <script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -100,38 +92,36 @@
             }
         }).open();
     }
-    /* function checkEmail(){
-    	var check = document.getElementById("checkemail");
-		$.ajax({
-			type: "post",
-			url : "store/checkEmail.jsp",
-			data : { email : $('#storeemail').val()},
-			success : function(data) {
-				if(data == 0){
-					alert("이메일이 존재합니다");
-					$('#storeemail').focus();
-					$('#storeemail').val("");
-				}
-				else if(data==1){
-					alert("이메일을 사용할 수 있습니다.");
-					check.value = "emailCheck";
-				}
-			}
-		});
-	} */
+
     function checkPassword(){
-    	/* var check = document.getElementById("checkemail");
-    	if(check.value=="emailUnCheck"){
-    		alert("아이디 중복체크를 해주세요");
-    		return false;
-    	} */
     	if($("#pass1").val() != $("#pass2").val()){
 			alert("비밀번호가 서로 다릅니다.");
 			$("#pass2").focus();
 			$("#pass2").val("");
 			return false;
+    	}else{
+    		updateCheck();
     	}
     	return true;
+    }
+    
+    function updateCheck(){
+    	var form = $("#updateform").serialize();
+   		$.ajax('${pageContext.request.contextPath}/storeUpdateAction.do',{
+   			type:"post",
+   			data:form,
+   			success:function(data){
+   				if(data == 1){
+   					alert("회원수정완료.");
+   					location.href="${pageContext.request.contextPath}/main.do"
+   				}else{
+   					alert("회원수정실패.");
+   				}
+   			}, error:function(data){
+   				alert("에러가 발생했습니다.");
+   				return false;
+   			}
+   		});
     }
 </script>
 </body>

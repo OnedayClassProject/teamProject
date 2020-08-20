@@ -53,6 +53,8 @@
         					location.href="${pageContext.request.contextPath}/main.do"
         				}else{
         					alert("이메일 또는 비밀번호를 확인해주세요.");
+        					$("#email").val(email);
+        					$("#password").val("");
         				}
         			}, error:function(data){
         				alert("에러가 발생했습니다.");
@@ -61,6 +63,33 @@
         	}
         }
         
+        function storeCheck() {
+        	var form = $("#form2").serialize();
+        	var email = $("#email").val();
+        	var password = $("#password").val();
+        	if(email == ""){
+        		alert("이메일을 입력하세요.");
+        		return;
+        	}else if(password==""){
+        		alert("비밀번호를 입력하세요.");
+        		return;
+        	}else{
+        		$.ajax('${pageContext.request.contextPath}/storeLoginAction.do',{
+        			type:"post",
+        			data:form,
+        			success:function(data){
+        				if(data == 1){
+        					alert("로그인에 성공하셨습니다.");
+        					location.href="${pageContext.request.contextPath}/main.do"
+        				}else{
+        					alert("이메일 또는 비밀번호를 확인해주세요.");
+        				}
+        			}, error:function(data){
+        				alert("에러가 발생했습니다.");
+        			}
+        		});
+        	}
+        }
     </script>
 </head>
 <body>
@@ -69,6 +98,7 @@
     <div class="member-login">
         <div>CLASS+</div>
         <hr>
+
         <div>로그인</div>
         <table class="login_choice">
         <tr>
@@ -76,7 +106,9 @@
         <td class="store">업체로그인</td>
         </tr>
         </table>
+        
         <form id="form1" method="post">
+            <h1>회원</h1>
 	        <div class="login_text">이메일로그인</div>
 	        <div class="login_box">
 	        <div><input type="email" placeholder="이메일" id="email" name="email"></div>
@@ -87,15 +119,20 @@
 	       		<button type="button" onclick="location.href='${pageContext.request.contextPath}/memberOrStore.do'">CREATE</button>
 	        </div>
         </form>
-        
-        <form id="form2" method="post" action="${pageContext.request.contextPath}/storeLoginAction.do">
+
+        <form id="form2" method = "post">
+            <h1>업체</h1>
+
 	        <div class="login_text">이메일로그인</div>
 	        <div class="login_box">
 	        <div><input type="email" placeholder="이메일" name="email"></div>
 	        <div><input type="password" placeholder="비밀번호" name="password"></div>
 	        </div>
 	        <div class="login_button">
-	        <button type="submit">LOGIN</button>
+
+
+	        <button type="button" onclick="storeCheck()" >LOGIN</button>
+
 	        <button type="button" onclick="location.href='${pageContext.request.contextPath}/memberOrStore.do'">CREATE</button>
 	        </div>
         </form>

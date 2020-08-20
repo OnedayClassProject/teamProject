@@ -6,7 +6,10 @@ public class StoreBean {
 	private String storepw;
 	private String storename;
 	private String storetel;
-	private String storeplace;
+	private String storepostcode;
+	private String storeaddress1;
+	private String storeaddress2;
+	private String storeaddress3;
 	
 	public int getStorenum() {
 		return storenum;
@@ -38,10 +41,29 @@ public class StoreBean {
 	public void setStoretel(String storetel) {
 		this.storetel = storetel;
 	}
-	public String getStoreplace() {
-		return storeplace;
+	public String getStorepostcode() {
+		return storepostcode;
 	}
-	public void setStoreplace(String storeplace) {
-		this.storeplace = storeplace;
+	public void setStorepostcode(String storepostcode) {
+		this.storepostcode = storepostcode;
 	}
+	public String getStoreaddress1() {
+		return storeaddress1;
+	}
+	public void setStoreaddress1(String storeaddress1) {
+		this.storeaddress1 = storeaddress1;
+	}
+	public String getStoreaddress2() {
+		return storeaddress2;
+	}
+	public void setStoreaddress2(String storeaddress2) {
+		this.storeaddress2 = storeaddress2;
+	}
+	public String getStoreaddress3() {
+		return storeaddress3;
+	}
+	public void setStoreaddress3(String storeaddress3) {
+		this.storeaddress3 = storeaddress3;
+	}
+
 }
