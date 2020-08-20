@@ -21,13 +21,13 @@ public class storeLoginAction implements CommandHandler{
 		String password = request.getParameter("password");
 		StoreDAO dao = new StoreDAO();
 		HttpSession session = request.getSession();
-		//int check = dao.loginStore(email, password);
-		int check = dao.loginStore("test1@test.test", "123");
+		int check = dao.loginStore(email, password);
+//		int check = dao.loginStore("test1@test.test", "123");
 		//store DB에 있는 경우
 		if(check == 1){
-			//session.setAttribute("email", email);
-			session.setAttribute("storeid", "test1@test.test");	
-			System.out.println("확인");
+			session.setAttribute("storeid", email);
+//			session.setAttribute("storeid", "test1@test.test");	
+//			System.out.println("확인");
 		//비밀번호가 틀린경우
 		}else if (check == 0){
 			response.setContentType("text/html; charset=UTF-8");

@@ -4,10 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+import org.json.simple.JSONArray;
 
 
 
@@ -162,5 +165,98 @@ public class StoreDAO {
 			resourceClose();
 		}
 		return bean;
+	}
+	
+	
+	public void insetTime(TimeSaveBean bean) {
+		
+		try {
+			con = getConnection();
+			String sql = "insert into operationdate values (?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, bean.getClass_registrynum());
+			pstmt.setString(2, bean.getClass_date());
+			pstmt.setString(3, bean.getClass_day());
+			pstmt.setString(4, bean.getClass_starttime());
+			pstmt.setString(5, bean.getClass_endtime());
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resourceClose();
+		}
+	}
+	public ArrayList<TimeSaveBean> getAllDate(String date , int num){
+		
+		ArrayList<TimeSaveBean> list = new ArrayList<TimeSaveBean>();
+		try {
+			con = getConnection();
+			String sql = "select distinct(class_date),class_day from operationdate where class_date = ? and class_registrynum = ? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, date);
+			pstmt.setInt(2, num);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				TimeSaveBean bean = new TimeSaveBean();
+				bean.setClass_date(rs.getString(1));
+				bean.setClass_day(rs.getString(2));
+				list.add(bean);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resourceClose();
+		}
+		
+		return list;
+	}
+	public int getClassNum() {
+		int num = 1;
+		try {
+			con = getConnection();
+			String sql = "select count(*) from class";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				num = rs.getInt(1) + 1;
+			} else {
+				num = 1;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resourceClose();
+		}
+		
+		return num;
+	}
+	public ArrayList<TimeSaveBean> getTime(String date, String day, int num){
+		
+		
+			ArrayList<TimeSaveBean> list = new ArrayList<TimeSaveBean>();
+		try {
+			con = getConnection();
+			String sql = "select class_starttime, class_endtime from operationdate where class_date = ? and class_day = ? and class_registrynum = ? order by class_starttime asc";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, date);
+			pstmt.setString(2, day);
+			pstmt.setInt(3, num);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				TimeSaveBean bean = new TimeSaveBean();
+				bean.setClass_starttime(rs.getString(1));
+				bean.setClass_endtime(rs.getString(2));
+				
+				list.add(bean);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			resourceClose();
+		}
+		return list;
 	}
 }

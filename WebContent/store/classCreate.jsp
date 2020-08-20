@@ -13,20 +13,21 @@
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <link rel="stylesheet" href="../header.css">
-    <link rel="stylesheet" href="classCreate.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/store/classCreate.css">
     <script>
         var sel_file;
         $(document).ready(function () {
             $("#input_img").on("change", handleImgFileSelect);
 
             $(".sale").on("click", function () {
-                $(".sale1").append("<input type='text'>%");
+            	$(".sale1").empty();
+                $(".sale1").append("<input type='text' name='sale' id='input_sale'>%");
+                $("#sale_check").val("true");
             });
             $("#calander_backcolor").on("click", function () {
                 $("#box").css("display", "none");
                 $("#calander_backcolor").css("display", "none");
-            })
+            });
             $('.reserve').on("click", function () {
                 $("#box").css("display","block");
                 $("#calander_backcolor").css("display","block");
@@ -34,32 +35,113 @@
             $('.send').on('click', function () {
             	var date  = $("#current-year-month").text();
             	var day = $("#dateInput").text().substring(8);
+            	var num = ${num };
             	var start = []
             	var end = []
 				 for(var i=0; i < $('.time_start').length; i++){
 					start[i] = $('.time_start').eq(i).val();
 					end[i] = $('.time_end').eq(i).val();
 				} 
-				console.log(start);
-				console.log(end);
-				console.log(date);
+				
 				$.ajax({
 					type : "POST",
 					url : "${pageContext.request.contextPath}/timeSave.do",
-					data : { "start" : start, "end" : end,"date":date , "day" : day},
+					data : { "start" : start, "end" : end,"date":date , "day" : day, "num" : num},
 					dataType: "text",
 					traditional : true,
 					success:function(data, status){
 						if(data == 1){
 							alert('저장성공');
+							x();
 						} else {
 						 	alert('저장실패');
 						}
+					},
+					error:function(data, status){
+						alert('error');
 					}
 				});
 			});
             
+            $(".nosale").on("click", function () {
+            	$("#sale_check").val("fal");
+            	$(".sale1").empty();
+			});
+            $("#class_registry").on('click', function () {
+            	 var productContent = CKEDITOR.instances["p_content"].getData();
+                 $('#p_content').val(productContent);
+            	var reg1 = /^[0-9]{1,3}$/;
+            	var result = reg1.test($("#hour").val())
+            	var result1 = reg1.test($("#minute").val())
+            	var result2 = reg1.test($("#class_personal").val())
+            	var result3 = reg1.test($("#price").val())
+          		var result4 = reg1.test($("#input_sale").val())
+            	if($("#classname").val().trim() == ""){
+            		alert("클래스명 입력해주세요.");
+            		return;
+            	} else if($("#category").val().trim() == ""){
+            		alert("카테고리를 입력해주세요.");
+            		return;
+            	} else if($("#hour").val().trim() == ""){
+            		alert("시간을 입력해주세요.");
+            		return;
+            	} else if($("#minute").val().trim() == ""){
+            		alert("분을 입력해주세요.");
+            		return;
+            	} else if(result != true){
+            		alert("시간 : 숫자만 입력해주세요.");
+            		return;
+            	} else if(result1 != true){
+            		alert("분  : 숫자만 입력해주세요.");
+            		return;
+            	} else if($("#class_personal").val().trim() == ""){
+            		alert("인원수를 입력해주세요.");
+            		return;
+            	} else if(result2 != true){
+            		alert("인원수 : 숫자만 입력해주세요.");
+            		return;
+            	} else if($("#price").val().trim() == ""){
+            		alert("가격을 입력해주세요.");
+            		return;
+            	} else if(result3 != true){
+            		alert("가격 : 숫자만 입력해주세요.");
+            		return;
+            	} else if($("#sale_check").val() == "true"){
+            		if($("#input_sale").val().trim() == ""){
+            			alert("할인창에 입력해주세요.");
+            			return;
+            		} else if(result4 != true){
+            			alert("할인 : 숫자만 입력해주세요.");
+            			return;
+            		}
+            	} else if($('#p_content').val().trim() == ""){
+            		alert("내용을 입력해주세요");
+            		return;
+            	} else  if ($("#input_img").val() == '') {
+                    alert("이미지파일을 선택해주세요.")
+                    return;
+                } else {
+            	 var form = $("form")[0];
+                 var form1 = new FormData(form);
+                 $.ajax({
+                     type: "post",
+                     url: "${pageContext.request.contextPath}/classRegistry.do",
+                     processData: false,
+                     contentType: false,
+                     data: form1,
+                     dataType: "text",
+                     success:function(data, status){
+							  if(data == 1){                  	 
+                    	 		alert('등록성공^^');
+		                     	} else {
+		                     	alert('실패!!!!ㅜㅜㅜㅜㅜㅜㅜ');
+		                    	}
+                     		}
+                     	});
+                	}  
+               
             
+        	});
         });
         function handleImgFileSelect(e) {
             var files = e.target.files;
@@ -98,14 +180,16 @@
 <body>
 <div id="calander_backcolor"></div>
 <jsp:include page="/header.jsp"/>
+<form method="post" enctype="multipart/form-data">
 <div>
     <div>
         <div>클래스명</div>
-        <div><input type="text"></div>
+        <div><input type="text" name="classname" id="classname"></div>
         <div>카테고리</div>
-        <div><input type="text"></div>
+        <div><input type="text" name="category" id="category"></div>
         <div>업체명</div>
         <div>업체위치</div>
+        <div>난이도</div>
         <div>
             <select name="level">
                 <option value="hard">상</option>
@@ -114,16 +198,17 @@
             </select>
         </div>
         <div>소요시간</div>
-        <div><input type="text">시간 <input type="text">분</div>
+        <div><input type="text" name="hour" id="hour">시간 <input type="text" name="minute" id="minute">분</div> 
         <div>수업인원</div>
-        <div><input type="text">명</div>
+        <div><input type="text" name="class_personal" id="class_personal">명</div>
         <div>가격</div>
-        <div><input type="text">원</div>
+        <div><input type="text" name="price" id="price">원</div>
         <div>할인여부</div>
         <div class="sale">적용</div>
-        <div class="">안함</div>
+        <input type="hidden" value="fal" id="sale_check">
+        <div class="nosale">안함</div>
         <div class="sale1"></div>
-        <div class="reserve">일정</div>
+        <div class="reserve" onclick='x()'>일정</div>
         <div>주차장여부</div>
         <div><input type="text"></div>
         <textarea id="p_content"></textarea>
@@ -136,7 +221,7 @@
         <div class="imgMain">
             <img id="img"/>
         </div>
-        <button type="submit">등록</button>
+        <button type="button" id="class_registry">등록</button>
         <button type="button">취소</button>
     </div>
     <div id="box">
@@ -186,13 +271,19 @@
         </div>
     </div>
 </div>
+</form>
 </section>
-<script src="/ckeditor/ckeditor.js"></script>
+<script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 <script>
     $(function () {
         CKEDITOR.replace('p_content', {
             height: 350,
-            removePlugins: 'resize'
+            removePlugins: 'resize',
+            filebrowserBrowseUrl : '${pageContext.request.contextPath}/ckfinder/ckfinder.html',
+        	filebrowserFlashBrowseUrl : "${pageContext.request.contextPath}/ckfinder/ckfinder.html?type=Flash",
+        	filebrowserUploadUrl : "${pageContext.request.contextPath}/ckfinder/core/connector/java/connctor.java?command=QuickUpload&type=Files",
+        	filebrowserImageUploadUrl : "${pageContext.request.contextPath}/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images",
+        	filebrowserFlashUploadUrl : "${pageContext.request.contextPath}/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash"
         });
     })
     var currentTitle = document.getElementById('current-year-month');
@@ -255,7 +346,28 @@
                         document.getElementById("dateInput").textContent = this.getAttribute("value");
                         document.getElementById("sub").style.display = "inline-block";
                         document.getElementById("plus").style.display = "inline-block";
-
+                        var date  = $("#current-year-month").text();
+                        var day = $("#dateInput").text().substring(8);
+                        var num = ${num }
+						$.ajax({
+							type : "post",
+							url : "${pageContext.request.contextPath}/saveGetTime.do",
+							data : {day : day , num : num, date : date },
+							dataType : "text",
+							success:function (data, status){
+								var result = JSON.parse(data);
+								var time = result.time;
+								$(".timesetting").empty();
+								for(var i = 0; i < time.length; i++){
+									$(".timesetting").append("<div class='timeSet'>"
+													+"<input type=\"text\" class='time_start' value='"+time[i].start+"'> ~ "
+													+"<input type=\"text\" class='time_end' value='"+time[i].end+"'></div>");
+								}
+							},
+							error:function(data,status){
+								alert('error');
+							}
+						});
                         var tds = document.querySelectorAll('.abled_td');
                         for (var i = 0; i < tds.length; i++) {
                             tds[i].setAttribute("class", "abled_td");
@@ -292,7 +404,7 @@
         first = new Date(today.getFullYear(), today.getMonth() + 1, 1);
         showCalendar();
         today = new Date(today.getFullYear(), today.getMonth() + 1, 1);
-        x()
+        x();
     });
 
     /* < 버튼 클릭시 */
@@ -302,7 +414,7 @@
         first = new Date(today.getFullYear(), today.getMonth() - 1, 1);
         showCalendar();
         today = new Date(today.getFullYear(), today.getMonth() - 1, 1);
-        x()
+        x();
     })
     var plus = document.getElementById("plus");
     plus.onclick = function () {
@@ -326,28 +438,41 @@
             return;
         }
         $(".timeSet").last().remove();
-    })
-    x();
-
+    });
+    console.log(${num });
     function x() {
         console.log($(".abled_td").length);
-        console.log($("#current-year-month").text());
-        // $.ajax({
-        //     type:"post",
-        //     url:"",
-        //     dataType:{},
-        //     success:function (data, status) {
-        //         for(var i=0; i < $(".abled_td").length; i++){
-        //             if(data[i] == $(".abled_td").eq(i).text()){
-        //                 $(".abled_td").eq(i).css("background", "red");
-        //             }
-        //         }
-        //     }
-        // })
-        // for(var i = 0; i < $(".abled_td").length; i++){
-        //     console.log($(".abled_td").eq(i).text());
-        // }
-    }
+      	var num = ${num };
+        var date= $("#current-year-month").text();
+         $.ajax({
+            type: "post",
+            url: "${pageContext.request.contextPath}/timeSetting.do",
+            dataType: "text",
+            data: { date : date , num :  num},
+             success:function (data, status) {
+            	 var result = JSON.parse(data);
+            	 var all = result.all;
+            	 if(all.length != 0 ){
+                  for(var i = 0; i < all.length; i++){
+                	  $(".abled_td").eq(all[i].day - 1).css("background","red");
+                	  /* for(var j=0 ; j< $(".abled_td").length; i++){
+                		  if( a == $(".abled_td").eq(j).text()){
+                			  $(".abled_td").eq(j).css("background","red");
+                			  break;
+                		  }
+                	  } */
+                 } 
+            	 }
+             },
+             error:function(data,status){
+            	 alert('error');
+             }
+         }); 
+        /*  for(var i = 0; i < $(".abled_td").length; i++){
+             console.log($(".abled_td").eq(i).text());
+        }  */
+    	
+    } 
 </script>
 </body>
 </html>
