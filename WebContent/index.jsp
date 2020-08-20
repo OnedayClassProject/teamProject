@@ -62,7 +62,7 @@
         	</c:if>
         	<c:if test="${not empty sessionScope.storeid}">
         	<div><a href="/storepage.do">내정보</a></div>
-        	<div><a href="/logout.do">로그아웃</a></div>
+        	<div><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></div>
         	</c:if>
         </div>
         <div class="click_event">클릭</div>

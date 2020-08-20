@@ -21,36 +21,17 @@ public class storeLoginAction implements CommandHandler{
 		String password = request.getParameter("password");
 		StoreDAO dao = new StoreDAO();
 		HttpSession session = request.getSession();
-		//int check = dao.loginStore(email, password);
-		int check = dao.loginStore("test1@test.test", "123");
+		//로그인 수행
+		int check = dao.loginStore(email, password);
 		//store DB에 있는 경우
 		if(check == 1){
-			//session.setAttribute("email", email);
-			session.setAttribute("email", "test1@test.test");	
-			System.out.println("확인");
+			session.setAttribute("storeid", email);
 		//비밀번호가 틀린경우
 		}else if (check == 0){
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out=response.getWriter();
-			out.println("<script>");
-			out.println("alert('비밀번호가 틀렸습니다.');");
-			out.println("history.back();");
-			out.println("</script>");
-			out.close();
-			return null;
-		//이메일이 존재하지 않는 경우
-		}else if(check == -1){
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out=response.getWriter();
-			out.println("<script>");
-			out.println("alert('이메일이 존재하지 않습니다.');");
-			out.println("history.back();");
-			out.println("</script>");
-			out.close();
 			return null;
 		}
-		
-		return "/main.do";
+		request.setAttribute("data", check);
+		return "/store/checkEmail.jsp";
 	}
 	
 }

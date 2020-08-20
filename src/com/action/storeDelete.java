@@ -14,7 +14,6 @@ public class storeDelete implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 		return "store/storedelete.jsp";
 	}
 

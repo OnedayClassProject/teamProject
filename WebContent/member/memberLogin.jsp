@@ -55,6 +55,33 @@
         	}
         }
         
+        function storeCheck() {
+        	var form = $("#form2").serialize();
+        	var email = $("#email").val();
+        	var password = $("#password").val();
+        	if(email == ""){
+        		alert("이메일을 입력하세요.");
+        		return;
+        	}else if(password==""){
+        		alert("비밀번호를 입력하세요.");
+        		return;
+        	}else{
+        		$.ajax('${pageContext.request.contextPath}/storeLoginAction.do',{
+        			type:"post",
+        			data:form,
+        			success:function(data){
+        				if(data == 1){
+        					alert("로그인에 성공하셨습니다.");
+        					location.href="${pageContext.request.contextPath}/main.do"
+        				}else{
+        					alert("이메일 또는 비밀번호를 확인해주세요.");
+        				}
+        			}, error:function(data){
+        				alert("에러가 발생했습니다.");
+        			}
+        		});
+        	}
+        }
     </script>
 </head>
 <body>
@@ -81,8 +108,7 @@
 	       		<button type="button" onclick="location.href='${pageContext.request.contextPath}/memberOrStore.do'">CREATE</button>
 	        </div>
         </form>
-        
-        <form id="form2">
+        <form id="form2" method = "post">
             <h1>업체</h1>
 	        <div class="login_text">이메일로그인</div>
 	        <div class="login_box">
@@ -90,7 +116,11 @@
 	        <div><input type="password" placeholder="비밀번호" name="password"></div>
 	        </div>
 	        <div class="login_button">
+<<<<<<< HEAD
 	        <button type="button" >LOGIN</button>
+=======
+	        <button type="button" onclick="storeCheck()" >LOGIN</button>
+>>>>>>> 9ef40354badcfd358a5fd3d4d0ecda1ba856a52e
 	        <button type="button" onclick="location.href='${pageContext.request.contextPath}/memberOrStore.do'">CREATE</button>
 	        </div>
         </form>

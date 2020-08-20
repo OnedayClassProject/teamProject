@@ -18,31 +18,30 @@
 <jsp:include page="../header.jsp"/>
 <section>
     <div class="member_join">
-        <form onsubmit="return checkPassword()" action="./storejoinAction.do"  method="post">
+        <form id = "joinform" method="post">
             <div>가게 회원가입</div>
             <hr>
             <div class="join_main">
                 <div class="join_text2">
-                    <input type="email" id = "storeemail" name="storeemail" placeholder="EMAIL" required>
+                    <input type="email" id = "email" name="storeemail" placeholder="EMAIL" required>
                     <input type="button" value="중복확인" onclick="checkEmail()">
                     <input type ="hidden" id = "checkemail" value="emailUnCheck">
                 </div>
                 <div><input class="join_text" type="password" id="pass1" name="storepw" placeholder="PASSWORD" required></div>
                 <div><input class="join_text" type="password" id="pass2" placeholder="PASSWORD" required></div>
-                <!-- <div><input class="join_text" type="text" name="username" placeholder="작가명"></div> -->
-                <div><input class="join_text" type="text" name="storename" placeholder="가게이름" required></div>
-                <div><input class="join_text" type="text" name="storetel" placeholder="PHONE NUMBER" required></div>
+                <div><input class="join_text" type="text" id = "name" name="storename" placeholder="가게이름" required></div>
+                <div><input class="join_text" type="text" id = "tel" name="storetel" placeholder="PHONE NUMBER" required></div>
                 <div class="join_text2">
-                    <input type="text" id="sample6_postcode" placeholder="우편번호">
+                    <input type="text" name = "storepostcode" id="sample6_postcode" placeholder="우편번호">
                     <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
                 </div>
-                <input class="join_text" type="text" id="sample6_address" name ="storeplace" placeholder="주소">
+                <input class="join_text" type="text" name ="storeaddress1" id="sample6_address" placeholder="주소">
                 <div class="join_text3">
-                    <input type="text" id="sample6_detailAddress" placeholder="상세주소">
-                    <input type="text" id="sample6_extraAddress" placeholder="참고항목">
+                    <input type="text" name ="storeaddress2" id="sample6_detailAddress" placeholder="상세주소">
+                    <input type="text" name ="storeaddress3" id="sample6_extraAddress" placeholder="참고항목">
                 </div>
                 <div class="join_text4">
-                    <input type="submit" value="CREATE">
+                    <input type="button" onclick = "return checkPassword()" value="CREATE">
                 </div>
             </div>
         </form>
@@ -129,8 +128,29 @@
 			$("#pass2").focus();
 			$("#pass2").val("");
 			return false;
+    	}else{
+    		joinCheck();
     	}
     	return true;
+    }
+    
+    function joinCheck(){
+    	var form = $("#joinform").serialize();
+   		$.ajax('${pageContext.request.contextPath}/storejoinAction.do',{
+   			type:"post",
+   			data:form,
+   			success:function(data){
+   				if(data == 1){
+   					alert("회원가입에 성공하셨습니다.");
+   					location.href="${pageContext.request.contextPath}/main.do"
+   				}else{
+   					alert("회원가입 실패.");
+   				}
+   			}, error:function(data){
+   				alert("에러가 발생했습니다.");
+   				return false;
+   			}
+   		});
     }
 </script>
 </body>
