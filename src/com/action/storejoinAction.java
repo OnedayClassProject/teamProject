@@ -1,6 +1,7 @@
 package com.action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,12 +20,16 @@ public class storejoinAction implements CommandHandler {
 			throws ServletException, IOException {
 		System.out.println("StoreJoinAction() 실행");
 		
+		request.setCharacterEncoding("UTF-8");
 		StoreBean bean = new StoreBean();
 		bean.setStoreemail(request.getParameter("storeemail"));
 		bean.setStorepw(request.getParameter("storepw"));
 		bean.setStorename(request.getParameter("storename"));
 		bean.setStoretel(request.getParameter("storetel"));
-		bean.setStoreplace(request.getParameter("storeplace"));
+		bean.setStorepostcode(request.getParameter("storepostcode"));
+		bean.setStoreaddress1(request.getParameter("storeaddress1"));
+		bean.setStoreaddress2(request.getParameter("storeaddress2"));
+		bean.setStoreaddress3(request.getParameter("storeaddress3"));
 		
 		//회원가입 성공 여부를 담을 변수 선언
 		boolean result = false;
@@ -38,11 +43,24 @@ public class storejoinAction implements CommandHandler {
 	
 		//회원 가입 처리에 실패 했을 경우 null을 반환 한다.
 		if(result == false){
-			System.out.println("회원가입 실패");
-			return "/storejoin.do";
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out=response.getWriter();
+			out.println("<script>");
+			out.println("alert('회원가입 실패');");
+			out.println("location.href='./storejoin.do'");
+			out.println("</script>");
+			out.close();
+			return null;
+		}else{
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out=response.getWriter();
+			out.println("<script>");
+			out.println("alert('회원가입 성공');");
+			out.println("location.href='./main.do'");
+			out.println("</script>");
+			out.close();
+			return null;
 		}
-		
-		return "/main.do";
 	}
 	
 }
