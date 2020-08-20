@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/store/storejoin.css">
 </head>
 <body>
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script>
 	function deleteCheck() {
 		var form = $("#deleteform").serialize();
@@ -27,7 +28,7 @@
 				success:function(data){
 					if(data == 1){
 						alert("회원탈퇴하셨습니다.");
-						location.href="${pageContext.request.contextPath}/main.do"
+						location.href="${pageContext.request.contextPath}/logout.do"
 					}else{
 						alert("비밀번호가 틀렸습니다.");
 					}

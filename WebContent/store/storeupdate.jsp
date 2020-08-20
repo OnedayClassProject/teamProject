@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/store/storejoin.css">
 </head>
 <body>
-
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <jsp:include page="../header.jsp"/>
 <section>
     <div class="member_join">
@@ -100,8 +100,7 @@
 			$("#pass2").val("");
 			return false;
     	}else{
-    		alert("회원수정 실패.");
-    		return false;
+    		updateCheck();
     	}
     	return true;
     }
@@ -117,7 +116,6 @@
    					location.href="${pageContext.request.contextPath}/main.do"
    				}else{
    					alert("회원수정실패.");
-   					return false;
    				}
    			}, error:function(data){
    				alert("에러가 발생했습니다.");

@@ -17,7 +17,6 @@ public class storeDeleteAction implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("z");
 		StoreDAO dao = new StoreDAO();
 		String storeemail = request.getParameter("storeemail");
 		String storepw = request.getParameter("storepw");
