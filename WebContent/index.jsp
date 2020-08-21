@@ -35,7 +35,6 @@
                 $(".mini-down-menu").animate({bottom : "0"},700);
                 $(".sidemenu").animate({opacity : "0"},1000,function () {
                     $(".sidemenu").css("display","none");
-
                 });
             })
             $(".sidemenu").on("click",function () {
@@ -44,6 +43,20 @@
                 $(".sidemenu").animate({opacity : "0"},1000,function () {
                     $(".sidemenu").css("display","none");
                 });
+            })
+             $(".nav-bar").on("mouseenter",function () {
+                $(".sub_menu").css("display","block");
+                $(".sub_menu").stop().animate({opacity:"1"},500);
+                $(".sub_background").css("display","block");
+                $(".sub_background").stop().animate({height : "350px",opacity:"1"}, 500)
+            })
+            $(".nav-bar").on("mouseleave",function () {
+                $(".sub_menu").stop().animate({opacity:"0"} , 500 ,function() {
+                    $(".sub_menu").css("display","none");
+                });
+                $(".sub_background").stop().animate({height : "0px",opacity:"0"}, 500,function () {
+                    $(".sub_background").css("display","none");
+                })
             })
         })
     </script>
@@ -57,11 +70,16 @@
             <div><a href="${pageContext.request.contextPath}/memberOrStore.do">회원가입</a></div>
         </c:if>
             <c:if test="${not empty sessionScope.userid}">
-        	<div><a href="/mypage.do">내정보</a></div>
-        	<div><a href="/logout.do">로그아웃</a></div>
+        	<div><a href="${pageContext.request.contextPath}/mypage.do">내정보</a></div>
+        	<div><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></div>
         	</c:if>
         	<c:if test="${not empty sessionScope.storeid}">
+<<<<<<< HEAD
         	<div><a href="${pageContext.request.contextPath}/storeInfoCheck.do">내정보</a></div>
+=======
+        	<div><a href="/storepage.do">내정보</a></div>
+        	<div><a href="${pageContext.request.contextPath}/classCreate.do">클래스개설</a></div>
+>>>>>>> f599632e3539c23b78ab8df6b072c01658e98804
         	<div><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></div>
         	</c:if>
         </div>
@@ -70,29 +88,65 @@
             <div class="side_menu">
                 <div class="close_menu">X</div>
             </div>
-        <h1><a href="${pageContext.request.contextPath}/main.do">Logo</a></h1>
-        <div class="search-bar">
-            <form>
-                <div class="search-title">SEARCH</div>
-                <input type="text" name="search">
-            </form>
+     <div class="nav_wrap">
+            <div class="main_logo"><a href="${pageContext.request.contextPath}/main.do">CLASS+</a></div>
+            <%--        <div class="search-bar">--%>
+            <%--            <form>--%>
+            <%--                <div class="search-title">SEARCH</div>--%>
+            <%--                <input type="text" name="search">--%>
+            <%--            </form>--%>
+            <%--        </div>--%>
+            <nav class="nav-bar">
+                <div>클래스
+                    <ul class="sub_menu">
+                        <li>인기클래스</li>
+                        <li>입문클래스</li>
+                    </ul>
+                </div>
+                <div>카테고리
+                    <ul class="sub_menu">
+                        <li>디퓨저</li>
+                        <li>캔들</li>
+                        <li>요리</li>
+                        <li>베이킹</li>
+                        <li>도자기</li>
+                        <li>향수</li>
+                        <li>비누</li>
+                    </ul>
+                </div>
+                <div>지역별
+                    <ul class="sub_menu">
+                        <li>서울</li>
+                        <li>경기</li>
+                        <li>부산</li>
+                        <li>대구</li>
+                        <li>광주</li>
+                        <li>경북</li>
+                        <li>경남</li>
+                        <li>충남</li>
+                        <li>충북</li>
+                        <li>전남</li>
+                    </ul>
+                </div>
+                <div>후기</div>
+            </nav>
         </div>
-        <nav class="nav-bar">
-            <div>클래스</div>
-            <div>카테고리</div>
-            <div>인기클래스</div>
-            <div>지역별</div>
-            <div>후기</div>
-        </nav>
     </div>
+    <div class="sub_background"></div>
 </header>
 <section>
     <div class="container">
         <div class="swiper-container swiper1">
             <div class="swiper-wrapper swiper1-1">
-                <div class="swiper-slide">슬라이드1</div>
-                <div class="swiper-slide">슬라이드2</div>
-                <div class="swiper-slide">슬라이드2</div>
+                <div class="swiper-slide">
+                    <div class="main_slide1"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="main_slide2"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="main_slide3"></div>
+                </div>
             </div>
         </div>
         <div class="best-bar">

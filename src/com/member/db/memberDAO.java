@@ -43,8 +43,8 @@ public class memberDAO {
 				con = getConnection();
 				
 				
-				sql = "insert into member(useremail,userpassword,username,phone,postcode,address,joindate,point,membership) "
-						+ " values(?,?,?,?,?,?,?,?,?)";
+				sql = "insert into member(useremail,userpassword,username,phone,postcode,address,detailadd,extraadd,joindate,point,membership) "
+						+ " values(?,?,?,?,?,?,?,?,?,?,?)";
 				
 				pstmt = con.prepareStatement(sql);
 				
@@ -55,9 +55,12 @@ public class memberDAO {
 				pstmt.setString(4, mbean.getPhone());
 				pstmt.setString(5, mbean.getPostcode());
 				pstmt.setString(6, mbean.getAddress());
-				pstmt.setTimestamp(7, mbean.getJoindate());
-				pstmt.setString(8, "0");
-				pstmt.setString(9, "basic");
+				pstmt.setString(7, mbean.getDetailadd());
+				pstmt.setString(8, mbean.getExtraadd());
+				
+				pstmt.setTimestamp(9, mbean.getJoindate());
+				pstmt.setString(10, "0");
+				pstmt.setString(11, "basic");
 				
 				result = pstmt.executeUpdate();
 				
@@ -115,6 +118,10 @@ public class memberDAO {
 					mbean.setPhone(rs.getString("phone"));
 					mbean.setPostcode(rs.getString("postcode"));
 					mbean.setAddress(rs.getString("address"));
+					mbean.setDetailadd(rs.getString("detailadd"));
+					mbean.setExtraadd(rs.getString("extraadd"));
+					mbean.setPoint(rs.getString("point"));
+					mbean.setMembership(rs.getString("membership"));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

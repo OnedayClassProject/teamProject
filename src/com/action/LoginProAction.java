@@ -26,7 +26,7 @@ public class LoginProAction implements CommandHandler{
 		int check = mdao.loginCheck(email,password);
 		
 		if(check == 1){
-			session.setAttribute("email", email);
+			session.setAttribute("userid", email);
 		}else if(check == 0){
 			return null;
 		}

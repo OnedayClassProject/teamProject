@@ -5,12 +5,13 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 import com.command.CommandHandler;
-import com.member.db.memberDAO;
+import com.store.db.StoreBean;
+import com.store.db.StoreDAO;
 
-public class memberCheckAction implements CommandHandler{
+public class ClassCreateAction implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
@@ -18,20 +19,17 @@ public class memberCheckAction implements CommandHandler{
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		String email = request.getParameter("email");
+		HttpSession session = request.getSession();
+		 
+		String storeid = (String)session.getAttribute("storeid");
 		
-		System.out.println(email);
-		memberDAO mdao = new memberDAO();
+		StoreDAO sdao = new StoreDAO();
+		int num = sdao.getClassNum();
 		
-		int result = mdao.checkEmail(email);
-		
-		request.setAttribute("result", result);
+		request.setAttribute("num", num);
 		
 		
-		return "member/memberCheck.jsp";
-		
+		return "store/classCreate.jsp";
 	}
-	
-	
 
 }
