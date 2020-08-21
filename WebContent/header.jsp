@@ -25,8 +25,8 @@
         	<div><a href="/logout.do">로그아웃</a></div>
         	</c:if>
         	<c:if test="${not empty sessionScope.storeid}">
-        	<div><a href="/storepage.do">내정보</a></div>
-        	<div><a href="/logout.do">로그아웃</a></div>
+        	<div><a href="${pageContext.request.contextPath}/storeInfoCheck.do">내정보</a></div>
+        	<div><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></div>
         	</c:if>
         </div>
         <h1><a href="${pageContext.request.contextPath}/main.do">Logo</a></h1>
