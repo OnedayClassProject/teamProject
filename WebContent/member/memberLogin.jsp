@@ -116,11 +116,8 @@
 	        <div><input type="password" placeholder="비밀번호" name="password"></div>
 	        </div>
 	        <div class="login_button">
-<<<<<<< HEAD
 	        <button type="button" >LOGIN</button>
-=======
 	        <button type="button" onclick="storeCheck()" >LOGIN</button>
->>>>>>> 9ef40354badcfd358a5fd3d4d0ecda1ba856a52e
 	        <button type="button" onclick="location.href='${pageContext.request.contextPath}/memberOrStore.do'">CREATE</button>
 	        </div>
         </form>

@@ -157,5 +157,40 @@ public class memberDAO {
 			
 			return check;
 		}
+		public void updateMember(memberBean mbean) {
+			
+			try {
+				con = getConnection();
+				sql = "select* from member where useremail=? ";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, mbean.getUseremail());
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()){
+					sql = "update member set username=?,phone=?,postcode=?,address=?,detailadd=?,extraadd=?";
+					
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, mbean.getUsername());
+					pstmt.setString(2, mbean.getPhone());
+					pstmt.setString(3, mbean.getPostcode());
+					pstmt.setString(4, mbean.getAddress());
+					pstmt.setString(5, mbean.getDetailadd());
+					pstmt.setString(6, mbean.getExtraadd());
+					
+					pstmt.executeUpdate();
+					
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				resourceClose();
+			}
+			
+			
+		}
+		
+		
 	
 }

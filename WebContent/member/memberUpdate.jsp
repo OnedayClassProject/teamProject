@@ -15,42 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/member/memberjoin.css">
 
 <script>
-	
-		function email_check(){
-			var email = $("#email").val();
-			console.log(email);
-			if($("#email").val().trim() == ""){
-				$("#check_result").empty();
-				$("#check_result").append("이메일을 입력하세요.");
-				$("#email").focus();
-			}else{
-				$.ajax('${pageContext.request.contextPath}/memberCheck.do',{
-					type:"post",
-					data:{ email : email},
-					success:function(data,textStatus){
-						
-						if(data == 1){
-							$("#check_result").empty();
-							$("#check_result").text("이미 가입된 이메일입니다.");
-							
-						}else{
-							$("#check_result").empty();
-							$("#check_result").text("사용가능한 이메일입니다.");
-							$("#check").val("true"); // 이메일 중복체크 확인 후 사용가능하면 true로 바꾸기
-						}
-					},
-					error:function(data){
-						alert("에러가 발생했습니다.");
-						console.log(data);
-					}
-				});
-			
-			} //else
-			
-		}
-		
 		function Check() {
-			
 			   
 			var username = $("#username").val();
 			var phone = $("#phone").val();
@@ -65,9 +30,6 @@
 		    var reg4 = /^01(?:0|1|[6-9])[-]?(\d{3}|\d{4})[-]?(\d{4})$/; // 010-(3자리 또는 4자리 0부터 9까지)-(4자리 0부터 9까지)
 		    //우편번호
 		    var reg5 = /^[가-힣a-zA-Z0-9~!@#$%^&*()_+-]{4,40}$/; // 상세주소
-		    
-		    
-		    
 		    
 		    // 이름 확인
 		    var result3 = reg3.test(username);
@@ -106,7 +68,10 @@
 		    }
 		    
 			return true;
+			
+			
 		}
+		
 	
 </script>
 </head>
@@ -128,14 +93,14 @@
                     <input type="email" class="join_text" name="useremail" id="email" value="${getMember.useremail }" readonly placeholder="EMAIL">
                 </div>
                 <div><input class="join_text" type="text" id="username"name="username" placeholder="NAME" value="${getMember.username}"></div>
-                <div><input class="join_text" type="text" id="phone" name="phone" placeholder="PHONE NUMBER" value="${getMember.phone }"></div>
+                <div><input class="join_text" type="text" id="phone" name="phone" placeholder="PHONE NUMBER" value="${getMember.phone}"></div>
                 <div class="join_text2">
                     <input type="text" id="sample6_postcode" class="postcode" name="postcode" placeholder="우편번호" value="${getMember.postcode}">
                     <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
                 </div>
-                <input class="join_text" type="text" id="sample6_address" class="address"name="address" placeholder="주소" value="${getMember.address }">
+                <input class="join_text" type="text" id="sample6_address" class="address"name="address" placeholder="주소" value="${getMember.address}">
                 <div class="join_text3">
-                    <input type="text" id="sample6_detailAddress" class="detailadd" name="detailadd" placeholder="상세주소" value="${getMember.detailadd }">
+                    <input type="text" id="sample6_detailAddress" class="detailadd" name="detailadd" placeholder="상세주소" value="${getMember.detailadd}">
                     <input type="text" id="sample6_extraAddress" id="extraadd" name="extraadd" placeholder="참고항목" value="${getMember.extraadd}">
                 </div>
                 <div class="join_text4">
