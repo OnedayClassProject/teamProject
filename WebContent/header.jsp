@@ -45,12 +45,8 @@
         	<div><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></div>
         	</c:if>
         	<c:if test="${not empty sessionScope.storeid}">
-<<<<<<< HEAD
         	<div><a href="${pageContext.request.contextPath}/storeInfoCheck.do">내정보</a></div>
-=======
-        	<div><a href="${pageContext.request.contextPath}/storepage.do">내정보</a></div>
         	<div><a href="${pageContext.request.contextPath}/classCreate.do">클래스개설</a></div>
->>>>>>> f599632e3539c23b78ab8df6b072c01658e98804
         	<div><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></div>
         	</c:if>
         </div>

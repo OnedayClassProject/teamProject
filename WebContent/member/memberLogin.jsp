@@ -65,8 +65,10 @@
         
         function storeCheck() {
         	var form = $("#form2").serialize();
-        	var email = $("#email").val();
-        	var password = $("#password").val();
+        	var email = $("#email2").val();
+        	var password = $("#password2").val();
+        	console.log(email);
+        	console.log(password);
         	if(email == ""){
         		alert("이메일을 입력하세요.");
         		return;
@@ -125,8 +127,8 @@
 
 	        <div class="login_text">이메일로그인</div>
 	        <div class="login_box">
-	        <div><input type="email" placeholder="이메일" name="email"></div>
-	        <div><input type="password" placeholder="비밀번호" name="password"></div>
+	        <div><input type="email" placeholder="이메일" id="email2" name="email"></div>
+	        <div><input type="password" placeholder="비밀번호" id="password2" name="password"></div>
 	        </div>
 	        <div class="login_button">
 
