@@ -23,14 +23,14 @@
             <hr>
             <div class="join_main">
                 <div class="join_text2">
-                    <input type="email" id = "email" name="storeemail" placeholder="EMAIL" required>
+                    <input type="email" id = "email" name="storeemail" placeholder="EMAIL">
                     <input type="button" value="중복확인" onclick="checkEmail()">
                     <input type ="hidden" id = "checkemail" value="emailUnCheck">
                 </div>
-                <div><input class="join_text" type="password" id="pass1" name="storepw" placeholder="PASSWORD" required></div>
-                <div><input class="join_text" type="password" id="pass2" placeholder="PASSWORD" required></div>
-                <div><input class="join_text" type="text" id = "name" name="storename" placeholder="가게이름" required></div>
-                <div><input class="join_text" type="text" id = "tel" name="storetel" placeholder="PHONE NUMBER" required></div>
+                <div><input class="join_text" type="password" id="pass1" name="storepw" placeholder="PASSWORD"></div>
+                <div><input class="join_text" type="password" id="pass2" placeholder="PASSWORD"></div>
+                <div><input class="join_text" type="text" id = "name" name="storename" placeholder="가게이름"></div>
+                <div><input class="join_text" type="text" id = "tel" name="storetel" placeholder="PHONE NUMBER"></div>
                 <div class="join_text2">
                     <input type="text" name = "storepostcode" id="sample6_postcode" placeholder="우편번호">
                     <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
@@ -41,7 +41,7 @@
                     <input type="text" name ="storeaddress3" id="sample6_extraAddress" placeholder="참고항목">
                 </div>
                 <div class="join_text4">
-                    <input type="button" onclick = "return checkPassword()" value="CREATE">
+                    <input type="button" onclick = "return checkForm()" value="CREATE">
                 </div>
             </div>
         </form>
@@ -99,8 +99,8 @@
         }).open();
     }
     function checkEmail(){
-    	var check = document.getElementById("checkemail");
     	var email = $("#email").val();
+    	var check = document.getElementById("checkemail"); 
     	if(email == ""){
     		alert("이메일을 입력하세요");
     		$("#email").focus();
@@ -108,7 +108,7 @@
 	   		$.ajax({
 				type: "post",
 				url : "StoreCheckEmail.do",
-				data : { email : $('#storeemail').val()},
+				data : { email : $('#email').val()},
 				success : function(data) {
 					if(data == 0){
 						alert("이메일이 존재합니다");
@@ -123,20 +123,108 @@
 			});
     	}
 	}
-    function checkPassword(){
-    	var check = document.getElementById("checkemail");
-    	if(check.value=="emailUnCheck"){
+    function checkForm(){
+    	   	
+   		var email = $("#email").val();
+    	var check = document.getElementById("checkemail"); 
+		var password = $("#pass1").val();
+		var pwdcheck = $("#pass2").val();
+		var name = $("#name").val();
+		var tel = $("#tel").val();
+		var postcode = $("#sample6_postcode").val();
+		var address = $("#sample6_address").val();
+		var detailadd = $("#sample6_detailAddress").val();
+		
+		//정규표현식
+		 //이메일
+	    var reg1 = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+		//비밀번호
+	    var reg2 = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,20}$/; // 6~20문자 영대소문자, 숫자 혼합
+	    //이름
+	    var reg3 = /^[가-힣]{2,5}$/;
+	    //전화번호
+	    var reg4 = /^01(?:0|1|[6-9])[-]?(\d{3}|\d{4})[-]?(\d{4})$/; // 010-(3자리 또는 4자리 0부터 9까지)-(4자리 0부터 9까지)
+	    //우편번호
+	    var reg5 = /^[가-힣a-zA-Z0-9~!@#$%^&*()_+-]{4,40}$/; // 상세주소
+	    
+	    
+	    
+	    // 이메일 확인
+	    var result1 = reg1.test(email);
+	    if(email == ""){
+	    	alert("이메일을 입력해주세요");
+	    	return false;
+	    }else if(check.value=="emailUnCheck"){
     		alert("아이디 중복체크를 해주세요");
     		return false;
     	}
-    	else if($("#pass1").val() != $("#pass2").val()){
-			alert("비밀번호가 서로 다릅니다.");
-			$("#pass2").focus();
-			$("#pass2").val("");
-			return false;
-    	}else{
-    		joinCheck();
-    	}
+	    
+	    // 비밀번호 확인
+	    var result2 = reg2.test(password);
+	    if (password != pwdcheck){ // 비밀번호와 비밀번호확인란의 입력값이 같은지 확인
+	    	alert("비밀번호가 서로다릅니다.");
+	    	return false;
+	    }else if(password == ""){
+	    	alert("비밀번호를 입력해주세요.");
+	    	$("#pass1").focus();
+	    	return false;
+	    }else if(pwdcheck == ""){
+	    	alert("비밀번호를 확인해주세요.");
+	    	$("#pass2").focus();
+	    	return false;
+	    }else if(result2 != true){
+	    	alert(password);
+	    	alert(pwdcheck);
+	    	alert("비밀번호를 정확하게 입력해주세요.(6~20자 영어대소문자,숫자 혼합)");
+	    	$("#pass1").val("");
+	    	$("#pass2").val("");
+	    	return false;
+	    }
+	    
+	    // 이름 확인
+	    var result3 = reg3.test(name);
+	    if(name == ""){
+	    	alert("이름을 입력해주세요.");
+	    	$("#name").focus();
+	    	return false;
+	    } else if(result3 != true){
+	    	alert("이름을 정확하게 입력해주세요");
+	    	$("#name").focus();
+	    	$("#name").val("");
+	    	return false;
+	    }
+	    
+	    // 전화번호 확인
+	    var result4 = reg4.test(tel);
+	    if(tel == ""){
+	    	alert("전화번호를 입력해주세요.");
+	    	$("#tel").focus();
+	    	return false;
+	    } else if(result4 != true){
+	    	alert("전화번호를 정확하게 입력해주세요.");
+	    	$("#tel").focus();
+	    	$("#tel").val("");
+	    	return false;
+	    }
+	    
+	    // 우편번호 확인
+	    var result5 = reg5.test(detailadd); // 상세주소
+	    if(postcode == ""){
+	    	alert("우편번호를 입력해주세요.");
+	    	return false;
+	    }else if(address == ""){
+	    	alert("주소를 입력해주세요.");
+	    	return false;
+	    }else if(detailadd == ""){
+	    	alert("상세주소를 입력해주세요.");
+	    	return false;
+	    }else if(result5 != true){
+	    	alert("상세주소를 정확하게 입력해주세요.");
+	    	return false;
+	    }
+	    
+    	joinCheck();
+    	
     	return true;
     }
     
@@ -154,7 +242,6 @@
    				}
    			}, error:function(data){
    				alert("에러가 발생했습니다.");
-   				return false;
    			}
    		});
     }

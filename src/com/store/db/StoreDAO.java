@@ -98,6 +98,7 @@ public class StoreDAO {
 	//이메일 존재 여부 확인
 	public int emailCheck(String email){
 		int check = 1; //아이디가 존재하는지 확인하는 변수 0 -> 존재하는 아이디, 1 -> 존재하지 않는 아이디
+		System.out.println(email);
 		try {
 			con = getConnection();
 			String sql = "select * from store where storeemail = ?";
