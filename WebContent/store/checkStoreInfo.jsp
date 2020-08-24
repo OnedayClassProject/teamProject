@@ -15,20 +15,19 @@
 </head>
 <body>
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-<script>	
-	function deleteCheck() {
-		var form = $("#deleteform").serialize();
+<script>
+	function infoCheck() {
+		var form = $("#infoform").serialize();
 		var password = $("#password").val();
 		if(password==""){
     		alert("비밀번호를 입력하세요.");
     	}else{
-			$.ajax('${pageContext.request.contextPath}/storeDeleteAction.do',{
+			$.ajax('${pageContext.request.contextPath}/storeInfoCheckAction.do',{
 				type:"post",
 				data:form,
 				success:function(data){
 					if(data == 1){
-						alert("회원탈퇴하셨습니다.");
-						location.href="${pageContext.request.contextPath}/logout.do"
+						location.href="${pageContext.request.contextPath}/storeInfoPage.do";
 					}else{
 						alert("비밀번호가 틀렸습니다.");
 					}
@@ -42,14 +41,14 @@
 <jsp:include page="../header.jsp"/>
 <section>
     <div class="member_join">
-        <form id = "deleteform" method="post">
-            <div>회원탈퇴</div>
+        <form id = "infoform" method="post">
+            <div>비밀번호확인</div>
             <hr>
             <div class="join_main">
             	<input type="hidden" id = "email" name="storeemail" value = "${storeid}">
                 <div><input class="join_text" type="password" id="password" name="storepw" placeholder="PASSWORD" required ></div>
                 <div class="join_text4">
-                    <input type="button" onclick="deleteCheck()" value="회원탈퇴">
+                    <input type="button" onclick="infoCheck()" value="확인">
                 </div>
             </div>
         </form>

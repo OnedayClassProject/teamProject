@@ -36,6 +36,7 @@
                 </div>
                 
                 <div class="join_text3">
+                
                     <input type="text" id="sample6_detailAddress" class="detailadd" name="detailadd" placeholder="상세주소" readonly value="${getMember.detailadd }">
                     <input type="text" id="sample6_extraAddress" id="extraadd" name="extraadd" placeholder="참고항목" readonly value="${getMember.extraadd }">
                 </div>
@@ -43,7 +44,7 @@
                 <div><input class="join_text" type="text" id="point" placeholder="포인트" readonly value="${getMember.point }"></div>
                 <div class="join_text4">
                 	<input type="button" value="회원 정보 수정" onclick="location.href='${pageContext.request.contextPath}/memberUpdate.do'">
-                	<input type="button" value="회원 탈퇴">
+                	<input type="button" value="회원 탈퇴" onclick="location.href='${pageContext.request.contextPath}/memberDelete.do'">
                 </div>
             </div>
         </form>

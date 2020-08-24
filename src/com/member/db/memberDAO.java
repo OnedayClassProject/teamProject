@@ -190,6 +190,31 @@ public class memberDAO {
 			
 			
 		}
+		public int deleteMember(String email, String password) {
+			int check = 0;
+			
+			try {
+				con = getConnection();
+				sql = "delete from member where useremail=? and userpassword=?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, email);
+				pstmt.setString(2, password);
+				
+				check = pstmt.executeUpdate();
+				
+				if(check != 0){
+					return 1;
+				}
+				
+			} catch (Exception e) {
+				System.out.println(e);
+			}finally {
+				resourceClose();
+			}
+			
+			return 0;
+		}
 		
 		
 	

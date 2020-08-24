@@ -21,8 +21,12 @@ public class storeLoginAction implements CommandHandler{
 		String password = request.getParameter("password");
 		StoreDAO dao = new StoreDAO();
 		HttpSession session = request.getSession();
-		//로그인 수행
 		int check = dao.loginStore(email, password);
+//		int check = dao.loginStore("test1@test.test", "123");
+		//store DB에 있는 경우
+//			session.setAttribute("storeid", "test1@test.test");	
+//			System.out.println("확인");
+		//로그인 수행
 		//store DB에 있는 경우
 		if(check == 1){
 			session.setAttribute("storeid", email);
