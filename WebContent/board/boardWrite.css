@@ -43,3 +43,19 @@
         height: 300px;
     }
 }
+
+.staR{
+  background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+  background-size: auto 100%;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  text-indent: -9999px;
+  cursor: pointer;
+  border: 0;
+	margin: 0;
+}
+.staR.on{
+	background-position:0 0;
+	
+	}

@@ -31,7 +31,7 @@
             <div>인기클래스</div>
            	<div class="best-class">
                  <div class="thumbnail">
-                 <img src="${pageContext.request.contextPath}/thumbnailImage/ba61d3e7c5d74f8eb478f91833ef523e.jpg">
+                 <img src="${pageContext.request.contextPath}/images/ba61d3e7c5d74f8eb478f91833ef523e.jpg">
                  </div>
                      <div class="class-name">
                          <div class="class-name1">카테고리</div>
