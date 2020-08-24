@@ -22,12 +22,14 @@
 		if(password==""){
     		alert("비밀번호를 입력하세요.");
     	}else{
-			$.ajax('${pageContext.request.contextPath}/memberPwCheck.do',{
+			$.ajax('${pageContext.request.contextPath}/memberDelete.do',{
 				type:"post",
 				data:form,
 				success:function(data){
 					if(data == 1){
-						location.href="${pageContext.request.contextPath}/storeInfoPage.do";
+						alert("회원 탈퇴 성공했습니다.");
+						location.href="${pageContext.request.contextPath}/logout.do";
+						
 					}else{
 						alert("비밀번호가 틀렸습니다.");
 					}
@@ -80,13 +82,13 @@
             <div class="check_text">탈퇴하기</div>
             <hr>
             <div class="pw_check">
-            	<input type="hidden" id = "email" name="storeemail" value = "${storeid}">
+            	<input type="hidden" id = "useremail" name="useremail" value = "${sessionScope.userid}">
             	<div class="pw_check3">
             		<div class="email_check">
             			<div>${sessionScope.userid}</div>
             		</div>
             	<div class="pw_check2">
-                	<div><input class="join_text" type="password" id="password" name="storepw" placeholder="PASSWORD" ></div>
+                	<div><input class="join_text" type="password" id="password" name="password" placeholder="PASSWORD" ></div>
                 </div>
                 </div>
                 <div class="join_text4">

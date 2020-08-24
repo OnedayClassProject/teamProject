@@ -10,9 +10,13 @@
 <head>
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/member/memberjoin.css">
+
     <link rel="stylesheet" href="${pageContext.request.contextPath}/store/storepage.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/store/storeUpdate.css">
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
     <script>
     function Check() {
 			
@@ -74,6 +78,9 @@
 		    	alert("상세주소를 정확하게 입력해주세요.");
 		    	return false;
 		    }
+		    
+			
+			
 		    updateCheck();
 		   
 		    function updateCheck(){
@@ -95,6 +102,7 @@
 		   		});
 		    }
 		}
+		
 	
 </script>
 </head>
@@ -139,32 +147,33 @@
                 <div class="member_update">
 	            <div>정보수정</div>
 	            <hr>
-	            <form id="updateform" method="post">
-	            <div class="join_main">
-            	<input type="hidden" id ="email" name ="storeemail" value ="${userid}">
-                <div class="update_sub"><input class="join_text" type="password" id="pass1" name="password" placeholder="PASSWORD" ></div>
-                <div class="update_sub"><input class="join_text" type="password" id="pass2" placeholder="PASSWORD" ></div>
-                <div class="update_sub"><input class="join_text" type="text" id="username" name="username" placeholder="이름" required value ="${getMember.username}"></div>
-                <div class="update_sub"><input class="join_text" type="text" id="phone" name="phone"  placeholder="PHONE NUMBER" required value ="${getMember.phone }"></div>
-                <div class="update_sub2">
-                    <input type="text" name="postcode" id="sample6_postcode" placeholder="우편번호" class="postcode" value="${getMember.postcode}">
-                    <input type="button"  onclick="sample6_execDaumPostcode()" value="우편번호">
-                </div>
-                <div class="update_sub">
-                <input class="join_text" type="text" name="address" id="sample6_address" placeholder="주소" class="address" value ="${getMember.address }">
-                </div>
-                <div class="update_sub">
-                    <input type="text" name="detailadd" id="sample6_detailAddress" placeholder="상세주소" class="detailadd" value ="${getMember.detailadd }">
-                 </div>
-                 <div class="update_sub">   
-                    <input type="text" name="extraadd" id="sample6_extraAddress" placeholder="참고항목" value ="${getMember.extraadd}">
-                </div>
-                <div class="update_sub">
-                    <input type="button" onclick = "return Check()" value="UPDATE">
-                    <input type="button" onclick = "history.back()" value="CANCLE">
-                </div>
-            </div>
-        	</form>
+		            <form id="updateform" method="post">
+		            <div class="join_main">
+	            	<input type="hidden" id ="email" name ="storeemail" value ="${userid}">
+	                <div class="update_sub"><input class="join_text" type="password" id="pass1" name="password" placeholder="PASSWORD" ></div>
+	                <div class="update_sub"><input class="join_text" type="password" id="pass2" placeholder="PASSWORD" ></div>
+	                <div class="update_sub"><input class="join_text" type="text" id="username" name="username" placeholder="이름" required value ="${getMember.username}"></div>
+	                <div class="update_sub"><input class="join_text" type="text" id="phone" name="phone"  placeholder="PHONE NUMBER" required value ="${getMember.phone }"></div>
+	                <div class="update_sub2">
+	                    <input type="text" name="postcode" id="sample6_postcode" placeholder="우편번호" class="postcode" value="${getMember.postcode}">
+	                    <input type="button"  onclick="sample6_execDaumPostcode()" value="우편번호">
+	                </div>
+	                
+		                <div class="update_sub">
+		                <input class="join_text" type="text" name="address" id="sample6_address" placeholder="주소" class="address" value ="${getMember.address }">
+		                </div>
+		                <div class="update_sub">
+		                    <input type="text" name="detailadd" id="sample6_detailAddress" placeholder="상세주소" class="detailadd" value ="${getMember.detailadd }">
+		                 </div>
+		                 <div class="update_sub">   
+		                    <input type="text" name="extraadd" id="sample6_extraAddress" placeholder="참고항목" value ="${getMember.extraadd}">
+		                </div>
+		                <div class="update_sub">
+		                    <input type="button" onclick = "return Check()" value="UPDATE">
+		                    <input type="button" onclick = "history.back()" value="CANCLE">
+		                </div>
+	            	</div>
+	        	</form>
     			</div>
             </div>
         </div>

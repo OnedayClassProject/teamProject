@@ -14,7 +14,7 @@ public class memberCheckInfo implements CommandHandler {
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		return "member/checkMemberInfo.jsp";
+		return "/member/checkMemberInfo.jsp";
 	}
 
 }
