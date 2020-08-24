@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,58 +28,36 @@
             </div>
             <hr>
         </div>
+           
             <div class="my_main">
             <div>인기클래스</div>
-           	<div class="best-class">
+            <c:set var="j" value="0"/> 
+            <c:forEach var="classBean" items="${Vector}">
+         
+           		<div class="best-class">
+
                  <div class="thumbnail">
+<<<<<<< HEAD
                  <img src="${pageContext.request.contextPath}/images/ba61d3e7c5d74f8eb478f91833ef523e.jpg">
+=======
+                 <a href="ClassInfo.do?class_registrynum="${classBean.class_registrynum} >
+            
+                 <img src="${pageContext.request.contextPath}/images/${classBean.thumbnail}" width="150">
+                 </a>
+>>>>>>> a0335dfcebc124dcb8f4bfdc7afaabd966dc942c
                  </div>
                      <div class="class-name">
-                         <div class="class-name1">카테고리</div>
-                         <div class="class-name2">클래스명</div>
-                         <div class="class-name3">평점</div>
+                         <div class="class-name1">카테고리 : ${classBean.category}</div>
+                         <div class="class-name2">클래스명 : ${classBean.class_name}</div>
+                         <div class="class-name3">평점  : </div>
                     </div>
-           	</div>
-           	<div class="best-class">
-                 <div class="thumbnail">사진</div>
-                     <div class="class-name">
-                         <div class="class-name1">카테고리</div>
-                         <div class="class-name2">클래스명</div>
-                         <div class="class-name3">평점</div>
-                    </div>
-           	</div>
-           	<div class="best-class">
-                 <div class="thumbnail">사진</div>
-                     <div class="class-name">
-                         <div class="class-name1">카테고리</div>
-                         <div class="class-name2">클래스명</div>
-                         <div class="class-name3">평점</div>
-                    </div>
-           	</div><br>
-           	<div class="best-class">
-                 <div class="thumbnail">사진</div>
-                     <div class="class-name">
-                         <div class="class-name1">카테고리</div>
-                         <div class="class-name2">클래스명</div>
-                         <div class="class-name3">평점</div>
-                    </div>
-           	</div>
-           	<div class="best-class">
-                 <div class="thumbnail">사진</div>
-                     <div class="class-name">
-                         <div class="class-name1">카테고리</div>
-                         <div class="class-name2">클래스명</div>
-                         <div class="class-name3">평점</div>
-                    </div>
-           	</div>
-           	<div class="best-class">
-                 <div class="thumbnail">사진</div>
-                     <div class="class-name">
-                         <div class="class-name1">카테고리</div>
-                         <div class="class-name2">클래스명</div>
-                         <div class="class-name3">평점</div>
-                    </div>
-           	</div>
+            	 </div>
+        	   <c:if test="${j%3==0}">
+        	   	<br>
+        	   </c:if>
+             <c:set var="j" value="${j+1}"/>
+            </c:forEach>
+
             </div>
         </div>
 </section>

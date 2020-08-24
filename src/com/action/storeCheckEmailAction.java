@@ -18,6 +18,7 @@ public class storeCheckEmailAction implements CommandHandler{
 		System.out.println("storeCheckEmailAction() 실행");
 		String email = request.getParameter("email");
 		StoreDAO dao = new StoreDAO();
+		System.out.println(dao.emailCheck(email));
 		request.setAttribute("data", dao.emailCheck(email));
 
 		return "store/checkEmail.jsp";
