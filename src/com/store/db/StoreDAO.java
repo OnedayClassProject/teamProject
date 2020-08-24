@@ -285,4 +285,55 @@ public class StoreDAO {
 		}
 		return list;
 	}
+	
+	//클래스등록
+	public int classRegistry(ClassBean cb) {
+		
+		try {
+			con = getConnection();
+			
+			String sql = "insert into class(storenum,class_name,category,class_company,location,level,time,personnel,content,thumbnail,price,sale,parking,reservation_count)"
+					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, cb.getStorenum());
+			pstmt.setString(2, cb.getClass_name());
+			pstmt.setString(3, cb.getCategory());
+			pstmt.setString(4, cb.getClass_company());
+			pstmt.setString(5, cb.getLocation());
+			pstmt.setString(6, cb.getLevel());
+			pstmt.setString(7, cb.getTime());
+			pstmt.setString(8, cb.getPersonnel());
+			pstmt.setString(9, cb.getContent());
+			pstmt.setString(10, cb.getThumbnail());
+			pstmt.setString(11, cb.getPrice());
+			pstmt.setString(12, cb.getSale());
+			pstmt.setString(13, cb.getParking());
+			pstmt.setInt(14, 0);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+			resourceClose();
+		}
+		
+		return 1;
+	}
+	public int classCancleTimeDelete(int num) {
+		try {
+			con = getConnection();
+			String sql = "delete from operationdate where class_registrynum = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+			resourceClose();
+		}
+		return 1;
+	}
 }

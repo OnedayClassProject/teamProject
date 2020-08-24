@@ -30,6 +30,12 @@ body{
     font-weight: bold;
     display: inline-block;
 }
+.login_bar a:link{
+	color: #B7B4B2;
+}
+.login_bar a:visited{
+	color: #B7B4B2;
+}
 .login_bar div::after{
     padding-left: 15px;
     padding-right: 15px;
@@ -65,6 +71,12 @@ h1{
     font-weight: bold;
     padding-left: 5px;
 }
+.main_logo a:link{
+	color : black;
+}
+.main_logo a:visited{
+	color : black;
+}
 .nav-bar{
     padding-left: 450px;
     font-size: 25px;
@@ -91,6 +103,8 @@ h1{
 }
 
 .sub_menu li{
+	margin-top:5px;
+    margin-bottom:5px;
     width: 100px;
     height: 30px;
 }

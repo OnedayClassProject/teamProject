@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+
+.pic{
+	width: 100%;
+	height: 500px;
+	background-image: url("../images/coffee1.jpg");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+.my_wrap{
+    padding-top: 70px;
+    display: flex;
+    width: 1000px;
+    margin: auto;
+}
+.side_menu{
+    width: 150px;
+}
+.side_detail div{
+    display: inline-block;
+}
+.side_detail2{
+    padding-left: 66px;
+}
+.my_main{
+    width: 820px;
+    margin: auto;
+}
+.best-class{
+    display: inline-block;
+    border: 1px solid red;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 350px;
+    width: 250px;
+    border-radius: 15px;
+    margin-top: 30px;
+}
+.thumbnail{
+    width: 250px;
+    height: 250px;
+    border: 1px solid black;
+    border-radius: 15px;
+    /* background-size: 100% 100%; */
+    overflow: hidden;
+    
+}
+.thumbnail img{
+	width: 100%;
+	height: 100%;
+	transform:scale(1.0);
+	transition:transform .3s;
+}
+.thumbnail img:hover{
+	transform:scale(1.3);
+	transition:transform .5s;
+	
+}
+.class-name{
+    text-align: left;
+    padding: 5px;
+}
+.class-name2{
+	margin-bottom: 20px;
+	height: 30px;
+}
+.line{
+	margin-top : 15px;
+	border: 1px solid black;
+	width:100%;
+	height: 1px;
+	margin-bottom: 10px;
+}
+.current_menu{
+	font-weight: bold;
+	font-size: 20px;
+}
+.current_menu2{
+	color:fuchsia;
+}
+.current_menu3{
+	color:black;
+}
+
+

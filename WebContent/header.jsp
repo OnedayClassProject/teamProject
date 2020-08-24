@@ -61,8 +61,8 @@
             <nav class="nav-bar">
                 <div>클래스
                     <ul class="sub_menu">
-                        <li>인기클래스</li>
-                        <li>입문클래스</li>
+                        <li><a href="${pageContext.request.contextPath}/popularClass.do">인기클래스</a></li>
+                        <li><a href="${pageContext.request.contextPath}/beginnerClass.do">입문클래스</a></li>
                     </ul>
                 </div>
                 <div>카테고리

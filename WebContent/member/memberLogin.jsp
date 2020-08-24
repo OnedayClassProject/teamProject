@@ -18,7 +18,7 @@
             $(".store").on("click", function () {
                     $("#form1").css("display","none");
                     $("#form2").css("display","block");
-                    $(".member").stop().animate({ "backgroundColor" : "white"},500);
+                    /* $(".member > div").stop().animate({ opacity : 0}, 500); */
                     $(".store").css("backgroundColor","lightgray");
                     $(".member").css("backgroundColor","white");
             })
@@ -28,9 +28,6 @@
                 $(".store").css("backgroundColor","white");
                 $(".member").css("backgroundColor","lightgray");
             })
-            
-            
-            
         })
         
         function memCheck() {
@@ -66,8 +63,8 @@
         function storeCheck() {
         	var form = $("#form2").serialize();
         	var email = $("#email2").val();
-        	var password = $("#password2").val();
         	console.log(email);
+        	var password = $("#password2").val();
         	console.log(password);
         	if(email == ""){
         		alert("이메일을 입력하세요.");
@@ -110,8 +107,6 @@
         </table>
         
         <form id="form1" method="post">
-            <h1>회원</h1>
-	        <div class="login_text">이메일로그인</div>
 	        <div class="login_box">
 	        <div><input type="email" placeholder="이메일" id="email" name="email"></div>
 	        <div><input type="password" placeholder="비밀번호" id="password" name="password"></div>
@@ -123,18 +118,14 @@
         </form>
 
         <form id="form2" method = "post">
-            <h1>업체</h1>
-
-	        <div class="login_text">이메일로그인</div>
 	        <div class="login_box">
 	        <div><input type="email" placeholder="이메일" id="email2" name="email"></div>
-	        <div><input type="password" placeholder="비밀번호" id="password2" name="password"></div>
+
+	        <div><input type="password" placeholder="비밀번호"id="password2" name="password"></div>
+
 	        </div>
 	        <div class="login_button">
-
-
 	        <button type="button" onclick="storeCheck()" >LOGIN</button>
-
 	        <button type="button" onclick="location.href='${pageContext.request.contextPath}/memberOrStore.do'">CREATE</button>
 	        </div>
         </form>

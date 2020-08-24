@@ -10,20 +10,20 @@ import javax.sql.DataSource;
 
 public class memberDAO {
 	
-		//Àü¿ªº¯¼ö ¼±¾ð
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		Connection con = null;
 		ResultSet  rs = null;
 		PreparedStatement pstmt = null;
 		String sql="";
 			
-		//ÀÚ¿ø ÇØÁ¦ ÇÏ´Â ¸Þ¼Òµå 
+		//ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½ 
 		public void resourceClose(){
 		  try{	
 			if(pstmt != null) pstmt.close();
 			if(rs != null) rs.close();
 			if(con != null) con.close();
 		  }catch(Exception e){
-			  System.out.println("ÀÚ¿øÇØÁ¦ ½ÇÆÐ : " + e);
+			  System.out.println("ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : " + e);
 		  }
 		}//resourceClose()
 		private Connection getConnection() throws Exception {
@@ -69,7 +69,7 @@ public class memberDAO {
 				}
 				
 			} catch (Exception e) {
-				System.out.println("insertMember() ¸Þ¼Òµå ³»ºÎ¿¡¼­ ¿¹¿Ü ¹ß»ý"+ e);
+				System.out.println("insertMember() ï¿½Þ¼Òµï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½"+ e);
 			}finally {
 				resourceClose();
 			}
@@ -94,7 +94,7 @@ public class memberDAO {
 					result = 0;
 				}
 			}catch(Exception e){
-				//System.out.println("checkEmail() ¸Þ¼Òµå ³»ºÎ¿¡¼­ ¿¹¿Ü ¹ß»ý "+e);
+				//System.out.println("checkEmail() ï¿½Þ¼Òµï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ "+e);
 				e.printStackTrace();
 			}finally {
 				resourceClose();
@@ -143,19 +143,36 @@ public class memberDAO {
 				
 				if(rs.next()){
 					if(password.equals(rs.getString("userpassword"))){
-						check = 1; // ÀÌ¸ÞÀÏ, ºñ¹Ð¹øÈ£ µ¿ÀÏ
+						check = 1; // ï¿½Ì¸ï¿½ï¿½ï¿½, ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½
 					}
-				}else{ //ÀÌ¸ÞÀÏÀÌ Á¸ÀçÇÏÁö ¾ÊÀ» ¶§
+				}else{ //ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 					check = 0;
 				}
 				
 			}catch (Exception e){
 				e.printStackTrace();
 			}finally {
-				
+				resourceClose();
 			}
 			
 			return check;
 		}
+		
+	public int updateMember(memberBean bean) {
+		
+		int check = 0;
+		try {
+			con = getConnection();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resourceClose();
+		}
+		
+		
+		return 0;
+	}
 	
 }
