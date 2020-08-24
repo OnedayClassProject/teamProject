@@ -5,51 +5,16 @@
   Time: 10:02 오후
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/member/memberjoin.css">
-
-<script>
-	
-		function email_check(){
-			var email = $("#email").val();
-			console.log(email);
-			if($("#email").val().trim() == ""){
-				$("#check_result").empty();
-				$("#check_result").append("이메일을 입력하세요.");
-				$("#email").focus();
-			}else{
-				$.ajax('${pageContext.request.contextPath}/memberCheck.do',{
-					type:"post",
-					data:{ email : email},
-					success:function(data,textStatus){
-						
-						if(data == 1){
-							$("#check_result").empty();
-							$("#check_result").text("이미 가입된 이메일입니다.");
-							
-						}else{
-							$("#check_result").empty();
-							$("#check_result").text("사용가능한 이메일입니다.");
-							$("#check").val("true"); // 이메일 중복체크 확인 후 사용가능하면 true로 바꾸기
-						}
-					},
-					error:function(data){
-						alert("에러가 발생했습니다.");
-						console.log(data);
-					}
-				});
-			
-			} //else
-			
-		}
-		
-		function Check() {
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/store/storepage.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/store/storeUpdate.css">
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script>
+    function Check() {
 			
 			   
 			var username = $("#username").val();
@@ -67,7 +32,12 @@
 		    var reg5 = /^[가-힣a-zA-Z0-9~!@#$%^&*()_+-]{4,40}$/; // 상세주소
 		    
 		    
-		    
+		    if($("#pass1").val() != $("#pass2").val()){
+				alert("비밀번호가 서로 다릅니다.");
+				$("#pass2").focus();
+				$("#pass2").val("");
+				return false;
+	    	}
 		    
 		    // 이름 확인
 		    var result3 = reg3.test(username);
@@ -104,46 +74,100 @@
 		    	alert("상세주소를 정확하게 입력해주세요.");
 		    	return false;
 		    }
-		    
-			return true;
+		    updateCheck();
+		   
+		    function updateCheck(){
+		    	var form = $("#updateform").serialize();
+		   		$.ajax('${pageContext.request.contextPath}/memberUpdatePro.do',{
+		   			type:"post",
+		   			data:form,
+		   			success:function(data){
+		   				if(data == 1){
+		   					alert("회원수정완료.");
+		   					location.href="${pageContext.request.contextPath}/main.do"
+		   				}else{
+		   					alert("회원수정실패.");
+		   				}
+		   			}, error:function(data){
+		   				alert("에러가 발생했습니다.");
+		   				return false;
+		   			}
+		   		});
+		    }
 		}
 	
 </script>
 </head>
-<%
-	String email = (String)session.getAttribute("userid");
-	if(email == null){
-		response.sendRedirect("memberLogin.jsp");
-	}
-%>
 <body>
 <jsp:include page="../header.jsp"/>
 <section>
-    <div class="member_join">
-        <form action="${pageContext.request.contextPath}/memberUpdatePro.do" method="post" onsubmit="return Check()">
-            <div>회원 정보 수정</div>
+<div class="pic"></div>
+    <div class="my_wrap">
+        <div class="side_menu">
+           <div class="side_detail">
+                <a href='${pageContext.request.contextPath}/memberReserve.do'><div>예약확인</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
             <hr>
-            <div class="join_main">
-                <div>
-                    <input type="email" class="join_text" name="useremail" id="email" value="${getMember.useremail }" readonly placeholder="EMAIL">
+            <div class="side_detail">
+               <a href='${pageContext.request.contextPath}/memberRefund.do'><div>환불확인</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
+            <div class="side_detail">
+                <a href='${pageContext.request.contextPath}/MemberCheckInfoPage.do'><div>정보보기</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
+            <div class="side_detail">
+                 <a href='${pageContext.request.contextPath}/MemberCheckInfoPage2.do'><div>수정하기</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
+            <div class="side_detail">
+                 <a href='${pageContext.request.contextPath}/MemberCheckInfoPage3.do'><div>탈퇴하기</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
+        </div>
+            <div class="my_main">
+                <div class="member_update">
+	            <div>정보수정</div>
+	            <hr>
+	            <form id="updateform" method="post">
+	            <div class="join_main">
+            	<input type="hidden" id ="email" name ="storeemail" value ="${userid}">
+                <div class="update_sub"><input class="join_text" type="password" id="pass1" name="password" placeholder="PASSWORD" ></div>
+                <div class="update_sub"><input class="join_text" type="password" id="pass2" placeholder="PASSWORD" ></div>
+                <div class="update_sub"><input class="join_text" type="text" id="username" name="username" placeholder="이름" required value ="${getMember.username}"></div>
+                <div class="update_sub"><input class="join_text" type="text" id="phone" name="phone"  placeholder="PHONE NUMBER" required value ="${getMember.phone }"></div>
+                <div class="update_sub2">
+                    <input type="text" name="postcode" id="sample6_postcode" placeholder="우편번호" class="postcode" value="${getMember.postcode}">
+                    <input type="button"  onclick="sample6_execDaumPostcode()" value="우편번호">
                 </div>
-                <div><input class="join_text" type="text" id="username"name="username" placeholder="NAME" value="${getMember.username}"></div>
-                <div><input class="join_text" type="text" id="phone" name="phone" placeholder="PHONE NUMBER" value="${getMember.phone }"></div>
-                <div class="join_text2">
-                    <input type="text" id="sample6_postcode" class="postcode" name="postcode" placeholder="우편번호" value="${getMember.postcode}">
-                    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+                <div class="update_sub">
+                <input class="join_text" type="text" name="address" id="sample6_address" placeholder="주소" class="address" value ="${getMember.address }">
                 </div>
-                <input class="join_text" type="text" id="sample6_address" class="address"name="address" placeholder="주소" value="${getMember.address }">
-                <div class="join_text3">
-                    <input type="text" id="sample6_detailAddress" class="detailadd" name="detailadd" placeholder="상세주소" value="${getMember.detailadd }">
-                    <input type="text" id="sample6_extraAddress" id="extraadd" name="extraadd" placeholder="참고항목" value="${getMember.extraadd}">
+                <div class="update_sub">
+                    <input type="text" name="detailadd" id="sample6_detailAddress" placeholder="상세주소" class="detailadd" value ="${getMember.detailadd }">
+                 </div>
+                 <div class="update_sub">   
+                    <input type="text" name="extraadd" id="sample6_extraAddress" placeholder="참고항목" value ="${getMember.extraadd}">
                 </div>
-                <div class="join_text4">
-                    <input type="submit" value="UPDATE">
+                <div class="update_sub">
+                    <input type="button" onclick = "return Check()" value="UPDATE">
+                    <input type="button" onclick = "history.back()" value="CANCLE">
                 </div>
             </div>
-        </form>
-    </div>
+        	</form>
+    			</div>
+            </div>
+        </div>
 </section>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -190,7 +214,6 @@
                 document.getElementById('sample6_postcode').value = data.zonecode;
                 document.getElementById("sample6_address").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("sample6_detailAddress").value="";
                 document.getElementById("sample6_detailAddress").focus();
             }
         }).open();

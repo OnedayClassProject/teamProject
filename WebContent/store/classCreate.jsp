@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/store/classCreate.css">
     <script>
         var sel_file;
@@ -38,9 +38,9 @@
             	var num = ${num };
             	var start = []
             	var end = []
-				 for(var i=0; i < $('.time_start').length; i++){
-					start[i] = $('.time_start').eq(i).val();
-					end[i] = $('.time_end').eq(i).val();
+				 for(var i=0; i < $('#time_start').length; i++){
+					start[i] = $('#time_start').eq(i).val();
+					end[i] = $('#time_end').eq(i).val();
 				} 
 				
 				$.ajax({
@@ -71,10 +71,12 @@
             	 var productContent = CKEDITOR.instances["p_content"].getData();
                  $('#p_content').val(productContent);
             	var reg1 = /^[0-9]{1,3}$/;
+            	var reg2 = /^[0-9]{1,7}$/;
+            	
             	var result = reg1.test($("#hour").val())
             	var result1 = reg1.test($("#minute").val())
             	var result2 = reg1.test($("#class_personal").val())
-            	var result3 = reg1.test($("#price").val())
+            	var result3 = reg2.test($("#price").val())
           		var result4 = reg1.test($("#input_sale").val())
             	if($("#classname").val().trim() == ""){
             		alert("클래스명 입력해주세요.");
@@ -136,12 +138,38 @@
 		                     	} else {
 		                     	alert('실패!!!!ㅜㅜㅜㅜㅜㅜㅜ');
 		                    	}
-                     		}
-                     	});
-                	}  
-               
+                     	},
+                     	error:function(data,status){
+                    		 alert("에러");
+                     	}
+                     	
+                     });
+                	  
+                }
             
         	});
+            $("#cancle_back").on("click", function () {
+				
+            	var num = ${num }
+            	
+            	$.ajax({
+                    type: "post",
+                    url: "${pageContext.request.contextPath}/classCancle.do",
+                    data: {num :  num},
+                    dataType: "text",
+                    success:function(data, status){
+							  if(data == 1){                  	 
+                   	 		alert('삭제성공^^');
+		                     	} else {
+		                     	alert('실패!!!!ㅜㅜㅜㅜㅜㅜㅜ');
+		                    	}
+                    		},
+                    error:function(data,status){
+                   	 alert("에러");
+                    }
+                    	});
+            	
+			});
         });
         function handleImgFileSelect(e) {
             var files = e.target.files;
@@ -188,7 +216,11 @@
         <div>카테고리</div>
         <div><input type="text" name="category" id="category"></div>
         <div>업체명</div>
+        <div>${sbean.storename }</div>
+        <input type="hidden" name="class_company" value="${sbean.storename }">
         <div>업체위치</div>
+        <div>${sbean.storeaddress1 } ${sbean.storeaddress2} ${sbean.storeaddress3}</div>
+        <input type="hidden" name="location" value="${sbean.storeaddress1 } ${sbean.storeaddress2} ${sbean.storeaddress3}">
         <div>난이도</div>
         <div>
             <select name="level">
@@ -210,8 +242,8 @@
         <div class="sale1"></div>
         <div class="reserve" onclick='x()'>일정</div>
         <div>주차장여부</div>
-        <div><input type="text"></div>
-        <textarea id="p_content"></textarea>
+        <div><input type="text" name="parking"></div>
+        <textarea id="p_content" name="content"></textarea>
         <div>대표이미지</div>
         <div class="file_box">
             <label for="input_img">IMAGE FILE</label>
@@ -221,8 +253,9 @@
         <div class="imgMain">
             <img id="img"/>
         </div>
+        <input type="hidden" name="storenum" value="${sbean.storenum }">
         <button type="button" id="class_registry">등록</button>
-        <button type="button">취소</button>
+        <button type="button" id="cancle_back">취소</button>
     </div>
     <div id="box">
         <div class="content-right">
@@ -417,21 +450,23 @@
         x();
     })
     var plus = document.getElementById("plus");
-    plus.onclick = function () {
-        if ($(".timeSet").length <= 5) {
-            $(".timesetting").append("<div class='timeSet'><input type=\"text\" class='time_start'> ~ <input type=\"text\" class='time_end'></div>");
-            $(".time_start").flatpickr({
-                enableTime: true,
+    $("#plus").on("click", function name() {
+    	if ($(".timeSet").length <= 5) {
+            $(".timesetting").append("<div class='timeSet'><input type=\"text\" id='time_start'> ~ <input type=\"text\" id='time_end'></div>");
+            document.getElementById("time_start").flatpickr(
+            		{ enableTime: true,
                 noCalendar: true,
                 dateFormat: "H:i",
-            });
-            $(".time_end").flatpickr({
+            		});
+            document.getElementById("time_end").flatpickr({
                 enableTime: true,
                 noCalendar: true,
                 dateFormat: "H:i",
             });
         }
-    }
+	});
+        
+    
     $("#sub").on("click", function () {
         if ($(".timeSet").eq(0).length == 0) {
             alert("추가해주세요~");
@@ -439,8 +474,7 @@
         }
         $(".timeSet").last().remove();
     });
-    console.log(${num });
-    function x() {
+    function x(){
         console.log($(".abled_td").length);
       	var num = ${num };
         var date= $("#current-year-month").text();
@@ -455,12 +489,6 @@
             	 if(all.length != 0 ){
                   for(var i = 0; i < all.length; i++){
                 	  $(".abled_td").eq(all[i].day - 1).css("background","red");
-                	  /* for(var j=0 ; j< $(".abled_td").length; i++){
-                		  if( a == $(".abled_td").eq(j).text()){
-                			  $(".abled_td").eq(j).css("background","red");
-                			  break;
-                		  }
-                	  } */
                  } 
             	 }
              },
@@ -468,10 +496,6 @@
             	 alert('error');
              }
          }); 
-        /*  for(var i = 0; i < $(".abled_td").length; i++){
-             console.log($(".abled_td").eq(i).text());
-        }  */
-    	
     } 
 </script>
 </body>

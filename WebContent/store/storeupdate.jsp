@@ -10,38 +10,82 @@
 <head>
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../header.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/store/storejoin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/store/storepage.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/store/storeUpdate.css">
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 </head>
 <body>
-<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <jsp:include page="../header.jsp"/>
 <section>
-    <div class="member_join">
-        <form id ="updateform" method="post">
-            <div>정보수정</div>
+<div class="pic"></div>
+    <div class="my_wrap">
+        <div class="side_menu">
+            <div class="side_detail">
+              <a href='${pageContext.request.contextPath}/storeReserve.do'>
+                <div>예약확인</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
             <hr>
-            <div class="join_main">
+            <div class="side_detail">
+                <a href='${pageContext.request.contextPath}/storeRefund.do'> 
+                <div>환불확인️</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
+            <div class="side_detail">
+                <a href='${pageContext.request.contextPath}/storeCheckInfoPage.do'><div>정보보기</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
+            <div class="side_detail">
+                 <a href='${pageContext.request.contextPath}/storeCheckInfoPage2.do'><div>수정하기</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
+            <div class="side_detail">
+                 <a href='${pageContext.request.contextPath}/storeCheckInfoPage3.do'><div>탈퇴하기</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
+        </div>
+            <div class="my_main">
+                <div class="member_update">
+	            <div>정보수정</div>
+	            <hr>
+	            <form id ="updateform" method="post">
+	            <div class="join_main">
             	<input type="hidden" id ="email" name ="storeemail" value ="${storeid}">
-                <div><input class="join_text" type="password" id="pass1" name="storepw" placeholder="PASSWORD" required></div>
-                <div><input class="join_text" type="password" id="pass2" placeholder="PASSWORD" required></div>
-                <div><input class="join_text" type="text" id="name" name="storename" placeholder="가게이름" required value ="${store.storename}"}></div>
-                <div><input class="join_text" type="text" id="tel" name="storetel" placeholder="PHONE NUMBER" required value ="${store.storetel}"></div>
-                <div class="join_text2">
+                <div class="update_sub"><input class="join_text" type="password" id="pass1" name="storepw" placeholder="PASSWORD" required></div>
+                <div class="update_sub"><input class="join_text" type="password" id="pass2" placeholder="PASSWORD" required></div>
+                <div class="update_sub"><input class="join_text" type="text" id="name" name="storename" placeholder="가게이름" required value ="${store.storename}"}></div>
+                <div class="update_sub"><input class="join_text" type="text" id="tel" name="storetel" placeholder="PHONE NUMBER" required value ="${store.storetel}"></div>
+                <div class="update_sub2">
                     <input type="text" name = "storepostcode" id="sample6_postcode" placeholder="우편번호" value ="${store.storepostcode}">
-                    <input type="button"  onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+                    <input type="button"  onclick="sample6_execDaumPostcode()" value="우편번호">
                 </div>
+                <div class="update_sub">
                 <input class="join_text" type="text" name ="storeaddress1" id="sample6_address" placeholder="주소" value ="${store.storeaddress1}">
-                <div class="join_text3">
+                </div>
+                <div class="update_sub">
                     <input type="text" name ="storeaddress2" id="sample6_detailAddress" placeholder="상세주소" value ="${store.storeaddress2}">
+                 </div>
+                 <div class="update_sub">   
                     <input type="text" name ="storeaddress3" id="sample6_extraAddress" placeholder="참고항목" value ="${store.storeaddress3}">
                 </div>
-                <div class="join_text4">
+                <div class="update_sub">
                     <input type="button" onclick = "return checkPassword()" value="UPDATE">
+                    <input type="button" onclick = "history.back()" value="CANCLE">
                 </div>
             </div>
-        </form>
-    </div>
+        	</form>
+    			</div>
+            </div>
+        </div>
 </section>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>

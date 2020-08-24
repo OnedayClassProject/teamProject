@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+
+.pic{
+	width: 100%;
+	height: 500px;
+	background-image: url("../images/coffee1.jpg");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+.my_wrap{
+    padding-top: 70px;
+    display: flex;
+    width: 1000px;
+    margin: auto;
+}
+.side_menu{
+    width: 150px;
+}
+.side_detail div{
+    display: inline-block;
+}
+.side_detail2{
+    padding-left: 75px;
+}
+.my_main{
+    height: 1000px;
+    width: 700px;
+    margin: auto;
+}
+.line{
+	width : 100%;
+	height: 1px;
+	border: 1px solid black;
+}
+.reserveInfo{
+	margin-top:20px;
+	margin-bottom : 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+.reserveInfo div:nth-child(1) {
+	width: 300px;
+}
+.reserveInfo div:nth-child(3){
+	width:140px;	
+}
+.reserveInfo div{
+	width: 120px;
+}
+.reserveInfo2{
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.reserveInfo3{
+	display: flex;
+	width: 300px;
+	align-items: center;
+}
+.class_pic{
+	width:150px;
+	border: 1px solid black;
+	height: 140px;
+}
+.reserveInfo4{
+	width: 120px;
+	text-align: center;
+}
+.reserveInfo5{
+	width: 140px;
+	text-align: center;
+}
+.class_name{
+	padding-left: 5px;
+}
+.class_name div{
+	width: 150px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+

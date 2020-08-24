@@ -26,8 +26,10 @@ public class ClassCreateAction implements CommandHandler {
 		StoreDAO sdao = new StoreDAO();
 		int num = sdao.getClassNum();
 		
-		request.setAttribute("num", num);
+		StoreBean sBean = sdao.getStore(storeid);
 		
+		request.setAttribute("num", num);
+		request.setAttribute("sbean", sBean);
 		
 		return "store/classCreate.jsp";
 	}

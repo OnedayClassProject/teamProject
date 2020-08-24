@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/mypage.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/member/mypage.css">
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
@@ -17,28 +17,33 @@
     <div class="my_wrap">
         <div class="side_menu">
             <div class="side_detail">
-                <div>예약확인</div>
+                <a href='${pageContext.request.contextPath}/memberReserve.do'><div>예약확인</div>
                 <div class="side_detail2">></div>
+                </a>
             </div>
             <hr>
             <div class="side_detail">
-                <div>환불확인</div>
+               <a href='${pageContext.request.contextPath}/memberRefund.do'><div>환불확인</div>
                 <div class="side_detail2">></div>
+                </a>
             </div>
             <hr>
             <div class="side_detail">
-                <div>정보보기</div>
+                <a href='${pageContext.request.contextPath}/MemberCheckInfoPage.do'><div>정보보기</div>
                 <div class="side_detail2">></div>
+                </a>
             </div>
             <hr>
             <div class="side_detail">
-                <div>수정하기</div>
+                 <a href='${pageContext.request.contextPath}/MemberCheckInfoPage2.do'><div>수정하기</div>
                 <div class="side_detail2">></div>
+                </a>
             </div>
             <hr>
             <div class="side_detail">
-                <div>탈퇴하기</div>
+                 <a href='${pageContext.request.contextPath}/MemberCheckInfoPage3.do'><div>탈퇴하기</div>
                 <div class="side_detail2">></div>
+                </a>
             </div>
             <hr>
         </div>

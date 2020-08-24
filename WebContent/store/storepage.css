@@ -1,9 +1,10 @@
 
 .my_wrap{
-    padding-top: 30px;
+    padding-top: 70px;
     display: flex;
     width: 1000px;
     margin: auto;
+    
 }
 .side_menu{
     width: 150px;

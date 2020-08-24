@@ -100,22 +100,28 @@
     }
     function checkEmail(){
     	var check = document.getElementById("checkemail");
-		$.ajax({
-			type: "post",
-			url : "StoreCheckEmail.do",
-			data : { email : $('#storeemail').val()},
-			success : function(data) {
-				if(data == 0){
-					alert("이메일이 존재합니다");
-					$('#storeemail').focus();
-					$('#storeemail').val("");
+    	var email = $("#email").val();
+    	if(email == ""){
+    		alert("이메일을 입력하세요");
+    		$("#email").focus();
+	   	}else{
+	   		$.ajax({
+				type: "post",
+				url : "StoreCheckEmail.do",
+				data : { email : $('#storeemail').val()},
+				success : function(data) {
+					if(data == 0){
+						alert("이메일이 존재합니다");
+						$('#storeemail').focus();
+						$('#storeemail').val("");
+					}
+					else if(data==1){
+						alert("이메일을 사용할 수 있습니다.");
+						check.value = "emailCheck";
+					}
 				}
-				else if(data==1){
-					alert("이메일을 사용할 수 있습니다.");
-					check.value = "emailCheck";
-				}
-			}
-		});
+			});
+    	}
 	}
     function checkPassword(){
     	var check = document.getElementById("checkemail");

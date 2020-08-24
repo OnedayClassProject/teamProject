@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.command.CommandHandler;
 import com.store.db.StoreDAO;
@@ -18,7 +19,8 @@ public class storeDeleteAction implements CommandHandler{
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		StoreDAO dao = new StoreDAO();
-		String storeemail = request.getParameter("storeemail");
+		HttpSession session = request.getSession();
+		String storeemail = (String)session.getAttribute("storeid");
 		String storepw = request.getParameter("storepw");
 		//회원탈퇴
 		int check = dao.deleteStore(storeemail, storepw);

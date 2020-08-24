@@ -45,7 +45,7 @@
         	<div><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></div>
         	</c:if>
         	<c:if test="${not empty sessionScope.storeid}">
-        	<div><a href="${pageContext.request.contextPath}/storepage.do">내정보</a></div>
+        	<div><a href="${pageContext.request.contextPath}/storeInfoCheck.do">내정보</a></div>
         	<div><a href="${pageContext.request.contextPath}/classCreate.do">클래스개설</a></div>
         	<div><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></div>
         	</c:if>
@@ -61,8 +61,8 @@
             <nav class="nav-bar">
                 <div>클래스
                     <ul class="sub_menu">
-                        <li>인기클래스</li>
-                        <li>입문클래스</li>
+                        <li><a href="${pageContext.request.contextPath}/popularClass.do">인기클래스</a></li>
+                        <li><a href="${pageContext.request.contextPath}/beginnerClass.do">입문클래스</a></li>
                     </ul>
                 </div>
                 <div>카테고리
