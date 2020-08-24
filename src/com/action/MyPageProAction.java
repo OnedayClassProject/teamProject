@@ -11,7 +11,7 @@ import com.command.CommandHandler;
 import com.member.db.memberBean;
 import com.member.db.memberDAO;
 
-// ³»Á¤º¸ -> ºñ¹Ð¹øÈ£ È®ÀÎ Å¬¸¯
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -> ï¿½ï¿½Ð¹ï¿½È£ È®ï¿½ï¿½ Å¬ï¿½ï¿½
 public class MyPageProAction implements CommandHandler{
 
 	@Override
@@ -34,7 +34,7 @@ public class MyPageProAction implements CommandHandler{
 		
 		
 		
-		return "/member/Mypage.jsp";
+		return "/member/memberInfo.jsp";
 	}
 	
 	

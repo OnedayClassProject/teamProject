@@ -1,0 +1,72 @@
+
+.my_wrap{
+    padding-top: 70px;
+    display: flex;
+    width: 1000px;
+    margin: auto;
+}
+.side_menu{
+    width: 150px;
+}
+.side_detail div{
+    display: inline-block;
+}
+.side_detail2{
+    padding-left: 75px;
+}
+.my_main{
+    height: 1000px;
+    width: 700px;
+    margin: auto;
+}
+.my_subject{
+    padding: 10px;
+    border: 1px solid black;
+    height: 70px;
+    line-height: 50px;
+}
+.my_main2{
+    display: flex;
+    margin-bottom: 30px;
+}
+.my_main2 div{
+    width: 100%;
+}
+.my_main3{
+    padding: 10px;
+    height: 80px;
+    border: 1px solid blue;
+    padding-top: 20px;
+}
+.reserve_list{
+    margin-top: 30px;
+}
+.reserve_list2{
+    width: 100%;
+    border: 1px solid black;
+    height: 300px;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+.best-class{
+    display: inline-block;
+    border: 1px solid red;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.thumbnail{
+    width: 180px;
+    height: 170px;
+    border: 1px solid black;
+}
+.class-name{
+    text-align: left;
+    padding: 5px;
+}
+.move_reserveList{
+    border: 1px solid black;
+    margin-top: 20px;
+    height: 40px;
+    line-height: 40px;
+}

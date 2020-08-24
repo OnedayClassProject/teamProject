@@ -14,7 +14,7 @@ public class MyPageAction implements CommandHandler{
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		return "/member/MyCheck.jsp";
+		return "/member/mypagee.jsp";
 	}
 	
 

@@ -13,7 +13,7 @@ public class storeInfoCheck implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		return "store/checkStoreInfo.jsp";
+		return "store/Storepage.jsp";
 	}
 
 }

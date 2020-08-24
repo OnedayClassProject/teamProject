@@ -34,10 +34,11 @@ public class memberUpdateProAction implements CommandHandler{
 		
 		memberDAO mdao = new memberDAO();
 		
-		mdao.updateMember(mbean);
+		int check = mdao.updateMember(mbean);
 		
+		request.setAttribute("check",check );
 		
-		return "/mypagePro.do";
+		return "/member/loginCheck.jsp";
 	}
 	
 
