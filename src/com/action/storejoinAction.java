@@ -38,7 +38,7 @@ public class storejoinAction implements CommandHandler {
 		
 		//회원 가입 처리에 실패 했을 경우 0을 반환 한다.
 		//회원가입에 성공하면 1을 반환한다
-		check = dao.insertStore(bean);
+		//check = dao.insertStore(bean);
 		request.setAttribute("data", check);
 		
 		return "/store/checkEmail.jsp";
