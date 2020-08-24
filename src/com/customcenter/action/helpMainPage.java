@@ -7,21 +7,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.command.CommandHandler;
-import com.help.db.helpBean;
 import com.help.db.helpDAO;
 
-public class helpPage implements CommandHandler{
+public class helpMainPage implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("뭐지");
-		int num = Integer.parseInt(request.getParameter("num"));
 		helpDAO dao = new helpDAO();
-		helpBean bean = new helpBean();
-		bean = dao.getHelpConent(num);
-		request.setAttribute("bean", bean);
-		return "customcenter/helpContent.jsp";
+		request.setAttribute("list", dao.getHelpList());
+		return "customcenter/help.jsp";
 	}
 
 }

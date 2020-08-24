@@ -16,7 +16,7 @@
            <div class="side_detail">
            <div class="current_menu">문의하기</div>
            <div class="line"></div>
-                <a href="${pageContext.request.contextPath}/helpPage.do" class="current_menu2"><div>문의하기</div></a>
+                <a href="${pageContext.request.contextPath}/helpMainPage.do" class="current_menu2"><div>문의하기</div></a>
             </div>
             <hr>
             <div class="side_detail">
@@ -27,14 +27,17 @@
         <div class="my_main">
         	<div><h2>문의하기</h2></div>
         	<div>
-        		<table>
+        		<table border = "1px solid">
         			<tr>
         				<th>No</th><th>제목</th><th>작성자</th><th>날짜</th>
         			</tr>
-        			<tr>
-        				
-        			</tr>
+        			<c:forEach var = "list" items="${requestScope.list }">
+        				<tr>
+        					<td>${list.num }</td><td><a href="${pageContext.request.contextPath}/helpPage.do?num=${list.num}">${list.title }</a></td><td>${list.writer }</td><td>${list.date }</td>
+        				</tr>
+        			</c:forEach>
         		</table>
+        		<br>
         		<button onclick="location.href='${pageContext.request.contextPath}/helpWrite.do'">글쓰기</button>
         	</div>
         </div>

@@ -126,7 +126,7 @@
                 </div>
                 <div>고객센터
                 	<ul class="sub_menu">
-                        <li><a href="${pageContext.request.contextPath}/helpPage.do">문의하기</a></li>
+                        <li><a href="${pageContext.request.contextPath}/helpMainPage.do">문의하기</a></li>
                         <li><a href="${pageContext.request.contextPath}/faqMainPage.do">FAQ</a></li>
                     </ul>
                 </div>

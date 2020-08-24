@@ -10,9 +10,40 @@
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <jsp:include page="../header.jsp"/>
 <script type="text/javascript">
-	function submit(){
-		
+	function submitForm(){
+		var title = $("#title").val();
+		var content = $("#content").val();
+		if(title==""){
+			alert("제목을 입력해주세요");
+			$("#title").focus();
+			return false;
+		}else if(content==""){
+			alert("내용을 입력해주세요");
+			$("#content").focus();
+			return false;
+		}else{
+			writeAction();
+		}
+		return true;
 	}
+    function writeAction(){
+    	var form = $("#form").serialize();
+    	alert("등록하셨습니다.");
+   		$.ajax('${pageContext.request.contextPath}/helpWriteAction.do',{
+   			type:"post",
+   			data:form,
+   			success:function(data){
+   				if(data == 1){
+   					alert("등록하셨습니다.");
+   					location.href="${pageContext.request.contextPath}/helpMainPage.do"
+   				}else{
+   					alert("등록 실패.");
+   				}
+   			}, error:function(data){
+   				alert("에러가 발생했습니다.");
+   			}
+   		});
+    }
 </script>
 <section>
 <div class="pic"></div>
@@ -31,9 +62,9 @@
         </div>
         <div class="my_main">
         	<form id ="form" method ="post">
-        		제목 <input type="text" name ="title" style="width: 650px; height: 30px;"><br><br>
-        		내용 <br><textarea rows="30" cols="100" name="content"></textarea><br>
-        		<button onclick ="submit()">제출하기</button>
+        		제목 <input type="text" id ="title" name ="title" style="width: 650px; height: 30px;"><br><br>
+        		내용 <br><textarea rows="30" cols="100" id="content" name="content"></textarea><br>
+        		<button onclick ="return submitForm()">제출하기</button>
         	</form>
         </div>
     </div>
