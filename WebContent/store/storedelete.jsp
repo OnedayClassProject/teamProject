@@ -15,7 +15,7 @@
 </head>
 <body>
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-<script>
+<script>	
 	function deleteCheck() {
 		var form = $("#deleteform").serialize();
 		var password = $("#password").val();

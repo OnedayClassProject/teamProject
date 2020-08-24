@@ -133,7 +133,7 @@ public class memberDAO {
 		}
 		public int loginCheck(String email, String password) {
 			int check = 0;
-			
+			System.out.println(email);
 			try{
 				con = getConnection();
 				sql = "select* from member where useremail=?";
@@ -154,25 +154,70 @@ public class memberDAO {
 			}finally {
 				resourceClose();
 			}
-			
+			System.out.println(check);
 			return check;
 		}
+		public int updateMember(memberBean mbean) {
+			
+			try {
+				con = getConnection();
+				sql = "select* from member where useremail=? ";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, mbean.getUseremail());
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()){
+					sql = "update member set username=?,phone=?,postcode=?,address=?,detailadd=?,extraadd=?";
+					
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, mbean.getUsername());
+					pstmt.setString(2, mbean.getPhone());
+					pstmt.setString(3, mbean.getPostcode());
+					pstmt.setString(4, mbean.getAddress());
+					pstmt.setString(5, mbean.getDetailadd());
+					pstmt.setString(6, mbean.getExtraadd());
+					
+					pstmt.executeUpdate();
+					
+					
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				return 0;
+			}finally {
+				resourceClose();
+			}
+			
+			return 1;
+		}
 		
-	public int updateMember(memberBean bean) {
-		
-		int check = 0;
-		try {
-			con = getConnection();
+		public void deleteMember(String email, String password) {
 			
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			resourceClose();
+			try {
+				con = getConnection();
+				sql = "delete from member where useremail=? and userpassword=?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, email);
+				pstmt.setString(2, password);
+				
+				pstmt.executeUpdate();
+				
+				
+			} catch (Exception e) {
+				System.out.println(e);
+			}finally {
+				resourceClose();
+			}
+			
+			
 		}
 		
 		
-		return 0;
-	}
+		
+	
 	
 }

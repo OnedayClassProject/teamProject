@@ -63,6 +63,7 @@
         function storeCheck() {
         	var form = $("#form2").serialize();
         	var email = $("#email2").val();
+        	var password = $("#password2").val();
         	console.log(email);
         	var password = $("#password2").val();
         	console.log(password);
@@ -120,6 +121,7 @@
         <form id="form2" method = "post">
 	        <div class="login_box">
 	        <div><input type="email" placeholder="이메일" id="email2" name="email"></div>
+	        <div><input type="password" placeholder="비밀번호" id="password2" name="password"></div>
 
 	        <div><input type="password" placeholder="비밀번호"id="password2" name="password"></div>
 
