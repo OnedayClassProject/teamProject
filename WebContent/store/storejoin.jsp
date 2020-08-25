@@ -107,7 +107,7 @@
 	   	}else{
 	   		$.ajax({
 				type: "post",
-				url : "StoreCheckEmail.do",
+				url : "${pageContext.request.contextPath}/StoreCheckEmail.do",
 				data : { email : $('#email').val()},
 				success : function(data) {
 					if(data == 0){

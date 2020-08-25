@@ -13,7 +13,6 @@ public class faqMainPage implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		return "customcenter/faq.jsp";
 	}
 

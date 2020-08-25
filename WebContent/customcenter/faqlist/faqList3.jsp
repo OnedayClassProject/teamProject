@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: gyu
-  Date: 2020/08/15
-  Time: 10:02 오후
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -22,7 +15,7 @@
            <div class="side_detail">
            <div class="current_menu">FAQ</div>
            <div class="line"></div>
-                <a href="${pageContext.request.contextPath}/helpPage.do" class="current_menu2"><div>문의하기</div></a>
+                <a href="${pageContext.request.contextPath}/helpMainPage.do" class="current_menu2"><div>문의하기</div></a>
             </div>
             <hr>
             <div class="side_detail">

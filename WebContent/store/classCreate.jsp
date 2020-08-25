@@ -283,6 +283,7 @@
                         <td align="center">Thu</td>
                         <td align="center">Fri</td>
                         <td class="sat" align="center">Sat</td>
+                     
                 </tr>
                 </thead>
                 <tbody id="calendar-body" class="calendar-body"></tbody>

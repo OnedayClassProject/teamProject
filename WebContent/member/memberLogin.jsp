@@ -123,8 +123,6 @@
 	        <div><input type="email" placeholder="이메일" id="email2" name="email"></div>
 	        <div><input type="password" placeholder="비밀번호" id="password2" name="password"></div>
 
-	        <div><input type="password" placeholder="비밀번호"id="password2" name="password"></div>
-
 	        </div>
 	        <div class="login_button">
 	        <button type="button" onclick="storeCheck()" >LOGIN</button>
