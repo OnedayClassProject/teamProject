@@ -7,10 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.command.CommandHandler;
-import com.help.db.helpBean;
-import com.help.db.helpDAO;
 
-public class helpWriteAction implements CommandHandler{
+public class checkWriter implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
@@ -21,15 +19,11 @@ public class helpWriteAction implements CommandHandler{
 		}else if(request.getSession().getAttribute("storeid") != null){
 			id = (String)request.getSession().getAttribute("storeid");
 		}
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		helpBean bean = new helpBean();
-		bean.setTitle(title);
-		bean.setContent(content);
-		bean.setWriter(id);
-		helpDAO dao = new helpDAO();
-		int check = dao.insertHelp(bean);
-		request.setAttribute("data", check);
+		if(id.equals(request.getParameter("check"))){
+			request.setAttribute("data", 1);
+		}else{
+			request.setAttribute("data", 0);
+		}
 		return "/store/checkEmail.jsp";
 	}
 

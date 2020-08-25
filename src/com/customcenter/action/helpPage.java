@@ -15,7 +15,6 @@ public class helpPage implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("뭐지");
 		int num = Integer.parseInt(request.getParameter("num"));
 		helpDAO dao = new helpDAO();
 		helpBean bean = new helpBean();

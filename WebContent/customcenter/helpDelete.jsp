@@ -6,27 +6,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/customcenter/help.css">
 </head>
 <body>
-<script type="text/javascript">
-	function deletePage(num){
-		if (confirm("삭제하시겠습니까?")) {
-			$.ajax('${pageContext.request.contextPath}/helpPageDelete.do',{
-				type:"post",
-				data: {number : num},
-				success:function(data){
-					if(data==1){
-						alert("삭제했습니다.");
-						location.href="${pageContext.request.contextPath}/helpMainPage.do";
-					}else{
-						alert("오류가 발생했습니다.");
-					}
-				},
-				error:function(e){
-					alert("에러가 발생했습니다.");
-				}
-			});
-        }
-	}
-</script>
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <jsp:include page="../header.jsp"/>
 <section>
@@ -45,11 +24,9 @@
             <hr>
         </div>
         <div class="my_main">
-       		<p><h2>${bean.title}</h2><br><hr>
-       		<p><h2>내용</h2><br>${bean.content}<br><hr>
-       		<button onclick ="location.href='${pageContext.request.contextPath}/helpMainPage.do'">목록으로</button>
-       		<button onclick ="location.href='${pageContext.request.contextPath}/helpPageUpdate.do'">수정하기</button>
-       		<button onclick ="deletePage('${bean.num}')">삭제하기</button>
+       		<form id = "form" method ="post">
+       			
+       		</form>
         </div>
     </div>
 </section>

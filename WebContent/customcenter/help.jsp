@@ -6,6 +6,23 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/customcenter/help.css">
 </head>
+<script type="text/javascript">
+	function checkID(id, num){
+		$.ajax('${pageContext.request.contextPath}/checkWriter.do',{
+			type:"post",
+			data : { check : id},
+			success:function(data){
+				if(data == 1){
+					location.href="${pageContext.request.contextPath}/helpPage.do?num="+num;
+				}else{
+					alert("작성자가 아닙니다.");
+				}
+			}, error:function(e){
+				alert(e);
+			}
+		});
+	}
+</script>
 <body>
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <jsp:include page="../header.jsp"/>
@@ -33,7 +50,8 @@
         			</tr>
         			<c:forEach var = "list" items="${requestScope.list }">
         				<tr>
-        					<td>${list.num }</td><td><a href="${pageContext.request.contextPath}/helpPage.do?num=${list.num}">${list.title }</a></td><td>${list.writer }</td><td>${list.date }</td>
+        				
+        					<td>${list.num }</td><td><a href="javascript:void(0);" onclick="checkID('${list.writer}','${list.num }'); return false;">${list.title }</a></td><td>${list.writer }</td><td>${list.date }</td>
         				</tr>
         			</c:forEach>
         		</table>

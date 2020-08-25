@@ -51,6 +51,8 @@ public class helpDAO {
 				return 1;
 		} catch (Exception e) {
 			System.out.println("insertHelp()에서 예외 발생"+ e);
+		} finally{
+			resourceClose();
 		}
 		return 0;
 	}
@@ -72,6 +74,8 @@ public class helpDAO {
 			}
 		} catch (Exception e) {
 			System.out.println("getHelpList()에서 예외발생"+e);
+		} finally{
+			resourceClose();
 		}
 		
 		return list;
@@ -81,10 +85,40 @@ public class helpDAO {
 		try {
 			con = getConnection();
 			String sql = "select * from help where num =?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				bean = new helpBean();
+				bean.setNum(num);
+				bean.setTitle(rs.getString("title"));
+				bean.setWriter(rs.getString("writer"));
+				bean.setContent(rs.getString("content"));
+				bean.setDate(rs.getTimestamp("date"));
+			}
 		} catch (Exception e) {
 			System.out.println("getHelpConent()에서 예외발생"+e);
+		} finally{
+			resourceClose();
 		}
 		
 		return bean;
+	}
+	public int deleteHelp(int num) {
+		int result = 0;
+		try {
+			con = getConnection();
+			String sql = "delete from help where num =?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			result = pstmt.executeUpdate();
+			if(result !=0)
+				return 1;
+		} catch (Exception e) {
+			System.out.println("deleteHelp()에서 예외발생"+e);
+		} finally{
+			resourceClose();
+		}
+		return 0;
 	}
 }
