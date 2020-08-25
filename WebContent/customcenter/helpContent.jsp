@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	function deletePage(num){
 		if (confirm("삭제하시겠습니까?")) {
-			$.ajax('${pageContext.request.contextPath}/helpPageDelete.do',{
+			$.ajax('${pageContext.request.contextPath}/helpDelete.do',{
 				type:"post",
 				data: {number : num},
 				success:function(data){
@@ -48,7 +48,7 @@
        		<p><h2>${bean.title}</h2><br><hr>
        		<p><h2>내용</h2><br>${bean.content}<br><hr>
        		<button onclick ="location.href='${pageContext.request.contextPath}/helpMainPage.do'">목록으로</button>
-       		<button onclick ="location.href='${pageContext.request.contextPath}/helpPageUpdate.do'">수정하기</button>
+       		<button onclick ="location.href='${pageContext.request.contextPath}/helpUpdate.do?num=${bean.num}'">수정하기</button>
        		<button onclick ="deletePage('${bean.num}')">삭제하기</button>
         </div>
     </div>

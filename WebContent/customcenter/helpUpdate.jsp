@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -28,16 +27,15 @@
 	}
     function writeAction(){
     	var form = $("#form").serialize();
-    	alert("등록하셨습니다.");
-   		$.ajax('${pageContext.request.contextPath}/helpWriteAction.do',{
+   		$.ajax('${pageContext.request.contextPath}/helpUpdateAction.do',{
    			type:"post",
    			data:form,
    			success:function(data){
    				if(data == 1){
-   					alert("등록하셨습니다.");
+   					alert("수정하셨습니다.");
    					location.href="${pageContext.request.contextPath}/helpMainPage.do";
    				}else{
-   					alert("등록 실패.");
+   					alert("수정 실패.");
    				}
    			}, error:function(data){
    				alert("에러가 발생했습니다.");
@@ -62,8 +60,9 @@
         </div>
         <div class="my_main">
         	<form id ="form" method ="post">
-        		제목 <input type="text" id ="title" name ="title" style="width: 650px; height: 30px;"><br><br>
-        		내용 <br><textarea rows="30" cols="100" id="content" name="content"></textarea><br><br>
+        		<input type="hidden" name = "num" value = "${bean.num}">
+        		제목 <input type="text" id ="title" name ="title" style="width: 650px; height: 30px;" value = "${bean.title }"><br><br>
+        		내용 <br><textarea rows="30" cols="100" id="content" name="content">${bean.content }</textarea><br><br>
         		<button onclick ="return submitForm()">제출하기</button>
         	</form>
         </div>

@@ -50,7 +50,7 @@ public class helpDAO {
 			if(result != 0)
 				return 1;
 		} catch (Exception e) {
-			System.out.println("insertHelp()에서 예외 발생"+ e);
+			System.out.println("insertHelp()에서 예외 발생 : "+ e);
 		} finally{
 			resourceClose();
 		}
@@ -60,7 +60,7 @@ public class helpDAO {
 		List<helpBean> list = new ArrayList<helpBean>();
 		try {
 			con = getConnection();
-			String sql ="select * from help";
+			String sql ="select * from help order by num desc";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -73,7 +73,7 @@ public class helpDAO {
 				list.add(bean);
 			}
 		} catch (Exception e) {
-			System.out.println("getHelpList()에서 예외발생"+e);
+			System.out.println("getHelpList()에서 예외발생 : "+e);
 		} finally{
 			resourceClose();
 		}
@@ -97,7 +97,7 @@ public class helpDAO {
 				bean.setDate(rs.getTimestamp("date"));
 			}
 		} catch (Exception e) {
-			System.out.println("getHelpConent()에서 예외발생"+e);
+			System.out.println("getHelpConent()에서 예외발생 : "+e);
 		} finally{
 			resourceClose();
 		}
@@ -115,7 +115,27 @@ public class helpDAO {
 			if(result !=0)
 				return 1;
 		} catch (Exception e) {
-			System.out.println("deleteHelp()에서 예외발생"+e);
+			System.out.println("deleteHelp()에서 예외발생 : "+e);
+		} finally{
+			resourceClose();
+		}
+		return 0;
+	}
+	public int updateHelp(helpBean bean) {
+		int result = 0;
+		System.out.println(bean.getNum());
+		try {
+			con = getConnection();
+			String sql = "update help set title = ?, content = ?, date = now() where num =?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bean.getTitle());
+			pstmt.setString(2, bean.getContent());
+			pstmt.setInt(3, bean.getNum());
+			result = pstmt.executeUpdate();
+			if(result != 0)
+				return 1;
+		} catch (Exception e) {
+			System.out.println("updateHelp()에서 예외발생 : "+e);
 		} finally{
 			resourceClose();
 		}
