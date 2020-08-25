@@ -7,13 +7,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.command.CommandHandler;
+import com.help.db.helpDAO;
 
-public class faqMainPage implements CommandHandler{
+public class helpMainPage implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		return "customcenter/faq.jsp";
+		helpDAO dao = new helpDAO();
+		request.setAttribute("list", dao.getHelpList());
+		return "customcenter/help.jsp";
 	}
 
 }

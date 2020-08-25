@@ -16,6 +16,40 @@
         var sel_file;
         $(document).ready(function () {
             $("#input_img").on("change", handleImgFileSelect);
+            
+            $("#review_create").on("click",function(){
+            	var productContent = CKEDITOR.instances["p_content"].getData();
+                
+            	var content = $('#p_content').val(productContent);
+            	if(content == ""){
+            		alert("후기 내용을 작성하세요");
+            	}else if($("#rating").val() == ""){
+            		alert("평점을 입력해주세요");
+            	} else{
+            	var form = $("form")[0];
+            	var form1 = new FormData(form);
+            	$.ajax({
+            		type : "post",
+            		url : "${pageContext.request.contextPath}/reviewWrite.do",
+            		processData : false,
+            		contentType : false,
+            		data : form1,
+            		dataType : "text",
+            		success : function(data,status){
+            			console.log(data);
+            			if(data != 0){
+            				alert("후기 등록 성공");
+            			}else{
+            				alert("후기 등록 실패했습니다.");
+            			}
+            		},
+            		error : function(data,status){
+            			alert("에러가 발생했습니다.");
+            		}
+            	});
+            	}
+            })
+            
         });
 
         function handleImgFileSelect(e) {
@@ -49,19 +83,48 @@
                 return false;
             }
         }
+        $(function(){
+        	
+	        $(".starRev input").on("click",function(){
+	        	var star = $(this).val();
+	        	  $(this).parent().children("input").removeClass("on");
+	        	  $(this).addClass("on").prevAll("input").addClass("on");
+	        	  $(".st").empty();
+	        	  $(".st").append("<input type='text' name='rating' value='"+star+"' >");
+	        	  
+	        	  return false;
+	       })
+	      
+	       
+       }) 
+        
     </script>
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
 <section>
-    <form>
+    <form method="post" enctype="multipart/form-data">
     <div class="review">
         <div>후기등록</div>
-        <div>업체이름</div>
-        <div>클래스명</div>
-        <div>회원이메일</div>
-        <div>수업참가날짜</div>
-        <div><input type="text" name="rating">/5</div>
+        <!-- 클래스 등록번호 -->
+        <input type="hidden" name="class_regisitrynum" value="1"> 
+        <!-- 업체 번호 -->
+        <input type="hidden" name="classnum" value="1">
+        
+        <div>업체이름 <input type="hidden" name="company_name" value="가죽공방"></div>
+        <div>클래스명 <input type="hidden" name="class_name" value="가죽지갑만들기"></div>
+        <div>회원이메일
+        	<div>${sessionScope.userid }</div>
+        </div>
+        <div>수업참가날짜<input type="hidden" name="reservation_date" value="2020.10.01"></div>
+        <div class = "starRev">
+        	<input class="staR" value="1">
+        	<input class="staR" value="2">
+        	<input class="staR" value="3">
+        	<input class="staR" value="4">
+        	<input class="staR" value="5">
+			<div class="st"><input type='text' name='rating' id="rating"></div>
+        </div>
         <div>후기</div>
         <textarea id="p_content" name="content"></textarea>
         <div>대표이미지</div>
@@ -73,7 +136,7 @@
         <div class="imgMain">
             <img id="img"/>
         </div>
-        <button type="submit">등록</button>
+        <button type="button" id ="review_create">등록</button>
         <button type="button">취소</button>
     </div>
     </form>

@@ -61,10 +61,10 @@
 	            <div class="join_main">
             	<input type="hidden" id ="email" name ="storeemail" value ="${storeid}">
 
-                <div class="update_sub"><input class="join_text" type="password" id="pass1" name="storepw" placeholder="PASSWORD" required></div>
-                <div class="update_sub"><input class="join_text" type="password" id="pass2" placeholder="PASSWORD" required></div>
-                <div class="update_sub"><input class="join_text" type="text" id="name" name="storename" placeholder="가게이름" required value ="${store.storename}"}></div>
-                <div class="update_sub"><input class="join_text" type="text" id="tel" name="storetel" placeholder="PHONE NUMBER" required value ="${store.storetel}"></div>
+                <div class="update_sub"><input class="join_text" type="password" id="pass1" name="storepw" placeholder="PASSWORD"></div>
+                <div class="update_sub"><input class="join_text" type="password" id="pass2" placeholder="PASSWORD"></div>
+                <div class="update_sub"><input class="join_text" type="text" id="name" name="storename" placeholder="가게이름" value ="${store.storename}"}></div>
+                <div class="update_sub"><input class="join_text" type="text" id="tel" name="storetel" placeholder="PHONE NUMBER" value ="${store.storetel}"></div>
                 <div class="update_sub2">
                     <input type="text" name = "storepostcode" id="sample6_postcode" placeholder="우편번호" value ="${store.storepostcode}">
                     <input type="button"  onclick="sample6_execDaumPostcode()" value="우편번호">

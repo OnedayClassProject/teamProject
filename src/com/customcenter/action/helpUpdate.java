@@ -7,13 +7,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.command.CommandHandler;
+import com.help.db.helpBean;
+import com.help.db.helpDAO;
 
-public class faqMainPage implements CommandHandler{
+public class helpUpdate implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		return "customcenter/faq.jsp";
+		
+		int num = Integer.parseInt(request.getParameter("num"));
+		helpDAO dao = new helpDAO();
+		helpBean bean = dao.getHelpConent(num);
+		request.setAttribute("bean", bean);
+		return "customcenter/helpUpdate.jsp";
 	}
 
 }

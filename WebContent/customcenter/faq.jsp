@@ -22,7 +22,7 @@
            <div class="side_detail">
            <div class="current_menu">FAQ</div>
            <div class="line"></div>
-                <a href="${pageContext.request.contextPath}/helpPage.do" class="current_menu2"><div>문의하기</div></a>
+                <a href="${pageContext.request.contextPath}/helpMainPage.do" class="current_menu2"><div>문의하기</div></a>
             </div>
             <hr>
             <div class="side_detail">

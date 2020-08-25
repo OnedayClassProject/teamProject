@@ -10,17 +10,22 @@ import com.command.CommandHandler;
 import com.help.db.helpBean;
 import com.help.db.helpDAO;
 
-public class helpPage implements CommandHandler{
+public class helpUpdateAction implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int num = Integer.parseInt(request.getParameter("num"));
-		helpDAO dao = new helpDAO();
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
 		helpBean bean = new helpBean();
-		bean = dao.getHelpConent(num);
-		request.setAttribute("bean", bean);
-		return "customcenter/helpContent.jsp";
+		bean.setTitle(title);
+		bean.setContent(content);
+		bean.setNum(num);
+		helpDAO dao = new helpDAO();
+		int check = dao.updateHelp(bean);
+		request.setAttribute("data", check);
+		return "store/checkEmail.jsp";
 	}
-
+	
 }
