@@ -101,7 +101,7 @@
                 </div>
                 <div>카테고리
                     <ul class="sub_menu">
-                        <li>디퓨저</li>
+                        <li><a href="${pageContext.request.contextPath}/diffuserClass.do">디퓨저</li>
                         <li>캔들</li>
                         <li>요리</li>
                         <li>베이킹</li>

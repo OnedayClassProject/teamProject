@@ -26,6 +26,12 @@
                 </a>
             </div>
             <hr>
+            <div class="side_detail">
+               <a href="${pageContext.request.contextPath}/diffuserClass.do" class='current_menu3'><div>디퓨저클래스</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
         </div>
             <div class="my_main">
             <div>입문클래스</div>
