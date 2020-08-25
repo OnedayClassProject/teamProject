@@ -61,4 +61,82 @@ public class ClassDAO {
 		return v;
 	}
 	
+	
+	public int beginnerCount() {
+		
+		int cnt = 0;
+		
+		try {
+			con = getConnection();
+			
+			String sql = "select count(*) from class "
+					+ "where level = 'easy'";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				cnt = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		
+		} finally {
+			resourceClose();
+		}
+		
+		return cnt;
+	}
+	
+	
+	
+	// 클래스 list 메서드 
+	public Vector<ClassBean> getAllClassList(int startRow, int endRow) {
+		
+		Vector<ClassBean> v = new Vector<ClassBean>();
+		
+		ClassBean cbean = null;
+		
+		try {
+			con = getConnection();
+			
+			// level 중 하(easy)를 가져옴 
+			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail "
+					+ "from class "
+					+ "where level = 'easy' limit ?,?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs = pstmt.executeQuery();
+			
+		while(rs.next()) {
+			
+			cbean = new ClassBean();
+			cbean.setStorenum(rs.getInt("storenum"));
+			cbean.setClass_registrynum(rs.getInt("class_registrynum"));
+			cbean.setClass_name(rs.getString("class_name"));
+			cbean.setCategory(rs.getString("category"));
+			cbean.setLevel(rs.getString("level"));
+			cbean.setThumbnail(rs.getString("thumbnail"));
+			
+			// vector에 classbean 객체 저장 
+			v.add(cbean);
+		}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			resourceClose();
+		}
+		return v;
+	}
+
+	
+	
+	
+	
 }

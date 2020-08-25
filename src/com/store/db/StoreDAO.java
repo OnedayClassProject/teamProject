@@ -72,8 +72,8 @@ public class StoreDAO {
 			rs = pstmt.executeQuery();
 			rs.next();
 			int num = rs.getInt(1);
-			sql = "insert into store(storenum,storeemail,storepw,storename,storetel,storepostcode,storeaddress1,storeaddress2,storeaddress3)"
-					+ "values(?,?,?,?,?,?,?,?,?)";
+			sql = "insert into store(storenum,storeemail,storepw,storename,storetel,storepostcode,storeaddress1,storeaddress2,storeaddress3,store_joindate)"
+					+ "values(?,?,?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num + 1);
 			pstmt.setString(2, bean.getStoreemail());

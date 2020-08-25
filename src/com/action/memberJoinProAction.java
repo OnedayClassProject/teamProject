@@ -40,6 +40,7 @@ public class memberJoinProAction implements CommandHandler{
 			return null;
 		}
 		
+		
 		return "/member/memberLogin.jsp";
 	}
 	
