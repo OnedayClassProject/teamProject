@@ -31,7 +31,7 @@
             <div class="my_main">
             <div>입문클래스</div>
             
-            <c:set var="i" value="0"/>
+            <c:set var="i" value="1"/>
             
             <c:forEach var="ClassBean" items="${requestScope.Vector}">
             
@@ -57,7 +57,7 @@
             </c:forEach>
 	          	<div class="pageNum">
 	          		<c:forEach var="p" begin="${startPage}" end="${endPage}">
-	          			<a href="beginnerClass.jsp?pageNum=${p}">[${p}]</a>
+	          			<a href="${pageContext.request.contextPath}/beginnerClass.do?pageNum=${p}">[${p}]</a>
 	          		</c:forEach>
 	          	</div>
 	          	

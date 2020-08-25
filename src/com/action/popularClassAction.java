@@ -1,6 +1,7 @@
 package com.action;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
@@ -21,13 +22,36 @@ public class popularClassAction implements CommandHandler {
 		request.setCharacterEncoding("UTF-8");
 		
 		ClassDAO cdao = new ClassDAO();
-		Vector<ClassBean> v= cdao.getClassInfo();
+
+		String pageNum = request.getParameter("pageNum");
+		int pageSize = 12;
 		
-		//View페이지로 응답값을 전달 하기 위해...임시로 request내장객체영역에 응답할 값을 저장
-		//응답할 값 : DB로 부터 조회한 전체 클래스 정보  Vector
-		request.setAttribute("Vector", v);
+		if(pageNum== null){
+			pageNum="1";
+		}
+		
+		int currentPage = Integer.parseInt(pageNum);
+		
+		int startRow = (currentPage - 1) * pageSize ;
+		int endRow = pageSize;
+		
+		ClassDAO cado = new ClassDAO();
+		int count = cdao.popularCount();
+	 
+		int pageCount = count / pageSize + (count%pageSize == 0? 0:1);
 	
+		int pageBlock=10;
 		
+		int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
+		int endPage = startPage + pageBlock -1;
+		if(endPage>pageCount) endPage=pageCount;
+		
+		ArrayList <ClassBean> list = cdao.popularList(startRow,endRow);
+
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("count", count);
+		request.setAttribute("list", list);
 
 		return "classList/popularClass.jsp";
 	}
@@ -36,3 +60,4 @@ public class popularClassAction implements CommandHandler {
 	
 	
 }
+

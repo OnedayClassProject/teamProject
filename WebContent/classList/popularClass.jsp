@@ -31,20 +31,17 @@
            
             <div class="my_main">
             <div>인기클래스</div>
-            <c:set var="j" value="0"/> 
-            <c:forEach var="classBean" items="${Vector}">
+         <c:if test="${count != 0}">
+            <c:set var="j" value="1"/> 
+
+            <c:forEach var="classBean" items="${list}">
          
            		<div class="best-class">
-
                  <div class="thumbnail">
-<<<<<<< HEAD
-                 <img src="${pageContext.request.contextPath}/images/ba61d3e7c5d74f8eb478f91833ef523e.jpg">
-=======
                  <a href="ClassInfo.do?class_registrynum="${classBean.class_registrynum} >
             
-                 <img src="${pageContext.request.contextPath}/images/${classBean.thumbnail}" width="150">
+                 <img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}" width="150">
                  </a>
->>>>>>> a0335dfcebc124dcb8f4bfdc7afaabd966dc942c
                  </div>
                      <div class="class-name">
                          <div class="class-name1">카테고리 : ${classBean.category}</div>
@@ -57,8 +54,21 @@
         	   </c:if>
              <c:set var="j" value="${j+1}"/>
             </c:forEach>
-
+        	 </c:if>
+        	 
+            <div class="pageNum">
+            	<c:forEach var = "i" begin="${startPage}" end ="${endPage}">
+            		<a href="${pageContext.request.contextPath}/popularClass.do?pageNum=${i}">[${i}]</a>
+            	</c:forEach>
             </div>
+                   
+           </div> 
+         
+          <c:if test="${count == 0}">
+          	<div class="no_list"> NO LIST </div>
+          </c:if>
+
+
         </div>
 </section>
 </body>

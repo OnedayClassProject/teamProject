@@ -135,6 +135,51 @@ public class ClassDAO {
 		return v;
 	}
 
+	public int popularCount(){
+		int count=0;
+		try{
+			con=getConnection();
+			String sql= "select count(*) from class";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				count=rs.getInt(1);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			resourceClose();
+		}
+		return count;
+	}//popularCount 硫붿냼�뱶 �걹
+	
+	public ArrayList <ClassBean> popularList(int startRow,int endRow){
+		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
+		try{
+			con= getConnection();
+			String sql = "select class_registrynum,thumbnail,category,class_name from class order by reservation_count desc limit ?,?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs=pstmt.executeQuery();
+			while(rs.next()){
+				ClassBean cbean = new ClassBean();
+				cbean.setClass_registrynum(rs.getInt("class_registrynum"));
+				cbean.setThumbnail(rs.getString("thumbnail"));
+				cbean.setCategory(rs.getString("category"));
+				cbean.setClass_name(rs.getString("class_name"));
+				
+				list.add(cbean);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			resourceClose();
+		}
+		
+		return list;
+	
+	}//popularList 硫붿냼�뱶 �걹
 	
 	
 	
