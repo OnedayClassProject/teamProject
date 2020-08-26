@@ -33,6 +33,42 @@
                 </a>
             </div>
             <hr>
+            <div class="side_detail">
+               <a href="${pageContext.request.contextPath}/candleClass.do"class="current_menu3"><div>캔들클래스</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
+             <div class="side_detail">
+               <a href="${pageContext.request.contextPath}/cookingClass.do"class="current_menu3"><div>요리클래스</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
+             <div class="side_detail">
+               <a href="${pageContext.request.contextPath}/bakingClass.do"class="current_menu3"><div>베이킹클래스</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
+             <div class="side_detail">
+               <a href="${pageContext.request.contextPath}/potteryClass.do"class="current_menu3"><div>도자기클래스</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
+             <div class="side_detail">
+               <a href="${pageContext.request.contextPath}/perfumeClass.do"class="current_menu3"><div>향수클래스</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
+             <div class="side_detail">
+               <a href="${pageContext.request.contextPath}/soapClass.do"class="current_menu3"><div>비누클래스</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
         </div>
            
             <div class="my_main">
