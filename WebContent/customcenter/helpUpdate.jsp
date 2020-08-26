@@ -33,7 +33,7 @@
    			success:function(data){
    				if(data == 1){
    					alert("수정하셨습니다.");
-   					location.href="${pageContext.request.contextPath}/helpMainPage.do";
+   					location.href="${pageContext.request.contextPath}/helpMainPage.do?pageNum=1";
    				}else{
    					alert("수정 실패.");
    				}
@@ -63,7 +63,7 @@
         		<input type="hidden" name = "num" value = "${bean.num}">
         		제목 <input type="text" id ="title" name ="title" style="width: 650px; height: 30px;" value = "${bean.title }"><br><br>
         		내용 <br><textarea rows="30" cols="100" id="content" name="content">${bean.content }</textarea><br><br>
-        		<button onclick ="return submitForm()">제출하기</button>
+        		<button type="button" onclick ="return submitForm()">제출하기</button>
         	</form>
         </div>
     </div>

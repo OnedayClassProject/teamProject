@@ -33,35 +33,37 @@ public class helpDAO {
 	}
 	public int insertHelp(helpBean bean){
 		int result = 0;
+		int num = 0;
 		try {
 			con = getConnection();
 			String sql = "select max(num) from help";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			rs.next();
-			int num = rs.getInt(1) + 1;
+			if(rs.next()){
+				num = rs.getInt(1) + 1;
+			}
 			sql = "insert into help(num,title,content,date,writer) values(?,?,?,now(),?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			pstmt.setString(2, bean.getTitle());
 			pstmt.setString(3, bean.getContent());
 			pstmt.setString(4, bean.getWriter());
-			result = pstmt.executeUpdate();
-			if(result != 0)
-				return 1;
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("insertHelp()에서 예외 발생 : "+ e);
 		} finally{
 			resourceClose();
 		}
-		return 0;
+		return 1;
 	}
-	public List<helpBean> getHelpList(){
+	public List<helpBean> getHelpList(int startRow, int pageSize){
 		List<helpBean> list = new ArrayList<helpBean>();
 		try {
 			con = getConnection();
-			String sql ="select * from help order by num desc";
+			String sql ="select * from help order by num desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, pageSize);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				helpBean bean = new helpBean();
@@ -123,7 +125,6 @@ public class helpDAO {
 	}
 	public int updateHelp(helpBean bean) {
 		int result = 0;
-		System.out.println(bean.getNum());
 		try {
 			con = getConnection();
 			String sql = "update help set title = ?, content = ?, date = now() where num =?";
@@ -140,5 +141,21 @@ public class helpDAO {
 			resourceClose();
 		}
 		return 0;
+	}
+	public int getHelpCount() {
+		int count = 0;
+		try {
+			con = getConnection();
+			String sql = "select count(*) from help";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next())
+				count = rs.getInt(1);
+		} catch (Exception e) {
+			System.out.println("getHelpCount()에서 예외발생 : "+e);
+		} finally{
+			resourceClose();
+		}
+		return count;
 	}
 }

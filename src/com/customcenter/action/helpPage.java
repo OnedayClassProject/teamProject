@@ -16,10 +16,12 @@ public class helpPage implements CommandHandler{
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int num = Integer.parseInt(request.getParameter("num"));
+		String pageNum=request.getParameter("pageNum");
 		helpDAO dao = new helpDAO();
 		helpBean bean = new helpBean();
 		bean = dao.getHelpConent(num);
 		request.setAttribute("bean", bean);
+		request.setAttribute("pageNum", pageNum);
 		return "customcenter/helpContent.jsp";
 	}
 
