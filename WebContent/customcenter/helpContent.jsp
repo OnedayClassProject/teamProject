@@ -7,7 +7,7 @@
 </head>
 <body>
 <script type="text/javascript">
-	function deletePage(num){
+	function deletePage(num,pageNum){
 		if (confirm("삭제하시겠습니까?")) {
 			$.ajax('${pageContext.request.contextPath}/helpDelete.do',{
 				type:"post",
@@ -15,7 +15,7 @@
 				success:function(data){
 					if(data==1){
 						alert("삭제했습니다.");
-						location.href="${pageContext.request.contextPath}/helpMainPage.do";
+						location.href="${pageContext.request.contextPath}/helpMainPage.do?pageNum="+pageNum;
 					}else{
 						alert("오류가 발생했습니다.");
 					}
@@ -47,9 +47,15 @@
         <div class="my_main">
        		<p><h2>${bean.title}</h2><br><hr>
        		<p><h2>내용</h2><br>${bean.content}<br><hr>
-       		<button onclick ="location.href='${pageContext.request.contextPath}/helpMainPage.do'">목록으로</button>
-       		<button onclick ="location.href='${pageContext.request.contextPath}/helpUpdate.do?num=${bean.num}'">수정하기</button>
-       		<button onclick ="deletePage('${bean.num}')">삭제하기</button>
+       		<button type="button" onclick ="location.href='${pageContext.request.contextPath}/helpMainPage.do?pageNum=${pageNum}'">목록으로</button>
+       		<button type="button" onclick ="location.href='${pageContext.request.contextPath}/helpUpdate.do?num=${bean.num}&pageNum=${pageNum}'">수정하기</button>
+       		<button type="button" onclick ="deletePage('${bean.num}','${pageNum}')">삭제하기</button><br><br>
+       		<div class="comment_input"></div>
+       		<div class ="comment">
+	        	<form action="">
+	        		<input type="text"> &nbsp;<input type="button" value="덧글달기">
+	        	</form>
+        	</div>
         </div>
     </div>
 </section>

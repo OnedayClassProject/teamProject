@@ -107,7 +107,6 @@ public class ClassBean {
 	public void setReservation_count(int reservation_count) {
 		this.reservation_count = reservation_count;
 	}
-	
-	
+		
 	
 }

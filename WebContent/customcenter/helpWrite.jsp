@@ -9,42 +9,7 @@
 <body>
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <jsp:include page="../header.jsp"/>
-<script type="text/javascript">
-	function submitForm(){
-		var title = $("#title").val();
-		var content = $("#content").val();
-		if(title==""){
-			alert("제목을 입력해주세요");
-			$("#title").focus();
-			return false;
-		}else if(content==""){
-			alert("내용을 입력해주세요");
-			$("#content").focus();
-			return false;
-		}else{
-			writeAction();
-		}
-		return true;
-	}
-    function writeAction(){
-    	var form = $("#form").serialize();
-    	alert("등록하셨습니다.");
-   		$.ajax('${pageContext.request.contextPath}/helpWriteAction.do',{
-   			type:"post",
-   			data:form,
-   			success:function(data){
-   				if(data == 1){
-   					alert("등록하셨습니다.");
-   					location.href="${pageContext.request.contextPath}/helpMainPage.do";
-   				}else{
-   					alert("등록 실패.");
-   				}
-   			}, error:function(data){
-   				alert("에러가 발생했습니다.");
-   			}
-   		});
-    }
-</script>
+
 <section>
 <div class="pic"></div>
     <div class="my_wrap">
@@ -64,10 +29,47 @@
         	<form id ="form" method ="post">
         		제목 <input type="text" id ="title" name ="title" style="width: 650px; height: 30px;"><br><br>
         		내용 <br><textarea rows="30" cols="100" id="content" name="content"></textarea><br><br>
-        		<button onclick ="return submitForm()">제출하기</button>
+        		<button type="button" onclick ="submitForm()">제출하기</button>
         	</form>
         </div>
     </div>
 </section>
+<script type="text/javascript">
+	function submitForm(){
+		var title = $("#title").val();
+		var content = $("#content").val();
+		if(title==""){
+			alert("제목을 입력해주세요");
+			$("#title").focus();
+			return;
+		}else if(content==""){
+			alert("내용을 입력해주세요");
+			$("#content").focus();
+			return;
+		}else{
+			writeAction();
+		}
+	}
+    function writeAction(){
+    	var form = $("#form").serialize();
+   		$.ajax('${pageContext.request.contextPath}/helpWriteAction.do',{
+   			type:"post",
+   			data:form,
+   			dataType:"text",
+   			success:function(data,status){
+   				alert(data);
+   				console.log(data);
+   				console.debug(data);
+   				 if(data == 1){
+   					location.href="${pageContext.request.contextPath}/helpMainPage.do?pageNum=1";
+   				}else{
+   					alert("등록 실패.");
+   				} 
+   			}, error:function(data){
+   				alert("에러가 발생했습니다.");
+   			}
+   		});
+    }
+</script>
 </body>
 </html>

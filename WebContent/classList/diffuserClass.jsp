@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/classList/popularClass.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/classList/diffuserClass.css">
 </head>
 <body><jsp:include page="../header.jsp"/>
 <section>
@@ -14,9 +14,9 @@
     <div class="my_wrap">
         <div class="side_menu">
            <div class="side_detail">
-           <div class="current_menu">인기클래스</div>
+           <div class="current_menu">디퓨저클래스</div>
            <div class="line"></div>
-                <a href="${pageContext.request.contextPath}/popularClass.do" class="current_menu2"><div>인기클래스</div>
+                <a href="${pageContext.request.contextPath}/popularClass.do" class="current_menu3"><div>인기클래스</div>
                 <div class="side_detail2">></div>
                 </a>
             </div>
@@ -28,7 +28,7 @@
             </div>
             <hr>
             <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/diffuserClass.do" class='current_menu3'><div>디퓨저클래스</div>
+               <a href="${pageContext.request.contextPath}/diffuserClass.do" class='current_menu2'><div>디퓨저클래스</div>
                 <div class="side_detail2">></div>
                 </a>
             </div>
@@ -36,7 +36,7 @@
         </div>
            
             <div class="my_main">
-            <div>인기클래스</div>
+            <div>디퓨저클래스</div>
          <c:if test="${count != 0}">
             <c:set var="j" value="1"/> 
 
@@ -64,7 +64,7 @@
         	 
             <div class="pageNum">
             	<c:forEach var = "i" begin="${startPage}" end ="${endPage}">
-            		<a href="${pageContext.request.contextPath}/popularClass.do?pageNum=${i}">[${i}]</a>
+            		<a href="${pageContext.request.contextPath}/diffuserClass.do?pageNum=${i}">[${i}]</a>
             	</c:forEach>
             </div>
                    
