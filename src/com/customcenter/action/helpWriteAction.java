@@ -15,6 +15,7 @@ public class helpWriteAction implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String id = "";
 		if(request.getSession().getAttribute("userid") != null){
 			id = (String)request.getSession().getAttribute("userid");
@@ -29,7 +30,9 @@ public class helpWriteAction implements CommandHandler{
 		bean.setWriter(id);
 		helpDAO dao = new helpDAO();
 		int check = dao.insertHelp(bean);
-		request.setAttribute("data", check);
+		System.out.println("check : " + check);
+		request.setAttribute("data",1);
+		System.out.println("data : " + request.getAttribute("data"));
 		return "store/checkEmail.jsp";
 	}
 

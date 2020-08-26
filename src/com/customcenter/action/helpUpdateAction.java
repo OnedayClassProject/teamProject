@@ -15,6 +15,7 @@ public class helpUpdateAction implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		int num = Integer.parseInt(request.getParameter("num"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
@@ -24,7 +25,9 @@ public class helpUpdateAction implements CommandHandler{
 		bean.setNum(num);
 		helpDAO dao = new helpDAO();
 		int check = dao.updateHelp(bean);
+		System.out.println("check : " + check);
 		request.setAttribute("data", check);
+		System.out.println("data : " + request.getAttribute("data"));
 		return "store/checkEmail.jsp";
 	}
 	
