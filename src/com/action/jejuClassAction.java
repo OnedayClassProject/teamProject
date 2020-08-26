@@ -11,7 +11,7 @@ import com.command.CommandHandler;
 import com.store.db.ClassBean;
 import com.store.db.ClassDAO;
 
-public class beginnerClassAction implements CommandHandler {
+public class jejuClassAction implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
@@ -34,7 +34,7 @@ public class beginnerClassAction implements CommandHandler {
 		int endRow = pageSize;
 		
 		ClassDAO cdao = new ClassDAO();
-		int cnt = cdao.beginnerCount();
+		int cnt = cdao.jejuCount();
 		System.out.println(cnt);
 		
 		int pageCount = cnt/pageSize + (cnt%pageSize == 0 ? 0 : 1);
@@ -45,14 +45,14 @@ public class beginnerClassAction implements CommandHandler {
 		
 		if (endPage > pageCount) endPage = pageCount;
 		
-		Vector<ClassBean> v = cdao.beginnerList(startRow, endRow);
+		Vector<ClassBean> v = cdao.jejuList(startRow, endRow);
 		
 		request.setAttribute("Vector", v);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("cnt", cnt);
 		
-		return "classList/beginnerClass.jsp";
+		return "classList/jejuClass.jsp";
 	}
 	
 	
