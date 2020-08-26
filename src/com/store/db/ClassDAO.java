@@ -182,7 +182,6 @@ public class ClassDAO {
 	}//popularList 硫붿냼�뱶 �걹
 	
 	public ArrayList<ClassBean> diffuserClassList(int startRow,int endRow){
-		//리턴할 Vector 객체를 선언
 		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
 		//하나의 레코드를 저장할 객체 선언
 		ClassBean bean =null;
@@ -190,10 +189,9 @@ public class ClassDAO {
 			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
 			con=getConnection();
 			//쿼리준비 : 전체 차량 레코드 검색
-			String sql="select class_registrynum,thumbnail,category,class_name from class where=?";
+			String sql="select class_registrynum,thumbnail,category,class_name from class where category='디퓨저'";
 			//쿼리를 실행할 수 있는 객체 선언
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, "diffuser");
 			//쿼리 실행 후 결과를 리턴
 			rs=pstmt.executeQuery();
 			//반복문을 돌면서 빈 클래스에 컬럼데이터를 저장
@@ -210,8 +208,188 @@ public class ClassDAO {
 		}finally{
 			resourceClose();
 		}
-		return list;//벡터 리턴
+		return list;
 	}//diffuserClassList()메소드 끝
+	
+	public ArrayList<ClassBean> candleClassList(int startRow,int endRow){
+		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
+		//하나의 레코드를 저장할 객체 선언
+		ClassBean bean =null;
+		try{
+			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
+			con=getConnection();
+			//쿼리준비 : 전체 차량 레코드 검색
+			String sql="select class_registrynum,thumbnail,category,class_name from class where category='캔들'";
+			//쿼리를 실행할 수 있는 객체 선언
+			pstmt=con.prepareStatement(sql);
+			//쿼리 실행 후 결과를 리턴
+			rs=pstmt.executeQuery();
+			//반복문을 돌면서 빈 클래스에 컬럼데이터를 저장
+			while(rs.next()){
+				bean=new ClassBean();
+				bean.setClass_registrynum(rs.getInt("class_registrynum"));
+				bean.setThumbnail(rs.getString("thumbnail"));
+				bean.setCategory(rs.getString("category"));
+				bean.setClass_name(rs.getString("class_name"));
+				list.add(bean);
+			}			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			resourceClose();
+		}
+		return list;
+	}//candleClassList()메소드 끝
+	
+	public ArrayList<ClassBean> cookingClassList(int startRow,int endRow){
+		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
+		//하나의 레코드를 저장할 객체 선언
+		ClassBean bean =null;
+		try{
+			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
+			con=getConnection();
+			//쿼리준비 : 전체 차량 레코드 검색
+			String sql="select class_registrynum,thumbnail,category,class_name from class where category='요리'";
+			//쿼리를 실행할 수 있는 객체 선언
+			pstmt=con.prepareStatement(sql);
+			//쿼리 실행 후 결과를 리턴
+			rs=pstmt.executeQuery();
+			//반복문을 돌면서 빈 클래스에 컬럼데이터를 저장
+			while(rs.next()){
+				bean=new ClassBean();
+				bean.setClass_registrynum(rs.getInt("class_registrynum"));
+				bean.setThumbnail(rs.getString("thumbnail"));
+				bean.setCategory(rs.getString("category"));
+				bean.setClass_name(rs.getString("class_name"));
+				list.add(bean);
+			}			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			resourceClose();
+		}
+		return list;
+	}//cookingClassList()메소드 끝
+	
+	public ArrayList<ClassBean> bakingClassList(int startRow,int endRow){
+		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
+		//하나의 레코드를 저장할 객체 선언
+		ClassBean bean =null;
+		try{
+			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
+			con=getConnection();
+			//쿼리준비 : 전체 차량 레코드 검색
+			String sql="select class_registrynum,thumbnail,category,class_name from class where category='베이킹'";
+			//쿼리를 실행할 수 있는 객체 선언
+			pstmt=con.prepareStatement(sql);
+			//쿼리 실행 후 결과를 리턴
+			rs=pstmt.executeQuery();
+			//반복문을 돌면서 빈 클래스에 컬럼데이터를 저장
+			while(rs.next()){
+				bean=new ClassBean();
+				bean.setClass_registrynum(rs.getInt("class_registrynum"));
+				bean.setThumbnail(rs.getString("thumbnail"));
+				bean.setCategory(rs.getString("category"));
+				bean.setClass_name(rs.getString("class_name"));
+				list.add(bean);
+			}			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			resourceClose();
+		}
+		return list;
+	}//bakingClassList()메소드 끝
+	
+	public ArrayList<ClassBean> potteryClassList(int startRow,int endRow){
+		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
+		//하나의 레코드를 저장할 객체 선언
+		ClassBean bean =null;
+		try{
+			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
+			con=getConnection();
+			//쿼리준비 : 전체 차량 레코드 검색
+			String sql="select class_registrynum,thumbnail,category,class_name from class where category='도자기'";
+			//쿼리를 실행할 수 있는 객체 선언
+			pstmt=con.prepareStatement(sql);
+			//쿼리 실행 후 결과를 리턴
+			rs=pstmt.executeQuery();
+			//반복문을 돌면서 빈 클래스에 컬럼데이터를 저장
+			while(rs.next()){
+				bean=new ClassBean();
+				bean.setClass_registrynum(rs.getInt("class_registrynum"));
+				bean.setThumbnail(rs.getString("thumbnail"));
+				bean.setCategory(rs.getString("category"));
+				bean.setClass_name(rs.getString("class_name"));
+				list.add(bean);
+			}			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			resourceClose();
+		}
+		return list;
+	}//potteryClassList()메소드 끝
+	
+	public ArrayList<ClassBean> perfumeClassList(int startRow,int endRow){
+		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
+		//하나의 레코드를 저장할 객체 선언
+		ClassBean bean =null;
+		try{
+			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
+			con=getConnection();
+			//쿼리준비 : 전체 차량 레코드 검색
+			String sql="select class_registrynum,thumbnail,category,class_name from class where category='향수'";
+			//쿼리를 실행할 수 있는 객체 선언
+			pstmt=con.prepareStatement(sql);
+			//쿼리 실행 후 결과를 리턴
+			rs=pstmt.executeQuery();
+			//반복문을 돌면서 빈 클래스에 컬럼데이터를 저장
+			while(rs.next()){
+				bean=new ClassBean();
+				bean.setClass_registrynum(rs.getInt("class_registrynum"));
+				bean.setThumbnail(rs.getString("thumbnail"));
+				bean.setCategory(rs.getString("category"));
+				bean.setClass_name(rs.getString("class_name"));
+				list.add(bean);
+			}			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			resourceClose();
+		}
+		return list;
+	}//perfumeClassList()메소드 끝
+	
+	public ArrayList<ClassBean> soapClassList(int startRow,int endRow){
+		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
+		//하나의 레코드를 저장할 객체 선언
+		ClassBean bean =null;
+		try{
+			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
+			con=getConnection();
+			//쿼리준비 : 전체 차량 레코드 검색
+			String sql="select class_registrynum,thumbnail,category,class_name from class where category='비누'";
+			//쿼리를 실행할 수 있는 객체 선언
+			pstmt=con.prepareStatement(sql);
+			//쿼리 실행 후 결과를 리턴
+			rs=pstmt.executeQuery();
+			//반복문을 돌면서 빈 클래스에 컬럼데이터를 저장
+			while(rs.next()){
+				bean=new ClassBean();
+				bean.setClass_registrynum(rs.getInt("class_registrynum"));
+				bean.setThumbnail(rs.getString("thumbnail"));
+				bean.setCategory(rs.getString("category"));
+				bean.setClass_name(rs.getString("class_name"));
+				list.add(bean);
+			}			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			resourceClose();
+		}
+		return list;
+	}//soapClassList()메소드 끝
 	
 	
 	

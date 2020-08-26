@@ -102,12 +102,12 @@
                 <div>카테고리
                     <ul class="sub_menu">
                         <li><a href="${pageContext.request.contextPath}/diffuserClass.do">디퓨저</li>
-                        <li>캔들</li>
-                        <li>요리</li>
-                        <li>베이킹</li>
-                        <li>도자기</li>
-                        <li>향수</li>
-                        <li>비누</li>
+                        <li><a href="${pageContext.request.contextPath}/candleClass.do">캔들</li>
+                        <li><a href="${pageContext.request.contextPath}/cookingClass.do">요리</li>
+                        <li><a href="${pageContext.request.contextPath}/bakingClass.do">베이킹</li>
+                        <li><a href="${pageContext.request.contextPath}/potteryClass.do">도자기</li>
+                        <li><a href="${pageContext.request.contextPath}/perfumeClass.do">향수</li>
+                        <li><a href="${pageContext.request.contextPath}/soapClass.do">비누</li>
                     </ul>
                 </div>
                 <div>지역별
