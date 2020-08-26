@@ -93,7 +93,7 @@ public class ClassDAO {
 	
 	
 	// 클래스 list 메서드 
-	public Vector<ClassBean> getAllClassList(int startRow, int endRow) {
+	public Vector<ClassBean> beginnerList(int startRow, int endRow) {
 		
 		Vector<ClassBean> v = new Vector<ClassBean>();
 		
@@ -180,6 +180,370 @@ public class ClassDAO {
 		return list;
 	
 	}//popularList 硫붿냼�뱶 �걹
+
+	
+	// 전라도 Count
+	public int jeollaCount() {
+			
+		int cnt = 0;
+		
+		try {
+			con = getConnection();
+			
+			String sql = "select count(*) from class "
+					+ "where location LIKE '%전남%' or location LIKE '%전북%'";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				cnt = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		
+		} finally {
+			resourceClose();
+		}
+		
+		return cnt;
+	}
+	
+	// 전라도 List
+	public Vector<ClassBean> jeollaList(int startRow, int endRow) {
+
+		Vector<ClassBean> v = new Vector<ClassBean>();
+		
+		ClassBean cbean = null;
+		
+		try {
+			con = getConnection();
+			
+			// location 중 '전남','전북'을 가져옴 
+			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail "
+					+ "from class "
+					+ "where location LIKE '%전남%' or location LIKE '%전북%' limit ?,?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs = pstmt.executeQuery();
+			
+		while(rs.next()) {
+			
+			cbean = new ClassBean();
+			cbean.setStorenum(rs.getInt("storenum"));
+			cbean.setClass_registrynum(rs.getInt("class_registrynum"));
+			cbean.setClass_name(rs.getString("class_name"));
+			cbean.setCategory(rs.getString("category"));
+			cbean.setLevel(rs.getString("level"));
+			cbean.setThumbnail(rs.getString("thumbnail"));
+			
+			// vector에 classbean 객체 저장 
+			v.add(cbean);
+		}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			resourceClose();
+		}
+		return v;
+	}
+	
+	
+	// 충청도 Count
+	public int chungcheongCount() {
+				
+			int cnt = 0;
+			
+			try {
+				con = getConnection();
+				
+				String sql = "select count(*) from class "
+						+ "where location LIKE '%충남%' or location LIKE '%충북%'";
+				
+				pstmt = con.prepareStatement(sql);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					cnt = rs.getInt(1);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			
+			} finally {
+				resourceClose();
+			}
+			
+			return cnt;
+		}
+		
+	// 충청도 List
+	public Vector<ClassBean> chungcheongList(int startRow, int endRow) {
+
+		Vector<ClassBean> v = new Vector<ClassBean>();
+		
+		ClassBean cbean = null;
+		
+		try {
+			con = getConnection();
+			
+			// location 중 '충남','충북'을 가져옴 
+			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail "
+					+ "from class "
+					+ "where location LIKE '%충남%' or location LIKE '%충북%' limit ?,?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs = pstmt.executeQuery();
+			
+		while(rs.next()) {
+			
+			cbean = new ClassBean();
+			cbean.setStorenum(rs.getInt("storenum"));
+			cbean.setClass_registrynum(rs.getInt("class_registrynum"));
+			cbean.setClass_name(rs.getString("class_name"));
+			cbean.setCategory(rs.getString("category"));
+			cbean.setLevel(rs.getString("level"));
+			cbean.setThumbnail(rs.getString("thumbnail"));
+			
+			// vector에 classbean 객체 저장 
+			v.add(cbean);
+		}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			resourceClose();
+		}
+		return v;
+	}
+
+	// 강원도 Count
+	public int gangwonCount() {
+				
+			int cnt = 0;
+			
+			try {
+				con = getConnection();
+				
+				String sql = "select count(*) from class "
+						+ "where location LIKE '%강원%'";
+				
+				pstmt = con.prepareStatement(sql);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					cnt = rs.getInt(1);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			
+			} finally {
+				resourceClose();
+			}
+			
+			return cnt;
+		}
+			
+	// 강원도 List
+	public Vector<ClassBean> gangwonList(int startRow, int endRow) {
+
+		Vector<ClassBean> v = new Vector<ClassBean>();
+		
+		ClassBean cbean = null;
+		
+		try {
+			con = getConnection();
+			
+			// location 중 '강원'을 가져옴 
+			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail "
+					+ "from class "
+					+ "where location LIKE '%강원%' limit ?,?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs = pstmt.executeQuery();
+			
+		while(rs.next()) {
+			
+			cbean = new ClassBean();
+			cbean.setStorenum(rs.getInt("storenum"));
+			cbean.setClass_registrynum(rs.getInt("class_registrynum"));
+			cbean.setClass_name(rs.getString("class_name"));
+			cbean.setCategory(rs.getString("category"));
+			cbean.setLevel(rs.getString("level"));
+			cbean.setThumbnail(rs.getString("thumbnail"));
+			
+			// vector에 classbean 객체 저장 
+			v.add(cbean);
+		}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			resourceClose();
+		}
+		return v;
+	}
+
+
+	// 경상도 Count
+	public int gyeongsangCount() {
+				
+			int cnt = 0;
+			
+			try {
+				con = getConnection();
+				
+				String sql = "select count(*) from class "
+						+ "where location LIKE '%경남%' or location LIKE '%경북%'";
+				
+				pstmt = con.prepareStatement(sql);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					cnt = rs.getInt(1);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			
+			} finally {
+				resourceClose();
+			}
+			
+			return cnt;
+		}
+			
+	// 경상도 List
+	public Vector<ClassBean> gyeongsangList(int startRow, int endRow) {
+
+		Vector<ClassBean> v = new Vector<ClassBean>();
+		
+		ClassBean cbean = null;
+		
+		try {
+			con = getConnection();
+			
+			// location 중 '경남','경북'을 가져옴 
+			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail "
+					+ "from class "
+					+ "where location LIKE '%경남%' or location LIKE '%경북%' limit ?,?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs = pstmt.executeQuery();
+			
+		while(rs.next()) {
+			
+			cbean = new ClassBean();
+			cbean.setStorenum(rs.getInt("storenum"));
+			cbean.setClass_registrynum(rs.getInt("class_registrynum"));
+			cbean.setClass_name(rs.getString("class_name"));
+			cbean.setCategory(rs.getString("category"));
+			cbean.setLevel(rs.getString("level"));
+			cbean.setThumbnail(rs.getString("thumbnail"));
+			
+			// vector에 classbean 객체 저장 
+			v.add(cbean);
+		}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			resourceClose();
+		}
+		return v;
+	}
+
+
+	// 제주도 Count
+	public int jejuCount() {
+				
+			int cnt = 0;
+			
+			try {
+				con = getConnection();
+				
+				String sql = "select count(*) from class "
+						+ "where location LIKE '%제주%'";
+				
+				pstmt = con.prepareStatement(sql);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					cnt = rs.getInt(1);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			
+			} finally {
+				resourceClose();
+			}
+			
+			return cnt;
+		}
+			
+	// 제주도 List
+	public Vector<ClassBean> jejuList(int startRow, int endRow) {
+
+		Vector<ClassBean> v = new Vector<ClassBean>();
+		
+		ClassBean cbean = null;
+		
+		try {
+			con = getConnection();
+			
+			// location 중 '제주'를 가져옴 
+			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail "
+					+ "from class "
+					+ "where location LIKE '%제주%' limit ?,?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs = pstmt.executeQuery();
+			
+		while(rs.next()) {
+			
+			cbean = new ClassBean();
+			cbean.setStorenum(rs.getInt("storenum"));
+			cbean.setClass_registrynum(rs.getInt("class_registrynum"));
+			cbean.setClass_name(rs.getString("class_name"));
+			cbean.setCategory(rs.getString("category"));
+			cbean.setLevel(rs.getString("level"));
+			cbean.setThumbnail(rs.getString("thumbnail"));
+			
+			// vector에 classbean 객체 저장 
+			v.add(cbean);
+		}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			resourceClose();
+		}
+		return v;
+	}
 	
 	public ArrayList<ClassBean> diffuserClassList(int startRow,int endRow){
 		//리턴할 Vector 객체를 선언

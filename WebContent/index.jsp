@@ -117,11 +117,11 @@
                         <li>부산</li>
                         <li>대구</li>
                         <li>광주</li>
-                        <li>경북</li>
-                        <li>경남</li>
-                        <li>충남</li>
-                        <li>충북</li>
-                        <li>전남</li>
+                        <li><a href="${pageContext.request.contextPath}/gyeongsangClass.do">경상도</li>
+                        <li><a href="${pageContext.request.contextPath}/chungcheongClass.do">충청도</li>
+                        <li><a href="${pageContext.request.contextPath}/jeollaClass.do">전라도</li>
+                        <li><a href="${pageContext.request.contextPath}/gangwonClass.do">강원도</li>
+                        <li><a href="${pageContext.request.contextPath}/jejuClass.do">제주도</li>
                     </ul>
                 </div>
                 <div>고객센터
