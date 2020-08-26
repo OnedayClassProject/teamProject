@@ -78,17 +78,17 @@
                 </div>
                 <div>지역별
                     <ul class="sub_menu">
-                        <li>서울</li>
-                        <li>경기</li>
-                        <li>부산</li>
-                        <li>대구</li>
-                        <li>광주</li>
-                        <li>경북</li>
-                        <li>경남</li>
-                        <li>충남</li>
-                        <li>충북</li>
-                        <li>전남</li>
-                    </ul>
+                        <li><a href="${pageContext.request.contextPath}/seoulClass.do">서울</a></li>
+                        <li><a href="${pageContext.request.contextPath}/gyunggiClass.do">경기</a></li>
+                        <li><a href="${pageContext.request.contextPath}/busanClass.do">부산</a></li>
+                        <li><a href="${pageContext.request.contextPath}/daeguClass.do">대구</a></li>
+                        <li><a href="${pageContext.request.contextPath}/daejeonClass.do">대전</a></li>
+                        <li><a href="${pageContext.request.contextPath}/gyungsangClass.do">경상</a></li>
+                        <li><a href="${pageContext.request.contextPath}/jeonlaClass.do">전라</a></li>
+                        <li><a href="${pageContext.request.contextPath}/chungcheongClass.do">충청</a></li>
+                        <li><a href="${pageContext.request.contextPath}/kangwonClass.do">강원</a></li>
+                        <li><a href="${pageContext.request.contextPath}/jejuClass.do">제주</a></li>
+                     </ul>
                 </div>
                 <div>고객센터
                 	<ul class="sub_menu">
