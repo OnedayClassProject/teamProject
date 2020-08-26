@@ -15,18 +15,7 @@
         <div class="side_menu">
            <div class="side_detail">
            <div class="current_menu">비누클래스</div>
-           <div class="line"></div>
-                <a href="${pageContext.request.contextPath}/popularClass.do" class="current_menu3"><div>인기클래스</div>
-                <div class="side_detail2">></div>
-                </a>
-            </div>
-            <hr>
-            <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/beginnerClass.do"class="current_menu3"><div>입문클래스</div>
-                <div class="side_detail2">></div>
-                </a>
-            </div>
-            <hr>
+           <div class="line"></div> 
             <div class="side_detail">
                <a href="${pageContext.request.contextPath}/diffuserClass.do" class='current_menu3'><div>디퓨저클래스</div>
                 <div class="side_detail2">></div>
@@ -70,7 +59,7 @@
             </div>
             <hr>
         </div>
-           
+       </div>
             <div class="my_main">
             <div>비누클래스</div>
          <c:if test="${count != 0}">

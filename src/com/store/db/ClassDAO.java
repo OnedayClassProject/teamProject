@@ -762,9 +762,11 @@ public class ClassDAO {
 			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
 			con=getConnection();
 			//쿼리준비 : 전체 차량 레코드 검색
-			String sql="select class_registrynum,thumbnail,category,class_name from class where category='디퓨저'";
+			String sql="select class_registrynum,thumbnail,category,class_name from class where category='디퓨저' limit ?,?";
 			//쿼리를 실행할 수 있는 객체 선언
 			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			//쿼리 실행 후 결과를 리턴
 			rs=pstmt.executeQuery();
 			//반복문을 돌면서 빈 클래스에 컬럼데이터를 저장
@@ -822,9 +824,11 @@ public class ClassDAO {
 			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
 			con=getConnection();
 			//쿼리준비 : 전체 차량 레코드 검색
-			String sql="select class_registrynum,thumbnail,category,class_name from class where category='캔들'";
+			String sql="select class_registrynum,thumbnail,category,class_name from class where category='캔들' limit ?,?";
 			//쿼리를 실행할 수 있는 객체 선언
 			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			//쿼리 실행 후 결과를 리턴
 			rs=pstmt.executeQuery();
 			//반복문을 돌면서 빈 클래스에 컬럼데이터를 저장
@@ -852,9 +856,11 @@ public class ClassDAO {
 			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
 			con=getConnection();
 			//쿼리준비 : 전체 차량 레코드 검색
-			String sql="select class_registrynum,thumbnail,category,class_name from class where category='요리'";
+			String sql="select class_registrynum,thumbnail,category,class_name from class where category='요리' limit ?,?";
 			//쿼리를 실행할 수 있는 객체 선언
 			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			//쿼리 실행 후 결과를 리턴
 			rs=pstmt.executeQuery();
 			//반복문을 돌면서 빈 클래스에 컬럼데이터를 저장
@@ -882,9 +888,11 @@ public class ClassDAO {
 			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
 			con=getConnection();
 			//쿼리준비 : 전체 차량 레코드 검색
-			String sql="select class_registrynum,thumbnail,category,class_name from class where category='베이킹'";
+			String sql="select class_registrynum,thumbnail,category,class_name from class where category='베이킹' limit ?,?";
 			//쿼리를 실행할 수 있는 객체 선언
 			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			//쿼리 실행 후 결과를 리턴
 			rs=pstmt.executeQuery();
 			//반복문을 돌면서 빈 클래스에 컬럼데이터를 저장
@@ -912,9 +920,11 @@ public class ClassDAO {
 			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
 			con=getConnection();
 			//쿼리준비 : 전체 차량 레코드 검색
-			String sql="select class_registrynum,thumbnail,category,class_name from class where category='도자기'";
+			String sql="select class_registrynum,thumbnail,category,class_name from class where category='도자기' limit ?,?";
 			//쿼리를 실행할 수 있는 객체 선언
 			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			//쿼리 실행 후 결과를 리턴
 			rs=pstmt.executeQuery();
 			//반복문을 돌면서 빈 클래스에 컬럼데이터를 저장
@@ -942,9 +952,11 @@ public class ClassDAO {
 			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
 			con=getConnection();
 			//쿼리준비 : 전체 차량 레코드 검색
-			String sql="select class_registrynum,thumbnail,category,class_name from class where category='향수'";
+			String sql="select class_registrynum,thumbnail,category,class_name from class where category='향수' limit ?,?";
 			//쿼리를 실행할 수 있는 객체 선언
 			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			//쿼리 실행 후 결과를 리턴
 			rs=pstmt.executeQuery();
 			//반복문을 돌면서 빈 클래스에 컬럼데이터를 저장
@@ -972,9 +984,11 @@ public class ClassDAO {
 			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
 			con=getConnection();
 			//쿼리준비 : 전체 차량 레코드 검색
-			String sql="select class_registrynum,thumbnail,category,class_name from class where category='비누'";
+			String sql="select class_registrynum,thumbnail,category,class_name from class where category='비누' limit ?,?";
 			//쿼리를 실행할 수 있는 객체 선언
 			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			//쿼리 실행 후 결과를 리턴
 			rs=pstmt.executeQuery();
 			//반복문을 돌면서 빈 클래스에 컬럼데이터를 저장
