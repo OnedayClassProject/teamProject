@@ -16,19 +16,66 @@
            <div class="side_detail">
            <div class="current_menu">지역별 클래스</div>
            <div class="line"></div>
-                <a href="${pageContext.request.contextPath}/seoulClass.do" class="current_menu2"><div>서울 클래스</div>
-                <div class="side_detail2">></div> 
+            <a href="${pageContext.request.contextPath}/seoulClass.do" class='current_menu3'><div>서울</div>
+                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/busanClass.do"class="current_menu3"><div>부산 클래스</div>
+               <a href="${pageContext.request.contextPath}/gyunggiClass.do" class='current_menu3'><div>경기</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
+            <div class="side_detail">
+               <a href="${pageContext.request.contextPath}/busanClass.do" class='current_menu3'><div>부산</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
+            <div class="side_detail">
+               <a href="${pageContext.request.contextPath}/daeguClass.do" class='current_menu3'><div>대구</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
+            <div class="side_detail">
+               <a href="${pageContext.request.contextPath}/daejeonClass.do" class='current_menu3'><div>대전</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
+            <div class="side_detail">
+               <a href="${pageContext.request.contextPath}/gyeongsangClass.do" class='current_menu3'><div>경상도</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
+            <div class="side_detail">
+               <a href="${pageContext.request.contextPath}/chungcheongClass.do" class='current_menu3'><div>충청도</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
+            <div class="side_detail">
+               <a href="${pageContext.request.contextPath}/jeollaClass.do" class='current_menu3'><div>전라도</div>
+                <div class="side_detail2">></div>
+                </a>
+            <hr>
+            </div>
+            <div class="side_detail">
+               <a href="${pageContext.request.contextPath}/gangwonClass.do" class='current_menu3'><div>강원도</div>
+                <div class="side_detail2">></div>
+                </a>
+            <hr>
+            </div>
+            <div class="side_detail">
+               <a href="${pageContext.request.contextPath}/jejuClass.do" class='current_menu3'><div>제주도</div>
                 <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
         </div>
-
             <div class="my_main">
             <div>대전 클래스</div>
          <c:if test="${count != 0}">
