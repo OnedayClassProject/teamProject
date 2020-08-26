@@ -181,6 +181,7 @@ public class ClassDAO {
 	
 	}//popularList 硫붿냼�뱶 �걹
 
+
 	
 	// 전라도 Count
 	public int jeollaCount() {
@@ -781,13 +782,9 @@ public class ClassDAO {
 		}finally{
 			resourceClose();
 		}
-<<<<<<< HEAD
-		return list;
-=======
 
 
 		return list;//벡터 리턴
->>>>>>> d433b6f43135b7d2537a1448fd3fdc6b942ed47b
 	}//diffuserClassList()메소드 끝
 
 	 
@@ -816,8 +813,7 @@ public class ClassDAO {
 		}
 		
 		return list;
-	
-<<<<<<< HEAD
+	}
 	public ArrayList<ClassBean> candleClassList(int startRow,int endRow){
 		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
 		//하나의 레코드를 저장할 객체 선언
@@ -999,8 +995,6 @@ public class ClassDAO {
 	}//soapClassList()메소드 끝
 	
 	
-=======
-	}//popularList 硫붿냼�뱶 �걹
->>>>>>> d433b6f43135b7d2537a1448fd3fdc6b942ed47b
+	
 	
 }
