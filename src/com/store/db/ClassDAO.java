@@ -569,7 +569,7 @@ public class ClassDAO {
 		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
 		try{
 			con= getConnection();
-			String sql = "select class_registrynum,thumbnail,category,class_name from class order by reservation_count desc limit ?,?";
+			String sql = "select class_registrynum,thumbnail,category,class_name from class where location LIKE '%서울%' limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
@@ -616,7 +616,7 @@ public class ClassDAO {
 		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
 		try{
 			con= getConnection();
-			String sql = "select class_registrynum,thumbnail,category,class_name from class order by reservation_count desc limit ?,?";
+			String sql = "select class_registrynum,thumbnail,category,class_name from class where location LIKE '%경기%' limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
@@ -663,7 +663,7 @@ public class ClassDAO {
 		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
 		try{
 			con= getConnection();
-			String sql = "select class_registrynum,thumbnail,category,class_name from class order by reservation_count desc limit ?,?";
+			String sql = "select class_registrynum,thumbnail,category,class_name from class where location LIKE '%부산%' limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
@@ -709,7 +709,7 @@ public class ClassDAO {
 		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
 		try{
 			con= getConnection();
-			String sql = "select class_registrynum,thumbnail,category,class_name from class order by reservation_count desc limit ?,?";
+			String sql = "select class_registrynum,thumbnail,category,class_name from class where location LIKE '%대구%' limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
@@ -793,7 +793,7 @@ public class ClassDAO {
 		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
 		try{
 			con= getConnection();
-			String sql = "select class_registrynum,thumbnail,category,class_name from class order by reservation_count desc limit ?,?";
+			String sql = "select class_registrynum,thumbnail,category,class_name from class where location LIKE '%서울%' limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
