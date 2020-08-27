@@ -82,5 +82,16 @@
 .current_menu3{
 	color:black;
 }
-
+.like{
+	background-size: auto 100%;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  text-indent: -9999px;
+  cursor: pointer;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	
+}
 

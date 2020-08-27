@@ -54,7 +54,7 @@
                          <div class="class-name2">클래스명 : ${classBean.class_name}</div>
                          
                          <div class="class-name3">
-                        	 <input type="text" value="${classBean.class_registrynum}" class="num">
+                        	 <input type="hidden" value="${classBean.class_registrynum}" class="num">
                          	평점  : <img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
                          </div>
                          
