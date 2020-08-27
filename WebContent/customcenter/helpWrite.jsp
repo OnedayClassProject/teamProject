@@ -57,9 +57,6 @@
    			data:form,
    			dataType:"text",
    			success:function(data,status){
-   				alert(data);
-   				console.log(data);
-   				console.debug(data);
    				 if(data == 1){
    					location.href="${pageContext.request.contextPath}/helpMainPage.do?pageNum=1";
    				}else{

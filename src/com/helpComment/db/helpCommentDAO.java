@@ -39,7 +39,7 @@ public class helpCommentDAO {
 		int num = 0;
 		try {
 			con = getConnection();
-			sql = "select max(num) from helpcomment";
+			sql = "select max(commentnum) from helpcomment";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
@@ -115,6 +115,23 @@ public class helpCommentDAO {
 			return 1;
 		} catch (Exception e) {
 			System.out.println("deleteComment()에서 예외발생 : "+e);
+		} finally{
+			resourceClose();
+		}
+		return 0;
+	}
+
+	public int updateComment(int num, String comment) {
+		try {
+			con = getConnection();
+			String sql = "update helpcomment set comment = ? where commentnum = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, comment);
+			pstmt.setInt(2, num);
+			pstmt.executeUpdate();
+			return 1;
+		} catch (Exception e) {
+			System.out.println("updateComment()에서 예외발생 : "+e);
 		} finally{
 			resourceClose();
 		}
