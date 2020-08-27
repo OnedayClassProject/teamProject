@@ -14,16 +14,73 @@
              $("#calander_backcolor").css("display", "none");
          });
          $('.reserve_btn2').on("click", function () {
-             $("#box").css("display","block");
-             $("#calander_backcolor").css("display","block");
+             /* $("#box").css("display","block"); */
+             /* $("#calander_backcolor").css("display","block"); */
+             $('.cal').animate({right : "0"},500);
              x();
          });
+         $("#timeChoice").on("click" ,function (){
+			$("#timeChoice2").animate({height : "392px"}, 500);
+		});
+         $(".back_button").on("click", function () {
+        	 $('.cal').animate({right : "-100%"},500);
+		});
+         $(".time_detail").on("click", function () {
+			$(this).css("background-color", "gray");
+			$(this).addClass('person_count');
+			$(".time_detail").not($(this)).css("background-color", "white");
+			$(".time_detail").not($(this)).removeClass('person_count');
+			var $person = $(".person_count").children('.time_detail2');
+		 	$('.parson2').text("0/3");
+			$person.children('.person').text(1+"/3");
+			$('.person_num').val("1");
+			var today = $('#dateInput').text();
+			console.log(today);
+			var per =  Number($('.person_num').val())
+			$('.reserve_date').text(today + " "+ per + "명");
+			var  price = $person.children('.per_price').text();
+			$('.sum_price').text(price);
+		})
+         $(".person_plus").on("click", function () {
+				var $person = $(".person_count").children('.time_detail2');
+				var num1 =	$person.children('.person').text();
+				var num3 = Number($('.person_num').val());
+				if(num3 < 3){
+				var num4 = num3+1;
+				console.log(num4)
+				$person.children('.person').text(num4+"/3");
+				var today = $('#dateInput').text();
+				console.log(today);
+				var price = Number($person.children('.per_price').text());
+				$('.reserve_date').text(today + " "+ num4 + "명");
+				var sum = price * num4;
+				$('.sum_price').text(sum);
+				$('.person_num').val(num4);
+				}
+		});
+         $(".person_sub").on("click", function () {
+				var $person = $(".person_count").children('.time_detail2');
+				var num1 =	$person.children('.person').text();
+				var num3 = Number($('.person_num').val());
+				if(num3 > 1){
+				var num4 = num3-1;
+				console.log(num4)
+				$person.children('.person').text(num4+"/3");
+				var today = $('#dateInput').text();
+				console.log(today);
+				var price = Number($person.children('.per_price').text());
+				$('.reserve_date').text(today + " "+ num4 + "명");
+				var sum = price * num4;
+				$('.sum_price').text(sum);
+				$('.person_num').val(num4);
+				}
+		});
 	});
 
 </script>
 </head>
 <body>
-<div id="calander_backcolor"></div>
+<!-- <div id="calander_backcolor"></div> -->
 <jsp:include page="../header.jsp"/>
 <section>
 	<div class="classview_wrap">
@@ -96,8 +153,8 @@
 					</div>
 				</div>
 			</div>
-	</div>
-	    <div id="box">
+			<div class="cal">
+			<div id="box">
 	    <div id="box2">
         <div class="content-right">
             <table id="calendar">
@@ -116,32 +173,99 @@
                     </td>
                 </tr>
                 <tr>
-                    <div class="main">
                         <td class="sun" align="center">Sun</td>
-                        <td align="center">Mon</td>
-                        <td align="center">Tue</td>
-                        <td align="center">Wed</td>
-                        <td align="center">Thu</td>
-                        <td align="center">Fri</td>
-                        <td class="sat" align="center">Sat</td>
+                        <td class="sun" align="center">Mon</td>
+                        <td class="sun" align="center">Tue</td>
+                        <td class="sun" align="center">Wed</td>
+                        <td class="sun" align="center">Thu</td>
+                        <td class="sun" align="center">Fri</td>
+                        <td class="sun" align="center">Sat</td>
                 </tr>
                 </thead>
                 <tbody id="calendar-body" class="calendar-body"></tbody>
             </table>
+             <div id="dateInput">2020-08-27</div>
+             <div id="timebox">
+             <div id="timeChoice">시간선택</div>
+             <div >
+             <div id="push_text">  << 눌러주세요</div>
+             </div>
+             <div id="timeChoice2">
+             	<div class="time_wrap">
+             		<div class="time_detail">
+             			<div class="time_detail1">11:00~12:00</div>
+             			<div class="time_detail2">
+             				<div class="per_price">30000</div>
+             				<div class="person parson2">0/3</div>
+             			</div>
+             		</div>
+             		<div class="time_detail">
+             			<div class="time_detail1">11:00~12:00</div>
+             			<div class="time_detail2">
+             				<div class="per_price">30000</div>
+             				<div class="person parson2">0/3</div>
+             			</div>
+             		</div>
+             		<div class="time_detail">
+             			<div class="time_detail1">11:00~12:00</div>
+             			<div class="time_detail2">
+             				<div class="per_price">30000</div>
+             				<div class="person parson2">0/3</div>
+             			</div>
+             		</div>
+             		<div class="time_detail">
+             			<div class="time_detail1">11:00~12:00</div>
+             			<div class="time_detail2">
+             				<div class="per_price">30000</div>
+             				<div class="person parson2">0/3</div>
+             			</div>
+             		</div>
+             		<div class="time_detail">
+             			<div class="time_detail1">11:00~12:00</div>
+             			<div class="time_detail2">
+             				<div class="per_price">30000</div>
+             				<div class="person parson2">0/3</div>
+             			</div>
+             		</div>
+             		<div class="time_detail">
+             			<div class="time_detail1">11:00~12:00</div>
+             			<div class="time_detail2">
+             				<div class="per_price">30000</div>
+             				<div class="person parson2">0/3</div>
+             			</div>
+             		</div>
+             	</div>
+             	<div>
+             	<div>인원수</div>
+             	<input type="button" value="+" class="person_plus">
+             	<input type="text" value="1" class="person_num" readonly="readonly">
+             	<input type="button" value="-" class="person_sub">
+             	<div class="reserve_date">2020-08-27 인원 3명</div>
+             	<div class="sum_price"></div>
+             	<div class="pay_button">
+             		결제하기
+             	</div>
+				<div class="back_button">이전</div>           
+             	</div>
+             </div>
+             </div>
         </div>
-        <div class="time_wrap">
+     <!--    <div class="time_wrap">
         <div class="time">
             <div class="time_main">
                 <div id="dateInput"></div>
             </div>
             <div class="timesetting"></div>
         </div>
-        <div class="store">
-            <div>결제하기</div>
-        </div>
-        </div>
-        </div>
-    </div>
+        <div class="store"> -->
+         <!--    <div>결제하기</div> -->
+        <!-- </div> -->
+     		<!-- </div>  -->
+        </div> 
+    	</div>
+			
+			</div>
+	</div>
 </section>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=095bf2bab670dc21291d69e69ecac288&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript">

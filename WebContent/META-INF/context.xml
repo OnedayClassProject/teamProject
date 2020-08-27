@@ -6,9 +6,9 @@
 	auth="Container"
 	type="javax.sql.DataSource"
 	driverClassName="com.mysql.jdbc.Driver"
-	url="jdbc:mysql://localhost:3306/teamProject"
+	url="jdbc:mysql://localhost:3306/teamproject?useSSL=false"
 	username="root"
 	password="1234"
 	/>
-
+	
 </Context>
