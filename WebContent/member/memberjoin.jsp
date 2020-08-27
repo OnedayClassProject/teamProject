@@ -14,10 +14,20 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/member/memberjoin.css">
 
 <script>
-	
+		$(document).ready(function(){
+			$("#email").on("change",function(){
+				$("#check").val("false");
+			})
+			
+		});
 		function email_check(){
 			var email = $("#email").val();
 			console.log(email);
+			//정규표현식
+			 //이메일
+		    var reg1 = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+		    var result1 = reg1.test(email);
+		    
 			if($("#email").val().trim() == ""){
 				$("#check_result").empty();
 				$("#check_result").append("이메일을 입력하세요.");
@@ -33,9 +43,15 @@
 							$("#check_result").text("이미 가입된 이메일입니다.");
 							
 						}else{
-							$("#check_result").empty();
-							$("#check_result").text("사용가능한 이메일입니다.");
-							$("#check").val("true"); // 이메일 중복체크 확인 후 사용가능하면 true로 바꾸기
+							if(result1 != true){
+								$("#check_result").empty();
+								$("#check_result").text("이메일을 정확하게 입력해주세요");
+								
+							}else{
+								$("#check_result").empty();
+								$("#check_result").text("사용가능한 이메일입니다.");
+								$("#check").val("true"); // 이메일 중복체크 확인 후 사용가능하면 true로 바꾸기
+							}
 						}
 					},
 					error:function(data){
@@ -72,7 +88,7 @@
 		    var reg4 = /^01(?:0|1|[6-9])[-]?(\d{3}|\d{4})[-]?(\d{4})$/; // 010-(3자리 또는 4자리 0부터 9까지)-(4자리 0부터 9까지)
 		    
 		    //우편번호
-		    var reg5 = /^[가-힣a-zA-Z0-9~!@#$%^&*()_+-]{4,40}$/; // 상세주소
+		    var reg5 = /^[가-힣a-zA-Z0-9~!@#$%^&*()_+-]{2,40}$/; // 상세주소
 		    
 		    
 		    

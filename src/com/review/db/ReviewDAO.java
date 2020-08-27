@@ -37,18 +37,18 @@ public class ReviewDAO {
 		try {
 			con = getConnection();
 			
-			sql = "insert into review(class_registrynum,classnum,company_name,class_name,email,reservation_date,content,fileImage,rating,reviewdate) "
+			sql = "insert into review(class_registrynum,storenum,company_name,class_name,email,reservation_date,content,thumbnail,rating,reviewdate) "
 					+ "values(?,?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setInt(1, rbean.getClass_reg());
-			pstmt.setInt(2, rbean.getClassnum());
+			pstmt.setInt(1, rbean.getClass_registrynum());
+			pstmt.setString(2, rbean.getStorenum());
 			pstmt.setString(3, rbean.getCompany_name());
 			pstmt.setString(4, rbean.getClass_name());
-			pstmt.setString(5, rbean.getEmail());
-			pstmt.setString(6, rbean.getRes_date());
+			pstmt.setString(5, rbean.getUseremail());
+			pstmt.setString(6, rbean.getReservation_date());
 			pstmt.setString(7, rbean.getContent());
-			pstmt.setString(8, rbean.getFileImage());
+			pstmt.setString(8, rbean.getThumbnail());
 			pstmt.setInt(9, rbean.getRating());
 			pstmt.setTimestamp(10, rbean.getReviewdate());
 			

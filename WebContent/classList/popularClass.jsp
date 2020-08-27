@@ -46,7 +46,8 @@
                      <div class="class-name">
                          <div class="class-name1">카테고리 : ${classBean.category}</div>
                          <div class="class-name2">클래스명 : ${classBean.class_name}</div>
-                         <div class="class-name3">평점  : </div>
+                         <div class="class-name3">평점  : <img id="like" src="${pageContext.request.contextPath}/images/heart_empty.png"></div>
+                         
                     </div>
             	 </div>
         	   <c:if test="${j%3==0}">

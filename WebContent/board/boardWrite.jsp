@@ -109,7 +109,7 @@
         <!-- 클래스 등록번호 -->
         <input type="hidden" name="class_regisitrynum" value="1"> 
         <!-- 업체 번호 -->
-        <input type="hidden" name="classnum" value="1">
+        <input type="hidden" name="storenum" value="1">
         
         <div>업체이름 <input type="hidden" name="company_name" value="가죽공방"></div>
         <div>클래스명 <input type="hidden" name="class_name" value="가죽지갑만들기"></div>
