@@ -43,8 +43,8 @@ public class memberDAO {
 				con = getConnection();
 				
 				
-				sql = "insert into member(useremail,userpassword,username,phone,postcode,address,detailadd,extraadd,joindate,point,membership) "
-						+ " values(?,?,?,?,?,?,?,?,?,?,?)";
+				sql = "insert into member(useremail,userpassword,username,phone,postcode,address1,address2,address3,joindate,point,membership,vip_startdate,vip_finish) "
+						+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				
 				pstmt = con.prepareStatement(sql);
 				
@@ -62,6 +62,8 @@ public class memberDAO {
 				pstmt.setString(10, "0");
 				pstmt.setString(11, "basic");
 				
+				pstmt.setString(12, "0");
+				pstmt.setString(13, "0");
 				result = pstmt.executeUpdate();
 				
 				if(result != 0){
@@ -69,7 +71,7 @@ public class memberDAO {
 				}
 				
 			} catch (Exception e) {
-				System.out.println("insertMember() �޼ҵ� ���ο��� ���� �߻�"+ e);
+				e.printStackTrace();
 			}finally {
 				resourceClose();
 			}
@@ -167,7 +169,7 @@ public class memberDAO {
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()){
-					sql = "update member set username=?,phone=?,postcode=?,address=?,detailadd=?,extraadd=?";
+					sql = "update member set username=?,phone=?,postcode=?,address1=?,address2=?,address3=?";
 					
 					pstmt = con.prepareStatement(sql);
 					

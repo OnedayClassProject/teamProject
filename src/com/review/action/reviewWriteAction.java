@@ -35,7 +35,7 @@ public class reviewWriteAction implements CommandHandler{
 		MultipartRequest multipartRequest = new MultipartRequest(request,realPath,max,"UTF-8",new DefaultFileRenamePolicy());
 		  
 		int class_reg = Integer.parseInt(multipartRequest.getParameter("class_regisitrynum"));
-		int classnum = Integer.parseInt(multipartRequest.getParameter("classnum"));
+		String storenum =multipartRequest.getParameter("storenum");
 		String company_name = multipartRequest.getParameter("company_name");
 		String class_name = multipartRequest.getParameter("class_name");
 		String email = (String)session.getAttribute("userid");
@@ -48,15 +48,15 @@ public class reviewWriteAction implements CommandHandler{
 		System.out.println("rating"+rating);
 		
 		ReviewBean rbean = new ReviewBean();
-		rbean.setClass_reg(class_reg);
-		rbean.setClassnum(classnum);
+		rbean.setClass_registrynum(class_reg);
+		rbean.setStorenum(storenum);
 		rbean.setCompany_name(company_name);
 		rbean.setClass_name(class_name);
-		rbean.setEmail(email);
-		rbean.setRes_date(res_date);
+		rbean.setUseremail(email);
+		rbean.setReservation_date(res_date);
 		rbean.setRating(rating);
 		rbean.setContent(content);
-		rbean.setFileImage(fileImage);
+		rbean.setThumbnail(fileImage);
 		rbean.setReviewdate(new Timestamp(System.currentTimeMillis()));
 		
 		
