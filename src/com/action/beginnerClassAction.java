@@ -45,7 +45,7 @@ public class beginnerClassAction implements CommandHandler {
 		
 		if (endPage > pageCount) endPage = pageCount;
 		
-		Vector<ClassBean> v = cdao.getAllClassList(startRow, endRow);
+		Vector<ClassBean> v = cdao.beginnerList(startRow, endRow);
 		
 		request.setAttribute("Vector", v);
 		request.setAttribute("startPage", startPage);
