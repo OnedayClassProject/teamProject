@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+.classview_wrap{
+ 	width: 1000px;
+ 	margin: auto;	
+ 	padding-top: 70px;
+}
+.class_wrap2{
+	display: flex;
+}
+.main_pic{
+	width: 520px;
+	height: 520px;
+	border: 1px solid black;
+}
+.cancle_policy td{
+	border: 1px solid black;
+}
+.class_wrap2{
+	position: relative;
+}
+ .reserve_bar{
+	/*  position: absolute; */
+	  position:sticky; 
+	border: 1px solid black;
+	width: 470px;
+	height: 395px;
+	 top:0; 
+	padding: 10px 10px;
+	margin-left: auto;
+ }
+/* .reserve_barfixed{
+	position: absolute; 
+	 position:fixed; 
+	border: 1px solid black;
+	width: 470px;
+	height: 395px;
+	right:0; 
+	 left:830px; 
+	padding: 10px 10px;
+} */
+.category_tag, .className_tag, .storeName_tag{
+	
+	height: 30px;
+	line-height: 30px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	
+}
+.price_tag{
+	margin-bottom: 10px;
+}
+.price_tag div{
+	display: inline-block;
+}
+.price_tag div:nth-child(3){
+	text-decoration:line-through; 
+}
+
+.class_info{
+	display: flex;
+	width: 440px;
+	height: 100px;
+	margin: auto;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	border: 1px solid lightgray;
+	background: lightgray;
+	
+}
+.class_info div{
+	width: 35%;
+	border-right: 1px solid gray;
+}
+.class_info div:nth-child(3){
+	border-right:0;
+}
+.class_info div > div{
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-right: 0;
+}
+.pay_btn{
+	margin-top: 20px;
+}
+.pay_btn button{
+	width: 100%;
+	height: 50px;
+	font-size: 25px;
+	border-radius: 10px;
+	border: 1px solid lightgray;
+}

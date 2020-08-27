@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/classList/beginnerClass.css">
 </head>
-<body><jsp:include page="../header.jsp"/>
+<body>
+<jsp:include page="../header.jsp"/>
 <section>
 <div class="pic"></div>
     <div class="my_wrap">

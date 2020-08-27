@@ -37,14 +37,11 @@
            		<div class="best-class">
 
                  <div class="thumbnail">
-<<<<<<< HEAD
                  <img src="${pageContext.request.contextPath}/images/ba61d3e7c5d74f8eb478f91833ef523e.jpg">
-=======
                  <a href="ClassInfo.do?class_registrynum="${classBean.class_registrynum} >
             
                  <img src="${pageContext.request.contextPath}/images/${classBean.thumbnail}" width="150">
                  </a>
->>>>>>> a0335dfcebc124dcb8f4bfdc7afaabd966dc942c
                  </div>
                      <div class="class-name">
                          <div class="class-name1">카테고리 : ${classBean.category}</div>
