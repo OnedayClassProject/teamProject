@@ -320,6 +320,8 @@ public class StoreDAO {
 		
 		return 1;
 	}
+	
+	//날짜저장한거 전부 삭제
 	public int classCancleTimeDelete(int num) {
 		try {
 			con = getConnection();
@@ -336,4 +338,41 @@ public class StoreDAO {
 		}
 		return 1;
 	}
+	
+	//하나의 클래스 정보 가져오기
+	public ClassBean getClass(int classNum) {
+
+		ClassBean cb = new ClassBean();
+		try {
+			con = getConnection();
+			String sql = "select * from class where class_registrynum = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, classNum);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				cb.setClass_registrynum(rs.getInt(1));
+				cb.setStorenum(rs.getInt(2));
+				cb.setClass_name(rs.getString(3));
+				cb.setCategory(rs.getString(4));
+				cb.setClass_company(rs.getString(5));
+				cb.setLocation(rs.getString(6));
+				cb.setLevel(rs.getString(7));
+				cb.setTime(rs.getString(8));
+				cb.setPersonnel(rs.getString(9));
+				cb.setContent(rs.getString(10));
+				cb.setThumbnail(rs.getString(11));
+				cb.setPrice(rs.getString(12));
+				cb.setSale(rs.getString(13));
+				cb.setParking(rs.getString(14));
+				cb.setReservation_count(rs.getInt(15));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resourceClose();
+		}
+		
+		return cb;
+	}
+	
 }

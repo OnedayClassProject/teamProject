@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,14 +26,14 @@
          $(".back_button").on("click", function () {
         	 $('.cal').animate({right : "-100%"},500);
 		});
-         $(".time_detail").on("click", function () {
+        /*  $(".time_detail").on("click", function () {
 			$(this).css("background-color", "gray");
 			$(this).addClass('person_count');
 			$(".time_detail").not($(this)).css("background-color", "white");
 			$(".time_detail").not($(this)).removeClass('person_count');
 			var $person = $(".person_count").children('.time_detail2');
-		 	$('.parson2').text("0/3");
-			$person.children('.person').text(1+"/3");
+		 	$('.parson2').text("0/${cb.personnel}");
+			$person.children('.person').text(1+"/${cb.personnel}");
 			$('.person_num').val("1");
 			var today = $('#dateInput').text();
 			console.log(today);
@@ -40,15 +41,15 @@
 			$('.reserve_date').text(today + " "+ per + "명");
 			var  price = $person.children('.per_price').text();
 			$('.sum_price').text(price);
-		})
+		}) */
          $(".person_plus").on("click", function () {
 				var $person = $(".person_count").children('.time_detail2');
 				var num1 =	$person.children('.person').text();
 				var num3 = Number($('.person_num').val());
-				if(num3 < 3){
+				if(num3 < ${cb.personnel}){
 				var num4 = num3+1;
 				console.log(num4)
-				$person.children('.person').text(num4+"/3");
+				$person.children('.person').text(num4+"/${cb.personnel}");
 				var today = $('#dateInput').text();
 				console.log(today);
 				var price = Number($person.children('.per_price').text());
@@ -65,7 +66,7 @@
 				if(num3 > 1){
 				var num4 = num3-1;
 				console.log(num4)
-				$person.children('.person').text(num4+"/3");
+				$person.children('.person').text(num4+"/${cb.personnel}");
 				var today = $('#dateInput').text();
 				console.log(today);
 				var price = Number($person.children('.per_price').text());
@@ -86,11 +87,9 @@
 	<div class="classview_wrap">
 			<div class="class_wrap2">
 				<div class="class_wrap3">
-				<div class="main_pic">사진</div>			
+				<div class="main_pic"><img src="${pageContext.request.contextPath}/thumbnailImage/${cb.thumbnail}"></div>			
 				<div>소개</div>
-				<div><p><img alt="" src="/teamProject/ckimages/images/IMG_3198.jpeg" style="height:150px; width:200px" /></p>
- 					<p>안팜</p>
- 				</div>
+				<div class="contents">${cb.content }</div>
 				<div id="map" style="width:500px;height:400px;"></div>
 				<hr>
 				<div>취소 및 환불 정책</div>
@@ -126,26 +125,33 @@
 				</table>
 				</div>
 				<div class="reserve_bar">
-					<div class="category_tag">카테고리</div>
-					<div class="className_tag">클래스명</div>
-					<div class="storeName_tag">업체명</div>
+					<div class="category_tag">${cb.category }</div>
+					<div class="className_tag">${cb.class_name }</div>
+					<div class="storeName_tag">${cb.class_company }</div>
+					<c:if test="${cb.sale eq '안함'}">
+					<div class="price_tag">
+						<div>${cb.price }</div>
+					</div>
+					</c:if>
+					<c:if test="${cb.sale ne '안함'}">
 					<div class="price_tag">
 						<div>할인율</div>
-						<div>할인가격</div>
-						<div>본가격</div>
+						<div>할인된가격</div>
+						<div>${cb.price }</div>
 					</div>
+					</c:if>
 					<div class="class_info">
 						<div class="class_info2">
 							<div>난이도</div>
-							<div>하</div>
+							<div>${cb.level }</div>
 						</div>
 						<div>
 							<div>소요시간</div>
-							<div>2시간</div>
+							<div>${cb.time }</div>
 						</div>
 						<div>
 							<div>수업인원</div>
-							<div>최대8명</div>
+							<div>최대${cb.personnel }명</div>
 						</div>
 					</div>
 					<div class="reserve_btn">
@@ -192,11 +198,39 @@
              </div>
              <div id="timeChoice2">
              	<div class="time_wrap">
+             		<%-- <div class="time_detail">
+             			<div class="time_detail1">11:00~12:00</div>
+             			<div class="time_detail2">
+             				<div class="per_price">30000</div>
+             				<div class="person parson2">0/${cb.personnel}</div>
+             			</div>
+             		</div>
              		<div class="time_detail">
              			<div class="time_detail1">11:00~12:00</div>
              			<div class="time_detail2">
              				<div class="per_price">30000</div>
-             				<div class="person parson2">0/3</div>
+             				<div class="person parson2">0/${cb.personnel}</div>
+             			</div>
+             		</div>
+             		<div class="time_detail">
+             			<div class="time_detail1">11:00~12:00</div>
+             			<div class="time_detail2">
+             				<div class="per_price">30000</div>
+             				<div class="person parson2">0/${cb.personnel}</div>
+             			</div>
+             		</div>
+             		<div class="time_detail">
+             			<div class="time_detail1">11:00~12:00</div>
+             			<div class="time_detail2">
+             				<div class="per_price">30000</div>
+             				<div class="person parson2">0/${cb.personnel}</div>
+             			</div>
+             		</div>
+             		<div class="time_detail">
+             			<div class="time_detail1">11:00~12:00</div>
+             			<div class="time_detail2">
+             				<div class="per_price">30000</div>
+             				<div class="person parson2">0/${cb.personnel}</div>
              			</div>
              		</div>
              		<div class="time_detail">
@@ -205,35 +239,7 @@
              				<div class="per_price">30000</div>
              				<div class="person parson2">0/3</div>
              			</div>
-             		</div>
-             		<div class="time_detail">
-             			<div class="time_detail1">11:00~12:00</div>
-             			<div class="time_detail2">
-             				<div class="per_price">30000</div>
-             				<div class="person parson2">0/3</div>
-             			</div>
-             		</div>
-             		<div class="time_detail">
-             			<div class="time_detail1">11:00~12:00</div>
-             			<div class="time_detail2">
-             				<div class="per_price">30000</div>
-             				<div class="person parson2">0/3</div>
-             			</div>
-             		</div>
-             		<div class="time_detail">
-             			<div class="time_detail1">11:00~12:00</div>
-             			<div class="time_detail2">
-             				<div class="per_price">30000</div>
-             				<div class="person parson2">0/3</div>
-             			</div>
-             		</div>
-             		<div class="time_detail">
-             			<div class="time_detail1">11:00~12:00</div>
-             			<div class="time_detail2">
-             				<div class="per_price">30000</div>
-             				<div class="person parson2">0/3</div>
-             			</div>
-             		</div>
+             		</div> --%>
              	</div>
              	<div>
              	<div>인원수</div>
@@ -281,7 +287,7 @@
 		var geocoder = new kakao.maps.services.Geocoder();
 		
 		
-		geocoder.addressSearch('인제로 169번길 27', function(result, status) {
+		geocoder.addressSearch('${cb.location}', function(result, status) {
 
 		    // 정상적으로 검색이 완료됐으면 
 		     if (status === kakao.maps.services.Status.OK) {
@@ -366,7 +372,7 @@
 	                        document.getElementById("dateInput").textContent = this.getAttribute("value");
 	                        var date  = $("#current-year-month").text();
 	                        var day = $("#dateInput").text().substring(8);
-	                        var num = 1/* ${num } */
+	                        var num = ${cb.class_registrynum};
 							$.ajax({
 								type : "post",
 								url : "${pageContext.request.contextPath}/saveGetTime.do",
@@ -375,13 +381,12 @@
 								success:function (data, status){
 									var result = JSON.parse(data);
 									var time = result.time;
-									$(".timesetting").empty();
+									$(".time_wrap").empty();
 									for(var i = 0; i < time.length; i++){
-										$(".timesetting").append("<div class='timeSet_wrap'><div class='timeSet'>"
-														+"<div>"+time[i].start+"</div> ~ "
-														+"<div>"+time[i].end+"</div></div>"
-														+"<div class='timeset2'><div>가격(30000)</div><div>인원수</div></div></div>");
+										$(".time_wrap").append("<div class='timedetail"+i+" time_detail' onclick='checkbox("+i+")'><div class='time_detail1'>"+time[i].start+" ~ "+time[i].end+"</div>"
+														+"<div class='time_detail2'><div class='per_price'>${cb.price}</div><div class='person parson2'>0/${cb.personnel}</div></div></div>");
 									}
+							
 								},
 								error:function(data,status){
 									alert('error');
@@ -437,7 +442,7 @@
 	    });
 	    function x(){
 	        console.log($(".abled_td").length);
-	      	var num = 1 /* ${num } */;
+	      	var num = ${cb.class_registrynum};
 	        var date= $("#current-year-month").text();
 	         $.ajax({
 	            type: "post",
@@ -457,7 +462,23 @@
 	            	 alert('error');
 	             }
 	         }); 
-	    } 
+	    }
+	    function checkbox(i) {
+			$('.timedetail'+i+'').css("background-color", "gray");
+			$('.timedetail'+i+'').addClass('person_count');
+			$(".time_detail").not($('.timedetail'+i+'')).css("background-color", "white");
+			$(".time_detail").not($('.timedetail'+i+'')).removeClass('person_count');
+			var $person = $(".person_count").children('.time_detail2');
+		 	$('.parson2').text("0/${cb.personnel}");
+			$person.children('.person').text(1+"/${cb.personnel}");
+			$('.person_num').val("1");
+			var today = $('#dateInput').text();
+			console.log(today);
+			var per =  Number($('.person_num').val())
+			$('.reserve_date').text(today + " "+ per + "명");
+			var  price = $person.children('.per_price').text();
+			$('.sum_price').text(price);
+		}
 </script>
 </body>
 </html>

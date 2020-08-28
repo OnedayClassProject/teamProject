@@ -69,6 +69,7 @@
 					}
 				
 				}); */
+				
 			} else if(ima == "${pageContext.request.contextPath}/images/star1.png"){//선택해제를 하면 좋아요 테이블에서 삭제
 				//선택된이미지에서 안된 이미지로 변경
 				$(this).attr('src', '${pageContext.request.contextPath}/images/star2.png');

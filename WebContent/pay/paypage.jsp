@@ -31,18 +31,23 @@
 					</div>
 					<div>
 					<div>클래스정보</div>
+					<div>클래스카테고리</div>
 					<div>클래스명 향수클래스~~</div>
 					<div>클래스명</div>
 					<div>날짜&예약시간&인원수</div>
 					</div>
 					<div>아이디어스 할인 혜택</div>
 					<div>아이디어스 적립금</div>
-					<input type="text" value="0">
-					<input type="buttn" value="전부사용">
+					<input type="text" value="0" class="point">
+					<input type="button" class="all_point2"value="사용">
 					<div>보유중인 적립금</div>
-					<div>0 P</div>
+					<div class='all_point'>30000</div>
 					<div>결제수단</div>
-					<input type="checkbox" value="kakaopay"><img src="${pageContext.request.contextPath}/images/payment_icon_yellow_medium.png">	
+					<input type="radio" name="pay_met" value="card">신용카드	
+					<input type="radio" name="pay_met" value="samsung">삼성페이	
+					<input type="radio" name="pay_met" value="trans">실시간계좌이체	
+					<input type="radio" name="pay_met" value="vbank">가상계좌	
+					<input type="radio" name="pay_met" value="phone">휴대폰소액결제	
 				</div>
 				<div class="reserve_bar">
 					<div class="category_tag">카테고리</div>
@@ -51,21 +56,9 @@
 					<div class="price_tag">
 						<div>할인율</div>
 						<div>할인가격</div>
-						<div>본가격</div>
-					</div>
-					<div class="class_info">
-						<div class="class_info2">
-							<div>난이도</div>
-							<div>하</div>
-						</div>
-						<div>
-							<div>소요시간</div>
-							<div>2시간</div>
-						</div>
-						<div>
-							<div>수업인원</div>
-							<div>최대8명</div>
-						</div>
+						<div>총가격</div>
+						<input type="hidden" class='sum_price2' value="300000">
+						<div class="sum_price">300000</div>
 					</div>
 					<div class="pay_btn">
 					<button class="pay_btn2">결제하기</button>
@@ -76,6 +69,23 @@
 <script>
 $(function () {
 	
+	$('.all_point2').on('click', function () {
+			var point = Number($('.point').val());
+			var all = Number($('.all_point').text());
+			console.log(all);
+			var sum = Number($('.sum_price2').val());
+			if(point <= all ){
+				var sub = sum-point;
+				console.log(sub);
+				$('.sum_price').text(sub);
+			} else{
+				alert('포인트를 초과하였습니다.')
+				$('.point').val(0);
+				$('.sum_price').text(300000);
+			}
+			
+	});
+
 	$(".pay_btn2").on("click", function() {
 		// Set a same-site cookie for first-party contexts
 		document.cookie = 'cookie1=value1; SameSite=Lax';
@@ -99,7 +109,7 @@ $(function () {
 	'syrup':시럽페이
 	'paypal':페이팔
 	*/
-	pay_method: 'card',
+	pay_method: 'trans',
 	/*
 	'samsung':삼성페이,
 	'card':신용카드,
@@ -137,6 +147,11 @@ $(function () {
 	msg += '상점 거래ID : ' + rsp.merchant_uid;
 	msg += '결제 금액 : ' + rsp.paid_amount;
 	msg += '카드 승인번호 : ' + rsp.apply_num;
+		$.ajax({
+			type:'post',
+			url:'${pageContext.request.contextPath}/payAction.do',
+			dataType:{클래스명,예약카테고리,예약인원,예약날짜,예약가격,예약결제수단, 적립포인트,등록번호}
+		})
 	} else {
 	var msg = '결제에 실패하였습니다.';
 	msg += '에러내용 : ' + rsp.error_msg;

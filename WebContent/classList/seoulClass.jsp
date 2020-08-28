@@ -86,7 +86,7 @@
          
            		<div class="best-class">
                  <div class="thumbnail">
-                 <a href="ClassInfo.do?class_registrynum="${classBean.class_registrynum} >
+                 <a href="ClassInfo.do?class_registrynum=${classBean.class_registrynum}" >
             
                  <img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}" width="150">
                  </a>
