@@ -48,7 +48,9 @@
             <hr>
         </div>
             <div class="my_main">
-                <div class="my_subject">MY PAGE</div>
+                <div class="my_subject">MY PAGE
+                	<a href ="${pageContext.request.contextPath}/VIPRegist.do">VIP 가입하기</a>
+                </div>
                 <div class="my_main2">
                     <div class="my_main3">
                         <div>포인트</div>
