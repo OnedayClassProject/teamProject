@@ -69,6 +69,7 @@
 					}
 				
 				}); */
+				
 			} else if(ima == "${pageContext.request.contextPath}/images/star1.png"){//선택해제를 하면 좋아요 테이블에서 삭제
 				//선택된이미지에서 안된 이미지로 변경
 				$(this).attr('src', '${pageContext.request.contextPath}/images/star2.png');
@@ -116,6 +117,7 @@
 				// 만약 있으면  1을 리턴 없으면 0을 리턴한다.
 				url:"/likeCheck.do", 
 				data: {num : num},
+				async
 			 	dataType: "text",
 			  	success:function(data, status){
 			  		if(data == 1){
