@@ -52,11 +52,11 @@
                 <div class="my_main2">
                     <div class="my_main3">
                         <div>포인트</div>
-                        <div>0</div>
+                        <div>${getMember.point }</div>
                     </div>
                     <div class="my_main3">
                         <div>등급</div>
-                        <div>0</div>
+                        <div>${getMember.membership }</div>
                     </div>
                     <div class="my_main3">
                         <div>예약</div>

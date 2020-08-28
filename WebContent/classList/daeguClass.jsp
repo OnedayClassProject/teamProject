@@ -126,42 +126,45 @@
 </section>
 <script type="text/javascript">
 		
-		// 하트 아이콘 눌렀을 때
+		//하트 아이콘 눌렀을 때
 		$(".like").on("click",function(){
 			var image = $(this).attr("src");
 			var num = $(this).prev().val();
-			
+			var likeOn = "${pageContext.request.contextPath}/images/heart_full.png";
+			var likeOff = "${pageContext.request.contextPath}/images/heart_empty.png"
 			console.log(num);
 			
-			if(image == '${pageContext.request.contextPath}/images/heart_empty.png'){
-				
+			if( '${sessionScope.userid}' != ""){
+			if(image == likeOff){
+				$(this).attr("src",likeOn)
 				$.ajax({
 					type : "post",
 					url : "${pageContext.request.contextPath}/likeOn.do",
 					data : {num : num},
 					dataType : "text",
+					async : true,
 					success:function(data,status){
 						if(data == 1){
-							alert("좋아요 성공");
-							$(this).attr("src","${pageContext.request.contextPath}/images/heart_full.png")
-						}else{
-							alert("로그인 후 눌러주세요.");
+							alert("좋아요");
+							
 						}
 					},
 					error : function(data,status){
 						alert("에러가 발생했습니다.")
 					}
 				});
-			}else if(image == "${pageContext.request.contextPath}/images/heart_full.png"){
-				$(this).attr("src","${pageContext.request.contextPath}/images/heart_empty.png")
+			}else if(image == likeOn){
+				$(this).attr("src",likeOff)
 				$.ajax({
 					type : "post",
 					url : "${pageContext.request.contextPath}/likeOff.do",
 					data : {num : num},
 					dataType : "text",
+					async : true,
 					success : function(data,status){
 						if(data == 1){
 							alert("좋아요 취소");
+							
 						}else{
 							alert("실패");
 						}
@@ -170,6 +173,9 @@
 						alert("에러가 발생했습니다.");
 					}
 				});
+			}
+			}else{
+				alert("로그인 후 눌러주세요.");
 			}
 		});
 		

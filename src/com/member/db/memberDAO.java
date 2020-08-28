@@ -119,11 +119,13 @@ public class memberDAO {
 					mbean.setUsername(rs.getString("username"));
 					mbean.setPhone(rs.getString("phone"));
 					mbean.setPostcode(rs.getString("postcode"));
-					mbean.setAddress(rs.getString("address"));
-					mbean.setDetailadd(rs.getString("detailadd"));
-					mbean.setExtraadd(rs.getString("extraadd"));
+					mbean.setAddress(rs.getString("address1"));
+					mbean.setDetailadd(rs.getString("address2"));
+					mbean.setExtraadd(rs.getString("address3"));
 					mbean.setPoint(rs.getString("point"));
 					mbean.setMembership(rs.getString("membership"));
+					
+					
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
