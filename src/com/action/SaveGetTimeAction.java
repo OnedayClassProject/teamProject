@@ -40,6 +40,7 @@ public class SaveGetTimeAction implements CommandHandler {
 		object.put("time",array);
 			
 		request.setAttribute("data", object.toJSONString());
+		System.out.println(object.toJSONString());
 		
 		return "store/checkEmail.jsp";
 	}

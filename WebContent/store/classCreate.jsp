@@ -38,9 +38,9 @@
             	var num = ${num };
             	var start = []
             	var end = []
-				 for(var i=0; i < $('#time_start').length; i++){
-					start[i] = $('#time_start').eq(i).val();
-					end[i] = $('#time_end').eq(i).val();
+				 for(var i=0; i < $('.timeStart').length; i++){
+					start[i] = $('.timeStart').eq(i).val();
+					end[i] = $('.timeend').eq(i).val();
 				} 
 				
 				$.ajax({
@@ -220,7 +220,7 @@
         <input type="hidden" name="class_company" value="${sbean.storename }">
         <div>업체위치</div>
         <div>${sbean.storeaddress1 } ${sbean.storeaddress2} ${sbean.storeaddress3}</div>
-        <input type="hidden" name="location" value="${sbean.storeaddress1 } ${sbean.storeaddress2} ${sbean.storeaddress3}">
+        <input type="hidden" name="location" value="${sbean.storeaddress1 }">
         <div>난이도</div>
         <div>
             <select name="level">
@@ -453,8 +453,8 @@
     var plus = document.getElementById("plus");
     $("#plus").on("click", function name() {
     	if ($(".timeSet").length <= 5) {
-            $(".timesetting").append("<div class='timeSet'><input type=\"text\" id='time_start'> ~ <input type=\"text\" id='time_end'></div>");
-            document.getElementById("time_start").flatpickr(
+            $(".timesetting").append("<div class='timeSet'><input type=\"text\"  class='timeStart'> ~ <input type=\"text\" class='timeend'></div>");
+        /*      document.getElementById("time_start").flatpickr(
             		{ enableTime: true,
                 noCalendar: true,
                 dateFormat: "H:i",
@@ -463,7 +463,7 @@
                 enableTime: true,
                 noCalendar: true,
                 dateFormat: "H:i",
-            });
+            });  */
         }
 	});
         
