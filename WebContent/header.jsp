@@ -67,7 +67,7 @@
                 </div>
                 <div>카테고리
                     <ul class="sub_menu">
-                        <li><a href="${pageContext.request.contextPath}/diffuserClass.do">디퓨저</li>
+                        <li><a href="${pageContext.request.contextPath}/diffuserClass.do">디퓨저</a></li>
                         <li>캔들</li>
                         <li>요리</li>
                         <li>베이킹</li>
@@ -85,11 +85,11 @@
                         <li><a href="${pageContext.request.contextPath}/daeguClass.do">대구</a></li>
                         <li><a href="${pageContext.request.contextPath}/daejeonClass.do">대전</a></li>
    
-                        <li><a href="${pageContext.request.contextPath}/gyeongsangClass.do">경상도</li>
-                        <li><a href="${pageContext.request.contextPath}/chungcheongClass.do">충청도</li>
-                        <li><a href="${pageContext.request.contextPath}/jeollaClass.do">전라도</li>
-                        <li><a href="${pageContext.request.contextPath}/gangwonClass.do">강원도</li>
-                        <li><a href="${pageContext.request.contextPath}/jejuClass.do">제주도</li>
+                        <li><a href="${pageContext.request.contextPath}/gyeongsangClass.do">경상도</a></li>
+                        <li><a href="${pageContext.request.contextPath}/chungcheongClass.do">충청도</a></li>
+                        <li><a href="${pageContext.request.contextPath}/jeollaClass.do">전라도</a></li>
+                        <li><a href="${pageContext.request.contextPath}/gangwonClass.do">강원도</a></li>
+                        <li><a href="${pageContext.request.contextPath}/jejuClass.do">제주도</a></li>
                     </ul>
 
                 </div>
