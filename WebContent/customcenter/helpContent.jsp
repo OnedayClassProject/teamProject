@@ -68,23 +68,35 @@
 			});
         }
 	}
-	function updateComment(commentnum, num,pageNum){
-		$.ajax('${pageContext.request.contextPath}/helpCommentUpdate.do',{
-			type:"post",
-			data: {number : commentnum},
-			success:function(data){
-				if(data==1){
-					alert("삭제했습니다.");
-					location.href="${pageContext.request.contextPath}/helpPage.do?num="+num +"&pageNum="+pageNum;
-				}else{
-					alert("오류가 발생했습니다.");
-				}
-			},
-			error:function(e){
-				alert("에러가 발생했습니다.");
-			}
-		});
+	function updateFormChange(id, date, commentnum){
+		 var htmls = "<tr id ='comment_show"+commentnum+"'></tr>";
+		 htmls += "<td>"+id+"</td><td><input type ='text' name ='comment' id = 'update"+ commentnum +"'></td><td>"+date+"</td>"; 
+		 htmls +="<td><input type='button'  onclick ='updateComment("+commentnum+",${bean.num},${pageNum})' value ='저장하기'>&nbsp;"
+		 htmls +="<input type='button' onclick='deleteComment("+commentnum+",${bean.num},${pageNum})' value ='삭제하기'></td>" 
+		 $('#comment_show' + commentnum).replaceWith(htmls); 
 	}
+	function updateComment(commentnum, num,pageNum){
+		var _comment = $("#update"+commentnum).val();
+		if(_comment == ""){
+			alert("수정할 내용을 입력해주세요");
+		}else{
+			$.ajax('${pageContext.request.contextPath}/helpCommentUpdate.do',{
+				type:"post",
+				data: {number : commentnum, comment : _comment},
+				success:function(data){
+					if(data==1){
+						location.href="${pageContext.request.contextPath}/helpPage.do?num="+num +"&pageNum="+pageNum;
+					}else{
+						alert("오류가 발생했습니다.");
+					}
+				},
+				error:function(e){
+					alert("에러가 발생했습니다.");
+				}
+			});
+		}
+	}
+	/* onclick ="updateComment('${v.commentnum}','${bean.num}','${pageNum}')" */
 </script>
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <jsp:include page="../header.jsp"/>
@@ -117,9 +129,10 @@
        							<td>이메일</td><td></td><td>날짜</td><td></td>
        						</tr>
        						<c:forEach var = "v" items="${list}">
-	       						<tr id ="comment_show">
+       						
+	       						<tr id ="comment_show${v.commentnum}">
 	       							<td>${v.id }</td><td>${v.comment }</td><td>${v.date }</td>
-	       							<td><input id = "update" onclick ="updateComment('${v.commentnum}','${bean.num}','${pageNum}')" type="button" value ="수정하기">&nbsp;
+	       							<td><input type="button" id = "update${v.commentnum}" onclick ="updateFormChange('${v.id}','${v.date}','${v.commentnum}')"  value ="수정하기">&nbsp;
 	       							<input type="button" onclick="deleteComment('${v.commentnum}','${bean.num}','${pageNum}')" value ="삭제하기"></td>
 	       						</tr>
        						</c:forEach>
