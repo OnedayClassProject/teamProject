@@ -116,6 +116,7 @@
 				// 만약 있으면  1을 리턴 없으면 0을 리턴한다.
 				url:"/likeCheck.do", 
 				data: {num : num},
+				async
 			 	dataType: "text",
 			  	success:function(data, status){
 			  		if(data == 1){

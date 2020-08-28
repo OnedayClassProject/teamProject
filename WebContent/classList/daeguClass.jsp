@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/classList/daeguClass.css">
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 </head>
 <body><jsp:include page="../header.jsp"/>
 <section>
@@ -95,6 +96,8 @@
                          <div class="class-name1">카테고리 : ${classBean.category}</div>
                          <div class="class-name2">클래스명 : ${classBean.class_name}</div>
                          <div class="class-name3">평점  : </div>
+                         <input type="hidden" class="num" value="${classBean.class_registrynum}">
+                         <img src='${pageContext.request.contextPath}/images/star2.png' class="favor" width="50px" height="50px">
                     </div>
             	 </div>
         	   <c:if test="${j%3==0}">
@@ -115,9 +118,66 @@
           <c:if test="${count == 0}">
           	<div class="no_list"> NO LIST </div>
           </c:if>
-
-
         </div>
 </section>
 </body>
 </html>
+<script>
+	$(".favor").on("click", function(){
+		
+		var img = $(this).attr('src');
+		var num = $(this).prev().val();
+		console.log(img);
+		console.log(num);
+		
+		// 즐겨찾기 등록 
+		if(img == '${pageContext.request.contextPath}/images/star2.png'){
+			
+			$(this).attr('src', '${pageContext.request.contextPath}/images/star1.png')
+			
+			$.ajax({
+				type:"post",
+				url:"${pageContext.request.contextPath}/favorReg.do",
+				data:{num : num},
+				dataType:"text",
+				success:function(data, status){
+					if(data == 1){
+						alert('즐겨찾기 등록');
+					} else {
+						alert('실패');
+					}
+				},
+				error:function(data, status){
+					alert('등록 실패');
+				}
+			});
+		
+		// 즐겨찾기 해제 
+		}else if(img == '${pageContext.request.contextPath}/images/star1.png'){
+			
+			$(this).attr('src', '${pageContext.request.contextPath}/images/star2.png')
+			
+			$.ajax({
+				type:"post",
+				url:"${pageContext.request.contextPath}/favorCancle.do",
+				data:{num : num},
+				dataType:"text",
+				success:function(data, status){
+					if(data == 1){
+						alert('즐겨찾기 해제');
+					} else {
+						alert('실패');
+					}
+				},
+				error:function(data, status){
+					alert('해제 실패');
+				}
+			});
+			
+		}
+		
+	});
+	
+
+
+</script>
