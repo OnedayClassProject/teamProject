@@ -20,7 +20,7 @@ public class favorReg implements CommandHandler{
 		HttpSession session = request.getSession();
 		String useremail = (String)session.getAttribute("userid");
 		int num = Integer.parseInt(request.getParameter("num"));
-		
+		System.out.println("swdssd");
 		int result = 0;
 		
 		favorDAO fdao = new favorDAO();

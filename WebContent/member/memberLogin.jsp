@@ -10,6 +10,7 @@
 <head>
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <!-- <link rel="stylesheet" href="../header.css"> -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/member/memberlogin.css">
@@ -129,7 +130,19 @@
 	        <button type="button" onclick="location.href='${pageContext.request.contextPath}/memberOrStore.do'">CREATE</button>
 	        </div>
         </form>
+        <div class="pwd_find">
+        <p>혹시 비밀번호가 기억나지 않으신가요?</p>
+   		<a href="javascript:void(0);" onclick="pwd_find(); return false;">>>>>>비밀번호 찾기</a>
+     	</div>
     </div>
 </section>
+
+<script>
+function pwd_find(){
+	window.open('${pageContext.request.contextPath}/member/pwdFind.jsp', '비밀번호 찾기',
+	'width=500, height=400, menubar=no, status=no, toolbar=no');
+}
+</script>
 </body>
 </html>
+<script>

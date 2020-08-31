@@ -53,3 +53,8 @@
 .login_choice div:hover{
     cursor: pointer;
 }
+.pwd_find{
+	float:right;
+}
+.pwd_find a{float:right;
+text-decoration: underline;}

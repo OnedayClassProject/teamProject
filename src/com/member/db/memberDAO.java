@@ -3,27 +3,38 @@ package com.member.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Date;
+import java.util.Properties;
 
+import javax.mail.Address;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.Message.RecipientType;
+import javax.mail.Session;
+import javax.mail.Transport;
+
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 public class memberDAO {
 	
-		//�������� ����
+		//�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
 		Connection con = null;
 		ResultSet  rs = null;
 		PreparedStatement pstmt = null;
 		String sql="";
 			
-		//�ڿ� ���� �ϴ� �޼ҵ� 
+		//�뜝�뙓�슱�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�떦�뙋�삕 �뜝�뙣�냼�벝�삕 
 		public void resourceClose(){
 		  try{	
 			if(pstmt != null) pstmt.close();
 			if(rs != null) rs.close();
 			if(con != null) con.close();
 		  }catch(Exception e){
-			  System.out.println("�ڿ����� ���� : " + e);
+			  System.out.println("�뜝�뙓�슱�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 : " + e);
 		  }
 		}//resourceClose()
 		private Connection getConnection() throws Exception {
@@ -32,7 +43,7 @@ public class memberDAO {
 			Context init = new InitialContext();
 			DataSource ds = (DataSource) init.lookup("java:/comp/env/jdbc/teamProject");
 			con = ds.getConnection();
-			return con;
+			return con; 
 		}
 		
 		public boolean insertMember(memberBean mbean){
@@ -96,7 +107,7 @@ public class memberDAO {
 					result = 0;
 				}
 			}catch(Exception e){
-				//System.out.println("checkEmail() �޼ҵ� ���ο��� ���� �߻� "+e);
+				//System.out.println("checkEmail() �뜝�뙣�냼�벝�삕 �뜝�룞�삕�뜝�떥�슱�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�뙥�궪�삕 "+e);
 				e.printStackTrace();
 			}finally {
 				resourceClose();
@@ -148,9 +159,9 @@ public class memberDAO {
 				
 				if(rs.next()){
 					if(password.equals(rs.getString("userpassword"))){
-						check = 1; // �̸���, ��й�ȣ ����
+						check = 1; // �뜝�떛紐뚯삕�뜝�룞�삕, �뜝�룞�삕艅섇뜝�떕占� �뜝�룞�삕�뜝�룞�삕
 					}
-				}else{ //�̸����� �������� ���� ��
+				}else{ //�뜝�떛紐뚯삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕
 					check = 0;
 				}
 				
@@ -219,10 +230,118 @@ public class memberDAO {
 			}
 			
 			
+		}//deleteMember
+		public int pwdEmail(String email) {
+			int result = 0;
+			
+			try{
+				con = getConnection();
+				
+				sql = "select * from store s ,member m where s.storeemail=? || m.useremail=?";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, email);
+				pstmt.setString(2, email);
+				
+				rs = pstmt.executeQuery();
+				
+				if (rs.next()){
+					result = 1;
+				}else{
+					result = 0;
+				}
+			}catch(Exception e){
+				//System.out.println("checkEmail() �뜝�뙣�냼�벝�삕 �뜝�룞�삕�뜝�떥�슱�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�뙥�궪�삕 "+e);
+				e.printStackTrace();
+			}finally {
+				resourceClose();
+			}
+			
+			return result;
 		}
-		
-		
-		
+		//auth Num start
+		public String authNum() {
+			StringBuffer authNum = new StringBuffer();
+			for (int i = 0; i < 6; i++) {
+				int random = (int)(Math.random()*10.0d);
+				authNum.append(random);
+			}
+			return authNum.toString();
+		}
+		public boolean sendEmail(String email,String authNum) {
+			boolean result=false;
+			String sender = "itwilltest123@gmail.com";
+			String subject="Check Number for Finding PassWord";
+			String content ="email : " + email+"<br>"+"Check Number : [<b>" + authNum + "</b>]";
+			try {
+				Properties properties = System.getProperties();
+				properties.put("mail.smtp.starttls.enable", "true");
+				properties.put("mail.smtp.host", "smtp.gmail.com");
+				properties.put("mail.smtp.auth","true");
+				properties.put("mail.smtp.port","587");
+				
+				Authenticator auth= new GoogleAuthentication();
+				//GoolgleAuth~->Authen~ �긽�냽 諛쏆븘�꽌 �뾽罹먯뒪�똿?(遺�紐� �씤�뜳�뒪�뿉 �옄�떇媛앹껜)
+				
+				Session session =Session.getDefaultInstance(properties, auth);
+				Message message = new MimeMessage(session);
+				Address senderAd = new InternetAddress(sender);
+				Address receiverAd= new InternetAddress(email);
+				
+				message.setHeader("content-type", "text/html;charset=UTF-8");
+				message.setFrom(senderAd);
+				message.addRecipient(RecipientType.TO,receiverAd);
+				message.setSubject(subject);
+				message.setContent(content,"text/html;charset=UTF-8");
+				message.setSentDate(new Date());
+				Transport.send(message);
+				result=true;
+				
+			} catch (Exception e) {
+				result=false;
+				System.out.println("Error in sendEmail()");
+				e.printStackTrace();
+			}finally {
+				resourceClose();
+			}
+			return result;
+		}
+		public int pwdUpdate(String email,String userpassword){
+			System.out.println(userpassword);
+			System.out.println(email);
+			try {
+				
+					con = getConnection();
+					sql="select useremail from member where useremail=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, email);
+					rs=pstmt.executeQuery();
+					if(rs.next()){
+					
+					sql = "update member set userpassword=? where useremail=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, userpassword);
+					pstmt.setString(2, email);
+					
+					pstmt.executeUpdate();
+					return 1;
+					}else{
+						sql = "update store set storepw=? where storeemail=?";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, userpassword);
+						pstmt.setString(2, email);
+						
+						pstmt.executeUpdate();
+						return 1;
+						
+					}
+				} catch (Exception e) {
+				e.printStackTrace();
+				return 0;
+			}finally {
+				resourceClose();
+			}
+		}
 	
 	
 }
