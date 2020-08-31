@@ -196,7 +196,7 @@ public class StoreDAO {
 		
 		try {
 			con = getConnection();
-			String sql = "insert into operationdate values (?,?,?,?,?)";
+			String sql = "insert into operationdate(class_registrynum,class_date,class_day,class_starttime,class_endtime) values (?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, bean.getClass_registrynum());
 			pstmt.setString(2, bean.getClass_date());

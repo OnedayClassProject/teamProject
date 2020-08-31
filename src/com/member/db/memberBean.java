@@ -15,7 +15,9 @@ public class memberBean {
 	private String extraadd;
 	
 	private Timestamp joindate;
-	private Timestamp vip_date;
+	
+	private String vip_startdate;
+	private String vip_finish;
 	
 	private String point;
 	private String membership;
@@ -65,11 +67,20 @@ public class memberBean {
 	public void setJoindate(Timestamp joindate) {
 		this.joindate = joindate;
 	}
-	public Timestamp getVip_date() {
-		return vip_date;
+
+	
+	
+	public String getVip_startdate() {
+		return vip_startdate;
 	}
-	public void setVip_date(Timestamp vip_date) {
-		this.vip_date = vip_date;
+	public void setVip_startdate(String vip_startdate) {
+		this.vip_startdate = vip_startdate;
+	}
+	public String getVip_finish() {
+		return vip_finish;
+	}
+	public void setVip_finish(String vip_finish) {
+		this.vip_finish = vip_finish;
 	}
 	public String getPoint() {
 		return point;

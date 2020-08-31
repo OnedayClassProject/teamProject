@@ -124,6 +124,7 @@ public class memberDAO {
 					mbean.setExtraadd(rs.getString("address3"));
 					mbean.setPoint(rs.getString("point"));
 					mbean.setMembership(rs.getString("membership"));
+					mbean.setVip_finish(rs.getString("vip_finish"));
 					
 					
 				}

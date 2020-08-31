@@ -19,29 +19,30 @@
 					<div>
 					<div>예약고객</div>
 					<div>이름(전화번호)</div>
+					<div>${mbean.username}(${mbean.phone })</div>
 					</div>
 					<div>
 						<div>예약정보</div>
 						<div>예약자</div>
-						<input type="text"> 
+						<input type="text" value="${mbean.username }"> 
 						<div>연락처</div>
-						<input type="text">
+						<input type="text" value="${mbean.phone }">
 						<div>요청사항</div>
 						<textarea rows="10" cols="10"></textarea>
 					</div>
 					<div>
-					<div>클래스정보</div>
-					<div>클래스카테고리</div>
-					<div>클래스명 향수클래스~~</div>
-					<div>클래스명</div>
-					<div>날짜&예약시간&인원수</div>
+						<div>클래스정보</div>
+						<div>클래스카테고리 ${cbean.category }</div>
+						<div>클래스명 ${cbean.class_name }</div>
+						<div>날짜&예약시간&인원수</div>
+						<div>${reserve_date}/${time }/${person_num }</div>
 					</div>
 					<div>아이디어스 할인 혜택</div>
 					<div>아이디어스 적립금</div>
 					<input type="text" value="0" class="point">
 					<input type="button" class="all_point2"value="사용">
 					<div>보유중인 적립금</div>
-					<div class='all_point'>30000</div>
+					<div class='all_point'>3000</div>
 					<div>결제수단</div>
 					<input type="radio" name="pay_met" value="card">신용카드	
 					<input type="radio" name="pay_met" value="samsung">삼성페이	
@@ -50,15 +51,15 @@
 					<input type="radio" name="pay_met" value="phone">휴대폰소액결제	
 				</div>
 				<div class="reserve_bar">
-					<div class="category_tag">카테고리</div>
-					<div class="className_tag">클래스명</div>
-					<div class="storeName_tag">업체명</div>
+					<div class="category_tag">카테고리 ${cbean.category }</div>
+					<div class="className_tag">클래스명 ${cbean.class_name }</div>
+					<div class="storeName_tag">업체명 ${cbean.class_company }</div>
 					<div class="price_tag">
 						<div>할인율</div>
 						<div>할인가격</div>
-						<div>총가격</div>
-						<input type="hidden" class='sum_price2' value="300000">
-						<div class="sum_price">300000</div>
+						<div>${sum_price }</div>
+						<input type="hidden" class='sum_price2'>
+						<div class="sum_price"></div>
 					</div>
 					<div class="pay_btn">
 					<button class="pay_btn2">결제하기</button>
@@ -68,6 +69,19 @@
 </section>
 <script>
 $(function () {
+	
+	if( '${mbean.membership}' == 'basic'){
+		$(".sum_price2").val('${sum_price}');
+		$(".sum_price").text('${sum_price}');
+	}else if('${mbean.membership}' == 'vip'){
+		if(new Date('${mbean.vip_finish }'+" 23:59:59") > new Date()) {
+			var dis_price = ${sum_price } * 0.8;
+			$(".sum_price2").val(dis_price);
+			$(".sum_price").text(dis_price);
+			
+		}
+	}
+	
 	
 	$('.all_point2').on('click', function () {
 			var point = Number($('.point').val());
@@ -81,7 +95,7 @@ $(function () {
 			} else{
 				alert('포인트를 초과하였습니다.')
 				$('.point').val(0);
-				$('.sum_price').text(300000);
+				$('.sum_price').text('${sum_price}');
 			}
 			
 	});
