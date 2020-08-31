@@ -26,36 +26,7 @@
 .my_main{
     width: 820px;
     margin: auto;
-}
-.best-class{
-    display: inline-block;
-    border: 1px solid red;
-    margin-left: 10px;
-    margin-right: 10px;
-    height: 350px;
-    width: 250px;
-    border-radius: 15px;
-    margin-top: 30px;
-}
-.thumbnail{
-    width: 250px;
-    height: 250px;
-    border: 1px solid black;
-    border-radius: 15px;
-    /* background-size: 100% 100%; */
-    overflow: hidden;
-    
-}
-.thumbnail img{
-	width: 100%;
-	height: 100%;
-	transform:scale(1.0);
-	transition:transform .3s;
-}
-.thumbnail img:hover{
-	transform:scale(1.3);
-	transition:transform .5s;
-	
+    margin-top: 0;
 }
 .class-name{
     text-align: left;
@@ -77,8 +48,20 @@
 	font-size: 20px;
 }
 .current_menu2{
-	color:fuchsia;
+	font-weight: bold;
+	color : gray;
+	font-size: 15px;
 }
-.current_menu3{
-	color:black;
+.qna_wrap{
+	margin-top: 20px;
+}
+.qna_menu1,.qna_menu2,.qna_menu3,.qna_menu4,.qna_menu5{
+	cursor: pointer;
+}
+.qna_menu1-1, .qna_menu1-2, .qna_menu1-3, .qna_menu1-4,.qna_menu1-5{
+	margin-top:10px;
+	padding:10px;
+	display:none;
+	border: 1px solid gray;
+	height: 0;
 }

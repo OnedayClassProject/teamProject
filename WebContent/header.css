@@ -3,7 +3,6 @@
 }
 a{
 	text-decoration: none;
-	color:;
 }
 li{
     list-style: none;
@@ -23,9 +22,10 @@ body{
     text-align: right;
     padding-bottom: 15px;
     margin: auto;
+    padding-right: 20px;
 }
 .login_bar div{
-    font-size: 19px;
+    font-size: 16px;
     color: #B7B4B2;
     font-weight: bold;
     display: inline-block;
@@ -41,6 +41,7 @@ body{
     padding-right: 15px;
     content: "|";
 }
+
 .login_bar div:last-child::after{
     content: "";
 }
@@ -66,22 +67,22 @@ h1{
 .nav-bar , .main_logo{
     display: inline-block;
 }
+
 .main_logo{
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
     padding-left: 5px;
-<<<<<<< HEAD
-=======
+   	width: 100px;
 }
 .main_logo a:link{
 	color : black;
 }
 .main_logo a:visited{
-	color : black;
+ 	color:black;
 }
 .nav-bar{
     padding-left: 450px;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
 }
 .nav-bar div{
@@ -96,18 +97,26 @@ h1{
     opacity: 0;
     top : 45px;
     text-align: center;
-    font-size: 17px;
+    font-size: 13px;
     font-weight: normal;
     z-index: 4;
     padding: 0;
     margin: 0;
     position: absolute;
 }
-
+.sub_menu li a:visited{
+	color: gray;	
+}
+.sub_menu li a:link{
+	color: gray;	
+}
+.sub_menu li a:hover{
+	color: black;
+}
 .sub_menu li{
-    width: 100px;
-    margin-top:5px;
+	margin-top:5px;
     margin-bottom:5px;
+    width: 100px;
     height: 30px;
 }
 .sub_background {

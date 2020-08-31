@@ -208,20 +208,40 @@
 <body>
 <div id="calander_backcolor"></div>
 <jsp:include page="/header.jsp"/>
+<section>
 <form method="post" enctype="multipart/form-data">
-<div>
-    <div>
-        <div>클래스명</div>
-        <div><input type="text" name="classname" id="classname"></div>
-        <div>카테고리</div>
-        <div><input type="text" name="category" id="category"></div>
-        <div>업체명</div>
-        <div>${sbean.storename }</div>
-        <input type="hidden" name="class_company" value="${sbean.storename }">
-        <div>업체위치</div>
+<div class="class_wrap">
+		<div>클래스 개설</div>
+    	<div class="class_menu">
+	        <div class="class_title" >클래스명</div>
+	        <div><input type="text" name="classname" id="classname"></div>
+	    </div>
+	    <div class="class_menu">
+	        <div class="class_title"  >카테고리</div>
+	        <div>
+	        	<select name="category" >
+	        		<option value="디퓨저">디퓨저</option>
+	        		<option value="캔들">캔들</option>
+	        		<option value="요리">요리</option>
+	        		<option value="베이킹">베이킹</option>
+	        		<option value="도자기">도자기</option>
+	        		<option value="향수">향수</option>
+	        		<option value="비누">비누</option>
+	        	</select>
+	        </div>
+	    </div>
+	    <div class="class_menu">
+	        <div class="class_title" >업체명</div>
+	        <div>${sbean.storename }</div>
+	        <input type="hidden" name="class_company" value="${sbean.storename }">
+	   </div>
+	   <div class="class_menu">
+        <div  class="class_title"  >업체위치</div>
         <div>${sbean.storeaddress1 } ${sbean.storeaddress2} ${sbean.storeaddress3}</div>
         <input type="hidden" name="location" value="${sbean.storeaddress1 }">
-        <div>난이도</div>
+        </div>
+        <div class="class_menu">
+        <div  class="class_title"  >난이도</div>
         <div>
             <select name="level">
                 <option value="hard">상</option>
@@ -229,33 +249,54 @@
                 <option value="easy">하</option>
             </select>
         </div>
-        <div>소요시간</div>
-        <div><input type="text" name="hour" id="hour">시간 <input type="text" name="minute" id="minute">분</div> 
-        <div>수업인원</div>
-        <div><input type="text" name="class_personal" id="class_personal">명</div>
-        <div>가격</div>
-        <div><input type="text" name="price" id="price">원</div>
-        <div>할인여부</div>
-        <div class="sale">적용</div>
+        </div>
+        <div class="class_menu">
+        <div class="class_title"  >소요시간</div>
+        <div><input type="text" name="hour" id="hour" class="class_input">시간 <input type="text" class="class_input" name="minute" id="minute">분</div> 
+        </div>
+        <div class="class_menu">
+        <div class="class_title"  >수업인원</div>
+        <div><input type="text" class="class_input" name="class_personal" id="class_personal">명</div>
+        </div>
+        <div class="class_menu">
+        <div class="class_title"  >가격</div>
+        <div><input type="text" class="class_input" name="price" id="price">원</div>
+        </div>
+       <!--  <tr>
+        <td class="class_title"  colspan="3">할인여부</td>
+        <td class="sale">적용</td>
         <input type="hidden" value="fal" id="sale_check">
-        <div class="nosale">안함</div>
-        <div class="sale1"></div>
-        <div class="reserve" onclick='x()'>일정</div>
-        <div>주차장여부</div>
+        <td class="nosale">안함</td>
+        <td class="sale1"></td>
+        </tr> -->
+        <div class="class_menu">
+        <div class="class_title" >일정</div>
+        <div><button type="button"class="reserve" onclick='x()'>일정버튼</button></div>
+        </div>
+        <div class="class_menu">
+        <div class="class_title" >주차장여부</div>
         <div><input type="text" name="parking"></div>
-        <textarea id="p_content" name="content"></textarea>
-        <div>대표이미지</div>
+        </div>
+        <div class="class_menu">
+        <div class="class_title class_content"  >글쓰기</div>
+        <div ><textarea id="p_content" name="content"></textarea></div>
+        </div>
+        <div class="class_menu">
+        <div class="class_title class_img" >대표이미지</div>
         <div class="file_box">
-            <label for="input_img">IMAGE FILE</label>
+            <label for="input_img">+</label>
             <input type="file" accept="image/jpg,image/jpeg,image/png,image/gif," name="image" id="input_img"
                    onchange="fileCheck(this)">
         </div>
         <div class="imgMain">
             <img id="img"/>
         </div>
+        </div>
         <input type="hidden" name="storenum" value="${sbean.storenum }">
+        <div class="class_buttons">
         <button type="button" id="class_registry">등록</button>
         <button type="button" id="cancle_back">취소</button>
+        </div>
     </div>
     <div id="box">
         <div class="content-right">

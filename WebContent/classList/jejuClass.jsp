@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/classList/jejuClass.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/classList/seoulClass.css">
 </head>
 <body><jsp:include page="../header.jsp"/>
 <section>
@@ -17,63 +17,53 @@
         <div class="side_menu">
            <div class="side_detail">
            <div class="current_menu">제주도</div>
-           <div class="line"></div>
-                <a href="${pageContext.request.contextPath}/seoulClass.do" class='current_menu3'><div>서울</div>
-                <div class="side_detail2">></div>
+          <div class="line"></div>
+                 <a href="${pageContext.request.contextPath}/seoulClass.do" class='current_menu2'><div>서울</div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/gyunggiClass.do" class='current_menu3'><div>경기</div>
-                <div class="side_detail2">></div>
+               <a href="${pageContext.request.contextPath}/gyunggiClass.do" class='current_menu2'><div>경기</div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/busanClass.do" class='current_menu3'><div>부산</div>
-                <div class="side_detail2">></div>
+               <a href="${pageContext.request.contextPath}/busanClass.do" class='current_menu2'><div>부산</div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/daeguClass.do" class='current_menu3'><div>대구</div>
-                <div class="side_detail2">></div>
+               <a href="${pageContext.request.contextPath}/daeguClass.do" class='current_menu2'><div>대구</div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/daejeonClass.do" class='current_menu3'><div>대전</div>
-                <div class="side_detail2">></div>
+               <a href="${pageContext.request.contextPath}/daejeonClass.do" class='current_menu2'><div>대전</div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/gyeongsangClass.do" class='current_menu3'><div>경상도</div>
-                <div class="side_detail2">></div>
+               <a href="${pageContext.request.contextPath}/gyeongsangClass.do" class='current_menu2'><div>경상도</div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/chungcheongClass.do" class='current_menu3'><div>충청도</div>
-                <div class="side_detail2">></div>
+               <a href="${pageContext.request.contextPath}/chungcheongClass.do" class='current_menu2'><div>충청도</div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/jeollaClass.do" class='current_menu3'><div>전라도</div>
-                <div class="side_detail2">></div>
+               <a href="${pageContext.request.contextPath}/jeollaClass.do" class='current_menu2'><div>전라도</div>
                 </a>
             <hr>
             </div>
             <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/gangwonClass.do" class='current_menu3'><div>강원도</div>
-                <div class="side_detail2">></div>
+               <a href="${pageContext.request.contextPath}/gangwonClass.do" class='current_menu2'><div>강원도</div>
                 </a>
             <hr>
             </div>
             <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/jejuClass.do" class='current_menu3'><div>제주도</div>
-                <div class="side_detail2">></div>
+               <a href="${pageContext.request.contextPath}/jejuClass.do" class='current_menu2'><div>제주도</div>
                 </a>
             </div>
             <hr>
@@ -83,23 +73,32 @@
             
             <c:set var="i" value="1"/>
             
-            <c:forEach var="ClassBean" items="${requestScope.Vector}">
+            <c:forEach var="classBean" items="${requestScope.Vector}">
             
            	<div class="best-class">
-				<div class="thumbnail">
-					<a href="${pageContext.request.contextPath}/classInfo.do?class_registrynum=${ClassBean.class_registrynum}">
-						<img src="${pageContext.request.contextPath}/thumbnailImage/${ClassBean.thumbnail}">
-	           		</a>
-				</div>
-					<div class="class-name">
-						<div class="class-name1">${ClassBean.category}</div>
-                        <div class="class-name2">${ClassBean.class_name}</div>
-                        <div class="class-name3">${ClassBean.level}
-                         <input type="hidden" value="${classBean.class_registrynum}" class="num">
-                         	평점  : <img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
-                         </div>
+                 <div class="thumbnail" >
+                 <a href="${pageContext.request.contextPath}/ClassInfo.do?class_registrynum=${classBean.class_registrynum}" >
+                 <img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}">
+                 </a>
+                 <div class="like_image"> 
+                 <input type="hidden" value="${classBean.class_registrynum}" class="num">
+                  <img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
+                 <img class="like" src="${pageContext.request.contextPath}/images/star2.png">
+                 </div>
+                 </div>
+                     <div class="class-name">
+                         <div class="class-name1">카테고리 : ${classBean.category}</div>
+                         <div class="class-name2">클래스명 : ${classBean.class_name}</div>
+                         	<input type="hidden" class="rating" value="${classBean.rating }">
+                         	<div class = "starRev">
+				        	<input class="staR" value="1">
+				        	<input class="staR" value="2">
+				        	<input class="staR" value="3">
+				        	<input class="staR" value="4">
+				        	<input class="staR" value="5">
+        					</div>
                     </div>
-           	</div>
+            	 </div>
            	
 	            <c:if test="${i%3 == 0}">
 	            	<br>
@@ -177,10 +176,20 @@
 			}
 		});
 		
-		for(var i = 0; i<"${fn:length(list)}"; i++){
+for(var i = 0; i<"${fn:length(list)}"; i++){
 			
-			var cla = $(".class-name3").eq(i);
+			var cla = $(".like_image").eq(i);
 			var num = cla.children(".num").val();
+			
+			var current = $(".starRev").eq(i);
+			var rating  = $(".rating").eq(i).val();
+			if(rating == "0"){
+				var rating1 = current.children(".staR").eq(rating)
+			} else {
+			var rating1 = current.children(".staR").eq(rating-1)
+				rating1.parent().children("input").removeClass("on");
+				rating1.addClass("on").prevAll("input").addClass("on");
+			}
 			
 			console.log("i = "+i);
 			console.log("num = "+num);

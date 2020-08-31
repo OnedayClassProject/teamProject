@@ -59,13 +59,17 @@ public class reviewWriteAction implements CommandHandler{
 		rbean.setThumbnail(fileImage);
 		rbean.setReviewdate(new Timestamp(System.currentTimeMillis()));
 		
-		
 		ReviewDAO rdao = new ReviewDAO();
 		int result = rdao.reviewWrite(rbean);
+		
+		int sumRating = rdao.sumRating(class_reg);
+		int count = rdao.reviewCount(class_reg); 
+		double div = sumRating/count;
+		int sum = (int)((double)Math.round(div*100));
+		rdao.ratingUpdate(class_reg, sum);
+		
+		
 		request.setAttribute("data", result);
-		
-		
-		
 		 
 		return "board/check.jsp";
 	}

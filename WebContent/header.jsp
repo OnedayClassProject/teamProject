@@ -35,7 +35,7 @@
 <body>
 <header>
     <div class="head">
-    	<div class="login_bar">
+    <div class="login_bar">
         <c:if test="${empty sessionScope.userid && empty sessionScope.storeid}">
             <div><a href="${pageContext.request.contextPath}/login.do">로그인</a></div>
             <div><a href="${pageContext.request.contextPath}/memberOrStore.do">회원가입</a></div>
@@ -50,7 +50,7 @@
         	<div><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></div>
         	</c:if>
         </div>
-       <div class="nav_wrap">
+     <div class="nav_wrap">
             <div class="main_logo"><a href="${pageContext.request.contextPath}/main.do">CLASS+</a></div>
             <%--        <div class="search-bar">--%>
             <%--            <form>--%>
@@ -61,29 +61,39 @@
             <nav class="nav-bar">
                 <div>클래스
                     <ul class="sub_menu">
-                        <li><a href="${pageContext.request.contextPath}/popularClass.do">인기클래스</a></li>
+                         <li><a href="${pageContext.request.contextPath}/popularClass.do">인기클래스</a></li>
                         <li><a href="${pageContext.request.contextPath}/beginnerClass.do">입문클래스</a></li>
                     </ul>
                 </div>
                 <div>카테고리
                     <ul class="sub_menu">
                         <li><a href="${pageContext.request.contextPath}/diffuserClass.do">디퓨저</a></li>
+<<<<<<< HEAD
                         <li>캔들</li>
                         <li>요리</li>
                         <li>베이킹</li>
                         <li>도자기</li>
                         <li>향수</li>
                         <li>비누</li>
+=======
+                        <li><a href="${pageContext.request.contextPath}/candleClass.do">캔들</a></li>
+                        <li><a href="${pageContext.request.contextPath}/cookingClass.do">요리</a></li>
+                        <li><a href="${pageContext.request.contextPath}/bakingClass.do">베이킹</a></li>
+                        <li><a href="${pageContext.request.contextPath}/potteryClass.do">도자기</a></li>
+                        <li><a href="${pageContext.request.contextPath}/perfumeClass.do">향수</a></li>
+                        <li><a href="${pageContext.request.contextPath}/soapClass.do">비누</a></li>
+>>>>>>> ggyu
                     </ul>
                 </div>
                 <div>지역별
                     <ul class="sub_menu">
 
-                        <li><a href="${pageContext.request.contextPath}/seoulClass.do">서울</a></li>
+       					<li><a href="${pageContext.request.contextPath}/seoulClass.do">서울</a></li>
                         <li><a href="${pageContext.request.contextPath}/gyunggiClass.do">경기</a></li>
                         <li><a href="${pageContext.request.contextPath}/busanClass.do">부산</a></li>
                         <li><a href="${pageContext.request.contextPath}/daeguClass.do">대구</a></li>
                         <li><a href="${pageContext.request.contextPath}/daejeonClass.do">대전</a></li>
+<<<<<<< HEAD
    
                         <li><a href="${pageContext.request.contextPath}/gyeongsangClass.do">경상도</a></li>
                         <li><a href="${pageContext.request.contextPath}/chungcheongClass.do">충청도</a></li>
@@ -91,7 +101,16 @@
                         <li><a href="${pageContext.request.contextPath}/gangwonClass.do">강원도</a></li>
                         <li><a href="${pageContext.request.contextPath}/jejuClass.do">제주도</a></li>
                     </ul>
+=======
+>>>>>>> ggyu
 
+                        <li><a href="${pageContext.request.contextPath}/gyeongsangClass.do">경상도</a></li>
+                        <li><a href="${pageContext.request.contextPath}/chungcheongClass.do">충청도</a></li>
+                        <li><a href="${pageContext.request.contextPath}/jeollaClass.do">전라도</a></li>
+                        <li><a href="${pageContext.request.contextPath}/gangwonClass.do">강원도</a></li>
+                        <li><a href="${pageContext.request.contextPath}/jejuClass.do">제주도</a></li>
+
+                    </ul>
                 </div>
                 <div>고객센터
                 	<ul class="sub_menu">

@@ -29,21 +29,22 @@
 }
 .best-class{
     display: inline-block;
-    border: 1px solid red;
     margin-left: 10px;
     margin-right: 10px;
     height: 350px;
     width: 220px;
     border-radius: 15px;
     margin-top: 30px;
+    box-shadow: 0px 4px 11px 1px gray;
 }
+
 .thumbnail{
     width: 220px;
     height: 250px;
-    border: 1px solid black;
     border-radius: 15px;
     /* background-size: 100% 100%; */
     overflow: hidden;
+    position: relative;
     
 }
 .thumbnail img{
@@ -53,9 +54,25 @@
 	transition:transform .3s;
 }
 .thumbnail img:hover{
-	transform:scale(1.3);
+	transform:scale(1.2);
 	transition:transform .5s;
 	
+}
+.like_image{
+	position:absolute;
+	top: 10px;
+	right:10px;
+	width:70px;
+	height: 40px;
+	color:white;
+	background: rgba(255,255,255,0.5);
+	border-radius: 10px;
+	text-align: center;
+	padding-top: 5px;
+}
+.like_image img{
+	width: 30px;
+	height: 30px;
 }
 .class-name{
     text-align: left;
@@ -77,10 +94,9 @@
 	font-size: 20px;
 }
 .current_menu2{
-	color:fuchsia;
-}
-.current_menu3{
-	color:black;
+	font-weight: bold;
+	color : gray;
+	font-size: 15px;
 }
 
 .like{
@@ -95,3 +111,17 @@
 	border: 0;
 	
 }
+.staR{
+  background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+  background-size: auto 100%;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  text-indent: -9999px;
+  border: 0;
+	margin: 0;
+}
+.staR.on{
+	background-position:0 0;
+	
+	}

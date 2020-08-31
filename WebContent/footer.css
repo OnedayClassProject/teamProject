@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+.foot{
+    width: 100%;
+    height: 270px;
+    background: #eaeaea;
+    text-align: center;
+}
+
+.footer_logo{
+	font-size: 35px;
+	padding-bottom: 20px;
+}
+.footer_menu{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.footer_menu div{
+	display: inline-block;
+	width: 120px;
+}
+.footer_detail div{
+	padding-bottom: 8px;
+}

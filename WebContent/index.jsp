@@ -153,84 +153,74 @@
                 </div>
             </div>
         </div>
+        
+        <div class="best_sub">Best Class</div>
         <div class="best-bar">
             <div class="swiper-container best-bar1">
                 <div class="swiper-wrapper best-wrapper">
+                <c:forEach var="list" items="${list }">
                     <div class="swiper-slide">
                         <div class="best-class">
-                            <div class="thumbnail">사진</div>
+                            <div class="thumbnail"><a href="ClassInfo.do?class_registrynum=${list.class_registrynum}">
+                            <img src="${pageContext.request.contextPath}/thumbnailImage/${list.thumbnail}"></a></div>
                             <div class="class-name">
-                                <div class="class-name1">카테고리 난이도</div>
-                                <div class="class-name2">클래스명</div>
-                                <div class="class-name3">업체명</div>
-                            </div>
-                        </div>
-                        <div class="best-class">
-                            <div class="thumbnail">사진</div>
-                            <div class="class-name">
-                                <div class="class-name1">카테고리 난이도</div>
-                                <div class="class-name2">클래스명</div>
-                                <div class="class-name3">업체명</div>
-                            </div>
-                        </div>
-                        <div class="best-class">
-                            <div class="thumbnail">사진</div>
-                            <div class="class-name">
-                                <div class="class-name1">카테고리 난이도</div>
-                                <div class="class-name2">클래스명</div>
-                                <div class="class-name3">업체명</div>
-                            </div>
-                        </div>
-                        <div class="best-class">
-                            <div class="thumbnail">사진</div>
-                            <div class="class-name">
-                                <div class="class-name1">카테고리 난이도</div>
-                                <div class="class-name2">클래스명</div>
-                                <div class="class-name3">업체명</div>
+                                <div class="class-name1">${list.category }</div>
+                                <div class="class-name2">${list.class_name }</div>
+                                <div class="class-name3">${list.class_company}</div>
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="best-class">
-                            <div class="thumbnail">사진2</div>
-                            <div class="class-name">
-                                <div class="class-name1">카테고리 난이도</div>
-                                <div class="class-name2">클래스명</div>
-                                <div class="class-name3">업체명</div>
-                            </div>
-                        </div>
-                        <div class="best-class">
-                            <div class="thumbnail">사진2</div>
-                            <div class="class-name">
-                                <div class="class-name1">카테고리 난이도</div>
-                                <div class="class-name2">클래스명</div>
-                                <div class="class-name3">업체명</div>
-                            </div>
-                        </div>
-                        <div class="best-class">
-                            <div class="thumbnail">사진2</div>
-                            <div class="class-name">
-                                <div class="class-name1">카테고리 난이도</div>
-                                <div class="class-name2">클래스명</div>
-                                <div class="class-name3">업체명</div>
-                            </div>
-                        </div>
-                        <div class="best-class">
-                            <div class="thumbnail">사진2</div>
-                            <div class="class-name">
-                                <div class="class-name1">카테고리 난이도</div>
-                                <div class="class-name2">클래스명</div>
-                                <div class="class-name3">업체명</div>
-                            </div>
-                        </div>
-                    </div>
+                    </c:forEach>
                 </div>
+					<!-- 페이징 -->
+					<div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <hr>
+        <div class="best_sub">Beginner Class</div>
+        <div class="best-bar">
+            <div class="swiper-container best-bar2">
+                <div class="swiper-wrapper best-wrapper">
+                <c:forEach var="list" items="${list }">
+                    <div class="swiper-slide">
+                        <div class="best-class">
+                            <div class="thumbnail"><img src="${pageContext.request.contextPath}/thumbnailImage/${list.thumbnail}"></div>
+                            <div class="class-name">
+                                <div class="class-name1">${list.category }</div>
+                                <div class="class-name2">${list.class_name }</div>
+                                <div class="class-name3">${list.class_company}</div>
+                            </div>
+                        </div>
+                    </div>
+                    </c:forEach>
+                </div>
+					<!-- 페이징 -->
+					<div class="swiper-pagination"></div>
             </div>
         </div>
     </div>
 </section>
 <footer>
     <div class="foot">
+    
+    <div class="footer_menu">
+    	<div>브랜드 소개</div>
+    	<div>가맹점문의</div>
+    	<div>오시는길</div>
+    	<div>고객의소리</div>
+    	<div>사이트이용약관</div>
+    	<div>개인정보처리방침</div>
+  	 </div>
+    	<div class="footer_logo">CLASS+</div>
+    	<div class="footer_detail">
+    		<div>사업자 등록번호 : 109-86-10925&nbsp;&nbsp;&nbsp;대표전화 : 02-2065-0776FAX : 02-2065-7161&nbsp;&nbsp;&nbsp;개설문의 : 1588-0738</div>
+
+			<div>서울 본사 : 서울특별시 마포구 월드컵북로6길 3 이노베이스 빌딩 4, 5층 (주)요거프레소</div>
+
+			<div>바리스타 아카데미 : 서울특별시 마포구 월드컵북로6길 3 이노베이스 빌딩 4층</div>
+
+			<div>COPYRIGHT(C) YOGERPRESSO. ALL RIGHTS RESERVED.</div>
+    	</div>
     </div>
 </footer>
 <div class="mini-down-menu">
@@ -249,10 +239,33 @@
     });
     var swiper2 = new Swiper('.best-bar1', {
         loop: true,
-        // autoplay: {
-        //     delay: 3000,
-        // },
-        speed: 1000
+       autoplay: {
+           delay: 3000,
+         }, 
+        speed: 1000,
+    	slidesPerView : 4, // 동시에 보여줄 슬라이드 갯수
+    	spaceBetween : 20, // 슬라이드간 간격
+    	slidesPerGroup : 4, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
+    	
+    	pagination : { // 페이징
+    		el : '.swiper-pagination',
+    		clickable : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
+    	}
+    });
+    var swiper3 = new Swiper('.best-bar2', {
+        loop: true,
+       autoplay: {
+           delay: 3000,
+         }, 
+        speed: 1000,
+    	slidesPerView : 4, // 동시에 보여줄 슬라이드 갯수
+    	spaceBetween : 20, // 슬라이드간 간격
+    	slidesPerGroup : 4, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
+    	
+    	pagination : { // 페이징
+    		el : '.swiper-pagination',
+    		clickable : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
+    	}
     });
 </script>
 </body>

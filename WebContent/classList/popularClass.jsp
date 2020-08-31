@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/classList/popularClass.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/classList/seoulClass.css">
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
@@ -20,13 +20,11 @@
            <div class="current_menu">인기클래스</div>
            <div class="line"></div>
                 <a href="${pageContext.request.contextPath}/popularClass.do" class="current_menu2"><div>인기클래스</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/beginnerClass.do"class="current_menu3"><div>입문클래스</div>
-                <div class="side_detail2">></div>
+               <a href="${pageContext.request.contextPath}/beginnerClass.do"class="current_menu2"><div>입문클래스</div>
                 </a>
             </div>
             <hr>
@@ -34,7 +32,6 @@
            
             <div class="my_main">
             <div>인기클래스
-            <c:out value="${fn:length(list) }" />
             </div>
             
          <c:if test="${count != 0}">
@@ -43,22 +40,27 @@
             <c:forEach var="classBean" items="${list}">
          
            		<div class="best-class">
-                 <div class="thumbnail">
-                 <a href="ClassInfo.do?class_registrynum="${classBean.class_registrynum} >
-            
-                 <img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}" width="150">
+                 <div class="thumbnail" >
+                 <a href="${pageContext.request.contextPath}/ClassInfo.do?class_registrynum=${classBean.class_registrynum}" >
+                 <img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}">
                  </a>
+                 <div class="like_image"> 
+                 <input type="hidden" value="${classBean.class_registrynum}" class="num">
+                  <img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
+                 <img class="like" src="${pageContext.request.contextPath}/images/star2.png">
+                 </div>
                  </div>
                      <div class="class-name">
                          <div class="class-name1">카테고리 : ${classBean.category}</div>
                          <div class="class-name2">클래스명 : ${classBean.class_name}</div>
-                         
-                         <div class="class-name3">
-                        	 <input type="hidden" value="${classBean.class_registrynum}" class="num">
-                         	평점  : <img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
-                         </div>
-                         
-                         
+                         	<input type="hidden" class="rating" value="${classBean.rating }">
+                         	<div class = "starRev">
+				        	<input class="staR" value="1">
+				        	<input class="staR" value="2">
+				        	<input class="staR" value="3">
+				        	<input class="staR" value="4">
+				        	<input class="staR" value="5">
+        					</div>
                     </div>
             	 </div>
         	   <c:if test="${j%3==0}">
@@ -70,7 +72,7 @@
         	 
             <div class="pageNum">
             	<c:forEach var = "i" begin="${startPage}" end ="${endPage}">
-            		<a href="${pageContext.request.contextPath}/popularClass.do?pageNum=${i}">[${i}]</a>
+            		<a href="${pageContext.request.contextPath}/popularClass.do?pageNum=${i}">${i}</a>
             	</c:forEach>
             </div>
                    
@@ -138,10 +140,20 @@
 			}
 		});
 		
-		for(var i = 0; i<"${fn:length(list)}"; i++){
+for(var i = 0; i<"${fn:length(list)}"; i++){
 			
-			var cla = $(".class-name3").eq(i);
+			var cla = $(".like_image").eq(i);
 			var num = cla.children(".num").val();
+			
+			var current = $(".starRev").eq(i);
+			var rating  = $(".rating").eq(i).val();
+			if(rating == "0"){
+				var rating1 = current.children(".staR").eq(rating)
+			} else {
+			var rating1 = current.children(".staR").eq(rating-1)
+				rating1.parent().children("input").removeClass("on");
+				rating1.addClass("on").prevAll("input").addClass("on");
+			}
 			
 			console.log("i = "+i);
 			console.log("num = "+num);
