@@ -292,8 +292,8 @@ public class StoreDAO {
 		try {
 			con = getConnection();
 			
-			String sql = "insert into class(storenum,class_name,category,class_company,location,level,time,personnel,content,thumbnail,price,sale,parking,reservation_count)"
-					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into class(storenum,class_name,category,class_company,location,level,time,personnel,content,thumbnail,price,sale,parking,reservation_count,rating)"
+					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, cb.getStorenum());
 			pstmt.setString(2, cb.getClass_name());
@@ -309,6 +309,7 @@ public class StoreDAO {
 			pstmt.setString(12, cb.getSale());
 			pstmt.setString(13, cb.getParking());
 			pstmt.setInt(14, 0);
+			pstmt.setInt(15, 0);
 			pstmt.executeUpdate();
 			
 		} catch (Exception e) {

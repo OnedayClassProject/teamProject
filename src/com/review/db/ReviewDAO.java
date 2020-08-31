@@ -63,4 +63,56 @@ public class ReviewDAO {
 		
 		return result;
 	}
+	public int reviewCount(int class_num) {
+		
+		int count = 0;
+	 try {
+		 String sql = "select count(*) from review where class_registrynum = ?";
+		 pstmt = con.prepareStatement(sql);
+		 pstmt.setInt(1, class_num);
+		 rs = pstmt.executeQuery();
+		 if(rs.next()) {
+			 count = rs.getInt(1);
+		 }
+	 } catch (Exception e) {
+		 e.printStackTrace();
+	 } finally {
+		resourceClose();
+	}
+		return count;
+	}
+public int sumRating(int class_num) {
+		
+		int sum = 0;
+	 try {
+		 String sql = "select sum(rating) from review where class_registrynum = ?";
+		 pstmt = con.prepareStatement(sql);
+		 pstmt.setInt(1, class_num);
+		 rs = pstmt.executeQuery();
+		 if(rs.next()) {
+			 sum = rs.getInt(1);
+		 }
+	 } catch (Exception e) {
+		 e.printStackTrace();
+	 } finally {
+		resourceClose();
+	}
+		return sum;
+	}
+	public void ratingUpdate(int class_num, int sum) {
+		
+		try {
+			String sql = "update class set rating = ? where class_registrynum = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, sum);
+			pstmt.setInt(2, class_num);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resourceClose();
+		}
+		
+	}
 }

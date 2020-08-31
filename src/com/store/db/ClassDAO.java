@@ -103,7 +103,7 @@ public class ClassDAO {
 			con = getConnection();
 			
 			// level 중 하(easy)를 가져옴 
-			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail "
+			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail,rating "
 					+ "from class "
 					+ "where level = 'easy' limit ?,?";
 			
@@ -121,6 +121,7 @@ public class ClassDAO {
 			cbean.setCategory(rs.getString("category"));
 			cbean.setLevel(rs.getString("level"));
 			cbean.setThumbnail(rs.getString("thumbnail"));
+			cbean.setRating(rs.getInt("rating"));
 			
 			// vector에 classbean 객체 저장 
 			v.add(cbean);
@@ -157,7 +158,7 @@ public class ClassDAO {
 		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
 		try{
 			con= getConnection();
-			String sql = "select class_registrynum,thumbnail,category,class_name from class order by reservation_count desc limit ?,?";
+			String sql = "select class_registrynum,thumbnail,category,class_name,class_company,rating from class order by reservation_count desc limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
@@ -168,6 +169,8 @@ public class ClassDAO {
 				cbean.setThumbnail(rs.getString("thumbnail"));
 				cbean.setCategory(rs.getString("category"));
 				cbean.setClass_name(rs.getString("class_name"));
+				cbean.setClass_company(rs.getString("class_company"));
+				cbean.setRating(rs.getInt("rating"));
 				
 				list.add(cbean);
 			}
@@ -223,7 +226,7 @@ public class ClassDAO {
 			con = getConnection();
 			
 			// location 중 '전남','전북'을 가져옴 
-			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail "
+			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail,rating"
 					+ "from class "
 					+ "where location LIKE '%전남%' or location LIKE '%전북%' limit ?,?";
 			
@@ -241,6 +244,7 @@ public class ClassDAO {
 			cbean.setCategory(rs.getString("category"));
 			cbean.setLevel(rs.getString("level"));
 			cbean.setThumbnail(rs.getString("thumbnail"));
+			cbean.setRating(rs.getInt("rating"));
 			
 			// vector에 classbean 객체 저장 
 			v.add(cbean);
@@ -296,7 +300,7 @@ public class ClassDAO {
 			con = getConnection();
 			
 			// location 중 '충남','충북'을 가져옴 
-			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail "
+			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail,rating"
 					+ "from class "
 					+ "where location LIKE '%충남%' or location LIKE '%충북%' limit ?,?";
 			
@@ -314,6 +318,7 @@ public class ClassDAO {
 			cbean.setCategory(rs.getString("category"));
 			cbean.setLevel(rs.getString("level"));
 			cbean.setThumbnail(rs.getString("thumbnail"));
+			cbean.setRating(rs.getInt("rating"));
 			
 			// vector에 classbean 객체 저장 
 			v.add(cbean);
@@ -368,7 +373,7 @@ public class ClassDAO {
 			con = getConnection();
 			
 			// location 중 '강원'을 가져옴 
-			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail "
+			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail,rating"
 					+ "from class "
 					+ "where location LIKE '%강원%' limit ?,?";
 			
@@ -386,6 +391,7 @@ public class ClassDAO {
 			cbean.setCategory(rs.getString("category"));
 			cbean.setLevel(rs.getString("level"));
 			cbean.setThumbnail(rs.getString("thumbnail"));
+			cbean.setRating(rs.getInt("rating"));
 			
 			// vector에 classbean 객체 저장 
 			v.add(cbean);
@@ -441,7 +447,7 @@ public class ClassDAO {
 			con = getConnection();
 			
 			// location 중 '경남','경북'을 가져옴 
-			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail "
+			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail,rating "
 					+ "from class "
 					+ "where location LIKE '%경남%' or location LIKE '%경북%' limit ?,?";
 			
@@ -459,6 +465,7 @@ public class ClassDAO {
 			cbean.setCategory(rs.getString("category"));
 			cbean.setLevel(rs.getString("level"));
 			cbean.setThumbnail(rs.getString("thumbnail"));
+			cbean.setRating(rs.getInt("rating"));
 			
 			// vector에 classbean 객체 저장 
 			v.add(cbean);
@@ -514,7 +521,7 @@ public class ClassDAO {
 			con = getConnection();
 			
 			// location 중 '제주'를 가져옴 
-			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail "
+			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail,rating "
 					+ "from class "
 					+ "where location LIKE '%제주%' limit ?,?";
 			
@@ -532,6 +539,7 @@ public class ClassDAO {
 			cbean.setCategory(rs.getString("category"));
 			cbean.setLevel(rs.getString("level"));
 			cbean.setThumbnail(rs.getString("thumbnail"));
+			cbean.setRating(rs.getInt("rating"));
 			
 			// vector에 classbean 객체 저장 
 			v.add(cbean);
@@ -570,7 +578,7 @@ public class ClassDAO {
 		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
 		try{
 			con= getConnection();
-			String sql = "select class_registrynum,thumbnail,category,class_name from class where location LIKE '%서울%' limit ?,?";
+			String sql = "select class_registrynum,thumbnail,category,class_name,rating from class where location LIKE '%서울%' limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
@@ -581,6 +589,7 @@ public class ClassDAO {
 				cbean.setThumbnail(rs.getString("thumbnail"));
 				cbean.setCategory(rs.getString("category"));
 				cbean.setClass_name(rs.getString("class_name"));
+				cbean.setRating(rs.getInt("rating"));
 				
 				list.add(cbean);
 			}
@@ -617,7 +626,7 @@ public class ClassDAO {
 		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
 		try{
 			con= getConnection();
-			String sql = "select class_registrynum,thumbnail,category,class_name from class where location LIKE '%경기%' limit ?,?";
+			String sql = "select class_registrynum,thumbnail,category,class_name,rating from class where location LIKE '%경기%' limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
@@ -628,6 +637,7 @@ public class ClassDAO {
 				cbean.setThumbnail(rs.getString("thumbnail"));
 				cbean.setCategory(rs.getString("category"));
 				cbean.setClass_name(rs.getString("class_name"));
+				cbean.setRating(rs.getInt("rating"));
 				
 				list.add(cbean);
 			}
@@ -664,7 +674,7 @@ public class ClassDAO {
 		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
 		try{
 			con= getConnection();
-			String sql = "select class_registrynum,thumbnail,category,class_name from class where location LIKE '%부산%' limit ?,?";
+			String sql = "select class_registrynum,thumbnail,category,class_name,rating from class where location LIKE '%부산%' limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
@@ -675,6 +685,7 @@ public class ClassDAO {
 				cbean.setThumbnail(rs.getString("thumbnail"));
 				cbean.setCategory(rs.getString("category"));
 				cbean.setClass_name(rs.getString("class_name"));
+				cbean.setRating(rs.getInt("rating"));
 				
 				list.add(cbean);
 			}
@@ -710,7 +721,7 @@ public class ClassDAO {
 		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
 		try{
 			con= getConnection();
-			String sql = "select class_registrynum,thumbnail,category,class_name from class where location LIKE '%대구%' limit ?,?";
+			String sql = "select class_registrynum,thumbnail,category,class_name,rating from class where location LIKE '%대구%' limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
@@ -721,6 +732,7 @@ public class ClassDAO {
 				cbean.setThumbnail(rs.getString("thumbnail"));
 				cbean.setCategory(rs.getString("category"));
 				cbean.setClass_name(rs.getString("class_name"));
+				cbean.setRating(rs.getInt("rating"));
 				
 				list.add(cbean);
 			}
@@ -752,8 +764,25 @@ public class ClassDAO {
 			}
 			return count;
 		}//popularCount 硫붿냼�뱶 �걹
-			
-
+		
+	
+	public int diffuserCount(){
+		int count=0;
+		try{
+			con=getConnection();
+			String sql= "select count(*) from class where category='디퓨저'";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				count=rs.getInt(1);
+				}
+		}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				resourceClose();
+			}
+			return count;
+		}
 	public ArrayList<ClassBean> diffuserClassList(int startRow,int endRow){
 		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
 		//하나의 레코드를 저장할 객체 선언
@@ -762,7 +791,7 @@ public class ClassDAO {
 			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
 			con=getConnection();
 			//쿼리준비 : 전체 차량 레코드 검색
-			String sql="select class_registrynum,thumbnail,category,class_name from class where category='디퓨저' limit ?,?";
+			String sql="select class_registrynum,thumbnail,category,class_name,rating from class where category='디퓨저' limit ?,?";
 			//쿼리를 실행할 수 있는 객체 선언
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
@@ -776,6 +805,8 @@ public class ClassDAO {
 				bean.setThumbnail(rs.getString("thumbnail"));
 				bean.setCategory(rs.getString("category"));
 				bean.setClass_name(rs.getString("class_name"));
+				bean.setRating(rs.getInt("rating"));
+				
 				list.add(bean);
 			}			
 
@@ -794,7 +825,7 @@ public class ClassDAO {
 		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
 		try{
 			con= getConnection();
-			String sql = "select class_registrynum,thumbnail,category,class_name from class where location LIKE '%서울%' limit ?,?";
+			String sql = "select class_registrynum,thumbnail,category,class_name,rating from class where location LIKE '%서울%' limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
@@ -805,6 +836,7 @@ public class ClassDAO {
 				cbean.setThumbnail(rs.getString("thumbnail"));
 				cbean.setCategory(rs.getString("category"));
 				cbean.setClass_name(rs.getString("class_name"));
+				cbean.setRating(rs.getInt("rating"));
 				
 				list.add(cbean);
 			}
@@ -816,6 +848,24 @@ public class ClassDAO {
 		
 		return list;
 	}
+	
+	public int candleCount(){
+		int count=0;
+		try{
+			con=getConnection();
+			String sql= "select count(*) from class where category='캔들'";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				count=rs.getInt(1);
+				}
+		}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				resourceClose();
+			}
+			return count;
+		}
 	public ArrayList<ClassBean> candleClassList(int startRow,int endRow){
 		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
 		//하나의 레코드를 저장할 객체 선언
@@ -824,7 +874,7 @@ public class ClassDAO {
 			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
 			con=getConnection();
 			//쿼리준비 : 전체 차량 레코드 검색
-			String sql="select class_registrynum,thumbnail,category,class_name from class where category='캔들' limit ?,?";
+			String sql="select class_registrynum,thumbnail,category,class_name,rating from class where category='캔들' limit ?,?";
 			//쿼리를 실행할 수 있는 객체 선언
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
@@ -838,6 +888,8 @@ public class ClassDAO {
 				bean.setThumbnail(rs.getString("thumbnail"));
 				bean.setCategory(rs.getString("category"));
 				bean.setClass_name(rs.getString("class_name"));
+				bean.setRating(rs.getInt("rating"));
+				
 				list.add(bean);
 			}			
 		}catch(Exception e){
@@ -847,7 +899,23 @@ public class ClassDAO {
 		}
 		return list;
 	}//candleClassList()메소드 끝
-	
+	public int cookingCount(){
+		int count=0;
+		try{
+			con=getConnection();
+			String sql= "select count(*) from class where category='요리'";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				count=rs.getInt(1);
+				}
+		}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				resourceClose();
+			}
+			return count;
+		}
 	public ArrayList<ClassBean> cookingClassList(int startRow,int endRow){
 		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
 		//하나의 레코드를 저장할 객체 선언
@@ -856,7 +924,7 @@ public class ClassDAO {
 			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
 			con=getConnection();
 			//쿼리준비 : 전체 차량 레코드 검색
-			String sql="select class_registrynum,thumbnail,category,class_name from class where category='요리' limit ?,?";
+			String sql="select class_registrynum,thumbnail,category,class_name,rating from class where category='요리' limit ?,?";
 			//쿼리를 실행할 수 있는 객체 선언
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
@@ -870,6 +938,8 @@ public class ClassDAO {
 				bean.setThumbnail(rs.getString("thumbnail"));
 				bean.setCategory(rs.getString("category"));
 				bean.setClass_name(rs.getString("class_name"));
+				bean.setRating(rs.getInt("rating"));
+				
 				list.add(bean);
 			}			
 		}catch(Exception e){
@@ -879,7 +949,23 @@ public class ClassDAO {
 		}
 		return list;
 	}//cookingClassList()메소드 끝
-	
+	public int bakingCount(){
+		int count=0;
+		try{
+			con=getConnection();
+			String sql= "select count(*) from class where category='베이킹'";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				count=rs.getInt(1);
+				}
+		}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				resourceClose();
+			}
+			return count;
+		}
 	public ArrayList<ClassBean> bakingClassList(int startRow,int endRow){
 		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
 		//하나의 레코드를 저장할 객체 선언
@@ -888,7 +974,7 @@ public class ClassDAO {
 			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
 			con=getConnection();
 			//쿼리준비 : 전체 차량 레코드 검색
-			String sql="select class_registrynum,thumbnail,category,class_name from class where category='베이킹' limit ?,?";
+			String sql="select class_registrynum,thumbnail,category,class_name,rating from class where category='베이킹' limit ?,?";
 			//쿼리를 실행할 수 있는 객체 선언
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
@@ -902,6 +988,8 @@ public class ClassDAO {
 				bean.setThumbnail(rs.getString("thumbnail"));
 				bean.setCategory(rs.getString("category"));
 				bean.setClass_name(rs.getString("class_name"));
+				bean.setRating(rs.getInt("rating"));
+				
 				list.add(bean);
 			}			
 		}catch(Exception e){
@@ -911,7 +999,23 @@ public class ClassDAO {
 		}
 		return list;
 	}//bakingClassList()메소드 끝
-	
+	public int potteryCount(){
+		int count=0;
+		try{
+			con=getConnection();
+			String sql= "select count(*) from class where category='도자기'";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				count=rs.getInt(1);
+				}
+		}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				resourceClose();
+			}
+			return count;
+		}
 	public ArrayList<ClassBean> potteryClassList(int startRow,int endRow){
 		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
 		//하나의 레코드를 저장할 객체 선언
@@ -920,7 +1024,7 @@ public class ClassDAO {
 			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
 			con=getConnection();
 			//쿼리준비 : 전체 차량 레코드 검색
-			String sql="select class_registrynum,thumbnail,category,class_name from class where category='도자기' limit ?,?";
+			String sql="select class_registrynum,thumbnail,category,class_name,rating from class where category='도자기' limit ?,?";
 			//쿼리를 실행할 수 있는 객체 선언
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
@@ -934,6 +1038,8 @@ public class ClassDAO {
 				bean.setThumbnail(rs.getString("thumbnail"));
 				bean.setCategory(rs.getString("category"));
 				bean.setClass_name(rs.getString("class_name"));
+				bean.setRating(rs.getInt("rating"));
+				
 				list.add(bean);
 			}			
 		}catch(Exception e){
@@ -943,7 +1049,23 @@ public class ClassDAO {
 		}
 		return list;
 	}//potteryClassList()메소드 끝
-	
+	public int perfumeCount(){
+		int count=0;
+		try{
+			con=getConnection();
+			String sql= "select count(*) from class where category='향수'";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				count=rs.getInt(1);
+				}
+		}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				resourceClose();
+			}
+			return count;
+		}
 	public ArrayList<ClassBean> perfumeClassList(int startRow,int endRow){
 		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
 		//하나의 레코드를 저장할 객체 선언
@@ -952,7 +1074,7 @@ public class ClassDAO {
 			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
 			con=getConnection();
 			//쿼리준비 : 전체 차량 레코드 검색
-			String sql="select class_registrynum,thumbnail,category,class_name from class where category='향수' limit ?,?";
+			String sql="select class_registrynum,thumbnail,category,class_name,rating from class where category='향수' limit ?,?";
 			//쿼리를 실행할 수 있는 객체 선언
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
@@ -966,6 +1088,8 @@ public class ClassDAO {
 				bean.setThumbnail(rs.getString("thumbnail"));
 				bean.setCategory(rs.getString("category"));
 				bean.setClass_name(rs.getString("class_name"));
+				bean.setRating(rs.getInt("rating"));
+				
 				list.add(bean);
 			}			
 		}catch(Exception e){
@@ -975,7 +1099,23 @@ public class ClassDAO {
 		}
 		return list;
 	}//perfumeClassList()메소드 끝
-	
+	public int soapCount(){
+		int count=0;
+		try{
+			con=getConnection();
+			String sql= "select count(*) from class where category='비누'";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				count=rs.getInt(1);
+				}
+		}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				resourceClose();
+			}
+			return count;
+		}
 	public ArrayList<ClassBean> soapClassList(int startRow,int endRow){
 		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
 		//하나의 레코드를 저장할 객체 선언
@@ -984,7 +1124,7 @@ public class ClassDAO {
 			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
 			con=getConnection();
 			//쿼리준비 : 전체 차량 레코드 검색
-			String sql="select class_registrynum,thumbnail,category,class_name from class where category='비누' limit ?,?";
+			String sql="select class_registrynum,thumbnail,category,class_name,rating from class where category='비누' limit ?,?";
 			//쿼리를 실행할 수 있는 객체 선언
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
@@ -998,6 +1138,8 @@ public class ClassDAO {
 				bean.setThumbnail(rs.getString("thumbnail"));
 				bean.setCategory(rs.getString("category"));
 				bean.setClass_name(rs.getString("class_name"));
+				bean.setRating(rs.getInt("rating"));
+				
 				list.add(bean);
 			}			
 		}catch(Exception e){

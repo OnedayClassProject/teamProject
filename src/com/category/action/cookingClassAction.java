@@ -33,7 +33,7 @@ public class cookingClassAction implements CommandHandler {
 		int endRow = pageSize;
 		
 		ClassDAO cado = new ClassDAO();
-		int count = cdao.popularCount();
+		int count = cdao.cookingCount();
 	 
 		int pageCount = count / pageSize + (count%pageSize == 0? 0:1);
 	

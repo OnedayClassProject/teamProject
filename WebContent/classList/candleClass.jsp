@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/classList/candleClass.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/classList/seoulClass.css">
 </head>
 <body><jsp:include page="../header.jsp"/>
 <section>
@@ -19,45 +19,38 @@
            <div class="current_menu">캔들클래스</div>
            <div class="line"></div>
     
-            <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/diffuserClass.do" class='current_menu3'><div>디퓨저클래스</div>
-                <div class="side_detail2">></div>
+             <div class="side_detail">
+               <a href="${pageContext.request.contextPath}/diffuserClass.do" class='current_menu2'><div>디퓨저</div>
                 </a>
             </div>
             <hr>
              <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/candleClass.do"class="current_menu2"><div>캔들클래스</div>
-                <div class="side_detail2">></div>
+               <a href="${pageContext.request.contextPath}/candleClass.do"class="current_menu2"><div>캔들</div>
                 </a>
             </div>
             <hr>
              <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/cookingClass.do"class="current_menu3"><div>요리클래스</div>
-                <div class="side_detail2">></div>
+               <a href="${pageContext.request.contextPath}/cookingClass.do"class="current_menu2"><div>요리</div>
                 </a>
             </div>
             <hr>
              <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/bakingClass.do"class="current_menu3"><div>베이킹클래스</div>
-                <div class="side_detail2">></div>
+               <a href="${pageContext.request.contextPath}/bakingClass.do"class="current_menu2"><div>베이킹</div>
                 </a>
             </div>
             <hr>
              <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/potteryClass.do"class="current_menu3"><div>도자기클래스</div>
-                <div class="side_detail2">></div>
+               <a href="${pageContext.request.contextPath}/potteryClass.do"class="current_menu2"><div>도자기</div>
                 </a>
             </div>
             <hr>
              <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/perfumeClass.do"class="current_menu3"><div>향수클래스</div>
-                <div class="side_detail2">></div>
+               <a href="${pageContext.request.contextPath}/perfumeClass.do"class="current_menu2"><div>향수</div>
                 </a>
             </div>
             <hr>
              <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/soapClass.do"class="current_menu3"><div>비누클래스</div>
-                <div class="side_detail2">></div>
+               <a href="${pageContext.request.contextPath}/soapClass.do"class="current_menu2"><div>비누</div>
                 </a>
             </div>
             <hr>
@@ -70,20 +63,28 @@
 
             <c:forEach var="classBean" items="${list}">
          
-           		<div class="candle-class">
-                 <div class="thumbnail">
-                 <a href="ClassInfo.do?class_registrynum="${classBean.class_registrynum} >
-            
-                 <img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}" width="150">
+           	<div class="best-class">
+                 <div class="thumbnail" >
+                 <a href="${pageContext.request.contextPath}/ClassInfo.do?class_registrynum=${classBean.class_registrynum}" >
+                 <img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}">
                  </a>
+                 <div class="like_image"> 
+                 <input type="hidden" value="${classBean.class_registrynum}" class="num">
+                  <img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
+                 <img class="like" src="${pageContext.request.contextPath}/images/star2.png">
+                 </div>
                  </div>
                      <div class="class-name">
                          <div class="class-name1">카테고리 : ${classBean.category}</div>
                          <div class="class-name2">클래스명 : ${classBean.class_name}</div>
-                         <div class="class-name3">
-                            <input type="hidden" value="${classBean.class_registrynum}" class="num">
-               		             평점  : <img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
-                         </div>
+                         	<input type="hidden" class="rating" value="${classBean.rating }">
+                         	<div class = "starRev">
+				        	<input class="staR" value="1">
+				        	<input class="staR" value="2">
+				        	<input class="staR" value="3">
+				        	<input class="staR" value="4">
+				        	<input class="staR" value="5">
+        					</div>
                     </div>
             	 </div>
         	   <c:if test="${j%3==0}">
@@ -163,16 +164,26 @@
 			}
 		});
 		      
-      for(var i = 0; i<"${fn:length(list)}"; i++){
-         
-         var cla = $(".class-name3").eq(i);
-         var num = cla.children(".num").val();
-         
-         console.log("i = "+i);
-         console.log("num = "+num);
-         
-         like();
-      }
+for(var i = 0; i<"${fn:length(list)}"; i++){
+			
+			var cla = $(".like_image").eq(i);
+			var num = cla.children(".num").val();
+			
+			var current = $(".starRev").eq(i);
+			var rating  = $(".rating").eq(i).val();
+			if(rating == "0"){
+				var rating1 = current.children(".staR").eq(rating)
+			} else {
+			var rating1 = current.children(".staR").eq(rating-1)
+				rating1.parent().children("input").removeClass("on");
+				rating1.addClass("on").prevAll("input").addClass("on");
+			}
+			
+			console.log("i = "+i);
+			console.log("num = "+num);
+			
+			like();
+		}
       function like(){
       $.ajax({
          type : "post",

@@ -1,23 +1,61 @@
 #img {
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
+}
+.class_wrap{
+	width: 800px;
+	margin: auto;
+	padding-top: 70px;
+}
+.class_title{
+	height:40px;
+	width: 100px;
+	background-color: #f5f5f5;
+	line-height: 40px;
+	text-align: center;
+}
+
+.class_menu div{
+	display: inline-block;
+	vertical-align: middle;
+}
+.class_content{
+	height: 454px;
+	line-height: 454px;
+}
+.class_img{
+	background-color: #f5f5f5;
+	height: 300px;
+	line-height: 300px;
+}
+.class_input{
+	width: 50px;
+}
+.class_buttons{
+	text-align: center;
+	margin-top: 20px;
+}
+.class_buttons button{
+	height: 30px;
+	width: 100px;
+	border-radius: 10px;
+	border: 1px solid lightgray;
 }
 .file_box label{
     display: inline-block;
-    background: black;
-    color: white;
+    color: black;
     font-size: inherit;
     line-height: normal;
     vertical-align: middle;
     cursor: pointer;
-    border: 1px solid black;
+    border: 2px dotted black;
     border-radius: 5px;
     -webkit-transition: background-color 0.2s;
     transition: background-color 0.2s;
     width: 100px;
-    height: 30px;
+    height: 150px;
     text-align: center;
-    line-height: 30px;
+    line-height: 150px;
 }
 .file_box input[type="file"] {
     position: absolute;

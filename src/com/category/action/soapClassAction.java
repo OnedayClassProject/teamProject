@@ -33,7 +33,7 @@ public class soapClassAction implements CommandHandler{
 		int endRow = pageSize;
 		
 		ClassDAO cado = new ClassDAO();
-		int count = cdao.popularCount();
+		int count = cdao.soapCount();
 	 
 		int pageCount = count / pageSize + (count%pageSize == 0? 0:1);
 	

@@ -17,6 +17,14 @@ public class ClassBean {
 	private String sale;
 	private String parking;
 	private int reservation_count;
+	private int rating;
+	
+	public int getRating() {
+		return rating;
+	}
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
 	public int getStorenum() {
 		return storenum;
 	}

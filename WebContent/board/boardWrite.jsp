@@ -90,7 +90,7 @@
 	        	  $(this).parent().children("input").removeClass("on");
 	        	  $(this).addClass("on").prevAll("input").addClass("on");
 	        	  $(".st").empty();
-	        	  $(".st").append("<input type='text' name='rating' value='"+star+"' >");
+	        	  $(".st").append("<input type='hidden' name='rating' value='"+star+"' >");
 	        	  
 	        	  return false;
 	       })
@@ -110,34 +110,52 @@
         <input type="hidden" name="class_regisitrynum" value="1"> 
         <!-- 업체 번호 -->
         <input type="hidden" name="storenum" value="1">
-        
-        <div>업체이름 <input type="hidden" name="company_name" value="가죽공방"></div>
-        <div>클래스명 <input type="hidden" name="class_name" value="가죽지갑만들기"></div>
-        <div>회원이메일
-        	<div>${sessionScope.userid }</div>
+        <div class="review_wrap">
+        <div class="review_title">공방이름 <input type="hidden" name="company_name" value="가죽공방"></div>
+        <div>가죽공방</div>
+       	</div>
+       	<div class="review_wrap">
+        	<div class="review_title">클래스명 <input type="hidden" name="class_name" value="가죽지갑만들기"></div>
+        	<div>가죽지갑만들기</div>
         </div>
-        <div>수업참가날짜<input type="hidden" name="reservation_date" value="2020.10.01"></div>
+        <div class="review_wrap">
+        <div class="review_title">회원이메일</div>
+        <div>email넣기</div>
+        </div>
+        <div class="review_wrap">
+       	 	<div class="review_title">수업참가날짜<input type="hidden" name="reservation_date" value="2020.10.01"></div>
+        	<div>2020-21-23 날짜넣기</div>
+        </div>
+        <div class="review_wrap">
+        <div class="review_title">별점</div>
         <div class = "starRev">
         	<input class="staR" value="1">
         	<input class="staR" value="2">
         	<input class="staR" value="3">
         	<input class="staR" value="4">
         	<input class="staR" value="5">
-			<div class="st"><input type='text' name='rating' id="rating"></div>
+			<div class="st"><input type="hidden" name='rating' id="rating"></div>
         </div>
-        <div>후기</div>
-        <textarea id="p_content" name="content"></textarea>
-        <div>대표이미지</div>
+        </div>
+        <div class="review_wrap">
+        <div class="review_title class_reviewtitle">후기내용</div>
+        <div><textarea id="p_content" name="content"></textarea></div>
+        </div>
+        <div class="review_wrap">
+        <div class="review_title class_reviewthumb">대표이미지</div>
         <div class="file_box">
-            <label for="input_img">IMAGE FILE</label>
+            <label for="input_img">+</label>
             <input type="file" accept="image/jpg,image/jpeg,image/png,image/gif," name="image" id="input_img"
                    onchange="fileCheck(this)">
         </div>
         <div class="imgMain">
             <img id="img"/>
         </div>
+        </div>
+        <div class="review_buttons">
         <button type="button" id ="review_create">등록</button>
         <button type="button">취소</button>
+        </div>
     </div>
     </form>
 </section>
