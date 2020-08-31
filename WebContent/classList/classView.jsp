@@ -46,7 +46,7 @@
 				var $person = $(".person_count").children('.time_detail2');
 				var num1 =	$person.children('.person').text();
 				var num3 = Number($('.person_num').val());
-				if(num3 < ${cb.personnel}){
+				if(num3 < '${cb.personnel}'){
 				var num4 = num3+1;
 				console.log(num4)
 				$person.children('.person').text(num4+"/${cb.personnel}");
@@ -84,11 +84,13 @@
 <!-- <div id="calander_backcolor"></div> -->
 <jsp:include page="../header.jsp"/>
 <section>
+
 	<div class="classview_wrap">
 			<div class="class_wrap2">
 				<div class="class_wrap3">
 				<div class="main_pic"><img src="${pageContext.request.contextPath}/thumbnailImage/${cb.thumbnail}"></div>			
 				<div>소개</div>
+				<input type="hidden" id="class_registrynum" value="${cb.class_registrynum }">
 				<div class="contents">${cb.content }</div>
 				<div id="map" style="width:500px;height:400px;"></div>
 				<hr>
@@ -155,7 +157,7 @@
 						</div>
 					</div>
 					<div class="reserve_btn">
-					<button class="reserve_btn2">예약하기</button>
+					<button class="reserve_btn2" type="button">예약하기</button>
 					</div>
 				</div>
 			</div>
@@ -244,13 +246,11 @@
              	<div>
              	<div>인원수</div>
              	<input type="button" value="+" class="person_plus">
-             	<input type="text" value="1" class="person_num" readonly="readonly">
+             	<input type="text" value="1" name="person_num" class="person_num" readonly="readonly">
              	<input type="button" value="-" class="person_sub">
              	<div class="reserve_date">2020-08-27 인원 3명</div>
              	<div class="sum_price"></div>
-             	<div class="pay_button">
-             		결제하기
-             	</div>
+             	<div class="pay_button" onclick="pay()"> 결제하기</div>
 				<div class="back_button">이전</div>           
              	</div>
              </div>
@@ -272,6 +272,7 @@
 			
 			</div>
 	</div>
+
 </section>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=095bf2bab670dc21291d69e69ecac288&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript">
@@ -478,7 +479,39 @@
 			$('.reserve_date').text(today + " "+ per + "명");
 			var  price = $person.children('.per_price').text();
 			$('.sum_price').text(price);
+			
+			
 		}
+	    
+	    function pay(){
+	    	var person_num = $(".person_num").val();
+	    	var reserve_date = $("#dateInput").text();
+	    	var sum_price = $(".sum_price").text();
+	    	var class_registrynum = $("#class_registrynum").val();
+	    	var data = 0;
+	    	var time = $(".person_count").children(".time_detail1").text();
+	    	
+	    	
+	    	
+	    	if(sum_price != ""){
+		    	$.ajax({
+		    		type : "post",
+		    		url : "${pageContext.request.contextPath}/classCheck.do",
+		    		data : {num : data},
+		    		dataType : "text",
+		    		success : function(data,status) {
+						if(data == 1){
+							location.href="${pageContext.request.contextPath}/classPay.do?class_registrynum="+class_registrynum+"&person_num="+person_num+"&reserve_date="+reserve_date+"&sum_price="+sum_price+"&time="+time; 
+						}
+					},
+					error : function(data,status){
+						alert("에러가 발생했습니다.");
+					}
+		    	});
+	    	}else{
+	    		alert("날짜를 선택해주세요");
+	    	}
+	    }
 </script>
 </body>
 </html>
