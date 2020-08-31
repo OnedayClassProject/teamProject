@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +28,7 @@
 						<div>예약자</div>
 						<input type="text" value="${mbean.username }"> 
 						<div>연락처</div>
-						<input type="text" value="${mbean.phone }">
+						<input type="text" class="phone" value="${mbean.phone }">
 						<div>요청사항</div>
 						<textarea rows="10" cols="10"></textarea>
 					</div>
@@ -42,30 +44,38 @@
 					<input type="text" value="0" class="point">
 					<input type="button" class="all_point2"value="사용">
 					<div>보유중인 적립금</div>
-					<div class='all_point'>3000</div>
+					<div class='all_point'>${mbean.point }</div>
 					<div>결제수단</div>
-					<input type="radio" name="pay_met" value="card">신용카드	
-					<input type="radio" name="pay_met" value="samsung">삼성페이	
-					<input type="radio" name="pay_met" value="trans">실시간계좌이체	
-					<input type="radio" name="pay_met" value="vbank">가상계좌	
-					<input type="radio" name="pay_met" value="phone">휴대폰소액결제	
+					<input type="radio" name="pay_met" class="pay_met" value="card" checked>신용카드	
+					<input type="radio" name="pay_met" class="pay_met" value="samsung">삼성페이	
+					<input type="radio" name="pay_met" class="pay_met" value="trans">실시간계좌이체	
+					<input type="radio" name="pay_met" class="pay_met" value="vbank">가상계좌	
+					<input type="radio" name="pay_met" class="pay_met" value="phone">휴대폰소액결제	
 				</div>
 				<div class="reserve_bar">
 					<div class="category_tag">카테고리 ${cbean.category }</div>
 					<div class="className_tag">클래스명 ${cbean.class_name }</div>
 					<div class="storeName_tag">업체명 ${cbean.class_company }</div>
 					<div class="price_tag">
-						<div>할인율</div>
-						<div>할인가격</div>
-						<div>${sum_price }</div>
-						<input type="hidden" class='sum_price2'>
-						<div class="sum_price"></div>
-					</div>
-					<div class="pay_btn">
-					<button class="pay_btn2">결제하기</button>
+						<c:if test="${mbean.membership eq 'vip' }">
+							<div>할인율</div>
+							<div>할인가격</div>
+							<div>${sum_price }</div>
+							<input type="hidden" class='sum_price2'>
+							<div class="sum_price"></div>
+						</c:if>
+						<c:if test="${mbean.membership eq 'basic' }">
+							<div>가격</div>
+							<div class="sum_price"></div>
+							<input type="hidden" class='sum_price2'>
+						</c:if>
 					</div>
 				</div>
+				<div class="pay_btn">
+					<button class="pay_btn2">결제하기</button>
+				</div>
 			</div>
+		</div>
 </section>
 <script>
 $(function () {
@@ -99,17 +109,39 @@ $(function () {
 			}
 			
 	});
-
+	
+	
+	
 	$(".pay_btn2").on("click", function() {
 		// Set a same-site cookie for first-party contexts
 		document.cookie = 'cookie1=value1; SameSite=Lax';
 		// Set a cross-site cookie for third-party contexts
 		document.cookie = 'Sec-Fetch-Site=value2; SameSite=None; Secure';
-		
+		var pay_met = document.getElementsByName("pay_met");
+		for(var i=0;i<pay_met.length;i++){
+			if(pay_met[i].checked == true){
+				var pay_check = pay_met[i].value;
+			}
+		}
+		console.log(pay_check);
+		var class_name = '${cbean.class_name}'; // 클래스이름
+		var reservation_category = '${cbean.category}'; //클래스 카테고리
+		var reservation_personnel = '${person_num}'; // 예약 인원
+		var reservation_date = '${reserve_date}'; // 수업 날짜
+		var reservation_price = $(".sum_price").text(); // 결제 금액
+		var reservation_pay = pay_check; // 결제 수단
+		var reservation_tel = $(".phone").val(); // 예약자 연락처
+		var reservation_location =' ${cbean.location}'; // 클래스 위치
+		var point = reservation_price* 0.02; // 적립될 포인트
+		var class_registrynum = ${cbean.class_registrynum}; // 클래스번호
 	var IMP = window.IMP; // 생략가능
 	IMP.init('imp12575424');
 	// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 	// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+	
+	
+	
+	
 	IMP.request_pay({
 	pg: 'inicis', // version 1.1.0부터 지원.
 	/*
@@ -123,7 +155,10 @@ $(function () {
 	'syrup':시럽페이
 	'paypal':페이팔
 	*/
-	pay_method: 'trans',
+	
+	
+	
+	pay_method: pay_check ,
 	/*
 	'samsung':삼성페이,
 	'card':신용카드,
@@ -139,15 +174,16 @@ $(function () {
 	참고하세요.
 	나중에 포스팅 해볼게요.
 	*/
+	
 	name: '주문명:결제테스트',
 	//결제창에서 보여질 이름
-	amount: 1000,
+	amount:/* $(".sum_price").text() */ 1000,
 	//가격
-	buyer_email: 'iamport@siot.do',
-	buyer_name: '구매자이름',
-	buyer_tel: '010-1234-5678',
-	buyer_addr: '서울특별시 강남구 삼성동',
-	buyer_postcode: '123-456',
+	buyer_email: '${mbean.useremail}',
+	buyer_name: '${mbean.username}',
+	buyer_tel: '${mbean.phone}',
+	buyer_addr: '${mbean.address}',
+	buyer_postcode: '${mbean.postcode}',
 	/*
 	모바일 결제시,
 	결제가 끝나고 랜딩되는 URL을 지정
@@ -161,10 +197,31 @@ $(function () {
 	msg += '상점 거래ID : ' + rsp.merchant_uid;
 	msg += '결제 금액 : ' + rsp.paid_amount;
 	msg += '카드 승인번호 : ' + rsp.apply_num;
+	
 		$.ajax({
 			type:'post',
 			url:'${pageContext.request.contextPath}/payAction.do',
-			dataType:{클래스명,예약카테고리,예약인원,예약날짜,예약가격,예약결제수단, 적립포인트,등록번호}
+			dataType: "text",
+			data : {
+				class_name : class_name,
+				reservation_category : reservation_category,
+				reservation_personnel : reservation_personnel,
+				reservation_date : reservation_date,
+				reservation_price : reservation_price,
+				reservation_pay : reservation_pay,
+				reservation_tel : reservation_tel,
+				reservation_location : reservation_location,
+				point : point,
+				class_registrynum : class_registrynum
+			},
+			success : function(data,status){
+				if(data == 1){
+					location.href = "${pageContext.request.contextPath}/payFinish.do";
+				}
+			},
+			error : function(data,status){
+				alert("에러가 발생했습니다.");
+			}
 		})
 	} else {
 	var msg = '결제에 실패하였습니다.';
