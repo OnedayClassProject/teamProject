@@ -93,10 +93,19 @@
                  <img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}" width="150">
                  </a>
                  </div>
-                     <div class="class-name">
+                 <div class="class-name">
                          <div class="class-name1">카테고리 : ${classBean.category}</div>
                          <div class="class-name2">클래스명 : ${classBean.class_name}</div>
-                         <div class="class-name3">${ClassBean.level}
+                         <div class="class-name3">
+                         
+                         
+                         
+                         	<div>${ClassBean.level}</div>
+                    
+                         <input type="hidden" value="${classBean.class_registrynum}" class="num">
+                         
+                         <img src='${pageContext.request.contextPath}/images/star2.png' class="favor" width="30px" height="30px">
+                        
                          <input type="hidden" value="${classBean.class_registrynum}" class="num">
                          	평점  : <img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
                          </div>
@@ -125,7 +134,7 @@
         </div>
 </section>
 <script type="text/javascript">
-		
+	
 		// 하트 아이콘 눌렀을 때
 		$(".like").on("click",function(){
 			var image = $(this).attr("src");
@@ -193,14 +202,84 @@
 			success : function(data,status){
 				console.log("data" + data);
 				if(data == 1){
-					cla.children(".like").attr("src","${pageContext.request.contextPath}/images/heart_full.png")
-					console.log(cla.children(".like").attr("src"))
+					cla.children(".like").attr("src","${pageContext.request.contextPath}/images/heart_full.png");
+					console.log(cla.children(".like").attr("src"));
 				}
 			},
 			error: function(data,status){
 				alert("에러가 발생했습니다.");
 			}
 		});
+		}
+
+		/*favor 눌렀을때*/
+		$(".favor").on("click",function(){
+			var ima = $(this).attr('src');
+			var num = $(this).prev().val();
+			console.log(ima);
+			console.log(num);
+			if(ima == '${pageContext.request.contextPath}/images/star2.png'){
+				$(this).attr('src','${pageContext.request.contextPath}/images/star1.png');
+			$.ajax({
+				type:"post",
+				url:"${pageContext.request.contextPath}/favorReg.do",
+				data:{num:num},
+				async: false,
+				dataType:"text",
+				success : function(data,status){
+					console.log(data);
+					if(data==1){
+						alert('저장성공');
+					}else{
+						alert('실패');
+					}
+				},
+				error:function(data,status){
+					alert('에러발생');
+					}
+				
+			});
+			}else if(ima=="${pageContext.request.contextPath}/images/star1.png"){
+				$(this).attr('src','${pageContext.request.contextPath}/images/star2.png');
+				$.ajax({
+					type:"post",
+					url:"${pageContext.request.contextPath}/favorCancle.do",
+					data:{num:num},
+					dataType:"text",
+					success:function(data,status){
+						if(data==1){
+							alert('저장성공');
+						}else{
+							alert('실패');
+						}
+					},
+					error:function(data,status){
+						alert('에러발생');
+					}
+				});
+				
+			}
+			
+		});
+		for(var i=0;i< "${fn:length(list)}";i++){
+			var cla=$('.class-name3').eq(i);
+			var num=cla.children('.num').val();
+			console.log(num);
+			$.ajax({
+				type:"post",
+				url : "${pageContext.request.contextPath}/isFavor.do",
+				data:{num:num},
+				async:false,
+				dataType:"text",
+				success:function(data,status){
+					console.log(data);
+					if(data==1){
+						cla.children('.favor').attr("src","${pageContext.request.contextPath}/images/star1.png")
+					}
+				},error:function(data,status){
+					alert('에러발생');
+				}
+			});
 		}
 	</script>
 </body>

@@ -85,6 +85,28 @@ public class favorDAO {
 		
 	}
 	
-	
+	public int isFavor(String useremail,int num){
+		int result=0;
+		
+		try {
+			con=getConnection();
+			sql="select * from favor where useremail=? and class_registrynum=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, useremail);
+			pstmt.setInt(2, num);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()){
+				result=1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			resourceClose();
+		}
+		return result;
+		
+	}
 	
 }
