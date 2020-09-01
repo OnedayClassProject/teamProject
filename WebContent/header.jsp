@@ -68,21 +68,12 @@
                 <div>카테고리
                     <ul class="sub_menu">
                         <li><a href="${pageContext.request.contextPath}/diffuserClass.do">디퓨저</a></li>
-<<<<<<< HEAD
-                        <li>캔들</li>
-                        <li>요리</li>
-                        <li>베이킹</li>
-                        <li>도자기</li>
-                        <li>향수</li>
-                        <li>비누</li>
-=======
                         <li><a href="${pageContext.request.contextPath}/candleClass.do">캔들</a></li>
                         <li><a href="${pageContext.request.contextPath}/cookingClass.do">요리</a></li>
                         <li><a href="${pageContext.request.contextPath}/bakingClass.do">베이킹</a></li>
                         <li><a href="${pageContext.request.contextPath}/potteryClass.do">도자기</a></li>
                         <li><a href="${pageContext.request.contextPath}/perfumeClass.do">향수</a></li>
                         <li><a href="${pageContext.request.contextPath}/soapClass.do">비누</a></li>
->>>>>>> ggyu
                     </ul>
                 </div>
                 <div>지역별
@@ -93,7 +84,6 @@
                         <li><a href="${pageContext.request.contextPath}/busanClass.do">부산</a></li>
                         <li><a href="${pageContext.request.contextPath}/daeguClass.do">대구</a></li>
                         <li><a href="${pageContext.request.contextPath}/daejeonClass.do">대전</a></li>
-<<<<<<< HEAD
    
                         <li><a href="${pageContext.request.contextPath}/gyeongsangClass.do">경상도</a></li>
                         <li><a href="${pageContext.request.contextPath}/chungcheongClass.do">충청도</a></li>
@@ -101,16 +91,7 @@
                         <li><a href="${pageContext.request.contextPath}/gangwonClass.do">강원도</a></li>
                         <li><a href="${pageContext.request.contextPath}/jejuClass.do">제주도</a></li>
                     </ul>
-=======
->>>>>>> ggyu
 
-                        <li><a href="${pageContext.request.contextPath}/gyeongsangClass.do">경상도</a></li>
-                        <li><a href="${pageContext.request.contextPath}/chungcheongClass.do">충청도</a></li>
-                        <li><a href="${pageContext.request.contextPath}/jeollaClass.do">전라도</a></li>
-                        <li><a href="${pageContext.request.contextPath}/gangwonClass.do">강원도</a></li>
-                        <li><a href="${pageContext.request.contextPath}/jejuClass.do">제주도</a></li>
-
-                    </ul>
                 </div>
                 <div>고객센터
                 	<ul class="sub_menu">

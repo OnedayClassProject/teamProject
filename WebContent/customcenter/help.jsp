@@ -52,27 +52,36 @@
             </div>
             <hr>
             <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/faqMainPage.do"class="current_menu3"><div>FAQ</div></a>
+               <a href="${pageContext.request.contextPath}/faqMainPage.do"class="current_menu2"><div>FAQ</div></a>
             </div>
             <hr>
         </div>
         <div class="my_main">
         	<div><h2>문의하기</h2></div>
         	<div>
-        		<table border = "1px solid">
-        			<tr>
-        				<th>No</th><th>제목</th><th>작성자</th><th>날짜</th>
-        			</tr>
+        			<div class="help_subject">
+        				<div>No</div>
+        				<div>제목</div>
+        				<div>작성자</div>
+        				<div>날짜</div>
+        			</div>
+        	
         			<c:if test="${count != 0}">
 	        			<c:forEach var = "list" items="${requestScope.list }">
-	        				<tr>
-	        					<td>${list.num }</td><td><a href="javascript:void(0);" onclick="checkID('${list.writer}','${list.num }','${pageNum }'); return false;">${list.title }</a></td><td>${list.writer }</td><td>${list.date }</td>
-	        				</tr>
+	        				<div class="help_board">
+	        					<div>${list.num }</div>
+	        					<div><a href="javascript:void(0);" onclick="checkID('${list.writer}','${list.num }','${pageNum }'); return false;">${list.title }</a></div>
+	        					<div>${list.writer }</div>
+	        					<div>${list.date }</div>
+	        				</div>
 	        			</c:forEach>
         			</c:if>
-        		</table>
-        		<br>
+        			<c:if test="${count == 0 }">
+	        		<div class="nolist">목록이 없습니다.</div>
+	        	</c:if>
+        			<div class="write_button">
         		<button onclick="checkSession()">글쓰기</button>
+        		</div>
         	</div>
         	<div>
 	        	<c:if test="${count!=0}">
@@ -90,5 +99,6 @@
         </div>
     </div>
 </section>
+<jsp:include page="../footer.jsp"/>
 </body>
 </html>

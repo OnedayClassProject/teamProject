@@ -81,11 +81,6 @@
                  <a href="${pageContext.request.contextPath}/ClassInfo.do?class_registrynum=${classBean.class_registrynum}" >
                  <img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}">
                  </a>
-                 <div class="like_image"> 
-                 <input type="hidden" value="${classBean.class_registrynum}" class="num">
-                  <img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
-                 <img class="like" src="${pageContext.request.contextPath}/images/star2.png">
-                 </div>
                  </div>
                      <div class="class-name">
                          <div class="class-name1">카테고리 : ${classBean.category}</div>
@@ -99,6 +94,11 @@
 				        	<input class="staR" value="5">
         					</div>
                     </div>
+                     <div class="like_image"> 
+                 <input type="hidden" value="${classBean.class_registrynum}" class="num">
+                  <img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
+                 <img class="like" src="${pageContext.request.contextPath}/images/star2.png">
+                 </div>
             	 </div>
         	   <c:if test="${j%3==0}">
         	   	<br>

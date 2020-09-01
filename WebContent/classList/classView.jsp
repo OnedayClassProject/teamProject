@@ -125,6 +125,11 @@
 						<td>100%환불</td>
 					</tr>
 				</table>
+				<hr>
+				<div>회원이름</div>
+				<div>평점</div>
+				<div>작성일</div>
+				<div>제목</div>
 				</div>
 				<div class="reserve_bar">
 					<div class="category_tag">${cb.category }</div>
