@@ -197,7 +197,7 @@
                 </thead>
                 <tbody id="calendar-body" class="calendar-body"></tbody>
             </table>
-             <div id="dateInput">2020-08-27</div>
+             <div id="dateInput"></div>
              <div id="timebox">
              <div id="timeChoice">시간선택</div>
              <div >
@@ -253,7 +253,7 @@
              	<input type="button" value="+" class="person_plus">
              	<input type="text" value="1" name="person_num" class="person_num" readonly="readonly">
              	<input type="button" value="-" class="person_sub">
-             	<div class="reserve_date">2020-08-27 인원 3명</div>
+             	<div class="reserve_date"></div>
              	<div class="sum_price"></div>
              	<div class="pay_button" onclick="pay()"> 결제하기</div>
 				<div class="back_button">이전</div>           
@@ -495,8 +495,6 @@
 	    	var class_registrynum = $("#class_registrynum").val();
 	    	var data = 0;
 	    	var time = $(".person_count").children(".time_detail1").text();
-	    	
-	    	
 	    	
 	    	if(sum_price != ""){
 		    	$.ajax({

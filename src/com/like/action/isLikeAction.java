@@ -23,6 +23,7 @@ public class isLikeAction implements CommandHandler{
 		
 		LikeDAO ldao = new LikeDAO();
 		
+		
 		int result = ldao.isLike(num,useremail);
 		request.setAttribute("data", result);
 		
