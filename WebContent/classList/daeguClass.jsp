@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +36,7 @@
             </div>
             <hr>
             <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/daeguClass.do" class='current_menu3'><div>대구</div>
+               <a href="${pageContext.request.contextPath}/daeguClass.do" class='current_menu2'><div>대구</div>
                 <div class="side_detail2">></div>
                 </a>
             </div>
@@ -93,12 +93,12 @@
                  <img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}" width="150">
                  </a>
                  </div>
-                     <div class="class-name">
+                 <div class="class-name">
                          <div class="class-name1">카테고리 : ${classBean.category}</div>
                          <div class="class-name2">클래스명 : ${classBean.class_name}</div>
-                         <input type="hidden" class="num" value="${classBean.class_registrynum}">
-                         <img src='${pageContext.request.contextPath}/images/star2.png' class="favor" width="50px" height="50px">
                          <div class="class-name3">
+	                         <input type="hidden" class="num" value="${classBean.class_registrynum}">
+	                         <img src='${pageContext.request.contextPath}/images/star2.png' class="favor" width="30px" height="30px">
                         	 <input type="hidden" value="${classBean.class_registrynum}" class="num">
                          	평점  : <img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
                          </div>
@@ -193,7 +193,7 @@
 			success : function(data,status){
 				console.log("data" + data);
 				if(data == 1){
-					cla.children(".like").attr("src","${pageContext.request.contextPath}/images/heart_full.png")
+					cla.children(".like").attr("src","${pageContext.request.contextPath}/images/heart_full.png");
 					console.log(cla.children(".like").attr("src"))
 				}
 			},
@@ -202,18 +202,14 @@
 			}
 		});
 		}
-	</script>
-</body>
-</html>
-<script>
-	$(".favor").on("click", function(){
-		
-		var img = $(this).attr('src');
-		var num = $(this).prev().val();
-		console.log(img);
-		console.log(num);
-		
 		// 즐겨찾기 등록 
+		$(".favor").on("click", function(){
+			
+			var img = $(this).attr('src');
+			var num = $(this).prev().val();
+			console.log(img);
+			console.log(num);
+			
 		if(img == '${pageContext.request.contextPath}/images/star2.png'){
 			
 			$(this).attr('src', '${pageContext.request.contextPath}/images/star1.png')
@@ -261,6 +257,31 @@
 		
 	});
 	
-
-
-</script>
+	// 페이지 - 회원 즐겨찾기 유무 확인 
+	for(var i=0; i < "${fn:length(list)}"; i++){
+		
+		var cla = $('.class-name3').eq(i);
+		var num = cla.children('.num').val();
+		
+		$.ajax({
+			type:"post",
+			url:"${pageContext.request.contextPath}/isFavorAction.do",
+			data:{num : num},
+			dataType:"text",
+			async : false,
+			success:function(data, status){
+				console.log(data);
+				if(data == 1){
+					cla.children('.favor').attr("src","${pageContext.request.contextPath}/images/star1.png");
+				}
+			},
+			error:function(data, status){
+				alert('즐겨찾기 유무 에러 발생')
+			}
+		});
+		
+	}
+		
+	</script>
+</body>
+</html>

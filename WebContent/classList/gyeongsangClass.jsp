@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
- <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,7 @@
     <div class="my_wrap">
         <div class="side_menu">
            <div class="side_detail">
-           <div class="current_menu">경상도</div>
+           <div class="current_menu">지역별 클래스</div>
            <div class="line"></div>
                <a href="${pageContext.request.contextPath}/seoulClass.do" class='current_menu3'><div>서울</div>
                 <div class="side_detail2">></div>
@@ -47,7 +48,7 @@
             </div>
             <hr>
             <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/gyeongsangClass.do" class='current_menu3'><div>경상도</div>
+               <a href="${pageContext.request.contextPath}/gyeongsangClass.do" class='current_menu2'><div>경상도</div>
                 <div class="side_detail2">></div>
                 </a>
             </div>
@@ -78,25 +79,26 @@
             <hr>
         </div>
             <div class="my_main">
-            <div>경상도</div>
+            <div>경상도 클래스</div>
             
             <c:set var="i" value="1"/>
             
-            <c:forEach var="ClassBean" items="${requestScope.Vector}">
+            <c:forEach var="classBean" items="${requestScope.Vector}">
             
            	<div class="best-class">
 				<div class="thumbnail">
-					<a href="${pageContext.request.contextPath}/classInfo.do?class_registrynum=${ClassBean.class_registrynum}">
-						<img src="${pageContext.request.contextPath}/thumbnailImage/${ClassBean.thumbnail}">
+					<a href="${pageContext.request.contextPath}/classInfo.do?class_registrynum=${classBean.class_registrynum}">
+						<img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}">
 	           		</a>
 				</div>
 					<div class="class-name">
-						<div class="class-name1">${ClassBean.category}</div>
-                        <div class="class-name2">${ClassBean.class_name}</div>
-                        <div class="class-name3">${ClassBean.level}
-                         <input type="hidden" value="${classBean.class_registrynum}" class="num">
+						<div class="class-name1">${classBean.category}</div>
+                        <div class="class-name2">${classBean.class_name}</div>
+                        <div class="class-name3">
+                      	  <input type="hidden" class="num" value="${classBean.class_registrynum}">
+                       	  <img src='${pageContext.request.contextPath}/images/star2.png' class="favor" width="30px" height="30px">
                          	평점  : <img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
-                        </div>
+                         </div>
                     </div>
            	</div>
            	
@@ -109,7 +111,7 @@
             </c:forEach>
 	          	<div class="pageNum">
 	          		<c:forEach var="p" begin="${startPage}" end="${endPage}">
-	          			<a href="${pageContext.request.contextPath}/gyeongsangClass.do?pageNum=${p}">[${p}]</a>
+	          			<a href="${pageContext.request.contextPath}/chungcheongClass.do?pageNum=${p}">[${p}]</a>
 	          		</c:forEach>
 	          	</div>
 	          			
@@ -126,7 +128,7 @@
 		// 하트 아이콘 눌렀을 때
 		$(".like").on("click",function(){
 			var image = $(this).attr("src");
-			var num = $(this).prev().val();
+			var num = $(this).prev(".num").val();
 			
 			console.log(num);
 			
@@ -170,7 +172,7 @@
 			}
 		});
 		
-		for(var i = 0; i<"${fn:length(list)}"; i++){
+		for(var i = 0; i<"${fn:length(Vector)}"; i++){
 			
 			var cla = $(".class-name3").eq(i);
 			var num = cla.children(".num").val();
@@ -190,7 +192,7 @@
 			success : function(data,status){
 				console.log("data" + data);
 				if(data == 1){
-					cla.children(".like").attr("src","${pageContext.request.contextPath}/images/heart_full.png")
+					cla.children(".like").attr("src","${pageContext.request.contextPath}/images/heart_full.png");
 					console.log(cla.children(".like").attr("src"))
 				}
 			},
@@ -199,6 +201,86 @@
 			}
 		});
 		}
+		
+		// 즐겨찾기 등록 
+		$(".favor").on("click", function(){
+			
+			var img = $(this).attr('src');
+			var num = $(this).prev(".num").val();
+			console.log(img);
+			console.log(num);
+			
+		if(img == '${pageContext.request.contextPath}/images/star2.png'){
+			
+			$(this).attr('src', '${pageContext.request.contextPath}/images/star1.png')
+			
+			$.ajax({
+				type:"post",
+				url:"${pageContext.request.contextPath}/favorReg.do",
+				data:{num : num},
+				dataType:"text",
+				success:function(data, status){
+					if(data == 1){
+						alert('즐겨찾기 등록');
+					} else {
+						alert('실패');
+					}
+				},
+				error:function(data, status){
+					alert('등록 실패');
+				}
+			});
+		
+		// 즐겨찾기 해제 
+		}else if(img == '${pageContext.request.contextPath}/images/star1.png'){
+			
+			$(this).attr('src', '${pageContext.request.contextPath}/images/star2.png')
+			
+			$.ajax({
+				type:"post",
+				url:"${pageContext.request.contextPath}/favorCancle.do",
+				data:{num : num},
+				dataType:"text",
+				success:function(data, status){
+					if(data == 1){
+						alert('즐겨찾기 해제');
+					} else {
+						alert('실패');
+					}
+				},
+				error:function(data, status){
+					alert('해제 실패');
+				}
+			});
+			
+		}
+		
+	});
+	
+	// 페이지 - 회원 즐겨찾기 유무 확인 
+	for(var i=0; i < ${fn:length(Vector)}; i++){
+		
+		var cla = $('.class-name3').eq(i);
+		var num = cla.children('.num').val();
+		
+		$.ajax({
+			type:"post",
+			url:"${pageContext.request.contextPath}/isFavorAction.do",
+			data:{num : num},
+			dataType:"text",
+			async : false,
+			success:function(data, status){
+				console.log(data);
+				if(data == 1){
+					cla.children('.favor').attr("src","${pageContext.request.contextPath}/images/star1.png");
+				}
+			},
+			error:function(data, status){
+				alert('즐겨찾기 유무 에러 발생')
+			}
+		});
+		
+	}
 	</script>
 </body>
 </html>

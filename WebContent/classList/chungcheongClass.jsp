@@ -16,7 +16,7 @@
     <div class="my_wrap">
         <div class="side_menu">
            <div class="side_detail">
-           <div class="current_menu">충청도</div>
+           <div class="current_menu">지역별 클래스</div>
            <div class="line"></div>
                <a href="${pageContext.request.contextPath}/seoulClass.do" class='current_menu3'><div>서울</div>
                 <div class="side_detail2">></div>
@@ -54,7 +54,7 @@
             </div>
             <hr>
             <div class="side_detail">
-               <a href="${pageContext.request.contextPath}/chungcheongClass.do" class='current_menu3'><div>충청도</div>
+               <a href="${pageContext.request.contextPath}/chungcheongClass.do" class='current_menu2'><div>충청도</div>
                 <div class="side_detail2">></div>
                 </a>
             </div>
@@ -79,23 +79,24 @@
             <hr>
         </div>
             <div class="my_main">
-            <div>충청도</div>
+            <div>충청도 클래스</div>
             
             <c:set var="i" value="1"/>
             
-            <c:forEach var="ClassBean" items="${requestScope.Vector}">
+            <c:forEach var="classBean" items="${requestScope.Vector}">
             
            	<div class="best-class">
 				<div class="thumbnail">
-					<a href="${pageContext.request.contextPath}/classInfo.do?class_registrynum=${ClassBean.class_registrynum}">
-						<img src="${pageContext.request.contextPath}/thumbnailImage/${ClassBean.thumbnail}">
+					<a href="${pageContext.request.contextPath}/classInfo.do?class_registrynum=${classBean.class_registrynum}">
+						<img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}">
 	           		</a>
 				</div>
 					<div class="class-name">
-						<div class="class-name1">${ClassBean.category}</div>
-                        <div class="class-name2">${ClassBean.class_name}</div>
-                        <div class="class-name3">${ClassBean.level}
+						<div class="class-name1">${classBean.category}</div>
+                        <div class="class-name2">${classBean.class_name}</div>
+                        <div class="class-name3">
                          <input type="hidden" value="${classBean.class_registrynum}" class="num">
+                         <img src='${pageContext.request.contextPath}/images/star2.png' class="favor" width="30px" height="30px">
                          	평점  : <img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
                          </div>
                     </div>
@@ -171,7 +172,7 @@
 			}
 		});
 		
-		for(var i = 0; i<"${fn:length(list)}"; i++){
+		for(var i = 0; i<"${fn:length(Vector)}"; i++){
 			
 			var cla = $(".class-name3").eq(i);
 			var num = cla.children(".num").val();
@@ -200,6 +201,86 @@
 			}
 		});
 		}
+		
+		// 즐겨찾기 등록 
+		$(".favor").on("click", function(){
+			
+			var img = $(this).attr('src');
+			var num = $(this).prev(".num").val();
+			console.log(img);
+			console.log(num);
+			
+		if(img == '${pageContext.request.contextPath}/images/star2.png'){
+			
+			$(this).attr('src', '${pageContext.request.contextPath}/images/star1.png')
+			
+			$.ajax({
+				type:"post",
+				url:"${pageContext.request.contextPath}/favorReg.do",
+				data:{num : num},
+				dataType:"text",
+				success:function(data, status){
+					if(data == 1){
+						alert('즐겨찾기 등록');
+					} else {
+						alert('실패');
+					}
+				},
+				error:function(data, status){
+					alert('등록 실패');
+				}
+			});
+		
+		// 즐겨찾기 해제 
+		}else if(img == '${pageContext.request.contextPath}/images/star1.png'){
+			
+			$(this).attr('src', '${pageContext.request.contextPath}/images/star2.png')
+			
+			$.ajax({
+				type:"post",
+				url:"${pageContext.request.contextPath}/favorCancle.do",
+				data:{num : num},
+				dataType:"text",
+				success:function(data, status){
+					if(data == 1){
+						alert('즐겨찾기 해제');
+					} else {
+						alert('실패');
+					}
+				},
+				error:function(data, status){
+					alert('해제 실패');
+				}
+			});
+			
+		}
+		
+	});
+	
+	// 페이지 - 회원 즐겨찾기 유무 확인 
+	for(var i=0; i < ${fn:length(Vector)}; i++){
+		
+		var cla = $('.class-name3').eq(i);
+		var num = cla.children('.num').val();
+		
+		$.ajax({
+			type:"post",
+			url:"${pageContext.request.contextPath}/isFavorAction.do",
+			data:{num : num},
+			dataType:"text",
+			async : false,
+			success:function(data, status){
+				console.log(data);
+				if(data == 1){
+					cla.children('.favor').attr("src","${pageContext.request.contextPath}/images/star1.png");
+				}
+			},
+			error:function(data, status){
+				alert('즐겨찾기 유무 에러 발생')
+			}
+		});
+		
+	}
 	</script>
 </body>
 </html>

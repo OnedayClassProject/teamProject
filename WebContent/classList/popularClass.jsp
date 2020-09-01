@@ -17,7 +17,7 @@
     <div class="my_wrap">
         <div class="side_menu">
            <div class="side_detail">
-           <div class="current_menu">인기클래스</div>
+           <div class="current_menu">인기 클래스</div>
            <div class="line"></div>
                 <a href="${pageContext.request.contextPath}/popularClass.do" class="current_menu2"><div>인기클래스</div>
                 <div class="side_detail2">></div>
@@ -33,7 +33,7 @@
         </div>
            
             <div class="my_main">
-            <div>인기클래스
+            <div>인기 클래스
             <c:out value="${fn:length(list) }" />
             </div>
             
@@ -52,9 +52,9 @@
                      <div class="class-name">
                          <div class="class-name1">카테고리 : ${classBean.category}</div>
                          <div class="class-name2">클래스명 : ${classBean.class_name}</div>
-                         
                          <div class="class-name3">
                         	 <input type="hidden" value="${classBean.class_registrynum}" class="num">
+                        	 <img src='${pageContext.request.contextPath}/images/star2.png' class="favor" width="30px" height="30px">
                          	평점  : <img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
                          </div>
                          
@@ -152,7 +152,7 @@
 			success : function(data,status){
 				console.log("data" + data);
 				if(data == 1){
-					cla.children(".like").attr("src","${pageContext.request.contextPath}/images/heart_full.png")
+					cla.children(".like").attr("src","${pageContext.request.contextPath}/images/heart_full.png");
 					console.log(cla.children(".like").attr("src"))
 				}
 			},
@@ -161,6 +161,86 @@
 			}
 		});
 		}
+		
+		// 즐겨찾기 등록 
+		$(".favor").on("click", function(){
+			
+			var img = $(this).attr('src');
+			var num = $(this).prev(".num").val();
+			console.log(img);
+			console.log(num);
+			
+		if(img == '${pageContext.request.contextPath}/images/star2.png'){
+			
+			$(this).attr('src', '${pageContext.request.contextPath}/images/star1.png')
+			
+			$.ajax({
+				type:"post",
+				url:"${pageContext.request.contextPath}/favorReg.do",
+				data:{num : num},
+				dataType:"text",
+				success:function(data, status){
+					if(data == 1){
+						alert('즐겨찾기 등록');
+					} else {
+						alert('실패');
+					}
+				},
+				error:function(data, status){
+					alert('등록 실패');
+				}
+			});
+		
+		// 즐겨찾기 해제 
+		}else if(img == '${pageContext.request.contextPath}/images/star1.png'){
+			
+			$(this).attr('src', '${pageContext.request.contextPath}/images/star2.png')
+			
+			$.ajax({
+				type:"post",
+				url:"${pageContext.request.contextPath}/favorCancle.do",
+				data:{num : num},
+				dataType:"text",
+				success:function(data, status){
+					if(data == 1){
+						alert('즐겨찾기 해제');
+					} else {
+						alert('실패');
+					}
+				},
+				error:function(data, status){
+					alert('해제 실패');
+				}
+			});
+			
+		}
+		
+	});
+	
+	// 페이지 - 회원 즐겨찾기 유무 확인 
+	for(var i=0; i < ${fn:length(list)}; i++){
+		
+		var cla = $('.class-name3').eq(i);
+		var num = cla.children('.num').val();
+		
+		$.ajax({
+			type:"post",
+			url:"${pageContext.request.contextPath}/isFavorAction.do",
+			data:{num : num},
+			dataType:"text",
+			async : false,
+			success:function(data, status){
+				console.log(data);
+				if(data == 1){
+					cla.children('.favor').attr("src","${pageContext.request.contextPath}/images/star1.png");
+				}
+			},
+			error:function(data, status){
+				alert('즐겨찾기 유무 에러 발생')
+			}
+		});
+		
+	}
 	</script>
 </body>
 

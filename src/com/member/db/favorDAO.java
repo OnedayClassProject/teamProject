@@ -37,7 +37,7 @@ public class favorDAO {
 		
 		try {
 			con = getConnection();
-			sql = "insert into favor(useremail, class_registrynum) "
+			sql = "insert into store_favor(useremail, class_registrynum) "
 					+ "values(?, ?)";
 			
 			pstmt = con.prepareStatement(sql);		
@@ -63,7 +63,7 @@ public class favorDAO {
 		try {
 			con = getConnection();
 			
-			sql = "delete from favor "
+			sql = "delete from store_favor "
 				+ "where useremail=? and class_registrynum=?";
 			
 			pstmt = con.prepareStatement(sql);
@@ -82,9 +82,37 @@ public class favorDAO {
 		} finally {
 			resourceClose();
 		}
-		
 	}
 	
+	public int isFavorite(String useremail, int num) {
+		
+		int result = 0;
+		
+		try {
+			con = getConnection();
+			
+			sql = "select * from store_favor "
+				+ "where useremail=? and class_registrynum=?";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, useremail);
+			pstmt.setInt(2, num);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = 1;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resourceClose();
+		}
+		
+		return result;
+	}
 	
 	
 }

@@ -31,28 +31,28 @@
             <hr>
         </div>
             <div class="my_main">
-            <div>입문클래스</div>
+            <div>입문 클래스</div>
             
             <c:set var="i" value="1"/>
             
-            <c:forEach var="ClassBean" items="${requestScope.Vector}">
+            <c:forEach var="classBean" items="${requestScope.Vector}">
             
            	<div class="best-class">
 				<div class="thumbnail">
-					<a href="${pageContext.request.contextPath}/classInfo.do?class_registrynum=${ClassBean.class_registrynum}">
-						<img src="${pageContext.request.contextPath}/thumbnailImage/${ClassBean.thumbnail}">
+					<a href="${pageContext.request.contextPath}/classInfo.do?class_registrynum=${classBean.class_registrynum}">
+						<img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}">
 	           		</a>
-				</div>
-					<div class="class-name">
-						<div class="class-name1">${ClassBean.category}</div>
-                        <div class="class-name2">${ClassBean.class_name}</div>
-                        <div class="class-name3">
-                        ${ClassBean.level}
-                         <input type="hidden" value="${classBean.class_registrynum}" class="num">
-                         	평점  : <img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png"></div>
-                    </div>
-           	</div>
-           	
+        	     </div>
+                      <div class="class-name">
+                         <div class="class-name1">카테고리 : ${classBean.category}</div>
+                         <div class="class-name2">클래스명 : ${classBean.class_name}</div>
+                         <div class="class-name3">
+                        	 <input type="hidden" value="${classBean.class_registrynum}" class="num">
+                       		 <img src='${pageContext.request.contextPath}/images/star2.png' class="favor" width="30px" height="30px">
+                         	평점  : <img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
+                       </div>
+            	 </div>
+            	 </div>
 	            <c:if test="${i%3 == 0}">
 	            	<br>
 	            </c:if>
@@ -76,82 +76,163 @@
 </section>
 <script type="text/javascript">
 		
-		// 하트 아이콘 눌렀을 때
-		$(".like").on("click",function(){
-			var image = $(this).attr("src");
-			var num = $(this).prev().val();
+	// 하트 아이콘 눌렀을 때
+	$(".like").on("click",function(){
+		var image = $(this).attr("src");
+		var num = $(this).prev().val();
+		
+		console.log(num);
+		
+		if(image == '${pageContext.request.contextPath}/images/heart_empty.png'){
 			
-			console.log(num);
-			
-			if(image == '${pageContext.request.contextPath}/images/heart_empty.png'){
-				
-				$.ajax({
-					type : "post",
-					url : "${pageContext.request.contextPath}/likeOn.do",
-					data : {num : num},
-					dataType : "text",
-					success:function(data,status){
-						if(data == 1){
-							alert("좋아요 성공");
-							$(this).attr("src","${pageContext.request.contextPath}/images/heart_full.png")
-						}else{
-							alert("로그인 후 눌러주세요.");
-						}
-					},
-					error : function(data,status){
-						alert("에러가 발생했습니다.")
+			$.ajax({
+				type : "post",
+				url : "${pageContext.request.contextPath}/likeOn.do",
+				data : {num : num},
+				dataType : "text",
+				success:function(data,status){
+					if(data == 1){
+						alert("좋아요 성공");
+						$(this).attr("src","${pageContext.request.contextPath}/images/heart_full.png")
+					}else{
+						alert("로그인 후 눌러주세요.");
 					}
-				});
-			}else if(image == "${pageContext.request.contextPath}/images/heart_full.png"){
-				$(this).attr("src","${pageContext.request.contextPath}/images/heart_empty.png")
-				$.ajax({
-					type : "post",
-					url : "${pageContext.request.contextPath}/likeOff.do",
-					data : {num : num},
-					dataType : "text",
-					success : function(data,status){
-						if(data == 1){
-							alert("좋아요 취소");
-						}else{
-							alert("실패");
-						}
-					},
-					error : function(data,status){
-						alert("에러가 발생했습니다.");
+				},
+				error : function(data,status){
+					alert("에러가 발생했습니다.")
+				}
+			});
+		}else if(image == "${pageContext.request.contextPath}/images/heart_full.png"){
+			$(this).attr("src","${pageContext.request.contextPath}/images/heart_empty.png")
+			$.ajax({
+				type : "post",
+				url : "${pageContext.request.contextPath}/likeOff.do",
+				data : {num : num},
+				dataType : "text",
+				success : function(data,status){
+					if(data == 1){
+						alert("좋아요 취소");
+					}else{
+						alert("실패");
 					}
-				});
+				},
+				error : function(data,status){
+					alert("에러가 발생했습니다.");
+				}
+			});
+		}
+	});
+	
+	for(var i = 0; i<"${fn:length(Vector)}"; i++){
+		
+		var cla = $(".class-name3").eq(i);
+		var num = cla.children(".num").val();
+		
+		console.log("i = "+i);
+		console.log("num = "+num);
+		
+		like();
+	}
+	function like(){
+	$.ajax({
+		type : "post",
+		url : "${pageContext.request.contextPath}/isLike.do",
+		data : {num : num},
+		async : false,
+		dataType : "text",
+		success : function(data,status){
+			console.log("data" + data);
+			if(data == 1){
+				cla.children(".like").attr("src","${pageContext.request.contextPath}/images/heart_full.png");
+				console.log(cla.children(".like").attr("src"))
+			}
+		},
+		error: function(data,status){
+			alert("에러가 발생했습니다.");
+		}
+	});
+	}
+	
+	// 즐겨찾기 등록 
+	$(".favor").on("click", function(){
+		
+		var img = $(this).attr('src');
+		var num = $(this).prev(".num").val();
+		console.log(img);
+		console.log(num);
+		
+	if(img == '${pageContext.request.contextPath}/images/star2.png'){
+		
+		$(this).attr('src', '${pageContext.request.contextPath}/images/star1.png')
+		
+		$.ajax({
+			type:"post",
+			url:"${pageContext.request.contextPath}/favorReg.do",
+			data:{num : num},
+			dataType:"text",
+			success:function(data, status){
+				if(data == 1){
+					alert('즐겨찾기 등록');
+				} else {
+					alert('실패');
+				}
+			},
+			error:function(data, status){
+				alert('등록 실패');
+			}
+		});
+	
+	// 즐겨찾기 해제 
+	}else if(img == '${pageContext.request.contextPath}/images/star1.png'){
+		
+		$(this).attr('src', '${pageContext.request.contextPath}/images/star2.png')
+		
+		$.ajax({
+			type:"post",
+			url:"${pageContext.request.contextPath}/favorCancle.do",
+			data:{num : num},
+			dataType:"text",
+			success:function(data, status){
+				if(data == 1){
+					alert('즐겨찾기 해제');
+				} else {
+					alert('실패');
+				}
+			},
+			error:function(data, status){
+				alert('해제 실패');
 			}
 		});
 		
-		for(var i = 0; i<"${fn:length(list)}"; i++){
-			
-			var cla = $(".class-name3").eq(i);
-			var num = cla.children(".num").val();
-			
-			console.log("i = "+i);
-			console.log("num = "+num);
-			
-			like();
-		}
-		function like(){
-		$.ajax({
-			type : "post",
-			url : "${pageContext.request.contextPath}/isLike.do",
-			data : {num : num},
-			async : false,
-			dataType : "text",
-			success : function(data,status){
-				console.log("data" + data);
-				if(data == 1){
-					cla.children(".like").attr("src","${pageContext.request.contextPath}/images/heart_full.png")
-					console.log(cla.children(".like").attr("src"))
-				}
-			},
-			error: function(data,status){
-				alert("에러가 발생했습니다.");
+	}
+	
+	});
+	
+	// 페이지 - 회원 즐겨찾기 유무 확인 
+	for(var i=0; i < ${fn:length(Vector)}; i++){
+	
+	var cla = $('.class-name3').eq(i);
+	var num = cla.children('.num').val();
+	
+	$.ajax({
+		type:"post",
+		url:"${pageContext.request.contextPath}/isFavorAction.do",
+		data:{num : num},
+		dataType:"text",
+		async : false,
+		success:function(data, status){
+			console.log(data);
+			if(data == 1){
+				cla.children('.favor').attr("src","${pageContext.request.contextPath}/images/star1.png");
 			}
-		});
+		},
+		error:function(data, status){
+			alert('즐겨찾기 유무 에러 발생')
 		}
+	});
+	
+	}
+
 	</script>
 </body>
 </html>
