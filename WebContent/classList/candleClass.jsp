@@ -60,7 +60,7 @@
                 	 <a href="${pageContext.request.contextPath}/ClassInfo.do?class_registrynum=${classBean.class_registrynum}" >
                  	 <img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}"></a>
                  </div>
-                 <div class="baking-name">
+                 <div class="class-name">
                     <div class="class-name1">카테고리 : ${classBean.category}</div>
                     <div class="class-name2">클래스명 : ${classBean.class_name}</div>
                   	<input type="hidden" class="rating" value="${classBean.rating }">
@@ -193,17 +193,17 @@ function like(){
 	});
 }
       
-      
-/*favor 눌렀을때*/
-$(".favor").on("click",function(){
-	var ima = $(this).attr('src');
-	var num = $(this).prev(".num").val();
-	console.log(ima);
-	console.log(num);
-         
-	if( '${sessionScope.userid}' != ""){
-		if(ima == '${pageContext.request.contextPath}/images/star2.png'){
-			$(this).attr('src','${pageContext.request.contextPath}/images/star1.png');
+ 
+      /*favor 눌렀을때*/
+		$(".favor").on("click",function(){
+			var ima = $(this).attr('src');
+			var num = $(this).prev(".num").val();
+			console.log(ima);
+			console.log(num);
+			
+			if( '${sessionScope.userid}' != ""){
+			if(ima == '${pageContext.request.contextPath}/images/star2.png'){
+				$(this).attr('src','${pageContext.request.contextPath}/images/star1.png');
 			$.ajax({
 				type:"post",
 				url:"${pageContext.request.contextPath}/favorReg.do",
@@ -211,20 +211,20 @@ $(".favor").on("click",function(){
 				async : true,
 				dataType:"text",
 				success : function(data,status){
-				console.log(data);
+					console.log(data);
 					if(data==1){
 						alert('저장성공');
 					}else{
 						alert('실패');
-			}
-		},
-		error:function(data,status){
-			alert('에러발생');
-		}
-	});
-         
-		}else if(ima=="${pageContext.request.contextPath}/images/star1.png"){
-			$(this).attr('src','${pageContext.request.contextPath}/images/star2.png');
+					}
+				},
+				error:function(data,status){
+					alert('에러발생');
+					}
+				
+			});
+			}else if(ima=="${pageContext.request.contextPath}/images/star1.png"){
+				$(this).attr('src','${pageContext.request.contextPath}/images/star2.png');
 				$.ajax({
 					type:"post",
 					url:"${pageContext.request.contextPath}/favorCancle.do",
@@ -232,43 +232,43 @@ $(".favor").on("click",function(){
 					dataType:"text",
 					async : true,
 					success:function(data,status){
-                  if(data==1){
-                     alert('저장성공');
-                  }else{
-                     alert('실패');
-                  }
-               },
-               error:function(data,status){
-                  alert('에러발생');
-               }
-            });
-            
-         }
-         }else{
-            alert("로그인 후 눌러주세요.");
-         }
-         
-      });
-      for(var i=0;i< "${fn:length(list)}";i++){
-         var cla=$('.like_image').eq(i);
-         var num=cla.children('.num').val();
-         console.log(num);
-         $.ajax({
-            type:"post",
-            url : "${pageContext.request.contextPath}/isFavor.do",
-            data:{num:num},
-            async:false,
-            dataType:"text",
-            success:function(data,status){
-               console.log(data);
-               if(data==1){
-                  cla.children('.favor').attr("src","${pageContext.request.contextPath}/images/star1.png")
-               }
-            },error:function(data,status){
-               alert('에러발생');
-            }
-         });
-      }
+						if(data==1){
+							alert('저장성공');
+						}else{
+							alert('실패');
+						}
+					},
+					error:function(data,status){
+						alert('에러발생');
+					}
+				});
+				
+			}
+			}else{
+				alert("로그인 후 눌러주세요.");
+			}
+			
+		});
+		for(var i=0;i< "${fn:length(list)}";i++){
+			var cla=$('.like_image').eq(i);
+			var num=cla.children('.num').val();
+			console.log(num);
+			$.ajax({
+				type:"post",
+				url : "${pageContext.request.contextPath}/isFavor.do",
+				data:{num:num},
+				async:false,
+				dataType:"text",
+				success:function(data,status){
+					console.log(data);
+					if(data==1){
+						cla.children('.favor').attr("src","${pageContext.request.contextPath}/images/star1.png")
+					}
+				},error:function(data,status){
+					alert('에러발생');
+				}
+			});
+		}
    </script>
 </body>
 </html>

@@ -60,7 +60,7 @@
                 	 <a href="${pageContext.request.contextPath}/ClassInfo.do?class_registrynum=${classBean.class_registrynum}" >
                  	 <img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}"></a>
                  </div>
-                 <div class="baking-name">
+                 <div class="class-name">
                     <div class="class-name1">카테고리 : ${classBean.category}</div>
                     <div class="class-name2">클래스명 : ${classBean.class_name}</div>
                   	<input type="hidden" class="rating" value="${classBean.rating }">

@@ -71,6 +71,7 @@
                  <img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}">
 
                  </a>
+
                  </div>
                  <div class="class-name">
                          <div class="class-name1">카테고리 : ${classBean.category}</div>
@@ -114,6 +115,7 @@
         </div>
 </section>
 <script type="text/javascript">
+
 
 //하트 아이콘 눌렀을 때
 $(".like").on("click",function(){
@@ -196,13 +198,14 @@ function like(){
 		success : function(data,status){
 		console.log("data" + data);
 			if(data == 1){
-				cla.children(".like").attr("src","${pageContext.request.contextPath}/images/heart_full.png")
+				cla.children(".like").attr("src","${pageContext.request.contextPath}/images/heart_full.png");
 				console.log(cla.children(".like").attr("src"))
 			}
 		},
 		error: function(data,status){
 			alert("에러가 발생했습니다.");
 		}
+
 	});
 }
       
@@ -245,43 +248,44 @@ $(".favor").on("click",function(){
 					dataType:"text",
 					async : true,
 					success:function(data,status){
-                  if(data==1){
-                     alert('저장성공');
-                  }else{
-                     alert('실패');
-                  }
-               },
-               error:function(data,status){
-                  alert('에러발생');
-               }
-            });
-            
-         }
-         }else{
-            alert("로그인 후 눌러주세요.");
-         }
-         
-      });
-      for(var i=0;i< "${fn:length(list)}";i++){
-         var cla=$('.like_image').eq(i);
-         var num=cla.children('.num').val();
-         console.log(num);
-         $.ajax({
-            type:"post",
-            url : "${pageContext.request.contextPath}/isFavor.do",
-            data:{num:num},
-            async:false,
-            dataType:"text",
-            success:function(data,status){
-               console.log(data);
-               if(data==1){
-                  cla.children('.favor').attr("src","${pageContext.request.contextPath}/images/star1.png")
-               }
-            },error:function(data,status){
-               alert('에러발생');
-            }
-         });
-      }
-   </script>
+						if(data==1){
+							alert('저장성공');
+						}else{
+							alert('실패');
+						}
+					},
+					error:function(data,status){
+						alert('에러발생');
+					}
+				});
+				
+			}
+			}else{
+				alert("로그인 후 눌러주세요.");
+			}
+			
+		});
+		for(var i=0;i< "${fn:length(list)}";i++){
+			var cla=$('.like_image').eq(i);
+			var num=cla.children('.num').val();
+			console.log(num);
+			$.ajax({
+				type:"post",
+				url : "${pageContext.request.contextPath}/isFavor.do",
+				data:{num:num},
+				async:false,
+				dataType:"text",
+				success:function(data,status){
+					console.log(data);
+					if(data==1){
+						cla.children('.favor').attr("src","${pageContext.request.contextPath}/images/star1.png")
+					}
+				},error:function(data,status){
+					alert('에러발생');
+				}
+			});
+		}
+	</script>
+
 </body>
 </html>

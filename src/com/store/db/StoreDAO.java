@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -374,6 +374,84 @@ public class StoreDAO {
 		}
 		
 		return cb;
+	}
+	public List<StoreBean> AllGetStore() {
+		List<StoreBean> list = new ArrayList<StoreBean>();
+		
+		try {
+			con = getConnection();
+			
+			String sql = "select * from store order by store_joindate desc";
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				StoreBean vo = new StoreBean();
+				
+				vo.setStoreemail(rs.getString("storeemail"));
+				vo.setStorename(rs.getString("storename"));
+				vo.setStoretel(rs.getString("storetel"));
+				vo.setStoreaddress1(rs.getString("storeaddress1"));
+				vo.setStore_joindate(rs.getString("store_joindate"));
+				vo.setStorepostcode(rs.getString("storepostcode"));
+				
+				list.add(vo);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			resourceClose();
+		}
+		return list;
+	}
+	public List<ClassBean> AllGetClass(String storeemail) {
+		List<ClassBean> list = new ArrayList<ClassBean>();
+		
+		try {
+			con = getConnection();
+			
+			String sql = "select* from store where storeemail=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, storeemail);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				sql = "select* from class where storenum=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, rs.getString("storenum"));
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()){
+					ClassBean vo = new ClassBean();
+					
+					vo.setClass_registrynum(rs.getInt("class_registrynum"));
+					vo.setClass_name(rs.getString("class_name"));
+					vo.setLevel(rs.getString("level"));
+					vo.setTime(rs.getString("time"));
+					vo.setCategory(rs.getString("category"));
+					vo.setThumbnail(rs.getString("thumbnail"));
+					vo.setPersonnel(rs.getString("personnel"));
+					vo.setPrice(rs.getString("price"));
+					vo.setSale(rs.getString("sale"));
+					vo.setReservation_count(rs.getInt("reservation_count"));
+					vo.setRating(rs.getInt("rating"));
+					
+					list.add(vo);
+					
+					
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			resourceClose();
+		}
+		
+		return list;
 	}
 	
 }

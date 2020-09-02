@@ -71,6 +71,7 @@
                  <img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}">
 
                  </a>
+
                  </div>
                  <div class="class-name">
                          <div class="class-name1">카테고리 : ${classBean.category}</div>
@@ -282,6 +283,8 @@ $(".favor").on("click",function(){
             }
          });
       }
+      
+		
    </script>
 </body>
 </html>

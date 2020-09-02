@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import javax.naming.Context;
@@ -1151,8 +1152,144 @@ public class ClassDAO {
 		}
 		return list;
 	}//soapClassList()메소드 끝
+	public ArrayList<ClassBean> getStoreClassInfo(int storenum,int startRow,int endRow){
+		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
+		//하나의 레코드를 저장할 객체 선언
+		ClassBean bean =null;
+		System.out.println(storenum);
+		System.out.println(startRow);
+		System.out.println(endRow);
+		
+		
+		try{
+			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
+			con=getConnection();
+			//쿼리준비 : 전체 차량 레코드 검색
+			String sql="select class_registrynum,thumbnail,category,class_name,rating,price,personnel,level,storenum from class where storenum=? limit ?,?";
+			//쿼리를 실행할 수 있는 객체 선언
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, storenum);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			//쿼리 실행 후 결과를 리턴
+			rs=pstmt.executeQuery();
+			//반복문을 돌면서 빈 클래스에 컬럼데이터를 저장
 	
+			
+			while(rs.next()){
+				bean=new ClassBean();
+				bean.setClass_registrynum(rs.getInt("class_registrynum"));
+				bean.setThumbnail(rs.getString("thumbnail"));
+				bean.setCategory(rs.getString("category"));
+				bean.setClass_name(rs.getString("class_name"));
+				bean.setRating(rs.getInt("rating"));
+				bean.setPrice(rs.getString("price"));
+				bean.setPersonnel(rs.getString("personnel"));
+				bean.setLevel(rs.getString("level"));
+				bean.setStorenum(rs.getInt("storenum"));
+				list.add(bean);
+			}			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			resourceClose();
+		}
+		return list;
+	}//soapClassList()메소드 끝
 	
-	
+	public int StoreClassCount(int storenum){
+		int count=0;
+		try{
+			con=getConnection();
+			String sql= "select count(*) from class where storenum=? ";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, storenum);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				count=rs.getInt(1);
+				System.out.println(count);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println(count);
+		}finally{
+			resourceClose();
+		}
+		return count;
+	}//popularCount
+	public ClassBean getClassbean(String class_registrynum,int storenum){
+		ClassBean cbean = new ClassBean();
+		try {
+			con = getConnection();
+			String sql = "select * from class where storenum=? and class_registrynum=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, storenum);
+			pstmt.setString(2, class_registrynum);
+			
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				cbean=new ClassBean();
+				cbean.setClass_registrynum(rs.getInt("class_registrynum"));
+				cbean.setThumbnail(rs.getString("thumbnail"));
+				cbean.setCategory(rs.getString("category"));
+				cbean.setClass_name(rs.getString("class_name"));
+				cbean.setRating(rs.getInt("rating"));
+				cbean.setPrice(rs.getString("price"));
+				cbean.setPersonnel(rs.getString("personnel"));
+				cbean.setLevel(rs.getString("level"));
+				cbean.setLocation(rs.getString("location"));
+				cbean.setClass_company((rs.getString("class_company")));
+				cbean.setStorenum(rs.getInt("storenum"));
+				cbean.setParking(rs.getString("parking"));
+				cbean.setContent(rs.getString("content"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			resourceClose();
+		}
+		
+		return cbean;
+	}
+	//ClassInfoUpdate
+	//클래스등록
+	public int classInfoUpdate(ClassBean cb,int class_registrynum) {
+		
+		try {
+			con = getConnection();
+			
+			String sql = "update class set class_name=?,category=?,location=?,level=?,time=?,personnel=?,price=?,parking=?,content=?,thumbnail=?"
+					+ "where class_registrynum=? and storenum=?";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, cb.getClass_name());
+			pstmt.setString(2, cb.getCategory());
+			
+			pstmt.setString(3, cb.getLocation());
+			pstmt.setString(4, cb.getLevel());
+			pstmt.setString(5, cb.getTime());
+			pstmt.setString(6, cb.getPersonnel());
+			pstmt.setString(7, cb.getPrice());
+			pstmt.setString(8, cb.getParking());
+			
+			pstmt.setString(9, cb.getContent());
+			pstmt.setString(10, cb.getThumbnail());
+			
+			pstmt.setInt(11, class_registrynum);
+			pstmt.setInt(12, cb.getStorenum());
+			
+
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+			resourceClose();
+		}
+		
+		return 1;
+	}
 	
 }
