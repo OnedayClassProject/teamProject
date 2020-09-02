@@ -48,8 +48,8 @@ public class GetClass implements CommandHandler{
 		object.put("all", array);
 		
 		request.setAttribute("allData", object.toJSONString());
-		
-		return "Admin/classData";
+		System.out.println(object.toJSONString());
+		return "Admin/classData.jsp";
 	}
 
 	

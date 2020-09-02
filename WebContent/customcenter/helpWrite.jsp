@@ -26,6 +26,7 @@
             <hr>
         </div>
         <div class="my_main">
+        <div>문의글쓰기</div>
         	<form id ="form" method ="post">
         		제목 <input type="text" id ="title" name ="title" style="width: 650px; height: 30px;"><br><br>
         		내용 <br><textarea rows="30" cols="100" id="content" name="content"></textarea><br><br>

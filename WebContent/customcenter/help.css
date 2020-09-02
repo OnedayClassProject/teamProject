@@ -77,10 +77,53 @@
 	font-size: 20px;
 }
 .current_menu2{
-	color:fuchsia;
+	font-weight: bold;
+	color : gray;
+	font-size: 15px;
 }
-.current_menu3{
-	color:black;
+.help_subject {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
 }
-
+.help_subject div{
+	width: 20%;
+}
+.help_subject div:nth-child(2){
+	width: 40%;
+}
+.help_board{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+.help_board div{
+	width: 20%;
+}
+.help_board div:nth-child(2){
+	width: 40%;
+	text-align: left;
+}
+.write_button{
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+.write_button button{
+	width: 100px;
+	height: 30px;
+	font-size: 20px;
+	background: lightgray;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+}
+.nolist{
+	margin-top:10px;
+	margin-bottom: 10px;
+	font-size : 25px;
+	color: lightgray;
+	text-align: center;
+}
 

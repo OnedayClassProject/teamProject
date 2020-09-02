@@ -82,7 +82,6 @@ public class favorDAO {
 		} finally {
 			resourceClose();
 		}
-		
 	}
 	
 	public int isFavor(String useremail,int num){
@@ -108,5 +107,5 @@ public class favorDAO {
 		return result;
 		
 	}
-	
 }
+

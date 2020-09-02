@@ -432,6 +432,7 @@ public class StoreDAO {
 					vo.setClass_name(rs.getString("class_name"));
 					vo.setLevel(rs.getString("level"));
 					vo.setTime(rs.getString("time"));
+					vo.setCategory(rs.getString("category"));
 					vo.setThumbnail(rs.getString("thumbnail"));
 					vo.setPersonnel(rs.getString("personnel"));
 					vo.setPrice(rs.getString("price"));

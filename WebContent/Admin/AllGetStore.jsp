@@ -72,21 +72,27 @@
 	        				<div>세일 여부</div>
 	        			</div>
 	        			<div class="line"></div>
+	        			
+	        			
+	        			
 	        			<div class = "reserveInfo2">
 	        				<div class="reserveInfo3">
-	        					<div class="class_pic"> 사진 </div>
+	        					<div class="class_pic thumbnail"> 사진 </div>
 	        					<div class="class_name">
-	        						<div>카테고리</div>
-	        						<div>클래스명</div>
-	        						<div>가격</div>
-	        						<div>평점</div>
+	        						<input type="hidden" class="class_registrynum">
+	        						<div class="category">카테고리</div>
+	        						<div class="class_name">클래스명</div>
+	        						<div class="price">가격</div>
+	        						<div class="rating">평점</div>
 	        					</div>
 	        				</div>
-	        				<div class="reserveInfo4">소요시간</div>
-	        				<div class="reserveInfo4">난이도</div>
-	        				<div class="reserveInfo5">예약 현황</div>
-	        				<div class="reserveInfo4">세일 여부</div>
+	        				<div class="reserveInfo4 time">소요시간</div>
+	        				<div class="reserveInfo4 level">난이도</div>
+	        				<div class="reserveInfo5 reservation">예약 현황</div>
+	        				<div class="reserveInfo4 sale">세일 여부</div>
 	        			</div>
+	        			
+	        			
         			</div>
         		<hr>
         		</div>
@@ -135,13 +141,13 @@
 		
 		
 		
-		if($(this).children(".detail").css("display")=="none"){
-			$(this).children(".detail").css("display","block");
-			$(this).children('.detail').animate({height : "450px"},500);
+		if($(this).children(".InfoDetail").css("display")=="none"){
+			$(this).children(".InfoDetail").css("display","block");
+			$(this).children('.InfoDetail').animate({height : "450px"},500);
 			
 		}else{
-			$(this).children(".detail").css("display","none");
-			$(this).children('.detail').animate({height : "450px"},500);
+			$(this).children(".InfoDetail").css("display","none");
+			$(this).children('.InfoDetail').animate({height : "450px"},500);
 		}
 		
 		

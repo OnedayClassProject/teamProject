@@ -224,11 +224,12 @@ public class ClassDAO {
 		
 		try {
 			con = getConnection();
-			
+
 			// location 중 '전남','전북'을 가져옴 
-			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail,rating"
+			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail,rating "
 					+ "from class "
 					+ "where location LIKE '%전남%' or location LIKE '%전북%' limit ?,?";
+						
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
@@ -271,6 +272,7 @@ public class ClassDAO {
 				String sql = "select count(*) from class "
 						+ "where location LIKE '%충남%' or location LIKE '%충북%'";
 				
+				
 				pstmt = con.prepareStatement(sql);
 				
 				rs = pstmt.executeQuery();
@@ -299,8 +301,8 @@ public class ClassDAO {
 		try {
 			con = getConnection();
 			
-			// location 중 '충남','충북'을 가져옴 
-			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail,rating"
+			// location에서 '충남', '충북'을 가져옴 
+			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail,rating "
 					+ "from class "
 					+ "where location LIKE '%충남%' or location LIKE '%충북%' limit ?,?";
 			
@@ -372,8 +374,8 @@ public class ClassDAO {
 		try {
 			con = getConnection();
 			
-			// location 중 '강원'을 가져옴 
-			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail,rating"
+			// location에서 '충남', '충북'을 가져옴 
+			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail,rating "
 					+ "from class "
 					+ "where location LIKE '%강원%' limit ?,?";
 			
