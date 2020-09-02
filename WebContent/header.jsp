@@ -74,6 +74,7 @@
                         <li><a href="${pageContext.request.contextPath}/potteryClass.do">도자기</a></li>
                         <li><a href="${pageContext.request.contextPath}/perfumeClass.do">향수</a></li>
                         <li><a href="${pageContext.request.contextPath}/soapClass.do">비누</a></li>
+
                     </ul>
                 </div>
                 <div>지역별
