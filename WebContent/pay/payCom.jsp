@@ -14,9 +14,12 @@
 <section>
 		<div class="classview_wrap">
 				<div>예약완료하였습니다.</div>
-				<div>클래스사진</div>
-				<div>클래스명</div>
-				<div>예약날짜</div>
+				<div>클래스사진 ${cbean.thumbnail }</div>
+				<div>클래스명 ${cbean.class_name }</div>
+				<div>결제 금액${reservation_price }</div>
+				<div>예약날짜${reservation_date }</div>
+				<div>예약자명${user_name }</div>
+				<div>예약자 수${reservation_personnel }</div>
 				<button onclick="location.href='${pageContext.request.contextPath}/main.do'">메인페이지이동</button>
 		</div>
 </section>

@@ -82,9 +82,10 @@
                  <img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}">
                  </a>
                  <div class="like_image"> 
-                 <input type="hidden" value="${classBean.class_registrynum}" class="num">
+                
                   <img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
-                 <img class="like" src="${pageContext.request.contextPath}/images/star2.png">
+                   <input type="hidden" value="${classBean.class_registrynum}" class="num">
+                 <img class="favor" src="${pageContext.request.contextPath}/images/star2.png">
                  </div>
                  </div>
                  <div class="class-name">
@@ -129,7 +130,7 @@
 		// 하트 아이콘 눌렀을 때
 		$(".like").on("click",function(){
 			var image = $(this).attr("src");
-			var num = $(this).prev(".num").val();
+			var num = $(this).next(".num").val();
 			var likeOn = "${pageContext.request.contextPath}/images/heart_full.png";
 			var likeOff = "${pageContext.request.contextPath}/images/heart_empty.png"
 			console.log(num);
@@ -218,20 +219,22 @@
 			}
 		});
 		}
-
+		
 		/*favor 눌렀을때*/
 		$(".favor").on("click",function(){
 			var ima = $(this).attr('src');
-			var num = $(this).prev().val();
+			var num = $(this).prev(".num").val();
 			console.log(ima);
 			console.log(num);
+			
+			if( '${sessionScope.userid}' != ""){
 			if(ima == '${pageContext.request.contextPath}/images/star2.png'){
 				$(this).attr('src','${pageContext.request.contextPath}/images/star1.png');
 			$.ajax({
 				type:"post",
 				url:"${pageContext.request.contextPath}/favorReg.do",
 				data:{num:num},
-				async: false,
+				async : true,
 				dataType:"text",
 				success : function(data,status){
 					console.log(data);
@@ -253,6 +256,7 @@
 					url:"${pageContext.request.contextPath}/favorCancle.do",
 					data:{num:num},
 					dataType:"text",
+					async : true,
 					success:function(data,status){
 						if(data==1){
 							alert('저장성공');
@@ -266,10 +270,13 @@
 				});
 				
 			}
+			}else{
+				alert("로그인 후 눌러주세요.");
+			}
 			
 		});
 		for(var i=0;i< "${fn:length(list)}";i++){
-			var cla=$('.class-name3').eq(i);
+			var cla=$('.like_image').eq(i);
 			var num=cla.children('.num').val();
 			console.log(num);
 			$.ajax({

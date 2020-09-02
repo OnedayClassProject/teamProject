@@ -41,7 +41,24 @@
 	align-items: center;
 	text-align: center;
 }
-.reserveInfo div:nth-child(1) {
+.reserveInfo1{
+	margin-top:20px;
+	margin-bottom : 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}.reserveInfo1 div:nth-child(1)  {
+	width: 300px;
+}
+.reserveInfo1 div:nth-child(3){
+	width:140px;	
+}
+.reserveInfo1 div{
+	width: 120px;
+}
+
+.reserveInfo div:nth-child(1)  {
 	width: 300px;
 }
 .reserveInfo div:nth-child(3){

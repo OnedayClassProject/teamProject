@@ -3,7 +3,9 @@ package com.member.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Address;
@@ -342,6 +344,50 @@ public class memberDAO {
 				resourceClose();
 			}
 		}
+		public List<memberBean> AllGetMember() {
+			
+			List<memberBean> list = new ArrayList<memberBean>();
+			
+			try {
+				con = getConnection();
+				
+				sql = "select* from member order by joindate desc";
+				pstmt = con.prepareStatement(sql);
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()){
+				
+					memberBean vo = new memberBean();
+					
+					vo.setUseremail(rs.getString("useremail"));
+					vo.setUsername(rs.getString("username"));
+					vo.setPhone(rs.getString("phone"));
+					vo.setPostcode(rs.getString("postcode"));
+					vo.setAddress(rs.getString("address1"));
+					vo.setJoindate(rs.getTimestamp("joindate"));
+					vo.setPoint(rs.getString("point"));
+					vo.setMembership(rs.getString("membership"));
+					vo.setVip_startdate(rs.getString("vip_startdate"));
+					vo.setVip_finish(rs.getString("vip_finish"));
+					
+					
+					list.add(vo);
+					
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				resourceClose();
+			}
+			
+			return list;
+		}
+		
+		
+		
+		
+		
 	
 	
 }
