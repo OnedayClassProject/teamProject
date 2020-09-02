@@ -8,7 +8,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import com.command.CommandHandler;
+import com.google.gson.JsonArray;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.store.db.ClassBean;
@@ -39,7 +43,12 @@ public class ClassRegistryAction implements CommandHandler {
 		    String  level  = multipartRequest.getParameter("level");
 		    String hour = multipartRequest.getParameter("hour");
 		    String minute = multipartRequest.getParameter("minute");
-		    String time = hour + "시간" + minute + "분";
+		    String time = "";
+		    if(minute == null) {
+		    	time = hour + "시간";
+		    }else {
+		     time = hour + "시간" + minute + "분";
+		    }
 		    String personnel = multipartRequest.getParameter("class_personal");
 		    String price = multipartRequest.getParameter("price");
 		    String sale = multipartRequest.getParameter("sale");
@@ -70,7 +79,19 @@ public class ClassRegistryAction implements CommandHandler {
 		    
 		    StoreDAO sdao = new StoreDAO();
 		    int result = sdao.classRegistry(cb);
-		    request.setAttribute("data", result);
+		    
+		    int num = sdao.getRegistryNum(name, company);
+		    
+		    JSONObject ob1 = new JSONObject();
+		    JSONArray array = new JSONArray();
+		    ob1.put("result", result);
+		    ob1.put("num",num);
+		    
+		    array.add(ob1);
+		    JSONObject ob2 = new JSONObject();
+		    ob2.put("data", array);
+		    
+		    request.setAttribute("data", ob2.toJSONString());
 		return "store/checkEmail.jsp";
 	}
 

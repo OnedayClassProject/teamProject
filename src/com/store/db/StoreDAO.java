@@ -375,5 +375,44 @@ public class StoreDAO {
 		
 		return cb;
 	}
-	
+	public int getRegistryNum(String classname, String company) {
+		
+		int num = 0;
+		
+		try {	
+				con = getConnection();
+				String sql = "select class_registrynum from class where class_name = ? and class_company = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, classname);
+				pstmt.setString(2, company);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					num = rs.getInt(1);
+				}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resourceClose();
+		}
+		return num;
+	}
+	public int classCancleDelete(int num) {
+		
+		
+		try {
+			con = getConnection();
+			String sql = "delete from class where class_registrynum = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			
+			return 1;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+			resourceClose();
+		}
+	}
 }
