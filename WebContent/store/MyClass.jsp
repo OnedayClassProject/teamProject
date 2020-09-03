@@ -55,7 +55,7 @@
          <div class="my_main">
             <div>내가 등록한 클래스</div>
                      <hr>
-         <div> 
+          
          <div class="reserveInfo">
         	 		<div>클래스 정보</div>
            			<div>클래스 인원</div>
@@ -101,7 +101,10 @@
          <c:if test="${count == 0}">
           	<div class="no_list"> NO LIST </div>
           </c:if>
+          </div>
+        </div>
         </div>
 </section>
+<jsp:include page="../footer.jsp" />
 </body>
 </html>

@@ -44,7 +44,7 @@
     <div class="my_wrap">
         <div class="side_menu">
             <div class="side_detail">
-             <a href='${pageContext.request.contextPath}/storeReserve.do'>
+              <a href='${pageContext.request.contextPath}/storeReserve.do'>
                 <div>예약확인</div>
                 <div class="side_detail2">></div>
                 </a>
@@ -70,12 +70,18 @@
             </div>
             <hr>
             <div class="side_detail">
-                 <a href='${pageContext.request.contextPath}/storeCheckInfoPage3.do'><div>탈퇴하기</div>
+                 <a href='${pageContext.request.contextPath}/storeCheckInfoPage.do'><div>탈퇴하기</div>
                 <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
-        </div>
+            <div class="side_detail">
+                 <a href='${pageContext.request.contextPath}/storeMyClassInfo.do'><div>내가 등록한 클래스</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
+        </div> 
             <div class="my_main">
                 <div class="member_join">
         <form id = "infoform" method="post">
