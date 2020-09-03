@@ -3,11 +3,10 @@ package com.store.db;
 import java.sql.Timestamp;
 
 public class ReservationBean {
-	
+	private int reservationnum;
+	private int membernum;
 	private String useremail;
-	
-	private Timestamp pay_date;
-	
+	private Timestamp pay_date;	
 	private String class_name;
 	private String reservation_category;
 	private String reservation_personnel;
@@ -16,10 +15,24 @@ public class ReservationBean {
 	private String reservation_pay;
 	private String reservation_tel;
 	private String reservation_location;
-	private String point;
-	
+	private String point;	
 	private int class_registrynum;
-
+	
+	public int getreservationnum(){
+		return reservationnum;
+	}
+	
+	public void setreservationnum(int reservationnum){
+		this.reservationnum=reservationnum;
+	}
+	
+	public int getmembernum(){
+		return membernum;
+	}
+	
+	public void setmembernum(int membernum){
+		this.membernum=membernum;
+	}
 	public String getUseremail() {
 		return useremail;
 	}

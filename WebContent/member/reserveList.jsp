@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +8,22 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/member/reserveList.css">
 </head>
-<body><jsp:include page="../header.jsp"/>
+<body>
+<jsp:include page="../header.jsp"/>
 <section>
+
+<c:choose>
+    <c:when test="${check eq 0}">
+        <script>alert("리뷰작성기간이 아닙니다.")</script>
+    </c:when>
+    
+    <c:when test="${check eq 1}">
+  		<script>alert("리뷰작성기간이 지났습니다.")</script>
+    </c:when>
+    
+    <c:otherwise> </c:otherwise>
+</c:choose>
+
 <div class="pic"></div>
     <div class="my_wrap">
         <div class="side_menu">
@@ -63,9 +78,12 @@
 		           			<div>가격</div>
            				</div>
            			</div>
-           			<div class="reserveInfo4">인원수</div>
+           			<div class="reserveInfo4">인원수</div>s
            			<div class="reserveInfo5">2020-09-14</div>
            			<div class="reserveInfo4">환불</div>
+           			<button class="reserveInfo4" onclick="location.href='${pageContext.request.contextPath}/boardWrite.do?reservationnum=1&reservation_date=2020-09-01'">
+           				후기작성
+           			</button>
            		</div>
            	</div>
             </div>
