@@ -10,6 +10,7 @@ public class StoreBean {
 	private String storeaddress1;
 	private String storeaddress2;
 	private String storeaddress3;
+	private String store_joindate;
 	
 	public int getStorenum() {
 		return storenum;
@@ -64,6 +65,12 @@ public class StoreBean {
 	}
 	public void setStoreaddress3(String storeaddress3) {
 		this.storeaddress3 = storeaddress3;
+	}
+	public String getStore_joindate() {
+		return store_joindate;
+	}
+	public void setStore_joindate(String store_joindate) {
+		this.store_joindate = store_joindate;
 	}
 
 }

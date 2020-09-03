@@ -59,10 +59,21 @@ public class ReservationDAO {
 			
 			System.out.println("result"+result);
 			if(result != 0){
+				// 클래스 예약자 수 +1
 				sql = "update class set reservation_count = reservation_count+1 where class_registrynum=?";
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setInt(1, rbean.getClass_registrynum());
+				
+				pstmt.executeUpdate();
+				
+				
+				// 멤버 포인트 적립
+				sql = "update member set point = point+? where useremail=?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, rbean.getPoint());
+				pstmt.setString(2, rbean.getUseremail());
 				
 				pstmt.executeUpdate();
 			}
@@ -106,6 +117,7 @@ public class ReservationDAO {
 		}
 		return bean;
 	}
+	
 	
 	
 	

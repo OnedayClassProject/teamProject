@@ -26,7 +26,7 @@
 					<div>
 						<div>예약정보</div>
 						<div>예약자</div>
-						<input type="text" value="${mbean.username }"> 
+						<input type="text" id="user_name" value="${mbean.username }"> 
 						<div>연락처</div>
 						<input type="text" class="phone" value="${mbean.phone }">
 						<div>요청사항</div>
@@ -134,6 +134,10 @@ $(function () {
 		var reservation_location =' ${cbean.location}'; // 클래스 위치
 		var point = reservation_price* 0.02; // 적립될 포인트
 		var class_registrynum = ${cbean.class_registrynum}; // 클래스번호
+		var user_name = $("#user_name").val(); // 수강자명
+		
+		
+		//var class_registrynum = ${cbean.class_registrynum}; // 클래스번호
 	var IMP = window.IMP; // 생략가능
 	IMP.init('imp12575424');
 	// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -185,7 +189,7 @@ $(function () {
 	buyer_addr: '${mbean.address}',
 	buyer_postcode: '${mbean.postcode}',
 	/*
-	모바일 결제시,
+	모바일 결제시
 	결제가 끝나고 랜딩되는 URL을 지정
 	(카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
 	*/
@@ -216,7 +220,7 @@ $(function () {
 			},
 			success : function(data,status){
 				if(data == 1){
-					location.href = "${pageContext.request.contextPath}/payFinish.do";
+					location.href = "${pageContext.request.contextPath}/payFinish.do?class_registrynum="+class_registrynum+"&reservation_personnel="+reservation_personnel+"&reservation_price="+reservation_price+"&user_name="+user_name+"&reservation_date="+reservation_date;
 				}
 			},
 			error : function(data,status){

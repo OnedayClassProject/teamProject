@@ -24,9 +24,30 @@
                 $(".sale1").append("<input type='text' name='sale' id='input_sale'>%");
                 $("#sale_check").val("true");
             });
-            $("#calander_backcolor").on("click", function () {
+            $(".cal_close").on("click", function () {
+            	var num = $('.class_registryNum2').val();
+            	if(confirm("저장된 내용은 전부 삭제됩니다. 닫으시겠습니까?") == true){
                 $("#box").css("display", "none");
                 $("#calander_backcolor").css("display", "none");
+                $.ajax({
+                    type: "post",
+                    url: "${pageContext.request.contextPath}/allCancle.do",
+                    data: {num :  num},
+                    dataType: "text",
+                    success:function(data, status){
+							  if(data == 1){  
+                   	 			alert('삭제성공^^');
+                   	 			location.href='${pageContext.request.contextPath}/main.do';
+		                     	} else {
+		                     	location.href='${pageContext.request.contextPath}/main.do';
+		                    	}
+                    		},
+                    error:function(data,status){
+                   	 alert("에러");
+                    }
+                    	});
+                
+            	}
             });
             $('.reserve').on("click", function () {
                 $("#box").css("display","block");
@@ -35,7 +56,7 @@
             $('.send').on('click', function () {
             	var date  = $("#current-year-month").text();
             	var day = $("#dateInput").text().substring(8);
-            	var num = ${num };
+            	var num = $('.class_registryNum2').val();
             	var start = []
             	var end = []
 				 for(var i=0; i < $('.timeStart').length; i++){
@@ -52,6 +73,8 @@
 					success:function(data, status){
 						if(data == 1){
 							alert('저장성공');
+							$('.timeStart').attr("disabled",true);
+							$('.timeend').attr("disabled",true);
 							x();
 						} else {
 						 	alert('저장실패');
@@ -81,10 +104,7 @@
             	if($("#classname").val().trim() == ""){
             		alert("클래스명 입력해주세요.");
             		return;
-            	} else if($("#category").val().trim() == ""){
-            		alert("카테고리를 입력해주세요.");
-            		return;
-            	} else if($("#hour").val().trim() == ""){
+            	}  else if($("#hour").val().trim() == ""){
             		alert("시간을 입력해주세요.");
             		return;
             	} else if($("#minute").val().trim() == ""){
@@ -133,8 +153,15 @@
                      data: form1,
                      dataType: "text",
                      success:function(data, status){
-							  if(data == 1){                  	 
-                    	 		alert('등록성공^^');
+							                   	 	
+                    	 var res1 = JSON.parse(data);
+                    	 var res2 = res1.data;
+                    	 console.log(res2[0].result)
+							  if(res2[0].result == 1){  
+                    	 		alert("운영시간을 등록해주세요!!!!");
+                    	 		 $("#box").css("display","block");
+                                 $("#calander_backcolor").css("display","block");
+                                 $(".class_registryNum").append("<input type='hidden' class='class_registryNum2' value='"+res2[0].num+"'>");
 		                     	} else {
 		                     	alert('실패!!!!ㅜㅜㅜㅜㅜㅜㅜ');
 		                    	}
@@ -150,26 +177,29 @@
         	});
             $("#cancle_back").on("click", function () {
 				
-            	var num = ${num }
-            	
+            	var num = $('.class_registryNum2').val();
+            	if(confirm("취소하시면 기록이 사라집니다.취소하시겠습니까?") == true){
             	$.ajax({
                     type: "post",
                     url: "${pageContext.request.contextPath}/classCancle.do",
                     data: {num :  num},
                     dataType: "text",
                     success:function(data, status){
-							  if(data == 1){                  	 
-                   	 		alert('삭제성공^^');
+							  if(data == 1){  
+								               	 
+                   	 			alert('삭제성공^^');
+                   	 			location.href='${pageContext.request.contextPath}/main.do';
 		                     	} else {
-		                     	alert('실패!!!!ㅜㅜㅜㅜㅜㅜㅜ');
+		                     	location.href='${pageContext.request.contextPath}/main.do';
 		                    	}
                     		},
                     error:function(data,status){
                    	 alert("에러");
                     }
                     	});
-            	
+            	} 
 			});
+            
         });
         function handleImgFileSelect(e) {
             var files = e.target.files;
@@ -270,10 +300,6 @@
         <td class="sale1"></td>
         </tr> -->
         <div class="class_menu">
-        <div class="class_title" >일정</div>
-        <div><button type="button"class="reserve" onclick='x()'>일정버튼</button></div>
-        </div>
-        <div class="class_menu">
         <div class="class_title" >주차장여부</div>
         <div><input type="text" name="parking"></div>
         </div>
@@ -342,8 +368,9 @@
         </div>
         <div class="store">
             <div class="send">저장</div>
-            <div>닫기</div>
+            <div class="cal_close">닫기</div>
         </div>
+        <div class="class_registryNum"></div>
     </div>
 </div>
 </form>
@@ -423,11 +450,11 @@
                         document.getElementById("plus").style.display = "inline-block";
                         var date  = $("#current-year-month").text();
                         var day = $("#dateInput").text().substring(8);
-                        var num = ${num }
+                        var num = $('.class_registryNum2').val();
 						$.ajax({
 							type : "post",
 							url : "${pageContext.request.contextPath}/saveGetTime.do",
-							data : {day : day , num : num, date : date },
+							data : {day : day , date : date, num:num },
 							dataType : "text",
 							success:function (data, status){
 								var result = JSON.parse(data);
@@ -435,8 +462,8 @@
 								$(".timesetting").empty();
 								for(var i = 0; i < time.length; i++){
 									$(".timesetting").append("<div class='timeSet'>"
-													+"<input type=\"text\" class='time_start' value='"+time[i].start+"'> ~ "
-													+"<input type=\"text\" class='time_end' value='"+time[i].end+"'></div>");
+													+"<input type=\"text\" disabled='disabled' class='time_start' value='"+time[i].start+"' > ~ "
+													+"<input type=\"text\" disabled='disabled' class='time_end' value='"+time[i].end+"'></div>");
 								}
 							},
 							error:function(data,status){
@@ -518,13 +545,13 @@
     });
     function x(){
         console.log($(".abled_td").length);
-      	var num = ${num };
+      	 var num = $(".class_registryNum2").val();
         var date= $("#current-year-month").text();
          $.ajax({
             type: "post",
             url: "${pageContext.request.contextPath}/timeSetting.do",
             dataType: "text",
-            data: { date : date , num :  num},
+            data: { date : date, num : num },
              success:function (data, status) {
             	 var result = JSON.parse(data);
             	 var all = result.all;

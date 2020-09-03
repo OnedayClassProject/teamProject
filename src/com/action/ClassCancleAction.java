@@ -17,14 +17,21 @@ public class ClassCancleAction implements CommandHandler {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		int num = Integer.parseInt(request.getParameter("num"));
-		
-		StoreDAO sdao = new StoreDAO();
-		int result = sdao.classCancleTimeDelete(num);
-		
-		request.setAttribute("data", result);
+		String num =request.getParameter("num");
 		
 		
+		if(num != null) {
+			
+			
+			int num2 = Integer.parseInt(num);
+			StoreDAO sdao = new StoreDAO();
+			int result = sdao.classCancleDelete(num2);
+			
+			request.setAttribute("data", result);
+		} else {
+			
+			request.setAttribute("data", 0);
+		}
 		return "store/checkEmail.jsp";
 	}
 
