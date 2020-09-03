@@ -85,6 +85,39 @@ public class ReservationDAO {
 		}
 	}
 	
+	public ReservationBean getOneReservation(int reservationnum){
+		ReservationBean bean = null;
+		try{
+			con = getConnection();
+			String sql="select * from classreservation where reservationnum=?";
+			pstmt =con.prepareStatement(sql);
+			pstmt.setInt(1, reservationnum);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()){
+				bean= new ReservationBean();
+				bean.setreservationnum(rs.getInt(1));
+				bean.setmembernum(rs.getInt(2));
+				bean.setUseremail(rs.getString(3));
+				bean.setPay_date(rs.getTimestamp(4));
+				bean.setClass_name(rs.getString(5));
+				bean.setReservation_category(rs.getString(6));
+				bean.setReservation_personnel(rs.getString(7));
+				bean.setReservation_date(rs.getString(8));
+				bean.setReservation_price(rs.getString(9));
+				bean.setReservation_pay(rs.getString(10));
+				bean.setReservation_tel(rs.getString(11));
+				bean.setReservation_location(rs.getString(12));
+				bean.setPoint(rs.getString(13));
+				bean.setClass_registrynum(rs.getInt(14));
+			}
+			con.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return bean;
+	}
+	
 	
 	
 	

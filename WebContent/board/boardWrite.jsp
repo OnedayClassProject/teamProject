@@ -116,15 +116,15 @@
        	</div>
        	<div class="review_wrap">
         	<div class="review_title">클래스명 <input type="hidden" name="class_name" value="가죽지갑만들기"></div>
-        	<div>가죽지갑만들기</div>
+        	<div>${rbean.class_name}</div>
         </div>
         <div class="review_wrap">
         <div class="review_title">회원이메일</div>
-        <div>email넣기</div>
+        <div>${rbean.useremail}</div>
         </div>
         <div class="review_wrap">
        	 	<div class="review_title">수업참가날짜<input type="hidden" name="reservation_date" value="2020.10.01"></div>
-        	<div>2020-21-23 날짜넣기</div>
+        	<div>${rbean.reservation_date}</div>
         </div>
         <div class="review_wrap">
         <div class="review_title">별점</div>
