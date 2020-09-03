@@ -425,7 +425,7 @@ public class StoreDAO {
 				
 				rs = pstmt.executeQuery();
 				
-				if(rs.next()){
+				while(rs.next()){
 					ClassBean vo = new ClassBean();
 					
 					vo.setClass_registrynum(rs.getInt("class_registrynum"));

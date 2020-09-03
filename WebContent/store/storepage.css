@@ -2,7 +2,7 @@
 .my_wrap{
     padding-top: 70px;
     display: flex;
-    width: 1000px;
+    width: auto;
     margin: auto;
     
 }
@@ -16,7 +16,7 @@
     padding-left: 75px;
 }
 .my_main{
-    height: 1000px;
+    height: auto;
     width: 700px;
     margin: auto;
 }
@@ -70,4 +70,8 @@
     margin-top: 20px;
     height: 40px;
     line-height: 40px;
+}
+
+section {
+	min-height: 100%;
 }

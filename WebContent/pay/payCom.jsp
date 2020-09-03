@@ -23,5 +23,6 @@
 				<button onclick="location.href='${pageContext.request.contextPath}/main.do'">메인페이지이동</button>
 		</div>
 </section>
+<jsp:include page="../footer.jsp" />
 </body>
 </html>

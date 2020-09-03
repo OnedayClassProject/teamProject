@@ -351,6 +351,7 @@
                         <td align="center">Fri</td>
                         <td class="sat" align="center">Sat</td>
                      
+                     
                 </tr>
                 </thead>
                 <tbody id="calendar-body" class="calendar-body"></tbody>
@@ -372,9 +373,10 @@
         </div>
         <div class="class_registryNum"></div>
     </div>
-</div>
+
 </form>
 </section>
+<jsp:include page="../footer.jsp" />
 <script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 <script>
     $(function () {

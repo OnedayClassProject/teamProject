@@ -75,13 +75,13 @@
 	        			
 	        			
 	        			
-	        			<div class = "reserveInfo2">
+	        			<!-- <div class = "reserveInfo2">
 	        				<div class="reserveInfo3">
 	        					<div class="class_pic thumbnail"> 사진 </div>
 	        					<div class="class_name">
 	        						<input type="hidden" class="class_registrynum">
 	        						<div class="category">카테고리</div>
-	        						<div class="class_name">클래스명</div>
+	        						<div class="classname">클래스명</div>
 	        						<div class="price">가격</div>
 	        						<div class="rating">평점</div>
 	        					</div>
@@ -90,7 +90,7 @@
 	        				<div class="reserveInfo4 level">난이도</div>
 	        				<div class="reserveInfo5 reservation">예약 현황</div>
 	        				<div class="reserveInfo4 sale">세일 여부</div>
-	        			</div>
+	        			</div> -->
 	        			
 	        			
         			</div>
@@ -98,66 +98,71 @@
         		</div>
         		</c:forEach>
         		<!-- 반복 -->
-        		
         	</div>
         </div>
 	</div>
-
 </section>
 <jsp:include page="../footer.jsp" />
 <script type="text/javascript">
 
 	$(".reserveDe").on("click",function(){
-		
-		
 		var email = $(this).find(".email").text();
-		console.log(email);
-		
-		$.ajax({
-			type : "post",
-			url : "${pageContext.request.contextPath}/GetClass.do",
-			dataType : "text",
-			data : {email : email},
-			success : function(data,status){
-				var result = JSON.parse(data);
-				var all = result.all;
-				
-				if(all.length != 0){
-					for(var i = 0; i < all.length ; i++){
-						
-					}
-				}
-				
-			},
-			error : function (data,status){
-				alert("에러가 발생했습니다.");
-			}
-		});
-		
-		
-		
-		
-		
-		
+		var is = $(this).find(".InfoDetail");
 		
 		
 		if($(this).children(".InfoDetail").css("display")=="none"){
 			$(this).children(".InfoDetail").css("display","block");
-			$(this).children('.InfoDetail').animate({height : "450px"},500);
+			$(this).children('.InfoDetail').animate({height : "auto"},500);
+			
+			$.ajax({
+				type : "post",
+				url : "${pageContext.request.contextPath}/GetClass.do",
+				dataType : "text",
+				data : {email : email},
+				success : function(data,status){
+					var result = JSON.parse(data);
+					var all = result.all;
+					if(all.length != 0){
+						for(var i = 0; i < all.length ; i++){
+							is.append("<div class='reserveInfo2'>"
+										+"<div class='reserveInfo3'>"
+											+"<div class='class_pic thumbnail'> "
+											+"<a href='${pageContext.request.contextPath}/ClassInfo.do?class_registrynum="+all[i].class_registrynum+"'>"
+											+"<img src='${pageContext.request.contextPath}/thumbnailImage/"+all[i].thumbnail+"' width=150px height=140px/> </a> </div> "
+											+"<div class='class_name'>"
+												+"<div class='category'>"+all[i].category+"</div>"
+												+"<div class='classname'>"+all[i].class_name+"</div>"
+												+"<div class='price'>"+all[i].price+"</div>"
+												+"<div class='rating'> 평점 : "+all[i].rating+"</div>"
+											+"</div>"
+										+"</div>"
+										+"<div class='reserveInfo4 time'>"+all[i].time+"</div>"
+				        				+"<div class='reserveInfo4 level'>"+all[i].level+"</div>"
+				        				+"<div class='reserveInfo5 reservation'>"+all[i].reservation_count+"/"+all[i].personnel+"</div>"
+				        				+"<div class='reserveInfo4 sale'>"+all[i].sale+"</div></div>");
+							console.log(all[i].class_name);
+						}
+					}
+					
+				},
+				error : function (data,status){
+					alert("에러가 발생했습니다.");
+				}
+			});
+			
 			
 		}else{
 			$(this).children(".InfoDetail").css("display","none");
-			$(this).children('.InfoDetail').animate({height : "450px"},500);
+			$(this).children('.InfoDetail').animate({height : "auto"},500);
+			
+			$(this).find(".reserveInfo2").remove();
+			
 		}
-		
-		
-		
-		
-		
-		
+			
 	});
 
 
 </script>
+
 </body>
 </html>

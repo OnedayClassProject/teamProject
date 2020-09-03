@@ -60,3 +60,7 @@
 	color: white;
 	border-radius: 20px;
 }
+
+section {
+	min-height: 100%;
+}

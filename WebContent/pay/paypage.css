@@ -92,3 +92,7 @@
 	border-radius: 10px;
 	border: 1px solid lightgray;
 }
+
+section {
+	min-height: 100%;
+}

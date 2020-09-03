@@ -65,3 +65,7 @@
 	border: 1px solid gray;
 	height: 0;
 }
+
+section {
+	min-height: 100%;
+}
