@@ -138,7 +138,7 @@
 		
 		if($('.qna_menu1-1').css("display") == 'none'){
 			$('.qna_menu1-1').css("display",'block');
-			$('.qna_menu1-1').animate({height : "450px"},500);
+			$('.qna_menu1-1').animate({height : "600px"},500);
 		} else{
 			$('.qna_menu1-1').animate({height : "0px"},500, function () {
 				$('.qna_menu1-1').css("display",'none');
@@ -160,7 +160,7 @@
 		
 		if($('.qna_menu1-3').css("display") == 'none'){
 			$('.qna_menu1-3').css("display",'block');
-			$('.qna_menu1-3').animate({height : "250px"},500);
+			$('.qna_menu1-3').animate({height : "400px"},500);
 		} else{
 			$('.qna_menu1-3').animate({height : "0px"},500, function () {
 				$('.qna_menu1-3').css("display",'none');
@@ -171,7 +171,7 @@
 		
 		if($('.qna_menu1-4').css("display") == 'none'){
 			$('.qna_menu1-4').css("display",'block');
-			$('.qna_menu1-4').animate({height : "330px"},500);
+			$('.qna_menu1-4').animate({height : "500px"},500);
 		} else{
 			$('.qna_menu1-4').animate({height : "0px"},500, function () {
 				$('.qna_menu1-4').css("display",'none');

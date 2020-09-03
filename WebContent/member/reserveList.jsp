@@ -53,7 +53,7 @@
            			<div>예약날짜</div>
            			<div>환불여부</div>
            		</div>
-           		<div class="line"><div>
+           		<div class="line"></div>
            		<div class="reserveInfo2">
            			<div class="reserveInfo3">
 	           			<div class="class_pic">사진</div>
@@ -71,5 +71,6 @@
             </div>
         </div>
 </section>
+<jsp:include page="../footer.jsp" />
 </body>
 </html>

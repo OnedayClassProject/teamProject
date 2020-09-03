@@ -106,6 +106,7 @@
 
         </div>
 </section>
+<jsp:include page="../footer.jsp" />
 <script type="text/javascript">
 
 

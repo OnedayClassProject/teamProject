@@ -24,7 +24,7 @@
     padding-left: 75px;
 }
 .my_main{
-    height: 1000px;
+   
     width: 700px;
     margin: auto;
 }
@@ -100,3 +100,6 @@
 	margin-bottom: 5px;
 }
 
+section{
+	min-height: 100%;
+}

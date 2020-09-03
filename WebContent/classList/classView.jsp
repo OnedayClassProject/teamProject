@@ -279,6 +279,7 @@
 	</div>
 
 </section>
+<jsp:include page="../footer.jsp" />
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=095bf2bab670dc21291d69e69ecac288&libraries=services,clusterer,drawing"></script>
 <script type="text/javascript">
 		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스

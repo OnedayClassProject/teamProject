@@ -54,3 +54,7 @@
     font-size: 30px;
     letter-spacing: 4px;
 }
+
+section {
+	min-height: 100%;
+}

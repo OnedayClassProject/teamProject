@@ -50,3 +50,6 @@
 	border: 1px solid black;
 }
 
+section{
+	min-height: 100%;
+}

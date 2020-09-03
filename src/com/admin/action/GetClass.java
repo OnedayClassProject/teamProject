@@ -41,7 +41,7 @@ public class GetClass implements CommandHandler{
 			save.put("sale", AllGetClass.get(i).getSale());
 			save.put("reservation_count", AllGetClass.get(i).getReservation_count());
 			save.put("rating", AllGetClass.get(i).getRating());
-			
+			save.put("category", AllGetClass.get(i).getCategory());
 			array.add(save);
 			
 		}

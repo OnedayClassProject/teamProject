@@ -127,3 +127,6 @@
 	text-align: center;
 }
 
+section{
+	min-height: 100%;
+}

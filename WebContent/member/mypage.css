@@ -15,7 +15,7 @@
     padding-left: 75px;
 }
 .my_main{
-    height: 1000px;
+   /*  height: 1000px; */
     width: 700px;
     margin: auto;
 }
@@ -76,5 +76,8 @@
 	padding:10px;
 	display:none;
 	border: 1px solid gray;
-	height: 0;
+}
+
+section {
+	min-height: 100%;
 }

@@ -46,6 +46,7 @@
 				</div>
 			</div>
 </section>
+<jsp:include page="../footer.jsp" />
 <script>
 $(function () {
 	

@@ -370,3 +370,7 @@
 .pay_button{
 	width: 300px;
 }
+
+section {
+	min-height: 100%;
+}
