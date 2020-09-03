@@ -26,7 +26,6 @@ public class MyPageAction implements CommandHandler{
 		
 		
 		memberBean mbean = mdao.getMember(email);
-		
 		request.setAttribute("getMember",mbean);
 		
 		return "/member/mypagee.jsp";

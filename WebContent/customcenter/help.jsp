@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -72,7 +73,8 @@
 	        					<div>${list.num }</div>
 	        					<div><a href="javascript:void(0);" onclick="checkID('${list.writer}','${list.num }','${pageNum }'); return false;">${list.title }</a></div>
 	        					<div>${list.writer }</div>
-	        					<div>${list.date }</div>
+	        					<c:set var ="date" value = "${list.date }"></c:set>
+	        					<div>${fn:substring(date,0,10) }</div>
 	        				</div>
 	        			</c:forEach>
         			</c:if>

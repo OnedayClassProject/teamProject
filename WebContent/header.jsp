@@ -85,22 +85,13 @@
                         <li><a href="${pageContext.request.contextPath}/busanClass.do">부산</a></li>
                         <li><a href="${pageContext.request.contextPath}/daeguClass.do">대구</a></li>
                         <li><a href="${pageContext.request.contextPath}/daejeonClass.do">대전</a></li>
-<<<<<<< HEAD
-=======
-
->>>>>>> jin
-   
                         <li><a href="${pageContext.request.contextPath}/gyeongsangClass.do">경상도</a></li>
                         <li><a href="${pageContext.request.contextPath}/chungcheongClass.do">충청도</a></li>
                         <li><a href="${pageContext.request.contextPath}/jeollaClass.do">전라도</a></li>
                         <li><a href="${pageContext.request.contextPath}/gangwonClass.do">강원도</a></li>
                         <li><a href="${pageContext.request.contextPath}/jejuClass.do">제주도</a></li>
                     </ul>
-<<<<<<< HEAD
-                </div>
-=======
           		</div>
->>>>>>> jin
                 <div>고객센터
                 	<ul class="sub_menu">
                         <li><a href="${pageContext.request.contextPath}/helpMainPage.do">문의하기</a></li>

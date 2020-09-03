@@ -3,7 +3,9 @@ package com.member.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -383,11 +385,33 @@ public class memberDAO {
 			
 			return list;
 		}
+		public int registerVIP(String id) {
+			SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
+			Calendar startTime = Calendar.getInstance();
+			Calendar finishTime = Calendar.getInstance();
+		    finishTime.add(Calendar.DATE, 31);
+			String vip_start = format.format(startTime.getTime());
+			String vip_finish = format.format(finishTime.getTime());
+			System.out.println("시작날짜 : "+vip_start);
+			System.out.println("끝날짜 : "+vip_finish);
+			try {
+				con = getConnection();
+				sql = "update member set vip_startdate = ?, vip_finish =?, membership=? where useremail = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, vip_start);
+				pstmt.setString(2, vip_finish);
+				pstmt.setString(3, "VIP");
+				pstmt.setString(4, id);
+				pstmt.executeUpdate();
+				return 1;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				resourceClose();
+			}
+			
+			return 0;
+		}
 		
-		
-		
-		
-		
-	
 	
 }
