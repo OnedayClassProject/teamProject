@@ -151,9 +151,11 @@ public class StoreDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, storeemail);
 			pstmt.setString(2, storepw);
+			
 			result = pstmt.executeUpdate();
-			if(result != 0)
+			if(result != 0){
 				return 1;
+			}
 		} catch (Exception e) {
 			System.out.println("deleteStore()에서 예외발생:" );
 			e.printStackTrace();

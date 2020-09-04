@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,22 +64,22 @@
            			<div>환불처리</div>
            		</div>
            		<div class="line"></div>
-           		<div class="reserveInfo2">
-           			<div class="reserveInfo3">
+           		
+           		<c:forEach var="GetRefund" items="${StoreGetCancle }">
+	           		<div class="reserveInfo2">
+	           		
 	           			<div class="class_pic">사진</div>
-	           			<div class="class_name">
-		           			<div>카테고리</div>
-		           			<div>클래스명</div>
-		           			<div>가격</div>
-           				</div>
-           			</div>
-           			<div class="reserveInfo4">인원수</div>
-           			<div class="reserveInfo5">2020-09-14</div>
-           			<div class="reserveInfo4">완료</div>
-           		</div>
+	           			<div>카테고리</div>
+	           			<div>클래스명</div>
+	           			<div>가격</div>
+	           			<div class="reserveInfo4">인원수</div>
+	           			<div class="reserveInfo5">2020-09-14</div>
+	           			<div class="reserveInfo4">완료</div>
+	           		</div>
+           		
+           		</c:forEach>
            	</div>
             </div>
-        </div>
         </div>
 </section>
 <jsp:include page="../footer.jsp" />
