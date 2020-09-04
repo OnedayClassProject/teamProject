@@ -20,6 +20,7 @@
 				<div>예약날짜${reservation_date }</div>
 				<div>예약자명${user_name }</div>
 				<div>예약자 수${reservation_personnel }</div>
+				<div>요청사항 ${content }</div>
 				<button onclick="location.href='${pageContext.request.contextPath}/main.do'">메인페이지이동</button>
 		</div>
 </section>

@@ -37,7 +37,7 @@ public class ReviewDAO {
 		try {
 			con = getConnection();
 			
-			sql = "insert into review(class_registrynum,storenum,company_name,class_name,email,reservation_date,content,thumbnail,rating,reviewdate) "
+			sql = "insert into review(class_registrynum,storenum,company_name,class_name,useremail,reservation_date,content,thumbnail,rating,reviewdate) "
 					+ "values(?,?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			
@@ -67,6 +67,9 @@ public class ReviewDAO {
 		
 		int count = 0;
 	 try {
+		 
+		 con = getConnection();
+		 
 		 String sql = "select count(*) from review where class_registrynum = ?";
 		 pstmt = con.prepareStatement(sql);
 		 pstmt.setInt(1, class_num);

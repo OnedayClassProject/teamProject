@@ -3,6 +3,8 @@ package com.store.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -38,7 +40,7 @@ public class ReservationDAO {
 			
 			sql ="insert into classreservation(useremail,pay_date,class_name,reservation_category,"
 					+ "reservation_personnel,reservation_date,reservation_price,reservation_pay,reservation_tel,"
-					+ "reservation_location,point,class_registrynum) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "reservation_location,point,class_registrynum,content) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 			pstmt = con.prepareStatement(sql);
 			
@@ -54,6 +56,7 @@ public class ReservationDAO {
 			pstmt.setString(10, rbean.getReservation_location());
 			pstmt.setString(11, rbean.getPoint());
 			pstmt.setInt(12, rbean.getClass_registrynum());
+			pstmt.setString(13, rbean.getContent());
 			
 			result = pstmt.executeUpdate();
 			
@@ -117,6 +120,54 @@ public class ReservationDAO {
 		}
 		return bean;
 	}
+	public List<ReservationBean> GetReserve(int storenum) {
+		
+		List<ReservationBean> list = new ArrayList<ReservationBean>();
+		
+		try {
+			con = getConnection();
+			
+			sql = "select* from class where storenum=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, storenum);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				System.out.println("class"+rs.getInt("class_registrynum"));
+				sql ="select* from classreservation where class_registrynum=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, rs.getString("class_registrynum"));
+				
+				ResultSet rs2 = pstmt.executeQuery();
+				
+				while(rs2.next()){
+					ReservationBean vo = new ReservationBean();
+					
+					vo.setClass_name(rs2.getString("class_name"));
+					vo.setReservation_price(rs2.getString("reservation_price"));
+					vo.setUseremail(rs2.getString("useremail"));
+					vo.setReservation_personnel(rs2.getString("reservation_personnel"));
+					vo.setReservation_date(rs2.getString("reservation_date"));
+					vo.setContent(rs2.getString("content"));
+					vo.setReservation_tel(rs2.getString("reservation_tel"));
+					list.add(vo);
+				}
+				
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			resourceClose();
+		}
+		
+		return list;
+	}
+	
+	
+	
 	
 	
 	
