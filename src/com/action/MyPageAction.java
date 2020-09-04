@@ -34,6 +34,10 @@ public class MyPageAction implements CommandHandler{
 		ArrayList <ClassBean> refundList = rcdao.refundList(email);
 		request.setAttribute("refundList", refundList);
 		
+		ClassDAO fcdao = new ClassDAO();
+		ArrayList <ClassBean> favorList = fcdao.favorList(email);
+		request.setAttribute("favorList", favorList);
+		
 		return "/member/mypagee.jsp";
 	}	
 

@@ -1344,5 +1344,32 @@ public class ClassDAO {
 			resourceClose();
 		}
 		return list;
-	}	
+	}
+	
+	public ArrayList<ClassBean> favorList(String email){
+		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
+		ClassBean bean = null;
+		try{
+			con=getConnection();
+			String sql="select c.thumbnail, c.category, c.level, c.class_name, c.class_company, f.class_registrynum from class as c join favor as f on f.class_registrynum = c.class_registrynum where f.useremail=? limit 3";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs=pstmt.executeQuery();
+			while(rs.next()){
+				bean=new ClassBean();
+				bean.setThumbnail(rs.getString("thumbnail"));
+				bean.setCategory(rs.getString("category"));
+				bean.setLevel(rs.getString("level"));
+				bean.setClass_name(rs.getString("class_name"));
+				bean.setClass_company(rs.getString("class_company"));
+				bean.setClass_registrynum(rs.getInt("class_registrynum"));
+				list.add(bean);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			resourceClose();
+		}
+		return list;
+	}
 }
