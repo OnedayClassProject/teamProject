@@ -53,7 +53,7 @@
 .price_tag div{
 	display: inline-block;
 }
-.price_tag div:nth-child(3){
+.origin_price{
 	text-decoration:line-through; 
 }
 
@@ -91,4 +91,8 @@
 	font-size: 25px;
 	border-radius: 10px;
 	border: 1px solid lightgray;
+}
+
+section {
+	min-height: 100%;
 }

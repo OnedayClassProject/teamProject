@@ -5,4 +5,6 @@
  	margin: auto;	
  	padding-top: 70px;
 }
-
+section {
+	min-height: 100%;
+}

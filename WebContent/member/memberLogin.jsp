@@ -136,7 +136,7 @@
      	</div>
     </div>
 </section>
-
+<jsp:include page="../footer.jsp" />
 <script>
 function pwd_find(){
 	window.open('${pageContext.request.contextPath}/member/pwdFind.jsp', '비밀번호 찾기',
@@ -145,4 +145,4 @@ function pwd_find(){
 </script>
 </body>
 </html>
-<script>
+

@@ -23,6 +23,7 @@ public class payFinishAction implements CommandHandler{
 		String reservation_price = request.getParameter("reservation_price");
 		String user_name = request.getParameter("user_name");
 		String reservation_date = request.getParameter("reservation_date");
+		String content = request.getParameter("content");
 		
 		StoreDAO sdao = new StoreDAO();
 		ClassBean cbean = sdao.getClass(class_registrynum);
@@ -32,7 +33,7 @@ public class payFinishAction implements CommandHandler{
 		request.setAttribute("reservation_price", reservation_price);
 		request.setAttribute("user_name", user_name);
 		request.setAttribute("reservation_date", reservation_date);
-		
+		request.setAttribute("content", content);
 		
 		
 		return "pay/payCom.jsp";

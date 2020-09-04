@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <style>
 .tooltip {
@@ -100,16 +102,32 @@
                 <div class="reserve_list2">
                 	<div align="center">
                 		<div class="pay_btn">
-                			<button class="pay_btn2">VIP 가입하기</button><br>
-                			<div class ="tooltip"> VIP란?
-                				<span class="tooltip-text">vip에대한 설명</span>
-                			</div>
+                			<c:choose>
+                				<c:when test="${getMember.membership eq 'VIP'}">
+                					<div class="pay_btn">
+                					<c:set var="now" value="<%=new java.util.Date()%>" />
+                					<c:set var="nowTime"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set>
+                					<fmt:parseDate var="strPlanDate" value="${nowTime }" pattern="yyyy-MM-dd"/>
+                					<fmt:parseNumber var="strDate" value="${strPlanDate.time / (1000*60*60*24)}" integerOnly="true" ></fmt:parseNumber>
+                					<fmt:parseDate  var="endPlanDate" value="${getMember.vip_finish }" pattern="yyyy-MM-dd"/>
+									<fmt:parseNumber var="endDate" value="${endPlanDate.time / (1000*60*60*24)}" integerOnly="true" ></fmt:parseNumber>
+                					<c:set var ="date"  value = "${getMember.vip_finish }"/>
+			                			다음 결제일 : ${fn:substring(date,0,4) }년&nbsp;${fn:substring(date,5,7) }월&nbsp;${fn:substring(date,8,10) }일 (${endDate - strDate }일 남음)
+	                				</div>
+                				</c:when>
+			                	<c:otherwise>
+		                			<button class="pay_btn2">VIP 가입하기</button><br>
+		                			<div class ="tooltip"> VIP란?
+		                				<span class="tooltip-text">vip에대한 설명</span>
+		                			</div>
+	                			</c:otherwise>
+                			</c:choose>
                 		</div>
                 	</div>	
                 </div>
-                <hr>
+              	<hr>
                 <div class="reserve_list">
-                    MY 예약리스트
+                    MY 예약리스트 
                 </div>
                 <div class="reserve_list2">
                 	<c:forEach var="classBean" items="${myList}">
@@ -189,12 +207,13 @@
             </div>
         </div>
 </section>
+<jsp:include page="../footer.jsp" />
 </body>
 <script>
 $(function () {
 	$(function () {
-		$('[data-toggle="tooltip"]').tooltip()
-	})
+		$('[data-toggle="tooltip"]').tooltip();
+	});
 
 	$(".pay_btn2").on("click", function() {
 		// Set a same-site cookie for first-party contexts
@@ -257,6 +276,20 @@ $(function () {
 	msg += '상점 거래ID : ' + rsp.merchant_uid;
 	msg += '결제 금액 : ' + rsp.paid_amount;
 	msg += '카드 승인번호 : ' + rsp.apply_num;
+	$.ajax('${pageContext.request.contextPath}/VIPRegister.do',{
+		type:"post",
+		success:function(data){
+			if(data == 1){
+				location.href="${pageContext.request.contextPath}/mypage.do";
+			}else{
+				alert("문제가 발생했습니다.");
+				location.href="${pageContext.request.contextPath}/main.do";
+			}
+		}, error:function(data){
+			alert("에러가 발생했습니다.");
+		}
+	});
+	
 	} else {
 	var msg = '결제에 실패하였습니다.';
 	msg += '에러내용 : ' + rsp.error_msg;

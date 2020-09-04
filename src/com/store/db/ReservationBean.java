@@ -17,7 +17,19 @@ public class ReservationBean {
 	private String reservation_location;
 	private String point;	
 	private int class_registrynum;
+	private String content;
+	private String time;
 	
+	
+	
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
 	public int getreservationnum(){
 		return reservationnum;
 	}
@@ -128,6 +140,15 @@ public class ReservationBean {
 	public void setClass_registrynum(int class_registrynum) {
 		this.class_registrynum = class_registrynum;
 	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+	
 	
 	
 }

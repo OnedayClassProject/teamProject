@@ -155,7 +155,8 @@ public class StoreDAO {
 			if(result != 0)
 				return 1;
 		} catch (Exception e) {
-			System.out.println("deleteStore()에서 예외발생:" + e);
+			System.out.println("deleteStore()에서 예외발생:" );
+			e.printStackTrace();
 		}finally{
 			resourceClose();
 		}
@@ -196,13 +197,16 @@ public class StoreDAO {
 		
 		try {
 			con = getConnection();
-			String sql = "insert into operationdate(class_registrynum,class_date,class_day,class_starttime,class_endtime) values (?,?,?,?,?)";
+			String sql = "insert into operationdate(class_registrynum,class_date,class_day,class_starttime,class_endtime,personal,calnum,currentpersonal) values (?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, bean.getClass_registrynum());
 			pstmt.setString(2, bean.getClass_date());
 			pstmt.setString(3, bean.getClass_day());
 			pstmt.setString(4, bean.getClass_starttime());
 			pstmt.setString(5, bean.getClass_endtime());
+			pstmt.setInt(6, bean.getPersonal());
+			pstmt.setInt(7, bean.getCalnum());
+			pstmt.setInt(8, 0);
 			pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -265,7 +269,7 @@ public class StoreDAO {
 			ArrayList<TimeSaveBean> list = new ArrayList<TimeSaveBean>();
 		try {
 			con = getConnection();
-			String sql = "select class_starttime, class_endtime from operationdate where class_date = ? and class_day = ? and class_registrynum = ? order by class_starttime asc";
+			String sql = "select class_starttime, class_endtime,currentpersonal from operationdate where class_date = ? and class_day = ? and class_registrynum = ? order by class_starttime asc";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, date);
 			pstmt.setString(2, day);
@@ -275,6 +279,7 @@ public class StoreDAO {
 				TimeSaveBean bean = new TimeSaveBean();
 				bean.setClass_starttime(rs.getString(1));
 				bean.setClass_endtime(rs.getString(2));
+				bean.setCurrentpersonal(rs.getInt(3));
 				
 				list.add(bean);
 			}
@@ -425,7 +430,7 @@ public class StoreDAO {
 				
 				rs = pstmt.executeQuery();
 				
-				if(rs.next()){
+				while(rs.next()){
 					ClassBean vo = new ClassBean();
 					
 					vo.setClass_registrynum(rs.getInt("class_registrynum"));
@@ -494,4 +499,5 @@ public class StoreDAO {
 			resourceClose();
 		}
 	}
+	
 }

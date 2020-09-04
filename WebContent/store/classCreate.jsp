@@ -54,6 +54,8 @@
                 $("#calander_backcolor").css("display","block");
             });
             $('.send').on('click', function () {
+            	
+            	var personal  = $('#class_personal').val();
             	var date  = $("#current-year-month").text();
             	var day = $("#dateInput").text().substring(8);
             	var num = $('.class_registryNum2').val();
@@ -63,11 +65,11 @@
 					start[i] = $('.timeStart').eq(i).val();
 					end[i] = $('.timeend').eq(i).val();
 				} 
-				
+				console.log(personal);
 				$.ajax({
 					type : "POST",
 					url : "${pageContext.request.contextPath}/timeSave.do",
-					data : { "start" : start, "end" : end,"date":date , "day" : day, "num" : num},
+					data : {	"personal":personal, "start" : start, "end" : end,"date":date , "day" : day, "num" : num},
 					dataType: "text",
 					traditional : true,
 					success:function(data, status){
@@ -351,6 +353,7 @@
                         <td align="center">Fri</td>
                         <td class="sat" align="center">Sat</td>
                      
+                     
                 </tr>
                 </thead>
                 <tbody id="calendar-body" class="calendar-body"></tbody>
@@ -372,9 +375,10 @@
         </div>
         <div class="class_registryNum"></div>
     </div>
-</div>
+
 </form>
 </section>
+<jsp:include page="../footer.jsp" />
 <script src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 <script>
     $(function () {

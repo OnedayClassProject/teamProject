@@ -11,6 +11,9 @@ body{
     margin: 0px;
     height: auto;
 }
+section {
+	min-height: 100%;
+}
 .head{
     margin: auto;
     width: 1000px;

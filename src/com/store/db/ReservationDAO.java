@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -39,7 +40,7 @@ public class ReservationDAO {
 			
 			sql ="insert into classreservation(useremail,pay_date,class_name,reservation_category,"
 					+ "reservation_personnel,reservation_date,reservation_price,reservation_pay,reservation_tel,"
-					+ "reservation_location,point,class_registrynum) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "reservation_location,point,class_registrynum,content,time) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 			pstmt = con.prepareStatement(sql);
 			
@@ -55,6 +56,8 @@ public class ReservationDAO {
 			pstmt.setString(10, rbean.getReservation_location());
 			pstmt.setString(11, rbean.getPoint());
 			pstmt.setInt(12, rbean.getClass_registrynum());
+			pstmt.setString(13, rbean.getContent());
+			pstmt.setString(14, rbean.getTime());
 			
 			result = pstmt.executeUpdate();
 			
@@ -115,8 +118,79 @@ public class ReservationDAO {
 			con.close();
 		}catch(Exception e){
 			e.printStackTrace();
+		} finally {
+			resourceClose();
 		}
 		return bean;
 	}
+	public List<ReservationBean> GetReserve(int storenum) {
 		
+		List<ReservationBean> list = new ArrayList<ReservationBean>();
+		
+		try {
+			con = getConnection();
+			
+			sql = "select* from class where storenum=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, storenum);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				System.out.println("class"+rs.getInt("class_registrynum"));
+				sql ="select* from classreservation where class_registrynum=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, rs.getString("class_registrynum"));
+				
+				ResultSet rs2 = pstmt.executeQuery();
+				
+				while(rs2.next()){
+					ReservationBean vo = new ReservationBean();
+					
+					vo.setClass_name(rs2.getString("class_name"));
+					vo.setReservation_price(rs2.getString("reservation_price"));
+					vo.setUseremail(rs2.getString("useremail"));
+					vo.setReservation_personnel(rs2.getString("reservation_personnel"));
+					vo.setReservation_date(rs2.getString("reservation_date"));
+					vo.setContent(rs2.getString("content"));
+					vo.setReservation_tel(rs2.getString("reservation_tel"));
+					vo.setTime(rs2.getString("time"));
+					list.add(vo);
+				}
+				
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			resourceClose();
+		}
+		
+		return list;
+	}
+	
+	
+	
+	
+	//시간테이블 예약결제시 인원채우기
+		public void setTimePersonal(int class_registrynum,String time,String reservation_personnel) {
+			
+			int reservation_per = Integer.parseInt(reservation_personnel);
+			String setTime = time.substring(0, 2);
+				
+			try {
+				con = getConnection();
+				String sql  = "update operationdate set currentpersonal = ? where class_registrynum = ? and class_starttime like ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, reservation_per);
+				pstmt.setInt(2, class_registrynum);
+				pstmt.setString(3, "%"+setTime+"%");
+				pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				resourceClose();
+			}
+		}
 }

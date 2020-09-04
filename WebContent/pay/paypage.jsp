@@ -30,7 +30,7 @@
 						<div>연락처</div>
 						<input type="text" class="phone" value="${mbean.phone }">
 						<div>요청사항</div>
-						<textarea rows="10" cols="10"></textarea>
+						<textarea rows="10" cols="10" id="content"></textarea>
 					</div>
 					<div>
 						<div>클래스정보</div>
@@ -58,9 +58,8 @@
 					<div class="storeName_tag">업체명 ${cbean.class_company }</div>
 					<div class="price_tag">
 						<c:if test="${mbean.membership eq 'vip' }">
-							<div>할인율</div>
-							<div>할인가격</div>
-							<div>${sum_price }</div>
+							<div>가격</div>
+							<div class="origin_price">${sum_price }</div>
 							<input type="hidden" class='sum_price2'>
 							<div class="sum_price"></div>
 						</c:if>
@@ -77,6 +76,7 @@
 			</div>
 		</div>
 </section>
+<jsp:include page="../footer.jsp" />
 <script>
 $(function () {
 	
@@ -85,9 +85,11 @@ $(function () {
 		$(".sum_price").text('${sum_price}');
 	}else if('${mbean.membership}' == 'vip'){
 		if(new Date('${mbean.vip_finish }'+" 23:59:59") > new Date()) {
-			var dis_price = ${sum_price } * 0.8;
+			var dis_price = ${sum_price} * 0.8;
 			$(".sum_price2").val(dis_price);
 			$(".sum_price").text(dis_price);
+		}else{
+			$(".origin_price").css("text-decoration","none");
 			
 		}
 	}
@@ -135,6 +137,8 @@ $(function () {
 		var point = reservation_price* 0.02; // 적립될 포인트
 		var class_registrynum = ${cbean.class_registrynum}; // 클래스번호
 		var user_name = $("#user_name").val(); // 수강자명
+		var content = $("#content").val(); // 요청사항
+		var time = "${time }" //수업시간
 		
 		
 		//var class_registrynum = ${cbean.class_registrynum}; // 클래스번호
@@ -193,6 +197,7 @@ $(function () {
 	결제가 끝나고 랜딩되는 URL을 지정
 	(카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
 	*/
+	
 	}, function (rsp) {
 	console.log(rsp);
 	if (rsp.success) {
@@ -216,11 +221,13 @@ $(function () {
 				reservation_tel : reservation_tel,
 				reservation_location : reservation_location,
 				point : point,
-				class_registrynum : class_registrynum
+				class_registrynum : class_registrynum,
+				content : content,
+				time : time
 			},
 			success : function(data,status){
 				if(data == 1){
-					location.href = "${pageContext.request.contextPath}/payFinish.do?class_registrynum="+class_registrynum+"&reservation_personnel="+reservation_personnel+"&reservation_price="+reservation_price+"&user_name="+user_name+"&reservation_date="+reservation_date;
+					location.href = "${pageContext.request.contextPath}/payFinish.do?class_registrynum="+class_registrynum+"&reservation_personnel="+reservation_personnel+"&reservation_price="+reservation_price+"&user_name="+user_name+"&reservation_date="+reservation_date+"&content="+content;
 				}
 			},
 			error : function(data,status){
@@ -231,11 +238,14 @@ $(function () {
 	var msg = '결제에 실패하였습니다.';
 	msg += '에러내용 : ' + rsp.error_msg;
 	}
+	
+	
 	alert(msg);	
+			});
+		});
 	});
 
-	});
-});
+
 	
 	</script>
 </body>

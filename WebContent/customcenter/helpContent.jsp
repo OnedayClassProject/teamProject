@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -129,9 +130,9 @@
        							<td>이메일</td><td></td><td>날짜</td><td></td>
        						</tr>
        						<c:forEach var = "v" items="${list}">
-       						
+       						<c:set var = "date" value ="${v.date }"/>
 	       						<tr id ="comment_show${v.commentnum}">
-	       							<td>${v.id }</td><td>${v.comment }</td><td>${v.date }</td>
+	       							<td>${v.id }</td><td>${v.comment }</td><td>${fn:substring(date,0,10)}</td>
 	       							<td><input type="button" id = "update${v.commentnum}" onclick ="updateFormChange('${v.id}','${v.date}','${v.commentnum}')"  value ="수정하기">&nbsp;
 	       							<input type="button" onclick="deleteComment('${v.commentnum}','${bean.num}','${pageNum}')" value ="삭제하기"></td>
 	       						</tr>
@@ -149,5 +150,6 @@
         </div>
     </div>
 </section>
+<jsp:include page="../footer.jsp" />
 </body>
 </html>

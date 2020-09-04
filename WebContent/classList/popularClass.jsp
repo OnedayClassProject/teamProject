@@ -83,6 +83,7 @@
 
         </div>
 </section>
+<jsp:include page="../footer.jsp" />
 	<script type="text/javascript">
 	//하트 아이콘 눌렀을 때
 	$(".like").on("click",function(){

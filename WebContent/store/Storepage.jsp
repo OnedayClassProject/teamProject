@@ -43,7 +43,7 @@
             </div>
             <hr>
             <div class="side_detail">
-                 <a href='${pageContext.request.contextPath}/storeCheckInfoPage.do'><div>탈퇴하기</div>
+                 <a href='${pageContext.request.contextPath}/storeCheckInfoPage3.do'><div>탈퇴하기</div>
                 <div class="side_detail2">></div>
                 </a>
             </div>
@@ -53,7 +53,7 @@
                 <div class="side_detail2">></div>
                 </a>
             </div>
-            <hr>
+            
         </div>
             <div class="my_main">
                 <div class="my_subject">MY PAGE</div>
@@ -177,5 +177,6 @@
             </div>
         </div>
 </section>
+<jsp:include page="../footer.jsp" />
 </body>
 </html>

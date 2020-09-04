@@ -18,6 +18,10 @@ body{
     line-height: 250px;
     border: 1px solid black;
 }
+
+section{
+	min-height: 100%;
+}
 @media (max-width: 800px) {
     .join{
         width: 100%;
