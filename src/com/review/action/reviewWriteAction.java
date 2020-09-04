@@ -39,7 +39,7 @@ public class reviewWriteAction implements CommandHandler{
 		String company_name = multipartRequest.getParameter("company_name");
 		String class_name = multipartRequest.getParameter("class_name");
 		String email = (String)session.getAttribute("userid");
-		email = "skdms";
+		email = "skdms@naver.com";
 		String res_date = multipartRequest.getParameter("reservation_date");
 		int rating = Integer.parseInt(multipartRequest.getParameter("rating"));
 		String content = multipartRequest.getParameter("content");

@@ -180,6 +180,7 @@ $(".like").on("click",function(){
 			var rating1 = current.children(".staR").eq(rating)
 		} else {
 			var rating1 = current.children(".staR").eq(rating-1)
+			
             rating1.parent().children("input").removeClass("on");
             rating1.addClass("on").prevAll("input").addClass("on");
 		}
