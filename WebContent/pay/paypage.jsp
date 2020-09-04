@@ -88,6 +88,8 @@ $(function () {
 			var dis_price = ${sum_price} * 0.8;
 			$(".sum_price2").val(dis_price);
 			$(".sum_price").text(dis_price);
+		}else{
+			$(".origin_price").css("text-decoration","none");
 			
 		}
 	}
@@ -136,6 +138,8 @@ $(function () {
 		var class_registrynum = ${cbean.class_registrynum}; // 클래스번호
 		var user_name = $("#user_name").val(); // 수강자명
 		var content = $("#content").val(); // 요청사항
+		var time = "${time }" //수업시간
+		
 		
 		//var class_registrynum = ${cbean.class_registrynum}; // 클래스번호
 	var IMP = window.IMP; // 생략가능
@@ -218,7 +222,8 @@ $(function () {
 				reservation_location : reservation_location,
 				point : point,
 				class_registrynum : class_registrynum,
-				content : content
+				content : content,
+				time : time
 			},
 			success : function(data,status){
 				if(data == 1){
@@ -235,12 +240,11 @@ $(function () {
 	}
 	
 	
-	
 	alert(msg);	
-	});
+			});
+		});
 	});
 
-	});
 
 	
 	</script>

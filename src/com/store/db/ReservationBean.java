@@ -18,7 +18,18 @@ public class ReservationBean {
 	private String point;	
 	private int class_registrynum;
 	private String content;
+	private String time;
 	
+	
+	
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
 	public int getreservationnum(){
 		return reservationnum;
 	}

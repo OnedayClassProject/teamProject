@@ -44,17 +44,21 @@
 		}) */
          $(".person_plus").on("click", function () {
 				var $person = $(".person_count").children('.time_detail2');
+				var current = Number($(".person_count").find('.currentper').text());
+				var per = Number($(".person_count").find('.personal').text());
+				var current2 =Number($(".person_count").find('.cp').val());
 				var num1 =	$person.children('.person').text();
-				var num3 = Number($('.person_num').val());
-				if(num3 < '${cb.personnel}'){
-				var num4 = num3+1;
+				var num3 = Number($('.person_num').val())+1;
+				if(num3+current2-1 < '${cb.personnel}'){
+				var num4 = num3;
 				console.log(num4)
-				$person.children('.person').text(num4+"/${cb.personnel}");
+				var num5 = num4 + current2;
+				$(".person_count").find('.currentper').text(num5);
 				var today = $('#dateInput').text();
 				console.log(today);
 				var price = Number($person.children('.per_price').text());
 				$('.reserve_date').text(today + " "+ num4 + "명");
-				var sum = price * num4;
+				var sum = price * num3;
 				$('.sum_price').text(sum);
 				$('.person_num').val(num4);
 				}
@@ -62,8 +66,11 @@
          $(".person_sub").on("click", function () {
 				var $person = $(".person_count").children('.time_detail2');
 				var num1 =	$person.children('.person').text();
+				var current = Number($(".person_count").find('.currentper').text());
+				var per = Number($(".person_count").find('.personal').text());
+				var current2 =Number($(".person_count").find('.cp').val());
 				var num3 = Number($('.person_num').val());
-				if(num3 > 1){
+				if(num3 > current2){
 				var num4 = num3-1;
 				console.log(num4)
 				$person.children('.person').text(num4+"/${cb.personnel}");
@@ -391,7 +398,8 @@
 									$(".time_wrap").empty();
 									for(var i = 0; i < time.length; i++){
 										$(".time_wrap").append("<div class='timedetail"+i+" time_detail' onclick='checkbox("+i+")'><div class='time_detail1'>"+time[i].start+" ~ "+time[i].end+"</div>"
-														+"<div class='time_detail2'><div class='per_price'>${cb.price}</div><div class='person parson2'>0/${cb.personnel}</div></div></div>");
+														+"<div class='time_detail2'><div class='per_price'>${cb.price}</div><div class='person parson2'><span class='currentper'>"+time[i].currentpersonal+"</span>/<span class='personal'>${cb.personnel}</span></div></div>"
+														+"<input type='hidden' value='"+time[i].currentpersonal+"' class='cp'></div>");
 									}
 							
 								},
@@ -471,21 +479,37 @@
 	         }); 
 	    }
 	    function checkbox(i) {
+	    	
 			$('.timedetail'+i+'').css("background-color", "gray");
 			$('.timedetail'+i+'').addClass('person_count');
 			$(".time_detail").not($('.timedetail'+i+'')).css("background-color", "white");
 			$(".time_detail").not($('.timedetail'+i+'')).removeClass('person_count');
 			var $person = $(".person_count").children('.time_detail2');
-		 	$('.parson2').text("0/${cb.personnel}");
-			$person.children('.person').text(1+"/${cb.personnel}");
-			$('.person_num').val("1");
+			var current =Number($(".person_count").find('.currentper').text());
+			var current2 =Number($(".person_count").find('.cp').val());
+			console.log(current);
+			console.log(current2);
+			var per = Number($(".person_count").find('.personal').text());
+			if(current2 != per){
+				$('.parson2').empty();
+		 	$('.parson2').html("<span class='currentper'>"+0+"</span>/<span class='personal'>${cb.personnel}</sapn>");
+		 	if(current2 == 0){
+		 		$person.children('.person').empty();
+				$person.children('.person').html("<span class='currentper'>"+current2+"</span>/<span class='personal'>${cb.personnel}</sapn>");
+			$('.person_num').val(0);
+		 	}else{
+		 		$person.children('.person').html("<span class='currentper'>"+current2+"</span>/<span class='personal'>${cb.personnel}</sapn>");
+			$('.person_num').val(0);
 			var today = $('#dateInput').text();
 			console.log(today);
 			var per =  Number($('.person_num').val())
 			$('.reserve_date').text(today + " "+ per + "명");
 			var  price = $person.children('.per_price').text();
 			$('.sum_price').text(price);
-			
+		 	}
+			} else{
+				alert("예약이 다찼습니다.");
+			}
 			
 		}
 	    
