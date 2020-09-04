@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <style>
 .tooltip {
@@ -111,30 +112,20 @@
                     MY 예약리스트
                 </div>
                 <div class="reserve_list2">
-                    <div class="best-class">
-                        <div class="thumbnail">사진</div>
-                        <div class="class-name">
-                            <div class="class-name1">카테고리 난이도</div>
-                            <div class="class-name2">클래스명</div>
-                            <div class="class-name3">업체명</div>
-                        </div>
-                    </div>
-                    <div class="best-class">
-                        <div class="thumbnail">사진</div>
-                        <div class="class-name">
-                            <div class="class-name1">카테고리 난이도</div>
-                            <div class="class-name2">클래스명</div>
-                            <div class="class-name3">업체명</div>
-                        </div>
-                    </div>
-                    <div class="best-class">
-                        <div class="thumbnail">사진</div>
-                        <div class="class-name">
-                            <div class="class-name1">카테고리 난이도</div>
-                            <div class="class-name2">클래스명</div>
-                            <div class="class-name3">업체명</div>
-                        </div>
-                    </div>
+                	<c:forEach var="classBean" items="${myList}">
+                		<div class="best-class">
+                        	<div class="thumbnail">
+                        		<a href="${pageContext.request.contextPath}/ClassInfo.do?class_registrynum=${classBean.class_registrynum}" >
+                 				<img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}"></a>
+                        	</div>
+                        	<div class="class-name">
+                           		<div class="class-name1">카테고리 : ${classBean.category}</div>
+                    			<div class="class-name2">난이도 : ${classBean.level}</div>
+                    			<div class="class-name3">클래스명 : ${classBean.class_name}</div>
+                            	<div class="class-name4">업체명 :  ${classBean.class_company}</div>
+                        	</div>
+                    	</div>
+                	</c:forEach>
                     <div class="move_reserveList">
                     <div>더보기</div>
                     </div>
@@ -144,30 +135,20 @@
                     MY 환불리스트
                 </div>
                 <div class="reserve_list2">
-                    <div class="best-class">
-                        <div class="thumbnail">사진</div>
-                        <div class="class-name">
-                            <div class="class-name1">카테고리 난이도</div>
-                            <div class="class-name2">클래스명</div>
-                            <div class="class-name3">업체명</div>
-                        </div>
-                    </div>
-                    <div class="best-class">
-                        <div class="thumbnail">사진</div>
-                        <div class="class-name">
-                            <div class="class-name1">카테고리 난이도</div>
-                            <div class="class-name2">클래스명</div>
-                            <div class="class-name3">업체명</div>
-                        </div>
-                    </div>
-                    <div class="best-class">
-                        <div class="thumbnail">사진</div>
-                        <div class="class-name">
-                            <div class="class-name1">카테고리 난이도</div>
-                            <div class="class-name2">클래스명</div>
-                            <div class="class-name3">업체명</div>
-                        </div>
-                    </div>
+                   <c:forEach var="classBean" items="${refundList}">
+                		<div class="best-class">
+                        	<div class="thumbnail">
+                        		<a href="${pageContext.request.contextPath}/ClassInfo.do?class_registrynum=${classBean.class_registrynum}" >
+                 				<img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}"></a>
+                        	</div>
+                        	<div class="class-name">
+                           		<div class="class-name1">카테고리 : ${classBean.category}</div>
+                    			<div class="class-name2">난이도 : ${classBean.level}</div>
+                    			<div class="class-name3">클래스명 : ${classBean.class_name}</div>
+                            	<div class="class-name4">업체명 :  ${classBean.class_company}</div>
+                        	</div>
+                    	</div>
+                	</c:forEach>
                     <div class="move_reserveList">
                         <div>더보기</div>
                     </div>

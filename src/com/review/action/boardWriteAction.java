@@ -41,7 +41,6 @@ public class boardWriteAction implements CommandHandler {
 		}
 		int compare1=rd.compareTo(pd);
 		if(compare1>0){
-			System.out.println("리뷰 작성기간이 아님");
 			request.setAttribute("check", 0);
 			return "member/reserveList.jsp";
 		}
@@ -53,7 +52,6 @@ public class boardWriteAction implements CommandHandler {
 		
 		int compare2=rd.compareTo(pd);
 		if(compare2<0){
-			System.out.println("리뷰 작성기간 지남");
 			request.setAttribute("check", 1);
 			return "member/reserveList.jsp";
 		}else{

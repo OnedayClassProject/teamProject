@@ -3,6 +3,7 @@ package com.store.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -117,8 +118,5 @@ public class ReservationDAO {
 		}
 		return bean;
 	}
-	
-	
-	
-	
+		
 }
