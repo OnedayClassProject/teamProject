@@ -41,6 +41,12 @@
                 </a>
             </div>
             <hr>
+            <div class="side_detail">
+                 <a href='${pageContext.request.contextPath}/storeMyClassInfo.do'><div>내가 등록한 클래스</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
+            <hr>
         </div>
             <div class="my_main">
                 <div class="member_info">
@@ -74,7 +80,7 @@
                 	<div class="line"></div>
                 	<div class="join_text4">
                    		<input type="button" onclick = "location.href = '${pageContext.request.contextPath}/storeUpdate.do'" value="UPDATE">
-                    	<input type="button" onclick = "location.href = '${pageContext.request.contextPath}/storeDelete.do'" value="DELETE">
+                    	<input type="button" onclick = "location.href = '${pageContext.request.contextPath}/storeCheckInfoPage3.do'" value="DELETE">
                 	</div>
             </div>
     			</div>

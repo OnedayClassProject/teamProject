@@ -154,6 +154,7 @@ public class ReservationDAO {
 					vo.setReservation_date(rs2.getString("reservation_date"));
 					vo.setContent(rs2.getString("content"));
 					vo.setReservation_tel(rs2.getString("reservation_tel"));
+					vo.setTime(rs2.getString("time"));
 					list.add(vo);
 				}
 				

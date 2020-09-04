@@ -155,7 +155,8 @@ public class StoreDAO {
 			if(result != 0)
 				return 1;
 		} catch (Exception e) {
-			System.out.println("deleteStore()에서 예외발생:" + e);
+			System.out.println("deleteStore()에서 예외발생:" );
+			e.printStackTrace();
 		}finally{
 			resourceClose();
 		}

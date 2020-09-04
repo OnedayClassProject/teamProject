@@ -46,13 +46,19 @@
                 </a>
             </div>
             <hr>
+            <div class="side_detail">
+                 <a href='${pageContext.request.contextPath}/storeMyClassInfo.do'><div>내가 등록한 클래스</div>
+                <div class="side_detail2">></div>
+                </a>
+            </div>
         </div>
             <div class="my_main">
             <div>예약리스트</div>
                 <hr>
            	<div>
            		<div class="reserveInfo">
-           			<div>예약정보</div>
+           			<div>클래스명</div>
+           			<div>결제금액</div>
            			<div>예약자 명</div>
            			<div>예약인원</div>
            			<div>예약날짜</div>
@@ -65,15 +71,13 @@
            		<c:forEach var="GetReserve" items="${GetReserve }">
            		
 	           		<div class="reserveInfo2">
-	           			<div class="reserveInfo3">
-		           			<div class="class_name">
-			           			<div>${GetReserve.class_name }</div>
-			           			<div>${GetReserve.reservation_price }</div>
-	           				</div>
-	           			</div>
+		           			
+			           	<div>${GetReserve.class_name }</div>
+			           	<div>${GetReserve.reservation_price }</div>
+	           				
 	           			<div>${GetReserve.useremail }</div>
 	           			<div class="reserveInfo4">${GetReserve.reservation_personnel }</div>
-	           			<div class="reserveInfo5">${GetReserve.reservation_date }</div>
+	           			<div class="reserveInfo5">${GetReserve.reservation_date }/${GetReserve.time }</div>
 	           			<div class="reserveInfo4">${GetReserve.reservation_tel}</div>
 	           			<div class="reserveInfo4">${GetReserve.content }</div>
 	           		</div>

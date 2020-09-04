@@ -71,7 +71,7 @@
             </div>
             <hr>
             <div class="side_detail">
-                 <a href='${pageContext.request.contextPath}/storeCheckInfoPage.do'><div>탈퇴하기</div>
+                 <a href='${pageContext.request.contextPath}/storeCheckInfoPage3.do'><div>탈퇴하기</div>
                 <div class="side_detail2">></div>
                 </a>
             </div>

@@ -68,7 +68,6 @@
 	        				<div>클래스 정보</div>
 	        				<div>소요시간</div>
 	        				<div>난이도</div>
-	        				<div>예약현황</div>
 	        				<div>세일 여부</div>
 	        			</div>
 	        			<div class="line"></div>
@@ -138,7 +137,6 @@
 										+"</div>"
 										+"<div class='reserveInfo4 time'>"+all[i].time+"</div>"
 				        				+"<div class='reserveInfo4 level'>"+all[i].level+"</div>"
-				        				+"<div class='reserveInfo5 reservation'>"+all[i].reservation_count+"/"+all[i].personnel+"</div>"
 				        				+"<div class='reserveInfo4 sale'>"+all[i].sale+"</div></div>");
 							console.log(all[i].class_name);
 						}

@@ -88,6 +88,8 @@ public int sumRating(int class_num) {
 		
 		int sum = 0;
 	 try {
+		 con = getConnection();
+		 
 		 String sql = "select sum(rating) from review where class_registrynum = ?";
 		 pstmt = con.prepareStatement(sql);
 		 pstmt.setInt(1, class_num);
@@ -105,6 +107,9 @@ public int sumRating(int class_num) {
 	public void ratingUpdate(int class_num, int sum) {
 		
 		try {
+			
+			con = getConnection();
+			
 			String sql = "update class set rating = ? where class_registrynum = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, sum);

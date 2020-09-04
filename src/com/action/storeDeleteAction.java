@@ -22,6 +22,8 @@ public class storeDeleteAction implements CommandHandler{
 		HttpSession session = request.getSession();
 		String storeemail = (String)session.getAttribute("storeid");
 		String storepw = request.getParameter("storepw");
+		
+		System.out.println("email"+storeemail);
 		//회원탈퇴
 		int check = dao.deleteStore(storeemail, storepw);
 		request.setAttribute("data", check);
