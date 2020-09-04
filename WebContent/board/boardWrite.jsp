@@ -105,6 +105,7 @@
 <section>
     <form method="post" enctype="multipart/form-data">
     <div class="review">
+
         <div>후기등록</div>
         <!-- 클래스 등록번호 -->
         <input type="hidden" name="class_regisitrynum" value="1"> 
@@ -117,6 +118,10 @@
        	<div class="review_wrap">
         	<div class="review_title">클래스명 <input type="hidden" name="class_name" value="가죽지갑만들기"></div>
         	<div>가죽지갑만들기</div>
+        </div>
+        <div class="review_wrap">
+        	<div class="review_title">제목</div>
+        	<div><input type="type" name="subject"></div>
         </div>
         <div class="review_wrap">
         <div class="review_title">회원이메일</div>
