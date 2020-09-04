@@ -136,6 +136,7 @@ $(function () {
 		var point = reservation_price* 0.02; // 적립될 포인트
 		var class_registrynum = ${cbean.class_registrynum}; // 클래스번호
 		var user_name = $("#user_name").val(); // 수강자명
+		var time = "${time }" //수업시간
 		
 		
 		//var class_registrynum = ${cbean.class_registrynum}; // 클래스번호
@@ -217,7 +218,8 @@ $(function () {
 				reservation_tel : reservation_tel,
 				reservation_location : reservation_location,
 				point : point,
-				class_registrynum : class_registrynum
+				class_registrynum : class_registrynum,
+				time : time
 			},
 			success : function(data,status){
 				if(data == 1){
@@ -232,11 +234,12 @@ $(function () {
 	var msg = '결제에 실패하였습니다.';
 	msg += '에러내용 : ' + rsp.error_msg;
 	}
+	
 	alert(msg);	
+			});
+		});
 	});
 
-	});
-});
 	
 	</script>
 </body>

@@ -7,7 +7,30 @@ public class TimeSaveBean {
 	private String class_day;
 	private String class_starttime;
 	private String class_endtime;
+	private int personal;
+	private int currentpersonal;
+	private int calnum;
 	
+	
+	
+	public int getPersonal() {
+		return personal;
+	}
+	public void setPersonal(int personal) {
+		this.personal = personal;
+	}
+	public int getCurrentpersonal() {
+		return currentpersonal;
+	}
+	public void setCurrentpersonal(int currentpersonal) {
+		this.currentpersonal = currentpersonal;
+	}
+	public int getCalnum() {
+		return calnum;
+	}
+	public void setCalnum(int calnum) {
+		this.calnum = calnum;
+	}
 	public int getClass_registrynum() {
 		return class_registrynum;
 	}

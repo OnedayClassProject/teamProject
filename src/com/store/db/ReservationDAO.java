@@ -38,7 +38,7 @@ public class ReservationDAO {
 			
 			sql ="insert into classreservation(useremail,pay_date,class_name,reservation_category,"
 					+ "reservation_personnel,reservation_date,reservation_price,reservation_pay,reservation_tel,"
-					+ "reservation_location,point,class_registrynum) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "reservation_location,point,class_registrynum,time) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 			pstmt = con.prepareStatement(sql);
 			
@@ -54,6 +54,7 @@ public class ReservationDAO {
 			pstmt.setString(10, rbean.getReservation_location());
 			pstmt.setString(11, rbean.getPoint());
 			pstmt.setInt(12, rbean.getClass_registrynum());
+			pstmt.setString(13, rbean.getTime());
 			
 			result = pstmt.executeUpdate();
 			
@@ -114,11 +115,30 @@ public class ReservationDAO {
 			con.close();
 		}catch(Exception e){
 			e.printStackTrace();
+		} finally {
+			resourceClose();
 		}
 		return bean;
 	}
 	
-	
-	
-	
+	//시간테이블 예약결제시 인원채우기
+		public void setTimePersonal(int class_registrynum,String time,String reservation_personnel) {
+			
+			int reservation_per = Integer.parseInt(reservation_personnel);
+			String setTime = time.substring(0, 2);
+				
+			try {
+				con = getConnection();
+				String sql  = "update operationdate set currentpersonal = ? where class_registrynum = ? and class_starttime like ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, reservation_per);
+				pstmt.setInt(2, class_registrynum);
+				pstmt.setString(3, "%"+setTime+"%");
+				pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				resourceClose();
+			}
+		}
 }

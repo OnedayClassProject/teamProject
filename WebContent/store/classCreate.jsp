@@ -54,6 +54,8 @@
                 $("#calander_backcolor").css("display","block");
             });
             $('.send').on('click', function () {
+            	
+            	var personal  = $('#class_personal').val();
             	var date  = $("#current-year-month").text();
             	var day = $("#dateInput").text().substring(8);
             	var num = $('.class_registryNum2').val();
@@ -63,11 +65,11 @@
 					start[i] = $('.timeStart').eq(i).val();
 					end[i] = $('.timeend').eq(i).val();
 				} 
-				
+				console.log(personal);
 				$.ajax({
 					type : "POST",
 					url : "${pageContext.request.contextPath}/timeSave.do",
-					data : { "start" : start, "end" : end,"date":date , "day" : day, "num" : num},
+					data : {	"personal":personal, "start" : start, "end" : end,"date":date , "day" : day, "num" : num},
 					dataType: "text",
 					traditional : true,
 					success:function(data, status){

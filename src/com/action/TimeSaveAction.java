@@ -22,6 +22,7 @@ public class TimeSaveAction implements CommandHandler {
 		String[] list1 = request.getParameterValues("end");
 		String date = request.getParameter("date");
 		String day = request.getParameter("day");
+		int personal = Integer.parseInt(request.getParameter("personal"));
 		int num = Integer.parseInt(request.getParameter("num"));
 		
 		System.out.println(Arrays.toString(list));
@@ -37,6 +38,8 @@ public class TimeSaveAction implements CommandHandler {
 			bean.setClass_day(day);
 			bean.setClass_starttime(list[i]);
 			bean.setClass_endtime(list1[i]);
+			bean.setPersonal(personal);
+			bean.setCalnum(i+1);
 			sdao.insetTime(bean);
 		}
 		
