@@ -28,45 +28,6 @@
                 $(".sale1").append("<input type='text' name='sale' id='input_sale'>%");
                 $("#sale_check").val("true");
             });
-            $("#calander_backcolor").on("click", function () {
-                $("#box").css("display", "none");
-                $("#calander_backcolor").css("display", "none");
-            });
-            $('.reserve').on("click", function () {
-                $("#box").css("display","block");
-                $("#calander_backcolor").css("display","block");
-            });
-            $('.send').on('click', function () {
-            	var date  = $("#current-year-month").text();
-            	var day = $("#dateInput").text().substring(8);
-            	var num = ${cbean.class_registrynum };
-            	var start = []
-            	var end = []
-				 for(var i=0; i < $('.timeStart').length; i++){
-					start[i] = $('.timeStart').eq(i).val();
-					end[i] = $('.timeend').eq(i).val();
-				} 
-				
-				$.ajax({
-					type : "POST",
-					url : "${pageContext.request.contextPath}/timeSave.do",
-					data : { "start" : start, "end" : end,"date":date , "day" : day, "num" : num},
-					dataType: "text",
-					traditional : true,
-					success:function(data, status){
-						if(data == 1){
-							alert('저장성공');
-							x();
-						} else {
-						 	alert('저장실패');
-						}
-					},
-					error:function(data, status){
-						alert('error');
-					}
-				});
-			});
-            
             $(".nosale").on("click", function () {
             	$("#sale_check").val("fal");
             	$(".sale1").empty();
@@ -135,11 +96,13 @@
                      dataType: "text",
                      success:function(data, status){
 							  if(data == 1){                  	 
-                    	 		alert('등록성공^^');
-                    	 		location.href="${pageContext.request.contextPath}/storeMyClassInfo.do";
-		                     	} else {
-		                     	alert('실패!!!!ㅜㅜㅜㅜㅜㅜㅜ');
-		                    	}
+								  alert("운영시간을 등록해주세요!!!!");
+	                    	 		 $("#box").css("display","block");
+	                                 $("#calander_backcolor").css("display","block");
+	                                 x();
+			                     	} else {
+			                     	alert('실패!!!!ㅜㅜㅜㅜㅜㅜㅜ');
+			                    	}
                      	},
                      	error:function(data,status){
                     		 alert("에러");
@@ -251,7 +214,7 @@
         </div>
         <div class="class_menu">
         <div class="class_title"  >수업인원</div>
-        <div><input type="text" class="class_input" name="class_personal" id="class_personal" value="${cbean.personnel}">명</div>
+        <div><input type="text" class="class_input class_per" name="class_personal" id="class_personal" value="${cbean.personnel}">명</div>
         </div>
         <div class="class_menu">
         <div class="class_title"  >가격</div>
@@ -264,10 +227,6 @@
         <td class="nosale">안함</td>
         <td class="sale1"></td>
         </tr> -->
-        <div class="class_menu">
-        <div class="class_title" >일정</div>
-        <div><button type="button"class="reserve" onclick='x()'>일정버튼</button></div>
-        </div>
         <div class="class_menu">
         <div class="class_title" >주차장여부</div>
         <div><input type="text" name="parking" value="${cbean.parking}"></div>
@@ -282,14 +241,13 @@
             <label for="input_img">+</label>
             <input type="file" accept="image/jpg,image/jpeg,image/png,image/gif," name="image" id="input_img"
                    onchange="fileCheck(this)">
-                   ${cbean.thumbnail }
         </div>
         <div class="imgMain">
-            <img id="img" value="${cbean.thumbnail }"/>
+            <img id="img" src="${pageContext.request.contextPath}/thumbnailImage/${cbean.thumbnail }"/>
         </div>
         </div>
         <input type="hidden" name="storenum" value="${cbean.storenum }">
-        <input type="hidden" name="class_registrynum" value="${cbean.class_registrynum }">
+        <input type="hidden" name="class_registrynum" class="class_regNum" value="${cbean.class_registrynum }">
         <div class="class_buttons">
         <button type="button" id="class_registry">수정완료</button>
         <button type="button" id="cancle_back">취소</button>
@@ -338,8 +296,7 @@
             <div class="timesetting"></div>
         </div>
         <div class="store">
-            <div class="send">저장</div>
-            <div>닫기</div>
+            
         </div>
     </div>
 </div>
@@ -418,28 +375,7 @@
                         document.getElementById("dateInput").textContent = this.getAttribute("value");
                         document.getElementById("sub").style.display = "inline-block";
                         document.getElementById("plus").style.display = "inline-block";
-                        var date  = $("#current-year-month").text();
-                        var day = $("#dateInput").text().substring(8);
-                        var num = ${cbean.class_registrynum}
-						$.ajax({
-							type : "post",
-							url : "${pageContext.request.contextPath}/saveGetTime.do",
-							data : {day : day , num : num, date : date },
-							dataType : "text",
-							success:function (data, status){
-								var result = JSON.parse(data);
-								var time = result.time;
-								$(".timesetting").empty();
-								for(var i = 0; i < time.length; i++){
-									$(".timesetting").append("<div class='timeSet'>"
-													+"<input type=\"text\" class='time_start' value='"+time[i].start+"'> ~ "
-													+"<input type=\"text\" class='time_end' value='"+time[i].end+"'></div>");
-								}
-							},
-							error:function(data,status){
-								alert('error');
-							}
-						});
+                        getTime();
                         var tds = document.querySelectorAll('.abled_td');
                         for (var i = 0; i < tds.length; i++) {
                             tds[i].setAttribute("class", "abled_td");
@@ -528,14 +464,174 @@
             	 if(all.length != 0 ){
                   for(var i = 0; i < all.length; i++){
                 	  $(".abled_td").eq(all[i].day - 1).css("background","red");
-                 } 
-            	 }
+                  }                
+                  }
              },
              error:function(data,status){
             	 alert('error');
              }
          }); 
     } 
+    
+    //시간수정
+    function update() {
+    	var date  = $("#current-year-month").text();
+    	var day = $("#dateInput").text().substring(8);
+    	var num = ${cbean.class_registrynum };
+    	var classper = $('.class_per').val();
+    	var start = []
+    	var end = []
+    	var calNum =[]
+		 for(var i=0; i < $('.time_Start').length; i++){
+			start[i] = $('.time_Start').eq(i).val();
+			end[i] = $('.time_end').eq(i).val();
+			calNum[i] = $('.getCalNum').eq(i).val();
+			
+		} 
+		
+		$.ajax({
+			type : "POST",
+			url : "${pageContext.request.contextPath}/timeUpdate.do",
+			data : { "start" : start, "end" : end,"date":date , 
+					"day" : day, "num" : num, "personal" : classper,
+					"calNum":calNum},
+			dataType: "text",
+			traditional : true,
+			success:function(data, status){
+				if(data == 1){
+					alert('수정성공');
+					x();
+				} else {
+				 	alert('저장실패');
+				}
+			},
+			error:function(data, status){
+				alert('error');
+			}
+		});
+	};
+	//날짜선택시 시간 가져오기
+	function getTime(){
+	var date  = $("#current-year-month").text();
+    var day = $("#dateInput").text().substring(8);
+    var num = ${cbean.class_registrynum}
+	$.ajax({
+		type : "post",
+		url : "${pageContext.request.contextPath}/saveGetTime.do",
+		data : {day : day , num : num, date : date },
+		dataType : "text",
+		success:function (data, status){
+			var result = JSON.parse(data);
+			var time = result.time;
+			$(".timesetting").empty();
+			if(time.length != 0){
+			for(var i = 0; i < time.length; i++){
+				$(".timesetting").append("<div class='timeSet'>"
+								+"<input type=\"text\" class='time_start' value='"+time[i].start+"'> ~ "
+								+"<input type=\"text\" class='time_end' value='"+time[i].end+"'>"
+								+"<input type='hidden' class='getCalNum' value='"+time[i].calnum+"'></div>");
+			}
+			$('.store').empty();
+			$('.store').append("<div class='update' onclick='update()'>수정</div>"
+					            +"<div class='delete' onclick='delete1()'>삭제</div>" 
+					            +"<input type='button' onclick='main()' value='메인'>"
+					            +"<div onclick='close1()'>닫기</div>")
+			} else {
+				$('.store').empty();
+				$('.store').append("<div class='save' onclick='save()'>저장</div>"
+						+"<input type='button' onclick='main()' value='메인'>"
+			            +"<div onclick='close1()'>닫기</div>")
+			}
+		},
+		error:function(data,status){
+			alert('error');
+		}
+	});
+	}
+	  //저장한 시간삭제
+    function delete1() {
+    	var date  = $("#current-year-month").text();
+    	var day = $("#dateInput").text().substring(8);
+    	var num = ${cbean.class_registrynum };
+    	var classper = $('.class_per').val();
+    	var start = []
+    	var end = []
+    	var calNum =[]
+		 for(var i=0; i < $('.time_Start').length; i++){
+			start[i] = $('.time_Start').eq(i).val();
+			end[i] = $('.time_end').eq(i).val();
+			calNum[i] = $('.getCalNum').eq(i).val();
+			
+		} 
+		
+		$.ajax({
+			type : "POST",
+			url : "${pageContext.request.contextPath}/timeDelete.do",
+			data : { "start" : start, "end" : end,"date":date , 
+					"day" : day, "num" : num, "personal" : classper,
+					"calNum":calNum},
+			dataType: "text",
+			traditional : true,
+			success:function(data, status){
+				if(data == 1){
+					alert('시간삭제');
+					$(".timesetting").empty();
+					$("#"+day).css("background", "white");
+					$('.store').empty();
+					$('.store').append("<div class='save' onclick='save()'>저장</div>"
+							+"<input type='button' onclick='main()' value='메인'>"
+				            +"<div onclick='close1()'>닫기</div>")
+				} else {
+				 	alert('저장실패');
+				}
+			},
+			error:function(data, status){
+				alert('error');
+			}
+		});
+	};
+	  //시간수정
+    function save() {
+    	var date  = $("#current-year-month").text();
+    	var day = $("#dateInput").text().substring(8);
+    	var num = ${cbean.class_registrynum };
+    	var classper = $('.class_per').val();
+    	var start = []
+    	var end = []
+    	var calNum =[]
+		 for(var i=0; i < $('.timeStart').length; i++){
+			start[i] = $('.timeStart').eq(i).val();
+			end[i] = $('.timeend').eq(i).val();
+		} 
+		
+		$.ajax({
+			type : "POST",
+			url : "${pageContext.request.contextPath}/timeSave.do",
+			data : { "start" : start, "end" : end,"date":date , 
+					"day" : day, "num" : num, "personal" : classper},
+			dataType: "text",
+			traditional : true,
+			success:function(data, status){
+				if(data == 1){
+					alert('저장성공');
+					x();
+				} else {
+				 	alert('시간을 입력해주세요!');
+				}
+			},
+			error:function(data, status){
+				alert('error');
+			}
+		});
+	};
+	function close1() {
+		console.log("close");
+		$("#box").css("display", "none");
+        $("#calander_backcolor").css("display", "none");
+	}
+	function main(){
+		location.href='${pageContext.request.contextPath}/main.do';
+	}
 </script>
 </body>
 </html>
