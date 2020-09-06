@@ -60,6 +60,7 @@
       		</div>
       		<div class="my_main">
             <div>제주도 클래스</div>
+            <c:if test="${count != 0}">
             <c:set var="i" value="1"/>
             
             <c:forEach var="classBean" items="${requestScope.Vector}">
@@ -94,15 +95,26 @@
 	            <c:set var="i" value="${i+1}"/>
             </c:forEach>
             
-	          	<div class="pageNum">
-	          		<c:forEach var="p" begin="${startPage}" end="${endPage}">
-	          			<a href="${pageContext.request.contextPath}/jejuClass.do?pageNum=${p}">[${p}]</a>
-	          		</c:forEach>
-	          	</div>
-	          	
+            <div class="pageNum">
+            	<c:if test="${pageNum > 1}">
+            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/jejuClass.do?pageNum=${1}'"> << </div>
+            	</c:if>
+            	<c:if test="${pageNum > startPage}">
+            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/jejuClass.do?pageNum=${pageNum-1}'"> < </div>
+            	</c:if>
+            	<c:forEach var = "i" begin="${startPage}" end ="${endPage}">
+            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/jejuClass.do?pageNum=${i}'">${i}</div>
+            	</c:forEach>
+            	<c:if test="${pageNum < pageCount}">
+            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/jejuClass.do?pageNum=${pageNum+1}'"> > </div>
+            	</c:if>
+            	<c:if test="${pageNum < pageCount}">
+            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/jejuClass.do?pageNum=${pageCount}'"> >> </div>
+            	</c:if>
+            </div>
 	    	</div>
-	          	
-	          	<c:if test="${cnt == 0 }">
+	          	</c:if>
+	          	<c:if test="${count == 0 }">
 	          		<div class="no_list">LIST가 없습니다.</div>
 	          	</c:if>
 	          	

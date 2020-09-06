@@ -95,8 +95,6 @@
 
                 </div>
 
-
-          		</div>
                 <div>고객센터
                 	<ul class="sub_menu">
                 		<li><a href="${pageContext.request.contextPath}/noticeMainPage.do">공지사항</a></li>

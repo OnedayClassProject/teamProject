@@ -44,6 +44,8 @@ public class perfumeClassAction implements CommandHandler {
 		if(endPage>pageCount) endPage=pageCount;
 		
 		ArrayList <ClassBean> list = cdao.perfumeClassList(startRow, endRow);
+		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("pageNum", currentPage);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("count", count);

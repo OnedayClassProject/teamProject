@@ -71,10 +71,10 @@
 				var per = Number($(".person_count").find('.personal').text());
 				var current2 =Number($(".person_count").find('.cp').val());
 				var num3 = Number($('.person_num').val());
-				if(num3 > current2){
+				if(num3 > 0){
 				var num4 = num3-1;
 				console.log(num4)
-				$person.children('.person').text(num4+"/${cb.personnel}");
+				$person.children('.person').html("<span class='currentper'>"+(num4+current2)+"</span>/<span class='personal'>${cb.personnel}</sapn>");
 				var today = $('#dateInput').text();
 				console.log(today);
 				var price = Number($person.children('.per_price').text());
@@ -403,7 +403,7 @@
 									$(".time_wrap").empty();
 									for(var i = 0; i < time.length; i++){
 										$(".time_wrap").append("<div class='timedetail"+i+" time_detail' onclick='checkbox("+i+")'><div class='time_detail1'>"+time[i].start+" ~ "+time[i].end+"</div>"
-														+"<div class='time_detail2'><div class='per_price'>${cb.price}</div><div class='person parson2'><span class='currentper'>"+time[i].currentpersonal+"</span>/<span class='personal'>${cb.personnel}</span></div></div>"
+														+"<div class='time_detail2'><div class='per_price'>${cb.price}</div><div class='person parson2 person3'><span class='currentper'>"+time[i].currentpersonal+"</span>/<span class='personal'>${cb.personnel}</span></div></div>"
 														+"<input type='hidden' value='"+time[i].currentpersonal+"' class='cp'></div>");
 									}
 							
@@ -496,8 +496,14 @@
 			console.log(current2);
 			var per = Number($(".person_count").find('.personal').text());
 			if(current2 != per){
-				$('.parson2').empty();
-		 	$('.parson2').html("<span class='currentper'>"+0+"</span>/<span class='personal'>${cb.personnel}</sapn>");
+				for(var i=0; i<$('.cp').length; i++){
+					console.log($('.cp').eq(i).val());
+					if($('.cp').eq(i).val() == 0){
+				 		$('.parson2').eq(i).html("<span class='currentper'>"+0+"</span>/<span class='personal'>${cb.personnel}</sapn>");
+						} else{
+						 	$('.parson2').eq(i).html("<span class='currentper'>"+2+"</span>/<span class='personal'>${cb.personnel}</sapn>");
+						}
+				}
 		 	if(current2 == 0){
 		 		$person.children('.person').empty();
 				$person.children('.person').html("<span class='currentper'>"+current2+"</span>/<span class='personal'>${cb.personnel}</sapn>");
@@ -510,7 +516,7 @@
 			var per =  Number($('.person_num').val())
 			$('.reserve_date').text(today + " "+ per + "명");
 			var  price = $person.children('.per_price').text();
-			$('.sum_price').text(price);
+			$('.sum_price').text(0);
 		 	}
 			} else{
 				alert("예약이 다찼습니다.");
@@ -521,12 +527,12 @@
 	    function pay(){
 	    	var person_num = $(".person_num").val();
 	    	var reserve_date = $("#dateInput").text();
-	    	var sum_price = $(".sum_price").text();
+	    	var sum_price = Number($(".sum_price").text());
 	    	var class_registrynum = $("#class_registrynum").val();
 	    	var data = 0;
 	    	var time = $(".person_count").children(".time_detail1").text();
 	    	
-	    	if(sum_price != ""){
+	    	if(sum_price != 0){
 		    	$.ajax({
 		    		type : "post",
 		    		url : "${pageContext.request.contextPath}/classCheck.do",
@@ -542,7 +548,7 @@
 					}
 		    	});
 	    	}else{
-	    		alert("날짜를 선택해주세요");
+	    		alert("인원수를 선택해주세요!");
 	    	}
 	    }
 	    reviewList();
