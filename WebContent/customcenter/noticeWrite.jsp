@@ -15,7 +15,7 @@
     <div class="my_wrap">
         <div class="side_menu">
            <div class="side_detail">
-           <div class="current_menu">문의하기</div>
+           <div class="current_menu">공지사항</div>
            <div class="line"></div>
            <div class="side_detail">
                <a href="${pageContext.request.contextPath}/noticeMainPage.do"class="current_menu2"><div>공지사항</div></a>
@@ -30,8 +30,9 @@
             <hr>
         </div>
         <div class="my_main">
-        <div>문의글쓰기</div><br>
+        <div>공지글쓰기</div><br>
         	<form id ="form" method ="post">
+        		공지<input type="checkbox" id = "header" name ="header" value ="1"><br>
         		제목 <input type="text" id ="title" name ="title" style="width: 650px; height: 30px;"><br><br>
         		내용 <br><textarea rows="30" cols="100" id="content" name="content"></textarea><br><br>
         		<button type="button" onclick ="submitForm()">글쓰기</button>
@@ -57,14 +58,20 @@
 		}
 	}
     function writeAction(){
-    	var form = $("#form").serialize();
-   		$.ajax('${pageContext.request.contextPath}/helpWriteAction.do',{
+    	var _title = $("#title").val();
+		var _content = $("#content").val();
+		var _header = document.getElementById("header");
+		alert(_header.checked);
+		if(_header.checked == false){
+			_header.value = "0";
+		}
+   		$.ajax('${pageContext.request.contextPath}/noticeWriteAction.do',{
    			type:"post",
-   			data:form,
+   			data:{title:_title, content: _content, header:_header.value},
    			dataType:"text",
    			success:function(data,status){
    				 if(data == 1){
-   					location.href="${pageContext.request.contextPath}/helpMainPage.do?pageNum=1";
+   					location.href="${pageContext.request.contextPath}/noticeMainPage.do?pageNum=1";
    				}else{
    					alert("등록 실패.");
    				} 

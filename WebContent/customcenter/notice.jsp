@@ -8,28 +8,12 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/customcenter/help.css">
 </head>
 <script type="text/javascript">
-	function checkID(id, num, pageNum){
-		$.ajax('${pageContext.request.contextPath}/checkWriter.do',{
-			type:"post",
-			data : { check : id},
-			success:function(data){
-				if(data == 1){
-					location.href="${pageContext.request.contextPath}/helpPage.do?num="+num +"&pageNum="+pageNum;
-				}else{
-					alert("작성자가 아닙니다.");
-					location.href="${pageContext.request.contextPath}/helpPage.do?&pageNum="+pageNum;
-				}
-			}, error:function(e){
-				alert(e);
-			}
-		});
-	}
-	function checkSession(){
-		$.ajax('${pageContext.request.contextPath}/checkSession.do',{
+	function checkAdmin(){
+		$.ajax('${pageContext.request.contextPath}/checkAdmin.do',{
 			type:"post",
 			success:function(data){
 				if(data == 1){
-					location.href='${pageContext.request.contextPath}/helpWrite.do';
+					location.href='${pageContext.request.contextPath}/noticeWrite.do';
 				}else{
 					alert("로그인 해주세요");
 					location.href='${pageContext.request.contextPath}/login.do';
@@ -48,7 +32,7 @@
     <div class="my_wrap">
         <div class="side_menu">
            <div class="side_detail">
-           <div class="current_menu">문의하기</div>
+           <div class="current_menu">공지사항</div>
            <div class="line"></div>
            <div class="side_detail">
                <a href="${pageContext.request.contextPath}/noticeMainPage.do"class="current_menu2"><div>공지사항</div></a>
@@ -63,7 +47,7 @@
             <hr>
         </div>
         <div class="my_main">
-        	<div><h2>문의하기</h2></div>
+        	<div><h2>공지사항</h2></div>
         	<div>
         			<div class="help_subject">
         				<div>No</div>
@@ -75,9 +59,16 @@
         			<c:if test="${count != 0}">
 	        			<c:forEach var = "list" items="${requestScope.list }">
 	        				<div class="help_board">
-	        					<div>${list.num }</div>
-	        					<div><a href="javascript:void(0);" onclick="checkID('${list.writer}','${list.num }','${pageNum }'); return false;">${list.title }</a></div>
-	        					<div>${list.writer }</div>
+	        				<c:choose>
+	        					<c:when test="${list.header !=0 }">
+	        						<div><strong>공지</strong></div>
+	        					</c:when>
+	        					<c:when test="${list.header == 0}">
+	        						<div>${list.num }</div>
+	        					</c:when>
+	        				</c:choose>
+	        					<div><a href="location.href=${pageContext.request.contextPath}/noticePage.do?num=${list.num}&pageNum=${pageNum}">${list.title }</a></div>
+	        					<div>관리자</div>
 	        					<c:set var ="date" value = "${list.date }"></c:set>
 	        					<div>${fn:substring(date,0,10) }</div>
 	        				</div>
@@ -87,19 +78,20 @@
 	        		<div class="nolist">목록이 없습니다.</div>
 	        	</c:if>
         			<div class="write_button">
-        		<button onclick="checkSession()">글쓰기</button>
+        		<!-- admin인지 확인하기 함수 말고 onclick으로 바꿀예정 -->
+        		<button onclick="checkAdmin()">공지쓰기</button>
         		</div>
         	</div>
         	<div>
 	        	<c:if test="${count!=0}">
 	        		<c:if test="${startPage > pageBlock}">
-	        			<a href="${pageContext.request.contextPath}/helpMainPage.do?pageNum=${startPage - pageBlock}">Prev</a>
+	        			<a href="${pageContext.request.contextPath}/noticeMainPage.do?pageNum=${startPage - pageBlock}">Prev</a>
 	        		</c:if>
 	       			<c:forEach var= "i" begin="${startPage }" end="${endPage}">
-	       				<a href="${pageContext.request.contextPath}/helpMainPage.do?pageNum=${i}">${i}</a>
+	       				<a href="${pageContext.request.contextPath}/noticeMainPage.do?pageNum=${i}">${i}</a>
 	       			</c:forEach>
 	        		<c:if test="${endPage < pageCount }">
-	        			<a href="${pageContext.request.contextPath}/helpMainPage.do?pageNum=${startPage+pageBlock}">Next</a>
+	        			<a href="${pageContext.request.contextPath}/noticeMainPage.do?pageNum=${startPage+pageBlock}">Next</a>
 	        		</c:if>
 	        	</c:if>
         	</div>
