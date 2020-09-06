@@ -48,9 +48,11 @@ public class gyeongsangClassAction implements CommandHandler {
 		Vector<ClassBean> v = cdao.gyeongsangList(startRow, endRow);
 		
 		request.setAttribute("Vector", v);
+		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("pageNum", currentPage);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
-		request.setAttribute("cnt", cnt);
+		request.setAttribute("count", cnt);
 		
 		return "classList/gyeongsangClass.jsp";
 	}

@@ -34,6 +34,7 @@ public class SaveGetTimeAction implements CommandHandler {
 			time.put("start", list.get(i).getClass_starttime());
 			time.put("end", list.get(i).getClass_endtime());
 			time.put("currentpersonal", list.get(i).getCurrentpersonal());
+			time.put("calnum",list.get(i).getCalnum());
 			
 			array.add(time);
 		}

@@ -46,6 +46,8 @@ public class daeguClassAction implements CommandHandler {
 		
 		ArrayList <ClassBean> list = cdao.daeguList(startRow,endRow);
   
+		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("pageNum", currentPage);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("count", count);

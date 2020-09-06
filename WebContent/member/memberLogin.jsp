@@ -13,6 +13,7 @@
     
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <!-- <link rel="stylesheet" href="../header.css"> -->
+    <script src="http://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/member/memberlogin.css">
      <script>
         $(function () {

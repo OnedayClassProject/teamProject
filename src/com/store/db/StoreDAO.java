@@ -271,7 +271,7 @@ public class StoreDAO {
 			ArrayList<TimeSaveBean> list = new ArrayList<TimeSaveBean>();
 		try {
 			con = getConnection();
-			String sql = "select class_starttime, class_endtime,currentpersonal from operationdate where class_date = ? and class_day = ? and class_registrynum = ? order by class_starttime asc";
+			String sql = "select class_starttime, class_endtime,currentpersonal,calnum from operationdate where class_date = ? and class_day = ? and class_registrynum = ? order by class_starttime asc";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, date);
 			pstmt.setString(2, day);
@@ -282,7 +282,7 @@ public class StoreDAO {
 				bean.setClass_starttime(rs.getString(1));
 				bean.setClass_endtime(rs.getString(2));
 				bean.setCurrentpersonal(rs.getInt(3));
-				
+				bean.setCalnum(rs.getInt(4));
 				list.add(bean);
 			}
 		} catch (Exception e) {
@@ -500,6 +500,47 @@ public class StoreDAO {
 		} finally {
 			resourceClose();
 		}
+	}
+	//시간 수정
+	public int updateTime(String startime, String endtime,String date,String day,int personal,int num,int calNum) {
+		try {
+			con = getConnection();
+			String sql = "update operationdate set class_starttime = ? , class_endtime = ?,personal = ? where calnum = ? and class_registrynum = ? and class_date = ? and class_day = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, startime);
+			pstmt.setString(2, endtime);
+			pstmt.setInt(3, personal);
+			pstmt.setInt(4, calNum);
+			pstmt.setInt(5, num);
+			pstmt.setString(6, date);
+			pstmt.setString(7, day);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resourceClose();
+		}
+		
+		return 1;
+	}
+	//저장한시간삭제
+	public int deleteTime(String date,String day,int num) {
+		
+		try {
+			con = getConnection();
+			String sql = "delete from operationdate where class_registrynum = ? and class_date = ? and class_day = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setString(2, date);
+			pstmt.setString(3,day);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resourceClose();
+		}
+		return 1;
 	}
 	
 }

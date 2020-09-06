@@ -86,12 +86,23 @@
             </c:forEach>
 			</c:if>
         	 
-            <div class="pageNum">
+                        <div class="pageNum">
+            	<c:if test="${pageNum > 1}">
+            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/perfumeClass.do?pageNum=${1}'"> << </div>
+            	</c:if>
+            	<c:if test="${pageNum > startPage}">
+            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/perfumeClass.do?pageNum=${pageNum-1}'"> < </div>
+            	</c:if>
             	<c:forEach var = "i" begin="${startPage}" end ="${endPage}">
-            		<a href="${pageContext.request.contextPath}/perfumeClass.do?pageNum=${i}">[${i}]</a>
+            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/perfumeClass.do?pageNum=${i}'">${i}</div>
             	</c:forEach>
+            	<c:if test="${pageNum < pageCount}">
+            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/perfumeClass.do?pageNum=${pageNum+1}'"> > </div>
+            	</c:if>
+            	<c:if test="${pageNum < pageCount}">
+            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/perfumeClass.do?pageNum=${pageCount}'"> >> </div>
+            	</c:if>
             </div>
-                   
            </div> 
          
           <c:if test="${count == 0}">

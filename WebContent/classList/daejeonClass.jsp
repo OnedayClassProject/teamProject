@@ -62,7 +62,6 @@
             <div>대전 클래스</div>
          <c:if test="${count != 0}">
             <c:set var="j" value="1"/> 
-
             <c:forEach var="classBean" items="${list}">
          
            		<div class="best-class">
@@ -94,16 +93,25 @@
         	   </c:if>
              <c:set var="j" value="${j+1}"/>
             </c:forEach>
-        	 </c:if>
-        	 
-            <div class="pageNum">
+                        <div class="pageNum">
+            	<c:if test="${pageNum > 1}">
+            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/daejeonClass.do?pageNum=${1}'"> << </div>
+            	</c:if>
+            	<c:if test="${pageNum > startPage}">
+            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/daejeonClass.do?pageNum=${pageNum-1}'"> < </div>
+            	</c:if>
             	<c:forEach var = "i" begin="${startPage}" end ="${endPage}">
-            		<a href="${pageContext.request.contextPath}/daejeonClass.do?pageNum=${i}">[${i}]</a>
+            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/daejeonClass.do?pageNum=${i}'">${i}</div>
             	</c:forEach>
+            	<c:if test="${pageNum < pageCount}">
+            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/daejeonClass.do?pageNum=${pageNum+1}'"> > </div>
+            	</c:if>
+            	<c:if test="${pageNum < pageCount}">
+            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/daejeonClass.do?pageNum=${pageCount}'"> >> </div>
+            	</c:if>
             </div>
-                   
            </div> 
-         
+         </c:if>
           <c:if test="${count == 0}">
           	<div class="no_list"> NO LIST </div>
           </c:if>
