@@ -1,0 +1,126 @@
+@charset "UTF-8";
+
+
+.pic{
+	width: 100%;
+	height: 500px;
+	background-image: url("../images/coffee1.jpg");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+.my_wrap{
+    padding-top: 70px;
+    display: flex;
+    width: 1000px;
+    height: auto;
+    margin: auto;
+}
+.side_menu{
+    width: 150px;
+}
+.side_detail div{
+    display: inline-block;
+}
+.side_detail2{
+    padding-left: 75px;
+}
+.my_main{
+   
+    width: 700px;
+    margin: auto;
+    margin-top: 0;
+}
+.line{
+	width : 100%;
+	height: 1px;
+	border: 1px solid black;
+}
+.reserveInfo{
+	margin-top:20px;
+	margin-bottom : 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+.reserveInfo1{
+	margin-top:20px;
+	margin-bottom : 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}.reserveInfo1 div:nth-child(1)  {
+	width: 300px;
+}
+.reserveInfo1 div:nth-child(3){
+	width:140px;	
+}
+.reserveInfo1 div{
+	width: 120px;
+}
+
+.reserveInfo div:nth-child(1)  {
+	width: 300px;
+}
+.reserveInfo div:nth-child(3){
+	width:140px;	
+}
+.reserveInfo div{
+	width: 120px;
+}
+.reserveInfo2{
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.reserveInfo3{
+	display: flex;
+	width: 300px;
+	align-items: center;
+}
+.class_pic{
+	width:150px;
+	border: 1px solid black;
+	height: 150px;
+}
+.class_pic img{
+	width:100%;
+	height: 100%;
+}
+.reserveInfo4{
+	width: 120px;
+	text-align: center;
+}
+.reserveInfo5{
+	width: 140px;
+	text-align: center;
+}
+.class-name{
+	padding-left: 10px;
+}
+.class_name div{
+	width: 150px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.class_btn{
+	width: 120px;
+	text-align: center;
+}
+input[type=button] {
+	background-color: black;
+	color:white;
+	border: 1px solid black;
+	width: 60px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-radius: 5px;
+
+}
+.class_category{
+	color: gray;
+	font-size: 12px;
+}
+
