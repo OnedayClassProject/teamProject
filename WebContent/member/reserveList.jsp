@@ -59,11 +59,14 @@
             <div>예약리스트</div>
                 <hr>
            	<div>
-           		<div class="reserveInfo">
-           			<div>예약정보</div>
+				<div class="reserveInfo">
+           			<div>클래스정보</div>
+           			<div>예약자 명</div>
            			<div>예약인원</div>
            			<div>예약날짜</div>
-           			<div>환불여부</div>
+           			<div>전화번호</div>
+           			<div>요청사항</div>
+           			<div>기타</div>
            		</div>
            		<div class="line"></div>
            		<c:if test="${count != 0 }">
@@ -71,18 +74,22 @@
            		<div class="reserveInfo2">
            			<div class="reserveInfo3">
 	           			<div class="class_pic">
+	           			<a href="${pageContext.request.contextPath}/ClassInfo.do?class_registrynum=${list.class_registrynum}">
 	           				<img src="${pageContext.request.contextPath}/thumbnailImage/${list.thumbnail}">
+	           			</a>
 	           			</div>
 	           			<div class="class_name">
 		           			<div>${list.category }</div>
 		           			<div>${list.class_name }</div>
-		           			<div>${list.class_company }</div>
+		           			<div>${list.price }</div>
            				</div>
            			</div>
+           			<div>${list.class_company }</div>
            			<div class="reserveInfo4">${list.personnel }</div>
            			<div class="reserveInfo5">${list.time }</div>
+           			<div>${list.sale }</div>
+           			<div>${list.content }</div>
            			<div class="reserveInfo8">
-           			<div class="reserveInfo7">환불</div>
            			
            				<input type="hidden" value="${list.rating }">
            				<c:if test="${list.reviewCheck eq 0 }">
@@ -92,6 +99,8 @@
            				<div>작성완료</div>
            				</c:if>
            				<input type="hidden" value="${list.class_registrynum }">
+           				
+           				<button>환불신청</button>
            			</div>
            		</div>
            		</c:forEach>
@@ -113,6 +122,8 @@
             	</c:if>
             	</div>
            		</c:if>
+           		
+           		
            	</div>
            		<c:if test="${count == 0 }">
 	          		<div class="no_list">LIST가 없습니다.</div>

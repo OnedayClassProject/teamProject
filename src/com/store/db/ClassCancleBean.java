@@ -17,6 +17,7 @@ public class ClassCancleBean {
 	private String reservation_personnel;
 	private String time;
 	private String class_name;
+	private String thumbnail;
 	
 	public int getRefundnum() {
 		return refundnum;
@@ -101,6 +102,12 @@ public class ClassCancleBean {
 	}
 	public void setClass_name(String class_name) {
 		this.class_name = class_name;
+	}
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 	
 	

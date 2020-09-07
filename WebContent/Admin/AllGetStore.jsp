@@ -29,12 +29,6 @@
                 </a>
             </div>
             <hr>
-            <div class="side_detail">
-                <a href='${pageContext.request.contextPath}/AllGetReservation.do'><div>예약조회</div>
-                <div class="side_detail2">></div>
-                </a>
-            </div>
-            <hr>
             
         </div>
         <div class="my_main">

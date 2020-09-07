@@ -237,7 +237,7 @@
    			success:function(data){
    				if(data == 1){
    					alert("회원가입에 성공하셨습니다.");
-   					location.href="${pageContext.request.contextPath}/main.do"
+   					location.href="${pageContext.request.contextPath}/login.do"
    				}else{
    					alert("회원가입 실패.");
    				}
