@@ -48,33 +48,30 @@
 <section>
     <div class="my_wrap">
         <div class="side_menu">
+        	<div class="current_menu">MY PAGE</div>	
+        	 <div class="line"></div>
             <div class="side_detail">
                 <a href='${pageContext.request.contextPath}/memberReserve.do'><div>예약확인</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                <a href='${pageContext.request.contextPath}/memberRefund.do'><div>환불확인</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                 <a href='${pageContext.request.contextPath}/MemberCheckInfoPage.do'><div>정보보기</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                  <a href='${pageContext.request.contextPath}/MemberCheckInfoPage2.do'><div>수정하기</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                  <a href='${pageContext.request.contextPath}/MemberCheckInfoPage3.do'><div>탈퇴하기</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
@@ -137,10 +134,9 @@
                  				<img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}"></a>
                         	</div>
                         	<div class="class-name">
-                           		<div class="class-name1">카테고리 : ${classBean.category}</div>
-                    			<div class="class-name2">난이도 : ${classBean.level}</div>
-                    			<div class="class-name3">클래스명 : ${classBean.class_name}</div>
-                            	<div class="class-name4">업체명 :  ${classBean.class_company}</div>
+                           		<div class="class-name1">${classBean.category}</div>
+                    			<div class="class-name3">${classBean.class_name}</div>
+                            	<div class="class-name4">${classBean.class_company}</div>
                         	</div>
                     	</div>
                 	</c:forEach>
@@ -160,10 +156,9 @@
                  				<img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}"></a>
                         	</div>
                         	<div class="class-name">
-                           		<div class="class-name1">카테고리 : ${classBean.category}</div>
-                    			<div class="class-name2">난이도 : ${classBean.level}</div>
-                    			<div class="class-name3">클래스명 : ${classBean.class_name}</div>
-                            	<div class="class-name4">업체명 :  ${classBean.class_company}</div>
+                           		<div class="class-name1">${classBean.category}</div>
+                    			<div class="class-name3">${classBean.class_name}</div>
+                            	<div class="class-name4">${classBean.class_company}</div>
                         	</div>
                     	</div>
                 	</c:forEach>
@@ -183,10 +178,9 @@
                  				<img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}"></a>
                         	</div>
                         	<div class="class-name">
-                           		<div class="class-name1">카테고리 : ${classBean.category}</div>
-                    			<div class="class-name2">난이도 : ${classBean.level}</div>
-                    			<div class="class-name3">클래스명 : ${classBean.class_name}</div>
-                            	<div class="class-name4">업체명 :  ${classBean.class_company}</div>
+                           		<div class="class-name1">${classBean.category}</div>
+                    			<div class="class-name3">${classBean.class_name}</div>
+                            	<div class="class-name4">${classBean.class_company}</div>
                         	</div>
                     	</div>
                 	</c:forEach>
@@ -201,9 +195,9 @@
 </body>
 <script>
 $(function () {
-	$(function () {
-		$('[data-toggle="tooltip"]').tooltip();
-	});
+	
+		/* $('[data-toggle="tooltip"]').tooltip(); */
+
 
 	$(".pay_btn2").on("click", function() {
 		// Set a same-site cookie for first-party contexts

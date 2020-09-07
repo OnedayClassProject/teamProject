@@ -70,7 +70,7 @@
                	  	</div>
                      <div class="class-name">
                          <div class="class_category">${classBean.category}</div>
-                         <div>${classBean.class_name}</div>
+                         <div class="class_sub">${classBean.class_name}</div>
                   		 <div>${classBean.price}</div>
                   		<input type="hidden" name="class_registrynum" value="${class_registrynum}">
                   		<input type="hidden" name="storenum" value="${storenum}">
@@ -90,10 +90,22 @@
         	   	<br>
             </c:forEach>
         	 </c:if>
-            <div class="pageNum">
+           	                      <div class="pageNum">
+            	<c:if test="${pageNum > 1}">
+            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/storeMyClassInfo.do?pageNum=${1}'"> << </div>
+            	</c:if>
+            	<c:if test="${pageNum > startPage}">
+            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/storeMyClassInfo.do?pageNum=${pageNum-1}'"> < </div>
+            	</c:if>
             	<c:forEach var = "i" begin="${startPage}" end ="${endPage}">
-            		<a href="${pageContext.request.contextPath}/storeMyClassInfo.do?pageNum=${i}">[${i}]</a>
+            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/storeMyClassInfo.do?pageNum=${i}'">${i}</div>
             	</c:forEach>
+            	<c:if test="${pageNum < pageCount}">
+            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/storeMyClassInfo.do?pageNum=${pageNum+1}'"> > </div>
+            	</c:if>
+            	<c:if test="${pageNum < pageCount}">
+            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/storeMyClassInfo.do?pageNum=${pageCount}'"> >> </div>
+            	</c:if>
             </div>
                    
            </div>  
@@ -101,8 +113,6 @@
           	<div class="no_list"> NO LIST </div>
           </c:if>
           </div>
-        </div>
-        </div>
 </section>
  <jsp:include page="../footer.jsp" />
 </body>

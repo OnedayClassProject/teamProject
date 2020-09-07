@@ -20,13 +20,18 @@
 	height: 100%;
 	border-radius: 10px;
 }
+.class_content, .class_map, .class_refund, .class_review{
+	margin-top: 20px;
+	font-size: 25px;
+	font-weight: bold;
+}
 .contents img{
 	max-width: 100%;
 	height: auto;
 }
 .cancle_policy td{
-	border: 1px solid black;
 }
+
 .class_wrap2{
 	position: relative;
 }
@@ -39,6 +44,15 @@
 	 top:0; 
 	padding: 10px 10px;
 	margin-left: auto;
+ }
+ .cancle_policy{
+ 	background: lightgray;
+ }
+ .cancle_policy td{
+ 	width: 300px;
+ 	font-size: 18px;
+ 	height: 30px;
+ 	border: 1px solid gray;
  }
 /* .reserve_barfixed{
 	position: absolute; 
@@ -58,6 +72,7 @@
 	margin-bottom: 5px;
 	
 }
+
 .price_tag{
 	margin-bottom: 10px;
 }

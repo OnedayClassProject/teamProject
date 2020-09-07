@@ -52,11 +52,15 @@ public class MyClassInfo implements CommandHandler{
 		
 		ArrayList <ClassBean> list = cdao.getStoreClassInfo(storenum,startRow,endRow);
   
+		
+		
+		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("pageNum", currentPage);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("count", count);
 		request.setAttribute("list", list);
-		request.setAttribute("pageNum", pageNum);
+		
 		
 		request.setAttribute("storenum",storenum);
 		request.setAttribute("storeemail", storeemail);

@@ -38,13 +38,14 @@ public class reviewWriteAction implements CommandHandler{
 		String storenum =multipartRequest.getParameter("storenum");
 		String company_name = multipartRequest.getParameter("company_name");
 		String class_name = multipartRequest.getParameter("class_name");
+		String subject = multipartRequest.getParameter("subject");
 		String email = (String)session.getAttribute("userid");
-		email = "skdms@naver.com";
+//		email = "skdms@naver.com";
 		String res_date = multipartRequest.getParameter("reservation_date");
 		int rating = Integer.parseInt(multipartRequest.getParameter("rating"));
 		String content = multipartRequest.getParameter("content");
 		String fileImage = multipartRequest.getFilesystemName("image");
-
+		int reserveNum = Integer.parseInt(multipartRequest.getParameter("reserveNum"));
 		System.out.println("rating"+rating);
 		
 		ReviewBean rbean = new ReviewBean();
@@ -57,6 +58,7 @@ public class reviewWriteAction implements CommandHandler{
 		rbean.setRating(rating);
 		rbean.setContent(content);
 		rbean.setThumbnail(fileImage);
+		rbean.setSubject(subject);
 		rbean.setReviewdate(new Timestamp(System.currentTimeMillis()));
 		
 		ReviewDAO rdao = new ReviewDAO();
@@ -68,6 +70,7 @@ public class reviewWriteAction implements CommandHandler{
 		int sum = (int)((double)Math.round(div*100));
 		rdao.ratingUpdate(class_reg, sum);
 		
+		rdao.reviewComplete(reserveNum);
 		
 		request.setAttribute("data", result);
 		 

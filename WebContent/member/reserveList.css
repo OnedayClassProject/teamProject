@@ -20,6 +20,11 @@
 .side_detail div{
     display: inline-block;
 }
+.side_detail a{
+	color: gray;
+	font-size: 13px;
+	font-weight: bold;
+}
 .side_detail2{
     padding-left: 75px;
 }
@@ -106,4 +111,55 @@
 
 section{
 	min-height: 100%;
+}
+.pageNum{
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.pageNum div{
+	text-align:center;
+	display: inline-block;
+}
+.pageNum2{
+	color:white;
+	border: 1px solid black;
+	border-radius: 5px;
+	width:20px;
+	height:20px;
+	font-size: 17px;
+	line-height :  20px;
+	background: black;
+}
+.pageNum2{
+	cursor: pointer;
+}
+.pageNum3{
+	padding-right:2px;
+	letter-spacing:-3px;
+	color:white;
+	border: 1px solid black;
+	border-radius: 5px;
+	width:20px;
+	height:20px;
+	font-size: 17px;
+	line-height :  20px;
+	background: black;
+}
+.pageNum3{
+	cursor: pointer;
+}
+.current_menu{
+	font-weight: bold;
+	font-size: 20px;
+}
+.line{
+	margin-top : 15px;
+	border: 1px solid black;
+	width:100%;
+	height: 1px;
+	margin-bottom: 10px;
+}
+.reserveInfo8{
+	width: 120px;
 }
