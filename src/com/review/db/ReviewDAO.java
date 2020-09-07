@@ -167,4 +167,22 @@ public int sumRating(int class_num) {
 		}
 		return list;
 	}
+	
+	//예약한 클래스의 후기를 작성했는지 판단 여부
+	public void reviewComplete(int reserveNum) {
+		
+		try {
+			con = getConnection();
+			String sql = "update classreservation set reviewCheck = 1 where reservationnum = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, reserveNum);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resourceClose();
+		}
+		
+	}
 }

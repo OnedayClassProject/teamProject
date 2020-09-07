@@ -108,28 +108,28 @@
 
         <div>후기등록</div>
         <!-- 클래스 등록번호 -->
-        <input type="hidden" name="class_regisitrynum" value="1"> 
+        <input type="hidden" name="class_regisitrynum" value="${bean.class_registrynum }"> 
         <!-- 업체 번호 -->
-        <input type="hidden" name="storenum" value="1">
+        <input type="hidden" name="storenum" value="${bean.storenum }">
         <div class="review_wrap">
-        <div class="review_title">공방이름 <input type="hidden" name="company_name" value="가죽공방"></div>
-        <div>가죽공방</div>
+        <div class="review_title">공방이름<input type="hidden" name="company_name" value="${bean.class_company }"></div>
+        <div>${bean.class_company }</div>
        	</div>
        	<div class="review_wrap">
-        	<div class="review_title">클래스명 <input type="hidden" name="class_name" value="가죽지갑만들기"></div>
-        	<div>${rbean.class_name}</div>
+        	<div class="review_title">클래스명 <input type="hidden" name="class_name" value="${bean.class_name }"></div>
+        	<div>${bean.class_name}</div>
         </div>
         <div class="review_wrap">
         	<div class="review_title">제목</div>
-        	<div><input type="type" name="subject"></div>
+        	<div><input type="text" name="subject"></div>
         </div>
         <div class="review_wrap">
         <div class="review_title">회원이메일</div>
-        <div>${rbean.useremail}</div>
+        <div>${sessionScope.userid}</div>
         </div>
         <div class="review_wrap">
-       	 	<div class="review_title">수업참가날짜<input type="hidden" name="reservation_date" value="2020.10.01"></div>
-        	<div>${rbean.reservation_date}</div>
+       	 	<div class="review_title">수업참가날짜<input type="hidden" name="reservation_date" value="${date }"></div>
+        	<div>${date}</div>
         </div>
         <div class="review_wrap">
         <div class="review_title">별점</div>
@@ -160,6 +160,7 @@
         <div class="review_buttons">
         <button type="button" id ="review_create">등록</button>
         <button type="button">취소</button>
+        <input type="hidden" name='reserveNum' value='${reserveNum }'>
         </div>
     </div>
     </form>

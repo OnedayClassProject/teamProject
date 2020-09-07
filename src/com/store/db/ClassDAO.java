@@ -1372,4 +1372,55 @@ public class ClassDAO {
 		}
 		return list;
 	}
+	
+	public int reserveCount(String userid){
+		int count=0;
+		try{
+			con=getConnection();
+			String sql= "select count(*) from classreservation where useremail = ?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, userid);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				count=rs.getInt(1);
+				}
+		}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				resourceClose();
+			}
+			return count;
+		}
+	public ArrayList<ClassBean> reserveList(String email,int startRow, int endRow){
+		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
+		ClassBean bean = null;
+		try{
+			con=getConnection();
+			String sql="select c.thumbnail, c.category, c.class_name, c.class_company, r.class_registrynum,r.reservationnum,r.reviewCheck ,r.reservation_personnel, r.reservation_date from class as c join classreservation as r on r.class_registrynum = c.class_registrynum where r.useremail=? order by pay_date desc limit ?,?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			rs=pstmt.executeQuery();
+			while(rs.next()){
+				bean=new ClassBean();
+				bean.setThumbnail(rs.getString("thumbnail"));
+				bean.setCategory(rs.getString("category"));
+				bean.setClass_name(rs.getString("class_name"));
+				bean.setClass_company(rs.getString("class_company"));
+				bean.setClass_registrynum(rs.getInt("class_registrynum"));
+				bean.setPersonnel(rs.getString("reservation_personnel"));
+				bean.setTime(rs.getString("reservation_date"));
+				bean.setRating(rs.getInt("reservationnum"));
+				bean.setReviewCheck(rs.getInt("reviewCheck"));
+				list.add(bean);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			resourceClose();
+		}
+		return list;
+	}
+	
 }

@@ -18,7 +18,16 @@ public class ClassBean {
 	private String parking;
 	private int reservation_count;
 	private int rating;
+	private int reviewCheck;
 	
+	
+	
+	public int getReviewCheck() {
+		return reviewCheck;
+	}
+	public void setReviewCheck(int reviewCheck) {
+		this.reviewCheck = reviewCheck;
+	}
 	public int getRating() {
 		return rating;
 	}
