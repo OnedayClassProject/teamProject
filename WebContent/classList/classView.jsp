@@ -97,12 +97,13 @@
 			<div class="class_wrap2">
 				<div class="class_wrap3">
 				<div class="main_pic"><img src="${pageContext.request.contextPath}/thumbnailImage/${cb.thumbnail}"></div>			
-				<div>소개</div>
+				<div class="class_content">클래스 소개</div>
 				<input type="hidden" id="class_registrynum" value="${cb.class_registrynum }">
 				<div class="contents">${cb.content }</div>
+				<div class="class_map">위치</div>
 				<div id="map" style="width:500px;height:400px;"></div>
 				<hr>
-				<div>취소 및 환불 정책</div>
+				<div class="class_refund">취소 및 환불 정책</div>
 				<table class="cancle_policy">
 					<tr>
 						<td>클래스 5일 전 취소시</td>
@@ -134,15 +135,11 @@
 					</tr>
 				</table>
 				<hr>
-				<h5>후기 목록</h5>
+				<div class='class_review'>후기</div>
 				<div id="content">
 
 				</div>
-
-                   
            </div> 
-  
-				
 				<div class="reserve_bar">
 					<div class="category_tag">${cb.category }</div>
 					<div class="className_tag">${cb.class_name }</div>
