@@ -83,6 +83,69 @@ public class ClassCancleDAO {
 		}
 		return list;
 	}
+
+	public int mrefundCount(String email) {
+		int count = 0;
+		
+		try {
+			con = getConnection();
+			sql = "select count(*) from classcancle where useremail=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				count = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			resourceClose();
+		}
+		
+		return count;
+	}
+
+	public ArrayList<ClassCancleBean> refundList(String email, int startRow, int endRow) {
+		ArrayList<ClassCancleBean> list = new ArrayList<ClassCancleBean>();
+		
+		try {
+			con = getConnection();
+			sql = "select c.thumnail c.class_name,c.category,c.class_registrynum"
+					+ "r.user_name,r.reservation_personnel,r.reservation_date,r.time,r.refund_price,r.request_day,r.refund_date,r.status,r.point "
+					+ "from class as c join classcancle as r on r.class_registrynum = c.class_registrynum where r.useremail=? orber by request_day desc limit ?,?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				ClassCancleBean ccbean = new ClassCancleBean();
+				ccbean.setThumbnail(rs.getString("thumbnail"));
+				ccbean.setClass_name(rs.getString("class_name"));
+				ccbean.setClass_registrynum(rs.getInt("class_registrynum"));
+				ccbean.setUser_name(rs.getString("user_name"));
+				ccbean.setReservation_date(rs.getString("reservation_date"));
+				ccbean.setTime(rs.getString("time"));
+				ccbean.setPoint(rs.getString("point"));
+				ccbean.setRefund_price(rs.getString("refund_price"));
+				ccbean.setRefund_date(rs.getString("refund_date"));
+				ccbean.setRequest_day(rs.getTimestamp("request_day"));
+				ccbean.setStatus(rs.getString("status"));
+				ccbean.setReservation_personnel(rs.getString("reservation_personnel"));
+				
+				list.add(ccbean);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			resourceClose();
+		}
+		
+		
+		return list;
+	}
 	
 	
 	

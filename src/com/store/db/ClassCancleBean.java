@@ -1,5 +1,7 @@
 package com.store.db;
 
+import java.sql.Timestamp;
+
 public class ClassCancleBean {
 
 	
@@ -17,7 +19,10 @@ public class ClassCancleBean {
 	private String reservation_personnel;
 	private String time;
 	private String class_name;
+	private String status;
 	private String thumbnail;
+	private String user_name;
+	private Timestamp request_day;
 	
 	public int getRefundnum() {
 		return refundnum;
@@ -103,12 +108,31 @@ public class ClassCancleBean {
 	public void setClass_name(String class_name) {
 		this.class_name = class_name;
 	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getThumbnail() {
 		return thumbnail;
 	}
 	public void setThumbnail(String thumbnail) {
 		this.thumbnail = thumbnail;
 	}
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+	public Timestamp getRequest_day() {
+		return request_day;
+	}
+	public void setRequest_day(Timestamp request_day) {
+		this.request_day = request_day;
+	}
+	
 	
 	
 	

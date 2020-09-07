@@ -100,27 +100,27 @@
            				</c:if>
            				<input type="hidden" value="${list.class_registrynum }">
            				
-           				<button>환불신청</button>
+           				<button class="refund_request">환불신청</button>
            			</div>
            		</div>
            		</c:forEach>
-           		  <div class="pageNum">
-            	<c:if test="${pageNum > 1}">
-            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${1}'"> << </div>
-            	</c:if>
-            	<c:if test="${pageNum > startPage}">
-            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${pageNum-1}'"> < </div>
-            	</c:if>
-            	<c:forEach var = "i" begin="${startPage}" end ="${endPage}">
-            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${i}'">${i}</div>
-            	</c:forEach>
-            	<c:if test="${pageNum < pageCount}">
-            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${pageNum+1}'"> > </div>
-            	</c:if>
-            	<c:if test="${pageNum < pageCount}">
-            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${pageCount}'"> >> </div>
-            	</c:if>
-            	</div>
+           		 	<div class="pageNum">
+		            	<c:if test="${pageNum > 1}">
+		            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${1}'"> << </div>
+		            	</c:if>
+		            	<c:if test="${pageNum > startPage}">
+		            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${pageNum-1}'"> < </div>
+		            	</c:if>
+		            	<c:forEach var = "i" begin="${startPage}" end ="${endPage}">
+		            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${i}'">${i}</div>
+		            	</c:forEach>
+		            	<c:if test="${pageNum < pageCount}">
+		            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${pageNum+1}'"> > </div>
+		            	</c:if>
+		            	<c:if test="${pageNum < pageCount}">
+		            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${pageCount}'"> >> </div>
+		            	</c:if>
+            		</div>
            		</c:if>
            		
            		
@@ -160,6 +160,11 @@
 				 alert('에러');
 			 }
 		 });
+	});
+	
+	$(".refund_request").on("click",function(){
+		
+		
 	});
 </script>
 </body>
