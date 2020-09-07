@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -54,8 +53,10 @@
        		<p><h2>${bean.title}</h2><br><hr>
        		<p><h2>내용</h2><br>${bean.content}<br><hr>
        		<button type="button" onclick ="location.href='${pageContext.request.contextPath}/noticeMainPage.do?pageNum=${pageNum}'">목록으로</button>
-       		<button type="button" onclick ="location.href='${pageContext.request.contextPath}/noticeUpdate.do?num=${bean.num}&pageNum=${pageNum}'">수정하기</button>
-       		<button type="button" onclick ="deletePage('${bean.num}','${pageNum}')">삭제하기</button><br><br>
+       		<c:if test="${sessionScope.userid == 'admin' }">
+       			<button type="button" onclick ="location.href='${pageContext.request.contextPath}/noticeUpdate.do?num=${bean.num}&pageNum=${pageNum}'">수정하기</button>
+       			<button type="button" onclick ="deletePage('${bean.num}','${pageNum}')">삭제하기</button><br><br>
+       		</c:if>
         </div>
     </div>
 </section>

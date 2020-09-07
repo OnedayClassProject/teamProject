@@ -9,7 +9,7 @@
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <jsp:include page="../header.jsp"/>
 <script type="text/javascript">
-	function submitForm(){
+	function submitForm(num,pageNum){
 		var title = $("#title").val();
 		var content = $("#content").val();
 		if(title==""){
@@ -21,11 +21,11 @@
 			$("#content").focus();
 			return false;
 		}else{
-			writeAction();
+			writeAction(num,pageNum);
 		}
 		return true;
 	}
-    function writeAction(){
+    function writeAction(num,pageNum){
     	var form = $("#form").serialize();
    		$.ajax('${pageContext.request.contextPath}/helpUpdateAction.do',{
    			type:"post",
@@ -33,7 +33,7 @@
    			success:function(data){
    				if(data == 1){
    					alert("수정하셨습니다.");
-   					location.href="${pageContext.request.contextPath}/helpMainPage.do?pageNum=1";
+   					location.href="${pageContext.request.contextPath}/helpPage.do?num="+num +"&pageNum="+pageNum;
    				}else{
    					alert("수정 실패.");
    				}
@@ -67,7 +67,7 @@
         		<input type="hidden" name = "num" value = "${bean.num}">
         		제목 <input type="text" id ="title" name ="title" style="width: 650px; height: 30px;" value = "${bean.title }"><br><br>
         		내용 <br><textarea rows="30" cols="100" id="content" name="content">${bean.content }</textarea><br><br>
-        		<button type="button" onclick ="return submitForm()">제출하기</button>
+        		<button type="button" onclick ="return submitForm(${bean.num},'${pageNum}')">제출하기</button>
         	</form>
         </div>
     </div>

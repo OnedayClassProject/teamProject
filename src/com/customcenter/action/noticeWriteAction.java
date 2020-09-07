@@ -20,7 +20,6 @@ public class noticeWriteAction implements CommandHandler{
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		int header = Integer.parseInt(request.getParameter("header"));
-		System.out.println("header: "+ header);
 		noticeBean bean = new noticeBean();
 		bean.setTitle(title);
 		bean.setContent(content);

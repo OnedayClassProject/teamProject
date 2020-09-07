@@ -17,9 +17,11 @@ public class helpUpdate implements CommandHandler{
 			throws ServletException, IOException {
 		
 		int num = Integer.parseInt(request.getParameter("num"));
+		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
 		helpDAO dao = new helpDAO();
 		helpBean bean = dao.getHelpConent(num);
 		request.setAttribute("bean", bean);
+		request.setAttribute("pageNum", pageNum);
 		return "customcenter/helpUpdate.jsp";
 	}
 

@@ -10,22 +10,25 @@ import com.command.CommandHandler;
 import com.notice.db.noticeBean;
 import com.notice.db.noticeDAO;
 
-public class noticePage implements CommandHandler{
+public class noticeUpdateAction implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		int num = Integer.parseInt(request.getParameter("num"));
-		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
-		//게시글
-		noticeDAO dao = new noticeDAO();
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		int header = Integer.parseInt(request.getParameter("header"));
 		noticeBean bean = new noticeBean();
-		bean = dao.getNoticeConent(num);
-		
-		
-		request.setAttribute("bean", bean);
-		request.setAttribute("pageNum", pageNum);
-		return "customcenter/noticeContent.jsp";
+		bean.setTitle(title);
+		bean.setContent(content);
+		bean.setNum(num);
+		bean.setHeader(header);
+		noticeDAO dao = new noticeDAO();
+		int check = dao.updateNotice(bean);
+		request.setAttribute("data", check);
+		return "store/checkEmail.jsp";
 	}
-
+	
 }
