@@ -138,13 +138,23 @@ public class noticeDAO {
 	}
 	public int updateNotice(noticeBean bean) {
 		int result = 0;
+		int header = 0;
 		try {
 			con = getConnection();
-			String sql = "update notice set title = ?, content = ?, date = now() header =? where num =?";
+			if(bean.getHeader() == 1){
+				String sql = "select max(header) from notice";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+					header = rs.getInt(1) + 1;
+				}
+			}
+			
+			String sql = "update notice set title = ?, content = ?, date = now(), header =? where num =?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getTitle());
 			pstmt.setString(2, bean.getContent());
-			pstmt.setInt(3, bean.getHeader());
+			pstmt.setInt(3, header);
 			pstmt.setInt(4, bean.getNum());
 			result = pstmt.executeUpdate();
 			if(result != 0)

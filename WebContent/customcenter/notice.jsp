@@ -7,23 +7,6 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/customcenter/help.css">
 </head>
-<script type="text/javascript">
-	function checkAdmin(){
-		$.ajax('${pageContext.request.contextPath}/checkAdmin.do',{
-			type:"post",
-			success:function(data){
-				if(data == 1){
-					location.href='${pageContext.request.contextPath}/noticeWrite.do';
-				}else{
-					alert("로그인 해주세요");
-					location.href='${pageContext.request.contextPath}/login.do';
-				}
-			}, error:function(e){
-				alert(e);
-			}
-		});
-	}
-</script>
 <body>
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <jsp:include page="../header.jsp"/>
@@ -67,7 +50,7 @@
 	        						<div>${list.num }</div>
 	        					</c:when>
 	        				</c:choose>
-	        					<div><a href="location.href=${pageContext.request.contextPath}/noticePage.do?num=${list.num}&pageNum=${pageNum}">${list.title }</a></div>
+	        					<div><a href="${pageContext.request.contextPath}/noticePage.do?num=${list.num}&pageNum=${pageNum}">${list.title }</a></div>
 	        					<div>관리자</div>
 	        					<c:set var ="date" value = "${list.date }"></c:set>
 	        					<div>${fn:substring(date,0,10) }</div>
@@ -78,8 +61,9 @@
 	        		<div class="nolist">목록이 없습니다.</div>
 	        	</c:if>
         			<div class="write_button">
-        		<!-- admin인지 확인하기 함수 말고 onclick으로 바꿀예정 -->
-        		<button onclick="checkAdmin()">공지쓰기</button>
+        		<c:if test="${sessionScope.userid == 'admin' }">
+        			<button onclick="location.href='${pageContext.request.contextPath}/noticeWrite.do'">공지쓰기</button>
+        		</c:if>
         		</div>
         	</div>
         	<div>
