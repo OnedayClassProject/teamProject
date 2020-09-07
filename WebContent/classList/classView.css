@@ -371,6 +371,61 @@
 	width: 300px;
 }
 
+
 section {
 	min-height: 100%;
+}
+
+.staR{
+  background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+  background-size: auto 100%;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  text-indent: -9999px;
+  border: 0;
+	margin: 0;
+}
+.staR.on{
+	background-position:0 0;
+	}
+/* #hide{
+	display:none;
+} */
+.reviewimg{
+	width: 100px;
+	height:80px;
+	
+	
+}
+.reviewimg img{
+	width: 100%;
+	height:100%;
+	
+}
+/* .reviewCon{
+  width:100%;
+  height:100%;
+  background:pink;
+  visibility:hidden;
+} */
+/* .close {
+  display:block;
+  background-image:url('https://s.pstatic.net/static/www/img/2017/sp_nav_v170523.png');
+  width: 42px;
+  height: 16px;
+  background-position: -166px -78px;
+} */
+.topReview5{
+	display:none;
+	width: 200px;
+	height: 200px;
+	border: 1px solid black;
+	
+	}
+.topReviewALL div{
+	display:inline-block;
+}
+#subject{
+	display: block;
 }

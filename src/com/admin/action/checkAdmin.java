@@ -1,4 +1,4 @@
-package com.action;
+package com.admin.action;
 
 import java.io.IOException;
 
@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.command.CommandHandler;
 
-//회원탈퇴 forward
-public class storeDelete implements CommandHandler{
+public class checkAdmin implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		return "store/storedelete.jsp";
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

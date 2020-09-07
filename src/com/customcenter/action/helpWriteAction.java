@@ -30,9 +30,7 @@ public class helpWriteAction implements CommandHandler{
 		bean.setWriter(id);
 		helpDAO dao = new helpDAO();
 		int check = dao.insertHelp(bean);
-		System.out.println("check : " + check);
-		request.setAttribute("data",1);
-		System.out.println("data : " + request.getAttribute("data"));
+		request.setAttribute("data",check);
 		return "store/checkEmail.jsp";
 	}
 

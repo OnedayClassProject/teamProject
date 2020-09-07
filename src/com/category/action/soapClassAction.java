@@ -32,9 +32,7 @@ public class soapClassAction implements CommandHandler{
 		int startRow = (currentPage - 1) * pageSize ;
 		int endRow = pageSize;
 		
-		ClassDAO cado = new ClassDAO();
 		int count = cdao.soapCount();
-	 
 		int pageCount = count / pageSize + (count%pageSize == 0? 0:1);
 	
 		int pageBlock=10;
@@ -44,6 +42,8 @@ public class soapClassAction implements CommandHandler{
 		if(endPage>pageCount) endPage=pageCount;
 		
 		ArrayList <ClassBean> list = cdao.soapClassList(startRow, endRow);
+		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("pageNum", currentPage);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("count", count);

@@ -17,6 +17,10 @@
            <div class="side_detail">
            <div class="current_menu">문의하기</div>
            <div class="line"></div>
+           <div class="side_detail">
+               <a href="${pageContext.request.contextPath}/noticeMainPage.do"class="current_menu2"><div>공지사항</div></a>
+            </div>
+            <hr>
                 <a href="${pageContext.request.contextPath}/helpMainPage.do" class="current_menu2"><div>문의하기</div></a>
             </div>
             <hr>
@@ -26,11 +30,11 @@
             <hr>
         </div>
         <div class="my_main">
-        <div>문의글쓰기</div>
+        <div>문의글쓰기</div><br>
         	<form id ="form" method ="post">
         		제목 <input type="text" id ="title" name ="title" style="width: 650px; height: 30px;"><br><br>
         		내용 <br><textarea rows="30" cols="100" id="content" name="content"></textarea><br><br>
-        		<button type="button" onclick ="submitForm()">제출하기</button>
+        		<button type="button" onclick ="submitForm()">글쓰기</button>
         	</form>
         </div>
     </div>

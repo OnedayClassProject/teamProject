@@ -35,6 +35,10 @@ public class PayAction implements CommandHandler {
 		int class_registrynum = Integer.parseInt(request.getParameter("class_registrynum"));
 		String content = request.getParameter("content");
 		
+<<<<<<< HEAD
+=======
+		
+>>>>>>> c96114343b80fff9739efb2b6257daf79c517eb6
 		ReservationBean rbean = new ReservationBean();
 		
 		rbean.setUseremail(useremail);

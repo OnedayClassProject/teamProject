@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/member/reserveList.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/store/myclass.css">
 </head>
 <body><jsp:include page="../header.jsp"/>
 <section>
@@ -16,38 +16,32 @@
             <div class="side_detail">
               <a href='${pageContext.request.contextPath}/storeReserve.do'>
                 <div>예약확인</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                 <a href='${pageContext.request.contextPath}/storeRefund.do'> 
                 <div>환불확인️</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                 <a href='${pageContext.request.contextPath}/storeCheckInfoPage.do'><div>정보보기</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                  <a href='${pageContext.request.contextPath}/storeCheckInfoPage2.do'><div>수정하기</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                  <a href='${pageContext.request.contextPath}/storeCheckInfoPage.do'><div>탈퇴하기</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                  <a href='${pageContext.request.contextPath}/storeMyClassInfo.do'><div>내가 등록한 클래스</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
@@ -62,7 +56,7 @@
            			<div>클래스 난이도</div>
            			<div>클래스 처리</div>
            </div>
-         <div class="line"><div>
+         <div class="line"></div>
          <c:if test="${count != 0}">
 
             <c:forEach var="classBean" items="${list}">
@@ -73,20 +67,25 @@
                 		 <a href="${pageContext.request.contextPath}/ClassInfo.do?class_registrynum=${classBean.class_registrynum}" >
                	 		 <img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}">
                			  </a>
-               	  </div>
+               	  	</div>
                      <div class="class-name">
-                         <div>카테고리 : ${classBean.category}</div>
-                         <div>클래스명 : ${classBean.class_name}</div>
-                  		 <div>가격 : ${classBean.price}</div>
-                  			
+                         <div class="class_category">${classBean.category}</div>
+                         <div>${classBean.class_name}</div>
+                  		 <div>${classBean.price}</div>
                   		<input type="hidden" name="class_registrynum" value="${class_registrynum}">
                   		<input type="hidden" name="storenum" value="${storenum}">
-                  	   <input type="button" onclick ="location.href ='${pageContext.request.contextPath}/MyClassUpdate.do?class_registrynum=${classBean.class_registrynum}&storenum=${storenum}'" value="클래스 수정하기"/>
                     </div>
             	 </div>
             	 	<div class="reserveInfo4">${classBean.personnel}</div>
            			<div class="reserveInfo5">${classBean.level}</div>
-           			<div class="reserveInfo4">완료</div>
+           			<div class="class_btn">
+	           			<div>
+	           			<input type="button" onclick ="location.href ='${pageContext.request.contextPath}/MyClassUpdate.do?class_registrynum=${classBean.class_registrynum}&storenum=${storenum}'" value="수정"/>
+	            	 	</div>
+	            	 	<div>
+	           			<input type="button" onclick ="location.href ='${pageContext.request.contextPath}/MyClassUpdate.do?class_registrynum=${classBean.class_registrynum}&storenum=${storenum}'" value="삭제"/>
+	            	 	</div>
+            	 	</div>
             	 </div>
         	   	<br>
             </c:forEach>
@@ -105,6 +104,6 @@
         </div>
         </div>
 </section>
-<jsp:include page="../footer.jsp" />
+ <jsp:include page="../footer.jsp" />
 </body>
 </html>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+   <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,10 +71,10 @@
 				var per = Number($(".person_count").find('.personal').text());
 				var current2 =Number($(".person_count").find('.cp').val());
 				var num3 = Number($('.person_num').val());
-				if(num3 > current2){
+				if(num3 > 0){
 				var num4 = num3-1;
 				console.log(num4)
-				$person.children('.person').text(num4+"/${cb.personnel}");
+				$person.children('.person').html("<span class='currentper'>"+(num4+current2)+"</span>/<span class='personal'>${cb.personnel}</sapn>");
 				var today = $('#dateInput').text();
 				console.log(today);
 				var price = Number($person.children('.per_price').text());
@@ -115,7 +116,7 @@
 						<td>클래스 3일 전 취소시</td>
 						<td>클래스 금액의 10% 차감 후 환불</td>
 					</tr>
-					<tr>
+					<tr>0
 						<td>클래스 2일 전 취소시</td>
 						<td>클래스 금액의 20% 차감 후 환불</td>
 					</tr>
@@ -133,11 +134,15 @@
 					</tr>
 				</table>
 				<hr>
-				<div>회원이름</div>
-				<div>평점</div>
-				<div>작성일</div>
-				<div>제목</div>
+				<h5>후기 목록</h5>
+				<div id="content">
+
 				</div>
+
+                   
+           </div> 
+  
+				
 				<div class="reserve_bar">
 					<div class="category_tag">${cb.category }</div>
 					<div class="className_tag">${cb.class_name }</div>
@@ -398,7 +403,7 @@
 									$(".time_wrap").empty();
 									for(var i = 0; i < time.length; i++){
 										$(".time_wrap").append("<div class='timedetail"+i+" time_detail' onclick='checkbox("+i+")'><div class='time_detail1'>"+time[i].start+" ~ "+time[i].end+"</div>"
-														+"<div class='time_detail2'><div class='per_price'>${cb.price}</div><div class='person parson2'><span class='currentper'>"+time[i].currentpersonal+"</span>/<span class='personal'>${cb.personnel}</span></div></div>"
+														+"<div class='time_detail2'><div class='per_price'>${cb.price}</div><div class='person parson2 person3'><span class='currentper'>"+time[i].currentpersonal+"</span>/<span class='personal'>${cb.personnel}</span></div></div>"
 														+"<input type='hidden' value='"+time[i].currentpersonal+"' class='cp'></div>");
 									}
 							
@@ -491,8 +496,14 @@
 			console.log(current2);
 			var per = Number($(".person_count").find('.personal').text());
 			if(current2 != per){
-				$('.parson2').empty();
-		 	$('.parson2').html("<span class='currentper'>"+0+"</span>/<span class='personal'>${cb.personnel}</sapn>");
+				for(var i=0; i<$('.cp').length; i++){
+					console.log($('.cp').eq(i).val());
+					if($('.cp').eq(i).val() == 0){
+				 		$('.parson2').eq(i).html("<span class='currentper'>"+0+"</span>/<span class='personal'>${cb.personnel}</sapn>");
+						} else{
+						 	$('.parson2').eq(i).html("<span class='currentper'>"+2+"</span>/<span class='personal'>${cb.personnel}</sapn>");
+						}
+				}
 		 	if(current2 == 0){
 		 		$person.children('.person').empty();
 				$person.children('.person').html("<span class='currentper'>"+current2+"</span>/<span class='personal'>${cb.personnel}</sapn>");
@@ -505,7 +516,7 @@
 			var per =  Number($('.person_num').val())
 			$('.reserve_date').text(today + " "+ per + "명");
 			var  price = $person.children('.per_price').text();
-			$('.sum_price').text(price);
+			$('.sum_price').text(0);
 		 	}
 			} else{
 				alert("예약이 다찼습니다.");
@@ -516,12 +527,12 @@
 	    function pay(){
 	    	var person_num = $(".person_num").val();
 	    	var reserve_date = $("#dateInput").text();
-	    	var sum_price = $(".sum_price").text();
+	    	var sum_price = Number($(".sum_price").text());
 	    	var class_registrynum = $("#class_registrynum").val();
 	    	var data = 0;
 	    	var time = $(".person_count").children(".time_detail1").text();
 	    	
-	    	if(sum_price != ""){
+	    	if(sum_price != 0){
 		    	$.ajax({
 		    		type : "post",
 		    		url : "${pageContext.request.contextPath}/classCheck.do",
@@ -537,9 +548,94 @@
 					}
 		    	});
 	    	}else{
-	    		alert("날짜를 선택해주세요");
+	    		alert("인원수를 선택해주세요!");
 	    	}
 	    }
+	    reviewList();
+	    function reviewList(i){
+	    	var class_registrynum = ${param.class_registrynum};
+	  	  $.ajax({
+	    	type:"post",
+	    	url:"${pageContext.request.contextPath}/getReview.do",
+	    	data : {class_registrynum:class_registrynum,
+	    		pageNum : i},
+	    	dataType : "text",
+	    	success: function(data,status){
+		    	var result=JSON.parse(data);
+		    	var review= result.review;
+		    	var j=0;
+		    	console.log(data);
+	    		 $("#content").empty();
+		    	
+	                $("#pageBlock").empty();
+	                if (review.length != 0) {
+	                    for (var i = 0; i < review.length; i++) {
+	                    	var user=review[i].useremail.split('@');
+	                    	console.log(user);
+	                    	var useremail=user[0];
+	                    	
+	                    	
+	                        $("#content").append(
+	                        	 "<div class ='topReviewALL'>"
+	                        	+"<div class='topReview2'><div class='reviewId" + i + "' >" + useremail + "</div></div>"
+	  	                       	+"<div class='topReview4'><input type='hidden' class='rating' value='"+review[i].rating+"'></div>"
+	                         	+"<div class = 'starRev'>"
+					        	+"<input class='staR' value='1'>"
+					        	+"<input class='staR' value='2'>"
+					        	+"<input class='staR' value='3'>"
+					        	+"<input class='staR' value='4'>"
+					        	+"<input class='staR' value='5'>"
+	        					+ "</div>"
+	        					+  "<div class='topReview3'><div class='reviedate" + i + "' >" + review[i].reviewdate+"</div></div></div>"
+	    
+	                        	+"<div id='subject' class='reviewSubject" + i + "' onclick='content("+i+")'><font class='fontTab'>▼</font>" + review[i].subject +"</div>"
+	                        	+"<div class='topReview5'><div class='topReview6'><div class='reviewimg'><img src='${pageContext.request.contextPath}/thumbnailImage/"+review[i].thumbnail+"'/></div>"
+		  	                    +"<div class='reviewCon" + i + "'>"+review[i].content +"</div></div>"
+		  	                  
+	                            + "<input type='hidden' id='pagereview'>");
+	                    
+	                    	//평점 가져오기
+	                		var current = $(".starRev").eq(i);
+	            			var rating  = $(".rating").eq(i).val();
+	            			
+	            			if(rating == "0"){
+	            				var rating1 = current.children(".staR").eq(rating);
+	            			} else {
+	            				var rating1 = current.children(".staR").eq(rating-1)
+	            				
+	            	            rating1.parent().children("input").removeClass("on");
+	            	            rating1.addClass("on").prevAll("input").addClass("on");
+	            			}
+	            			console.log("i = "+i);
+	            			console.log("rating = "+review[i].rating);
+	            			console.log("num = "+review[i].num);
+	                     
+	                    }//for문(Content) 종료시점
+	                    for (var i = review[0].startPage; i <= review[0].endPage; i++) {
+	                        $("#pageBlock").append("<a onclick='review(" + i + ")'>" + "[" + i + "]" + "</a>");
+	                    }
+	                } else {
+	                    $("#content").append("<div class='noMailList'> NO LIST😱!!!</div>");
+	                }
+	    	},
+	    	error: function(data,status){
+	    		alert("에러가 발생했습니다.");
+	    	}
+	    	
+	    });
+	    }
+	    function content(i){
+	    	var s = $('.reviewSubject'+i).next('.topReview5')
+	    	if(s.css('display')=='none'){
+	    	s.css('display', 'block');
+	    	$('.fontTab').html("▲");
+	    	}else if(s.css('display')=='block'){
+	    		s.css('display','none');
+	    		$('.fontTab').html("▼");
+	    	}
+	    	
+	    }
+
 </script>
 </body>
 </html>

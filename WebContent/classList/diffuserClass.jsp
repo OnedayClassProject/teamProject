@@ -52,38 +52,29 @@
             <div>디퓨저 클래스</div>
          <c:if test="${count != 0}">
             <c:set var="j" value="1"/> 
-
             <c:forEach var="classBean" items="${list}">
-         
            		<div class="best-class">
-	                 <div class="thumbnail" >
-	                 <a href="${pageContext.request.contextPath}/ClassInfo.do?class_registrynum=${classBean.class_registrynum}" >
-	                 <img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}">
-	                 </a>
-	                 <div class="like_image"> 
-	                 <input type="hidden" value="${classBean.class_registrynum}" class="num">
-	                  <img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
-	                 <img class="favor" src="${pageContext.request.contextPath}/images/star2.png">
-	
-	                 </div>
-	                 <div class="baking-name">
-	                    <div class="class-name1">카테고리 : ${classBean.category}</div>
-	                    <div class="class-name2">클래스명 : ${classBean.class_name}</div>
-	                  	<input type="hidden" class="rating" value="${classBean.rating }">
-	                   	<div class = "starRev">
-				        	<input class="staR" value="1">
-				        	<input class="staR" value="2">
-				        	<input class="staR" value="3">
-				        	<input class="staR" value="4">
-				        	<input class="staR" value="5">
-	     				</div>
+                 <div class="thumbnail" >
+                	 <a href="${pageContext.request.contextPath}/ClassInfo.do?class_registrynum=${classBean.class_registrynum}" >
+                 	 <img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}"></a>
+                 </div>
+                 <div class="class-name">
+                    <div class="class-name1">카테고리 : ${classBean.category}</div>
+                    <div class="class-name2">클래스명 : ${classBean.class_name}</div>
+                  	<input type="hidden" class="rating" value="${classBean.rating }">
+                   	<div class = "starRev">
+			        	<input class="staR" value="1">
+			        	<input class="staR" value="2">
+			        	<input class="staR" value="3">
+			        	<input class="staR" value="4">
+			        	<input class="staR" value="5">
+     				</div>
+				</div>
+					<div class="like_image"> 
+	                	<img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
+						<input type="hidden" value="${classBean.class_registrynum}" class="num">
+						<img class="favor" src="${pageContext.request.contextPath}/images/star2.png">
 					</div>
-						<div class="like_image"> 
-		                	<img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
-							<input type="hidden" value="${classBean.class_registrynum}" class="num">
-							<img class="favor" src="${pageContext.request.contextPath}/images/star2.png">
-						</div>
-	            	</div>
             	</div>
 				<c:if test="${j%3==0}">
 				<br>
@@ -91,11 +82,22 @@
 			<c:set var="j" value="${j+1}"/>
             </c:forEach>
 			</c:if>
-        	 
             <div class="pageNum">
+            	<c:if test="${pageNum > 1}">
+            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/diffuserClass.do?pageNum=${1}'"> << </div>
+            	</c:if>
+            	<c:if test="${pageNum > startPage}">
+            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/diffuserClass.do?pageNum=${pageNum-1}'"> < </div>
+            	</c:if>
             	<c:forEach var = "i" begin="${startPage}" end ="${endPage}">
-            		<a href="${pageContext.request.contextPath}/diffuserClass.do?pageNum=${i}">[${i}]</a>
+            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/diffuserClass.do?pageNum=${i}'">${i}</div>
             	</c:forEach>
+            	<c:if test="${pageNum < pageCount}">
+            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/diffuserClass.do?pageNum=${pageNum+1}'"> > </div>
+            	</c:if>
+            	<c:if test="${pageNum < pageCount}">
+            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/diffuserClass.do?pageNum=${pageCount}'"> >> </div>
+            	</c:if>
             </div>
                    
            </div> 

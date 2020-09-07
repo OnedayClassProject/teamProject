@@ -50,6 +50,10 @@
            <div class="side_detail">
            <div class="current_menu">문의하기</div>
            <div class="line"></div>
+           <div class="side_detail">
+               <a href="${pageContext.request.contextPath}/noticeMainPage.do"class="current_menu2"><div>공지사항</div></a>
+            </div>
+            <hr>
                 <a href="${pageContext.request.contextPath}/helpMainPage.do" class="current_menu2"><div>문의하기</div></a>
             </div>
             <hr>

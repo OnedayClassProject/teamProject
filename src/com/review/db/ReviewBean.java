@@ -3,11 +3,23 @@ package com.review.db;
 import java.sql.Timestamp;
 
 public class ReviewBean {
-	private String company_name,storenum,class_name,useremail,reservation_date,content,thumbnail;
-	private int class_registrynum;
+	private String company_name,storenum,class_name,useremail,reservation_date,subject,content,thumbnail;
+	private int reviewnum,class_registrynum;
 	private int rating;
 	private Timestamp reviewdate;
 	
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	public int getReviewnum() {
+		return reviewnum;
+	}
+	public void setReviewnum(int reviewnum) {
+		this.reviewnum = reviewnum;
+	}
 	public String getCompany_name() {
 		return company_name;
 	}
