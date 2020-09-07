@@ -42,7 +42,7 @@
         </div>
             <div class="my_main">
             <div>환불리스트</div>
-                <hr>
+            <hr>
            	<div>
            		<div class="reserveInfo">
            			<div>환불정보</div>
