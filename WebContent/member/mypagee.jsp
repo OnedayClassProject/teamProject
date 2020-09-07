@@ -134,7 +134,7 @@
                 		<div class="best-class">
                         	<div class="thumbnail">
                         		<a href="${pageContext.request.contextPath}/ClassInfo.do?class_registrynum=${classBean.class_registrynum}" >
-                 				<img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}"></a>
+                 				<img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}" width="175px" height="165px"></a>
                         	</div>
                         	<div class="class-name">
                            		<div class="class-name1">카테고리 : ${classBean.category}</div>

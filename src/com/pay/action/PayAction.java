@@ -34,6 +34,7 @@ public class PayAction implements CommandHandler {
 		String time = request.getParameter("time");
 		int class_registrynum = Integer.parseInt(request.getParameter("class_registrynum"));
 		String content = request.getParameter("content");
+		String user_name = request.getParameter("user_name");
 		
 		
 		ReservationBean rbean = new ReservationBean();
@@ -51,6 +52,7 @@ public class PayAction implements CommandHandler {
 		rbean.setClass_registrynum(class_registrynum);
 		rbean.setContent(content);
 		rbean.setTime(time);
+		rbean.setUser_name(user_name);
 		
 		rbean.setPay_date(new Timestamp(System.currentTimeMillis()));
 		

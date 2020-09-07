@@ -19,6 +19,7 @@ public class ReservationBean {
 	private int class_registrynum;
 	private String content;
 	private String time;
+	private String user_name;
 	
 	
 	
@@ -147,6 +148,14 @@ public class ReservationBean {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 	
 	

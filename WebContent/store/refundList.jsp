@@ -68,8 +68,6 @@
            		<c:forEach var="GetRefund" items="${StoreGetCancle }">
 	           		<div class="reserveInfo2">
 	           		
-	           			<div class="class_pic">사진</div>
-	           			<div>카테고리</div>
 	           			<div>클래스명</div>
 	           			<div>가격</div>
 	           			<div class="reserveInfo4">인원수</div>

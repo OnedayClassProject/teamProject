@@ -62,29 +62,23 @@
             <div>예약리스트</div>
                 <hr>
            	<div>
-           		<div class="reserveInfo">
-           			<div>예약정보</div>
-           			<div>예약인원</div>
-           			<div>예약날짜</div>
-           			<div>환불여부</div>
-           		</div>
+
            		<div class="line"></div>
-           		<div class="reserveInfo2">
-           			<div class="reserveInfo3">
-	           			<div class="class_pic">사진</div>
-	           			<div class="class_name">
-		           			<div>카테고리</div>
-		           			<div>클래스명</div>
-		           			<div>가격</div>
-           				</div>
-           			</div>
-           			<div class="reserveInfo4">인원수</div>s
-           			<div class="reserveInfo5">2020-09-14</div>
-           			<div class="reserveInfo4">환불</div>
-           			<button class="reserveInfo4" onclick="location.href='${pageContext.request.contextPath}/boardWrite.do?reservationnum=1&reservation_date=2020-09-01'">
-           				후기작성
-           			</button>
-           		</div>
+           		
+	           		<div class="reserveInfo2">
+	           			<div class="reserveInfo3">
+		           			<div class="class_pic thumbnail">  </div>
+		           			<div class="class_name">
+	           				</div>
+	           			</div>
+	           			<div class="reserveInfo4">${GetReserve.user_name }</div>
+	           			<div class="reserveInfo4">${GetReserve.reservation_personnel }</div>
+	           			<div class="reserveInfo5">${GetReserve.reservation_date } ${GetReserve.time }</div>
+	           			<button class="reserveInfo4" onclick="location.href='${pageContext.request.contextPath}/boardWrite.do?reservationnum=1&reservation_date=2020-09-01'">
+	           				후기작성
+	           			</button>
+	           		</div>
+           		
            	</div>
             </div>
         </div>
