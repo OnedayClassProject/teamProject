@@ -21,6 +21,11 @@
 .side_detail div{
     display: inline-block;
 }
+.side_detail a{
+	color: gray;
+	font-size: 13px;
+	font-weight: bold;
+}
 .side_detail2{
     padding-left: 75px;
 }

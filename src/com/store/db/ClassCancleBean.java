@@ -10,7 +10,6 @@ public class ClassCancleBean {
 	private int class_registrynum;
 	private String class_company;
 	private int reservationnum;
-	private String reservation_date;
 	private String refund_price;
 	private String reservation_pay;
 	private String point;
@@ -19,10 +18,11 @@ public class ClassCancleBean {
 	private String reservation_personnel;
 	private String time;
 	private String class_name;
-	private String status;
+	private String state;
 	private String thumbnail;
 	private String user_name;
-	private Timestamp request_day;
+	private String request_day;
+	private String category;
 	
 	public int getRefundnum() {
 		return refundnum;
@@ -53,12 +53,6 @@ public class ClassCancleBean {
 	}
 	public void setReservationnum(int reservationnum) {
 		this.reservationnum = reservationnum;
-	}
-	public String getReservation_date() {
-		return reservation_date;
-	}
-	public void setReservation_date(String reservation_date) {
-		this.reservation_date = reservation_date;
 	}
 	public String getRefund_price() {
 		return refund_price;
@@ -108,11 +102,11 @@ public class ClassCancleBean {
 	public void setClass_name(String class_name) {
 		this.class_name = class_name;
 	}
-	public String getStatus() {
-		return status;
+	public String getState() {
+		return state;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setState(String state) {
+		this.state = state;
 	}
 	public String getThumbnail() {
 		return thumbnail;
@@ -126,11 +120,17 @@ public class ClassCancleBean {
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
 	}
-	public Timestamp getRequest_day() {
+	public String getRequest_day() {
 		return request_day;
 	}
-	public void setRequest_day(Timestamp request_day) {
+	public void setRequest_day(String request_day) {
 		this.request_day = request_day;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	
 	

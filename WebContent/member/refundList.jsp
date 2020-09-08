@@ -69,18 +69,22 @@
 	           			<div class="class_name">
 		           			<div>${list.category }</div>
 		           			<div>${list.class_name }</div>
+		           			<div>${list.refund_price }</div>
            				</div>
            			</div>
            			<div>${list.user_name }</div>
            			<div class="reserveInfo4">${list.reservation_personnel }</div>
-           			<div class="reserveInfo5">${list.reservation_date } / ${list.time }</div>
-           			<div class="reserveInfo4">${list.refund_price }</div>
+           			<div class="reserveInfo5">${list.time }</div>
            			<div>${list.request_day }</div>
            			<div>${list.refund_date }</div>
            			<div>
-           				<div>${list.status }</div>
-           				<c:if test="${list.status eq '대기' } ">
+           				
+           				<c:if test="${list.state eq 0 }" >
+           					<div>대기</div>
            					<button>환불취소</button>
+           				</c:if>
+           				<c:if test="${list.state eq 1 }">
+           					<div>환불완료</div>
            				</c:if>
            			</div>
            		</div>

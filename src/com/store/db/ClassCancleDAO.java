@@ -61,7 +61,6 @@ public class ClassCancleDAO {
 					
 					vo.setClass_name(rss.getString("class_name"));
 					vo.setUseremail(rss.getString("useremail"));
-					vo.setReservation_date(rss.getString("reservation_date"));
 					vo.setTime(rss.getString("time"));
 					vo.setRefund_price(rss.getString("refund_price"));
 					vo.setReservation_pay(rss.getString("reservation_pay"));
@@ -112,9 +111,9 @@ public class ClassCancleDAO {
 		
 		try {
 			con = getConnection();
-			sql = "select c.thumnail c.class_name,c.category,c.class_registrynum"
-					+ "r.user_name,r.reservation_personnel,r.reservation_date,r.time,r.refund_price,r.request_day,r.refund_date,r.status,r.point "
-					+ "from class as c join classcancle as r on r.class_registrynum = c.class_registrynum where r.useremail=? orber by request_day desc limit ?,?";
+			sql = "select c.thumbnail, c.class_name,c.category,c.class_registrynum,"
+					+ "r.user_name,r.reservation_personnel,r.time,r.refund_price,r.request_day,r.refund_date,r.state,r.point "
+					+ "from class as c join classcancle as r on r.class_registrynum = c.class_registrynum where r.useremail=? order by request_day desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, email);
 			pstmt.setInt(2, startRow);
@@ -126,15 +125,14 @@ public class ClassCancleDAO {
 				ccbean.setClass_name(rs.getString("class_name"));
 				ccbean.setClass_registrynum(rs.getInt("class_registrynum"));
 				ccbean.setUser_name(rs.getString("user_name"));
-				ccbean.setReservation_date(rs.getString("reservation_date"));
 				ccbean.setTime(rs.getString("time"));
 				ccbean.setPoint(rs.getString("point"));
 				ccbean.setRefund_price(rs.getString("refund_price"));
 				ccbean.setRefund_date(rs.getString("refund_date"));
-				ccbean.setRequest_day(rs.getTimestamp("request_day"));
-				ccbean.setStatus(rs.getString("status"));
+				ccbean.setRequest_day(rs.getString("request_day"));
+				ccbean.setState(rs.getString("state"));
 				ccbean.setReservation_personnel(rs.getString("reservation_personnel"));
-				
+				ccbean.setCategory(rs.getString("category"));
 				list.add(ccbean);
 			}
 		} catch (Exception e) {

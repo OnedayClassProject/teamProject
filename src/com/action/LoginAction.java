@@ -17,6 +17,6 @@ public class LoginAction implements CommandHandler{
 		
 		
 		
-		return "/member/memberLogin.jsp";
+		return "member/memberLogin.jsp";
 	}
 }

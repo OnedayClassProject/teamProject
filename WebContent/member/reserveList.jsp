@@ -65,44 +65,46 @@
            			<div>예약인원</div>
            			<div>예약날짜</div>
            			<div>전화번호</div>
+           			<div>위치</div>
            			<div>요청사항</div>
            			<div>기타</div>
            		</div>
            		<div class="line"></div>
            		<c:if test="${count != 0 }">
            		<c:forEach var="list" items="${list }">
-           		<div class="reserveInfo2">
-           			<div class="reserveInfo3">
-	           			<div class="class_pic">
-	           			<a href="${pageContext.request.contextPath}/ClassInfo.do?class_registrynum=${list.class_registrynum}">
-	           				<img src="${pageContext.request.contextPath}/thumbnailImage/${list.thumbnail}">
-	           			</a>
+	           		<div class="reserveInfo2">
+	           			<div class="reserveInfo3">
+		           			<div class="class_pic">
+		           			<a href="${pageContext.request.contextPath}/ClassInfo.do?class_registrynum=${list.class_registrynum}">
+		           				<img src="${pageContext.request.contextPath}/thumbnailImage/${list.thumbnail}">
+		           			</a>
+		           			</div>
+		           			<div class="class_name">
+			           			<div>${list.category }</div>
+			           			<div>${list.class_name }</div>
+			           			<div class="price">${list.price }</div> <!-- 결제금액 -->
+	           				</div>
 	           			</div>
-	           			<div class="class_name">
-		           			<div>${list.category }</div>
-		           			<div>${list.class_name }</div>
-		           			<div>${list.price }</div>
-           				</div>
-           			</div>
-           			<div>${list.class_company }</div>
-           			<div class="reserveInfo4">${list.personnel }</div>
-           			<div class="reserveInfo5">${list.time }</div>
-           			<div>${list.sale }</div>
-           			<div>${list.content }</div>
-           			<div class="reserveInfo8">
-           			
-           				<input type="hidden" value="${list.rating }">
-           				<c:if test="${list.reviewCheck eq 0 }">
-           				<button class="reserveInfo6" >후기작성</button>
-           				</c:if>
-           				<c:if test="${list.reviewCheck ne 0 }">
-           				<div>작성완료</div>
-           				</c:if>
-           				<input type="hidden" value="${list.class_registrynum }">
-           				
-           				<button class="refund_request">환불신청</button>
-           			</div>
-           		</div>
+	           			<div >${list.class_company }</div> <!-- 예약자명 -->
+	           			<div class="reserveInfo4 ">${list.personnel }</div>
+	           			<div class="reserveInfo5 time">${list.time }</div> <!-- 예약날짜/시간 -->
+	           			<div>${list.sale }</div><!-- 예약자 전화번호 -->
+	           			<div>${list.location }</div><!-- 위치 -->
+	           			<div>${list.content }</div> <!-- 요청사항 -->
+	           			<div class="reserveInfo8">
+	           			
+	           				<input type="hidden" value="${list.class_registrynum }" class="class_registrynum"><!-- 클래스등록번호 -->
+	           				<input type="hidden" value="${list.rating }" class="reservationnum"> <!-- 예약번호 -->
+	           				<input type="hidden" value="${list.level }" class="reservation_date"><!-- 예약날짜 -->
+	           				<c:if test="${list.reviewCheck eq 0 }">
+	           				<button class="reserveInfo6" >후기작성</button>
+	           				</c:if>
+	           				<c:if test="${list.reviewCheck ne 0 }">
+	           				<div>작성완료</div>
+	           				</c:if>
+	           				<button class="refund_request">환불신청</button>
+	           			</div>
+	           		</div>
            		</c:forEach>
            		 	<div class="pageNum">
 		            	<c:if test="${pageNum > 1}">
@@ -163,6 +165,42 @@
 	});
 	
 	$(".refund_request").on("click",function(){
+		
+		var p = $(this).parents(".reserveInfo2");
+		console.log(p);
+		var class_registrynum = p.find(".class_registrynum").val();
+		var reservationnum = p.find(".reservationnum").val();
+		var time = p.find(".time").text(); //  수업일 / 수업시간
+		
+		var price = p.find(".price").text();
+		
+		var reservation_date = p.find(".reservation_date").val();
+		
+		$.ajax({
+			type:"post",
+			url:"${pageContext.request.contextPath}/memberRefundAction.do",
+			dateType:"text",
+			data : {
+				class_registrynum : class_registrynum,
+				reservationnum : reservationnum,
+				price : price,
+				time : time ,
+				reservation_date : reservation_date
+			},
+			success:function(){
+				if(data = 1){
+					alert("환불 신청 되었습니다.");
+				}else if(data = 2){
+					alert("환불 진행중입니다.");
+				}else if(data = 3){
+					alert("환불 신청이 불가능합니다..");
+				}
+			},
+			error:function(data,status){
+				alert("에러가 발생했습니다.");
+			}
+		});
+		
 		
 		
 	});

@@ -1396,7 +1396,10 @@ public class ClassDAO {
 		ClassBean bean = null;
 		try{
 			con=getConnection();
-			String sql="select c.thumbnail,c.class_name, c.category, r.class_registrynum,r.reservationnum,r.reviewCheck ,r.reservation_personnel, r.reservation_date,r.user_name,r.time,r.reservation_tel,r.reservation_price,r.reservation_location,r.point,r.content from class as c join classreservation as r on r.class_registrynum = c.class_registrynum where r.useremail=? order by pay_date desc limit ?,?";
+			String sql="select c.thumbnail,c.class_name, c.category, r.class_registrynum,r.reservationnum,r.reviewCheck ,r.reservation_personnel, r.reservation_date,"
+					+ "r.user_name,r.time,r.reservation_tel,r.reservation_price,r.reservation_location,r.content "
+					+ "from class as c join classreservation as r on r.class_registrynum = c.class_registrynum where r.useremail=? "
+					+ "order by pay_date desc limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, email);
 			pstmt.setInt(2, startRow);
@@ -1411,12 +1414,12 @@ public class ClassDAO {
 				bean.setClass_registrynum(rs.getInt("class_registrynum"));
 				bean.setPersonnel(rs.getString("reservation_personnel"));
 				bean.setTime(rs.getString("reservation_date")+" / "+rs.getString("time"));
+				bean.setLevel(rs.getString("reservation_date"));
 				bean.setContent(rs.getString("content"));
 				bean.setRating(rs.getInt("reservationnum"));
 				bean.setReviewCheck(rs.getInt("reviewCheck"));
 				bean.setPrice(rs.getString("reservation_price"));
 				bean.setLocation(rs.getString("reservation_location"));
-				bean.setLevel(rs.getString("point"));
 				bean.setSale(rs.getString("reservation_tel"));
 				list.add(bean);
 			}
