@@ -19,7 +19,7 @@ public class checkWriter implements CommandHandler{
 		}else if(request.getSession().getAttribute("storeid") != null){
 			id = (String)request.getSession().getAttribute("storeid");
 		}
-		if(id.equals(request.getParameter("check"))){
+		if(id.equals(request.getParameter("check")) || id.equals("admin")){
 			request.setAttribute("data", 1);
 		}else{
 			request.setAttribute("data", 0);

@@ -17,38 +17,32 @@
             <div class="side_detail">
               <a href='${pageContext.request.contextPath}/storeReserve.do'>
                 <div>예약확인</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                 <a href='${pageContext.request.contextPath}/storeRefund.do'> 
                 <div>환불확인️</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                 <a href='${pageContext.request.contextPath}/storeCheckInfoPage.do'><div>정보보기</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                  <a href='${pageContext.request.contextPath}/storeCheckInfoPage2.do'><div>수정하기</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                  <a href='${pageContext.request.contextPath}/storeCheckInfoPage.do'><div>탈퇴하기</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                  <a href='${pageContext.request.contextPath}/storeMyClassInfo.do'><div>내가 등록한 클래스</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
@@ -68,8 +62,6 @@
            		<c:forEach var="GetRefund" items="${StoreGetCancle }">
 	           		<div class="reserveInfo2">
 	           		
-	           			<div class="class_pic">사진</div>
-	           			<div>카테고리</div>
 	           			<div>클래스명</div>
 	           			<div>가격</div>
 	           			<div class="reserveInfo4">인원수</div>

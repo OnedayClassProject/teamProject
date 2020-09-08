@@ -40,7 +40,7 @@ public class ReservationDAO {
 			
 			sql ="insert into classreservation(useremail,pay_date,class_name,reservation_category,"
 					+ "reservation_personnel,reservation_date,reservation_price,reservation_pay,reservation_tel,"
-					+ "reservation_location,point,class_registrynum,content,time) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "reservation_location,point,class_registrynum,content,time,user_name) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 			pstmt = con.prepareStatement(sql);
 			
@@ -58,7 +58,7 @@ public class ReservationDAO {
 			pstmt.setInt(12, rbean.getClass_registrynum());
 			pstmt.setString(13, rbean.getContent());
 			pstmt.setString(14, rbean.getTime());
-			
+			pstmt.setString(15, rbean.getUser_name());
 			result = pstmt.executeUpdate();
 			
 			System.out.println("result"+result);
@@ -114,6 +114,7 @@ public class ReservationDAO {
 				bean.setReservation_location(rs.getString(12));
 				bean.setPoint(rs.getString(13));
 				bean.setClass_registrynum(rs.getInt(14));
+				bean.setUser_name(rs.getString(15));
 			}
 			con.close();
 		}catch(Exception e){
@@ -155,6 +156,7 @@ public class ReservationDAO {
 					vo.setContent(rs2.getString("content"));
 					vo.setReservation_tel(rs2.getString("reservation_tel"));
 					vo.setTime(rs2.getString("time"));
+					vo.setUser_name(rs2.getString("user_name"));
 					list.add(vo);
 				}
 				
@@ -193,4 +195,50 @@ public class ReservationDAO {
 				resourceClose();
 			}
 		}
+		
+		public List<ReservationBean> memReserve(String email) {
+			
+			List<ReservationBean> list = new ArrayList<ReservationBean>();
+			
+			try {
+				con = getConnection();
+				sql = "select* from classreservation where useremail=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, email);
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()){
+					ReservationBean vo = new ReservationBean();
+					
+					vo.setUser_name(rs.getString("user_name"));
+					vo.setReservation_personnel(rs.getString("reservation_personnel"));
+					vo.setReservation_date(rs.getString("reservation_date"));
+					vo.setPay_date(rs.getTimestamp("pay_date"));
+					vo.setReservation_location(rs.getString("reservation_location"));
+					vo.setPoint(rs.getString("point"));
+					vo.setReservation_category(rs.getString("reservation_category"));
+					vo.setClass_name(rs.getString("class_name"));
+					vo.setReservation_price(rs.getString("reservation_price"));
+					vo.setTime(rs.getString("time"));
+					vo.setClass_registrynum(rs.getInt("class_registrynum"));
+					
+					list.add(vo);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				resourceClose();
+			}
+			
+			return list;
+		}
+		
+		
+		
+		
+		
+		
+		
+		
 }

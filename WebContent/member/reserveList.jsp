@@ -59,60 +59,73 @@
             <div>예약리스트</div>
                 <hr>
            	<div>
-           		<div class="reserveInfo">
-           			<div>예약정보</div>
+				<div class="reserveInfo">
+           			<div>클래스정보</div>
+           			<div>예약자 명</div>
            			<div>예약인원</div>
            			<div>예약날짜</div>
-           			<div>환불여부</div>
+           			<div>전화번호</div>
+           			<div>위치</div>
+           			<div>요청사항</div>
+           			<div>기타</div>
            		</div>
            		<div class="line"></div>
            		<c:if test="${count != 0 }">
            		<c:forEach var="list" items="${list }">
-           		<div class="reserveInfo2">
-           			<div class="reserveInfo3">
-	           			<div class="class_pic">
-	           				<img src="${pageContext.request.contextPath}/thumbnailImage/${list.thumbnail}">
+	           		<div class="reserveInfo2">
+	           			<div class="reserveInfo3">
+		           			<div class="class_pic">
+		           			<a href="${pageContext.request.contextPath}/ClassInfo.do?class_registrynum=${list.class_registrynum}">
+		           				<img src="${pageContext.request.contextPath}/thumbnailImage/${list.thumbnail}">
+		           			</a>
+		           			</div>
+		           			<div class="class_name">
+			           			<div>${list.category }</div>
+			           			<div>${list.class_name }</div>
+			           			<div class="price">${list.price }</div> <!-- 결제금액 -->
+	           				</div>
 	           			</div>
-	           			<div class="class_name">
-		           			<div>${list.category }</div>
-		           			<div>${list.class_name }</div>
-		           			<div>${list.class_company }</div>
-           				</div>
-           			</div>
-           			<div class="reserveInfo4">${list.personnel }</div>
-           			<div class="reserveInfo5">${list.time }</div>
-           			<div class="reserveInfo8">
-           			<div class="reserveInfo7">환불</div>
-           			
-           				<input type="hidden" value="${list.rating }">
-           				<c:if test="${list.reviewCheck eq 0 }">
-           				<button class="reserveInfo6" >후기작성</button>
-           				</c:if>
-           				<c:if test="${list.reviewCheck ne 0 }">
-           				<div>작성완료</div>
-           				</c:if>
-           				<input type="hidden" value="${list.class_registrynum }">
-           			</div>
-           		</div>
+	           			<div >${list.class_company }</div> <!-- 예약자명 -->
+	           			<div class="reserveInfo4 ">${list.personnel }</div>
+	           			<div class="reserveInfo5 time">${list.time }</div> <!-- 예약날짜/시간 -->
+	           			<div>${list.sale }</div><!-- 예약자 전화번호 -->
+	           			<div>${list.location }</div><!-- 위치 -->
+	           			<div>${list.content }</div> <!-- 요청사항 -->
+	           			<div class="reserveInfo8">
+	           			
+	           				<input type="hidden" value="${list.class_registrynum }" class="class_registrynum"><!-- 클래스등록번호 -->
+	           				<input type="hidden" value="${list.rating }" class="reservationnum"> <!-- 예약번호 -->
+	           				<input type="hidden" value="${list.level }" class="reservation_date"><!-- 예약날짜 -->
+	           				<c:if test="${list.reviewCheck eq 0 }">
+	           				<button class="reserveInfo6" >후기작성</button>
+	           				</c:if>
+	           				<c:if test="${list.reviewCheck ne 0 }">
+	           				<div>작성완료</div>
+	           				</c:if>
+	           				<button class="refund_request">환불신청</button>
+	           			</div>
+	           		</div>
            		</c:forEach>
-           		  <div class="pageNum">
-            	<c:if test="${pageNum > 1}">
-            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${1}'"> << </div>
-            	</c:if>
-            	<c:if test="${pageNum > startPage}">
-            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${pageNum-1}'"> < </div>
-            	</c:if>
-            	<c:forEach var = "i" begin="${startPage}" end ="${endPage}">
-            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${i}'">${i}</div>
-            	</c:forEach>
-            	<c:if test="${pageNum < pageCount}">
-            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${pageNum+1}'"> > </div>
-            	</c:if>
-            	<c:if test="${pageNum < pageCount}">
-            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${pageCount}'"> >> </div>
-            	</c:if>
-            	</div>
+           		 	<div class="pageNum">
+		            	<c:if test="${pageNum > 1}">
+		            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${1}'"> << </div>
+		            	</c:if>
+		            	<c:if test="${pageNum > startPage}">
+		            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${pageNum-1}'"> < </div>
+		            	</c:if>
+		            	<c:forEach var = "i" begin="${startPage}" end ="${endPage}">
+		            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${i}'">${i}</div>
+		            	</c:forEach>
+		            	<c:if test="${pageNum < pageCount}">
+		            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${pageNum+1}'"> > </div>
+		            	</c:if>
+		            	<c:if test="${pageNum < pageCount}">
+		            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${pageCount}'"> >> </div>
+		            	</c:if>
+            		</div>
            		</c:if>
+           		
+           		
            	</div>
            		<c:if test="${count == 0 }">
 	          		<div class="no_list">LIST가 없습니다.</div>
@@ -149,6 +162,47 @@
 				 alert('에러');
 			 }
 		 });
+	});
+	
+	$(".refund_request").on("click",function(){
+		
+		var p = $(this).parents(".reserveInfo2");
+		console.log(p);
+		var class_registrynum = p.find(".class_registrynum").val();
+		var reservationnum = p.find(".reservationnum").val();
+		var time = p.find(".time").text(); //  수업일 / 수업시간
+		
+		var price = p.find(".price").text();
+		
+		var reservation_date = p.find(".reservation_date").val();
+		
+		$.ajax({
+			type:"post",
+			url:"${pageContext.request.contextPath}/memberRefundAction.do",
+			dateType:"text",
+			data : {
+				class_registrynum : class_registrynum,
+				reservationnum : reservationnum,
+				price : price,
+				time : time ,
+				reservation_date : reservation_date
+			},
+			success:function(){
+				if(data = 1){
+					alert("환불 신청 되었습니다.");
+				}else if(data = 2){
+					alert("환불 진행중입니다.");
+				}else if(data = 3){
+					alert("환불 신청이 불가능합니다..");
+				}
+			},
+			error:function(data,status){
+				alert("에러가 발생했습니다.");
+			}
+		});
+		
+		
+		
 	});
 </script>
 </body>

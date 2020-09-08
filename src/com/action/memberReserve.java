@@ -2,6 +2,7 @@ package com.action;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.mail.Session;
 import javax.servlet.ServletException;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import com.command.CommandHandler;
 import com.store.db.ClassBean;
 import com.store.db.ClassDAO;
+import com.store.db.ReservationBean;
+import com.store.db.ReservationDAO;
 
 public class memberReserve implements CommandHandler {
 

@@ -223,7 +223,8 @@ $(function () {
 				point : point,
 				class_registrynum : class_registrynum,
 				content : content,
-				time : time
+				time : time,
+				user_name : user_name
 			},
 			success : function(data,status){
 				if(data == 1){

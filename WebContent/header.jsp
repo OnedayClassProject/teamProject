@@ -92,7 +92,6 @@
                         <li><a href="${pageContext.request.contextPath}/jejuClass.do">제주도</a></li>
                     </ul>
 
-
                 </div>
 
                 <div>고객센터

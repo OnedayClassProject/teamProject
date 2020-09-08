@@ -25,9 +25,7 @@ public class helpUpdateAction implements CommandHandler{
 		bean.setNum(num);
 		helpDAO dao = new helpDAO();
 		int check = dao.updateHelp(bean);
-		System.out.println("check : " + check);
 		request.setAttribute("data", check);
-		System.out.println("data : " + request.getAttribute("data"));
 		return "store/checkEmail.jsp";
 	}
 	

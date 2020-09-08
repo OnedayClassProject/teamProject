@@ -12,6 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/store/storepage.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/store/storePwCheck.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/member/reserveList.css">
+	
 </head>
 <body>
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
@@ -45,33 +47,30 @@
 <div class="pic"></div>
     <div class="my_wrap">
         <div class="side_menu">
+        <div class="current_menu">예약리스트</div>	
+        <div class="line"></div>
            <div class="side_detail">
                 <a href='${pageContext.request.contextPath}/memberReserve.do'><div>예약확인</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                <a href='${pageContext.request.contextPath}/memberRefund.do'><div>환불확인</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                 <a href='${pageContext.request.contextPath}/MemberCheckInfoPage.do'><div>정보보기</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                  <a href='${pageContext.request.contextPath}/MemberCheckInfoPage2.do'><div>수정하기</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                  <a href='${pageContext.request.contextPath}/MemberCheckInfoPage3.do'><div>탈퇴하기</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
