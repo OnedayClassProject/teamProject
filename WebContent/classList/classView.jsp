@@ -98,7 +98,7 @@
 				<div class="class_wrap3">
 				<div class="main_pic"><img src="${pageContext.request.contextPath}/thumbnailImage/${cb.thumbnail}"></div>			
 				<div class="class_content">클래스 소개</div>
-				<input type="hidden" id="class_registrynum" value="${cb.class_registrynum }">
+				<input type="hidden" name="class_registrynum" id="class_registrynum" value="${cb.class_registrynum }">
 				<div class="contents">${cb.content }</div>
 				<div class="class_map">위치</div>
 				<div id="map" style="width:500px;height:400px;"></div>
@@ -117,7 +117,7 @@
 						<td>클래스 3일 전 취소시</td>
 						<td>클래스 금액의 10% 차감 후 환불</td>
 					</tr>
-					<tr>0
+					<tr>
 						<td>클래스 2일 전 취소시</td>
 						<td>클래스 금액의 20% 차감 후 환불</td>
 					</tr>
@@ -137,7 +137,8 @@
 				<hr>
 				<div class='class_review'>후기</div>
 				<div id="content">
-
+				</div>
+				<div id="pageBlock">
 				</div>
            </div> 
 				<div class="reserve_bar">
@@ -558,6 +559,7 @@
 	    		pageNum : i},
 	    	dataType : "text",
 	    	success: function(data,status){
+	    		
 		    	var result=JSON.parse(data);
 		    	var review= result.review;
 		    	var j=0;
@@ -571,10 +573,11 @@
 	                    	console.log(user);
 	                    	var useremail=user[0];
 	                    	
-	                    	
 	                        $("#content").append(
 	                        	 "<div class ='topReviewALL'>"
-	                        	+"<div class='topReview2'><div class='reviewId" + i + "' >" + useremail + "</div></div>"
+	                        	+"<div class='topReview2'><div class='reviewId" + i + "' >" + useremail + "</div>"
+	                        	+"<input type='hidden' class='reviewuserId"+i+"' value='"+review[i].useremail+"'></div>"
+	                        	+"<input type='hidden' class='reviewNum"+i+"' value='"+review[i].num+"'></div>"
 	  	                       	+"<div class='topReview4'><input type='hidden' class='rating' value='"+review[i].rating+"'></div>"
 	                         	+"<div class = 'starRev'>"
 					        	+"<input class='staR' value='1'>"
@@ -587,7 +590,7 @@
 	    
 	                        	+"<div id='subject' class='reviewSubject" + i + "' onclick='content("+i+")'><font class='fontTab'>▼</font>" + review[i].subject +"</div>"
 	                        	+"<div class='topReview5'><div class='topReview6'><div class='reviewimg'><img src='${pageContext.request.contextPath}/thumbnailImage/"+review[i].thumbnail+"'/></div>"
-		  	                    +"<div class='reviewCon" + i + "'>"+review[i].content +"</div></div>"
+		  	                    +"<div class='reviewCon" + i + "'>"+review[i].content +"</div><button onclick='reviewDelete("+i+")'>삭제</button>	</div>"
 		  	                  
 	                            + "<input type='hidden' id='pagereview'>");
 	                    
@@ -606,10 +609,10 @@
 	            			console.log("i = "+i);
 	            			console.log("rating = "+review[i].rating);
 	            			console.log("num = "+review[i].num);
-	                     
+	            			console.log("classNum:"+class_registrynum);
 	                    }//for문(Content) 종료시점
 	                    for (var i = review[0].startPage; i <= review[0].endPage; i++) {
-	                        $("#pageBlock").append("<a onclick='review(" + i + ")'>" + "[" + i + "]" + "</a>");
+	                        $("#pageBlock").append("<a onclick='reviewList(" + i + ")'>" + "[" + i + "]" + "</a>");
 	                    }
 	                } else {
 	                    $("#content").append("<div class='noMailList'> NO LIST😱!!!</div>");
@@ -620,6 +623,34 @@
 	    	}
 	    	
 	    });
+	    }
+	    function reviewDelete(i){
+	    	var class_registrynum=$("#class_registrynum").val();
+	    	var reviewNum = $(".reviewNum"+i+"").val();
+	    	var reviewId=$(".reviewuserId"+i).val();
+	    	console.log("reviewId:"+reviewId);
+	    	$.ajax({
+	    		type:"post",
+	    		url : "${pageContext.request.contextPath}/DeleteReview.do",
+	    		data : {class_registrynum:class_registrynum,reviewNum:reviewNum,
+	    			reviewId:reviewId},
+	    		dataType :"text",
+	    		success:function(data,status){
+	    			var result=data;
+	    			console.log(data);
+	    			if(result==1){
+	    			
+	    				alert("댓글이 삭제되었습니다.");
+	    				$(".reviewList").empty();
+	    				reviewList();
+	    			}else{
+	    				alert("권한이 없습니다.");
+	    			}
+	    		},
+	    		error:function(){
+	    			alert("에러가 발생했습니다.");
+	    		}
+	    	});
 	    }
 	    function content(i){
 	    	var s = $('.reviewSubject'+i).next('.topReview5')
@@ -632,7 +663,11 @@
 	    	}
 	    	
 	    }
-
+	    
+	    $(function () {
+	        reviewList();
+	    });
+	    
 </script>
 </body>
 </html>

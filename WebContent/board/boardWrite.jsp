@@ -39,6 +39,7 @@
             			console.log(data);
             			if(data != 0){
             				alert("후기 등록 성공");
+            				location.href="${pageContext.request.contextPath}/memberReserve.do";
             			}else{
             				alert("후기 등록 실패했습니다.");
             			}

@@ -27,7 +27,7 @@ public class GetReview implements CommandHandler{
 		int class_num = Integer.parseInt(request.getParameter("class_registrynum"));
 		String pageNum = request.getParameter("pageNum");
 
-		int pageSize = 12;
+		int pageSize = 7;
 		
 		if(pageNum== null){
 			pageNum="1";
@@ -74,7 +74,9 @@ public class GetReview implements CommandHandler{
 			jsonObject1.put("reviewdate", list.get(i).getReviewdate().toString());
 			jsonObject1.put("rating", list.get(i).getRating());
 			jsonObject1.put("reservation_date", list.get(i).getReservation_date());
-			
+	        jsonObject1.put("startPage",startPage);
+	        jsonObject1.put("endPage",endPage);
+	        
 			jsonArray.add(jsonObject1);
 		}
 		jsonObject.put("review", jsonArray);

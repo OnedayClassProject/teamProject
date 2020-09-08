@@ -185,4 +185,28 @@ public int sumRating(int class_num) {
 		}
 		
 	}
+	public int deleteReview(int class_registrynum,int reviewNum,String reviewId){
+		int result=0;
+		System.out.println(class_registrynum);
+		System.out.println("reviewNum:"+reviewNum);
+		System.out.println(reviewId);
+		try {
+			con = getConnection();
+			String sql = "delete from review where class_registrynum=? and reviewnum=? and useremail=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, class_registrynum);
+			pstmt.setInt(2, reviewNum);
+			pstmt.setString(3, reviewId);
+			pstmt.executeUpdate();
+			result=1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			resourceClose();
+		}
+		
+		
+		
+		return result;
+	}
 }
