@@ -1,5 +1,6 @@
 package com.store.db;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class ClassCancleBean {
@@ -21,8 +22,9 @@ public class ClassCancleBean {
 	private String state;
 	private String thumbnail;
 	private String user_name;
-	private String request_day;
+	private Date request_day;
 	private String category;
+	private String reservation_date;
 	
 	public int getRefundnum() {
 		return refundnum;
@@ -120,10 +122,10 @@ public class ClassCancleBean {
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
 	}
-	public String getRequest_day() {
+	public Date getRequest_day() {
 		return request_day;
 	}
-	public void setRequest_day(String request_day) {
+	public void setRequest_day(Date request_day) {
 		this.request_day = request_day;
 	}
 	public String getCategory() {
@@ -131,6 +133,12 @@ public class ClassCancleBean {
 	}
 	public void setCategory(String category) {
 		this.category = category;
+	}
+	public String getReservation_date() {
+		return reservation_date;
+	}
+	public void setReservation_date(String reservation_date) {
+		this.reservation_date = reservation_date;
 	}
 	
 	

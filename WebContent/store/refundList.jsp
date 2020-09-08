@@ -52,28 +52,84 @@
                 <hr>
            	<div>
            		<div class="reserveInfo">
-           			<div>환불정보</div>
+           			<div>클래스명</div>
+           			<div>환불금액</div>
            			<div>환불인원</div>
-           			<div>환불날짜</div>
+           			<div>수업날짜</div>
+           			<div>환불신청날짜</div>
+           			<div>환불승인날짜</div>
            			<div>환불처리</div>
            		</div>
            		<div class="line"></div>
            		
-           		<c:forEach var="GetRefund" items="${StoreGetCancle }">
-	           		<div class="reserveInfo2">
+           		<c:if test="${count != 0 }">
+	           		<c:forEach var="GetRefund" items="${StoreGetCancle }">
+		           		<div class="reserveInfo2">
+		           			<div>${GetRefund.class_name }</div>
+		           			<div>${GetRefund.refund_price }</div>
+		           			<div class="reserveInfo4">${GetRefund.reservation_personnel }</div>
+		           			<div class="reserveInfo5">${GetRefund.reservation_date} / ${GetRefund.time }</div>
+		           			<div>${GetRefund.request_day }</div>
+		           			<div>${GetRefund.refund_date }</div>
+		           			<div class="state">
+		           				<input type="hidden" class="refundnum" value="${GetRefund.refundnum }">
+		           				<c:if test="${GetRefund.state eq 0 }">
+		           					<div class="reserveInfo4">대기</div>
+		           					<button class="refund_com">환불승인</button>
+		           				</c:if>
+		           				<c:if test="${GetRefund.state eq 1 }">
+		           					<div class="reserveInfo4">환불완료</div>
+		           				</c:if>
+		           			</div>
+		           		</div>
 	           		
-	           			<div>클래스명</div>
-	           			<div>가격</div>
-	           			<div class="reserveInfo4">인원수</div>
-	           			<div class="reserveInfo5">2020-09-14</div>
-	           			<div class="reserveInfo4">완료</div>
-	           		</div>
-           		
-           		</c:forEach>
+	           		</c:forEach>
+	           		<div class="pageNum">
+	            	<c:if test="${pageNum > 1}">
+	            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${1}'"> << </div>
+	            	</c:if>
+	            	<c:if test="${pageNum > startPage}">
+	            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${pageNum-1}'"> < </div>
+	            	</c:if>
+	            	<c:forEach var = "i" begin="${startPage}" end ="${endPage}">
+	            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${i}'">${i}</div>
+	            	</c:forEach>
+	            	<c:if test="${pageNum < pageCount}">
+	            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${pageNum+1}'"> > </div>
+	            	</c:if>
+	            	<c:if test="${pageNum < pageCount}">
+	            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${pageCount}'"> >> </div>
+	            	</c:if>
+	            </div>
+           		</c:if>
            	</div>
+           		<c:if test="${count == 0 }">
+	          		<div class="no_list">LIST가 없습니다.</div>
+	          	</c:if>
             </div>
         </div>
 </section>
 <jsp:include page="../footer.jsp" />
+<script>
+$(".refund_com").on("click",function(){
+	var refundnum = $(this).parents(".state").find(".refundnum").val();
+	
+	$.ajax({
+		type:"post",
+		url:"${pageContext.request.contextPath}/RefundCom.do",
+		dateType : "text",
+		data : {refundnum : refundnum},
+		success : function(data,status){
+			if(data == 1){
+				alert("환불 승인 완료했습니다.")
+				location.href="${pageContext.request.contextPath}/storeRefund.do";
+			}
+		},
+		error:function(data,status){
+			alert("에러가 발생했습니다.")
+		}
+	});
+});
+</script>
 </body>
 </html>

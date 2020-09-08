@@ -58,24 +58,28 @@
            			<div>예약날짜</div>
            			<div>전화번호</div>
            			<div>요청사항</div>
+           			<div>기타</div>
            		</div>
            		<div class="line"></div>
            		
            		
            		<c:forEach var="GetReserve" items="${GetReserve }">
-           		
-	           		<div class="reserveInfo2">
-		           			
-			           	<div>${GetReserve.class_name }</div>
-			           	<div>${GetReserve.reservation_price }</div>
-	           				
-	           			<div>${GetReserve.useremail }</div>
-	           			<div class="reserveInfo4">${GetReserve.reservation_personnel }</div>
-	           			<div class="reserveInfo5">${GetReserve.reservation_date }/${GetReserve.time }</div>
-	           			<div class="reserveInfo4">${GetReserve.reservation_tel}</div>
-	           			<div class="reserveInfo4">${GetReserve.content }</div>
-	           		</div>
-           		
+           			
+		           		<div class="reserveInfo2">
+			           			
+				           	<div>${GetReserve.class_name }</div>
+				           	<div>${GetReserve.reservation_price }</div>
+		           				
+		           			<div>${GetReserve.user_name }</div>
+		           			<div class="reserveInfo4">${GetReserve.reservation_personnel }</div>
+		           			<div class="reserveInfo5">${GetReserve.reservation_date }/${GetReserve.time }</div>
+		           			<div class="reserveInfo4">${GetReserve.reservation_tel}</div>
+		           			<div class="reserveInfo4">${GetReserve.content }</div>
+		           			<c:if test="${GetReserve.refundCheck eq 1 }">
+		           				<div>환불완료</div>
+		           			</c:if>
+		           		</div>
+           			
            		</c:forEach>
            		
            		

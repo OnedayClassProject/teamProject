@@ -157,6 +157,7 @@ public class ReservationDAO {
 					vo.setReservation_tel(rs2.getString("reservation_tel"));
 					vo.setTime(rs2.getString("time"));
 					vo.setUser_name(rs2.getString("user_name"));
+					vo.setRefundCheck(rs2.getInt("refundCheck"));
 					list.add(vo);
 				}
 				

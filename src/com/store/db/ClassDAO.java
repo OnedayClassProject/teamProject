@@ -1397,9 +1397,9 @@ public class ClassDAO {
 		try{
 			con=getConnection();
 			String sql="select c.thumbnail,c.class_name, c.category, r.class_registrynum,r.reservationnum,r.reviewCheck ,r.reservation_personnel, r.reservation_date,"
-					+ "r.user_name,r.time,r.reservation_tel,r.reservation_price,r.reservation_location,r.content "
-					+ "from class as c join classreservation as r on r.class_registrynum = c.class_registrynum where r.useremail=? "
-					+ "order by pay_date desc limit ?,?";
+					+ "r.user_name,r.time,r.reservation_tel,r.reservation_price,r.reservation_location,r.content,r.refundCheck "
+					+ " from class as c join classreservation as r on r.class_registrynum = c.class_registrynum where r.useremail=? "
+					+ " order by pay_date desc limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, email);
 			pstmt.setInt(2, startRow);
@@ -1421,6 +1421,7 @@ public class ClassDAO {
 				bean.setPrice(rs.getString("reservation_price"));
 				bean.setLocation(rs.getString("reservation_location"));
 				bean.setSale(rs.getString("reservation_tel"));
+				bean.setReservation_count(rs.getInt("refundCheck"));
 				list.add(bean);
 			}
 		}catch(Exception e){

@@ -23,11 +23,37 @@ public class storeRefund implements CommandHandler {
 		HttpSession session = request.getSession();
 		
 		Integer storenum = (Integer)session.getAttribute("storenum");
+		String pageNum = request.getParameter("pageNum");
+		int pageSize = 12;
+		
+		if(pageNum == null){
+			pageNum = "1";
+		}
+		
+		int currentPage = Integer.parseInt(pageNum);
+		
+		int startRow = (currentPage - 1) * pageSize ;
+		int endRow = pageSize;
+		
+		ClassCancleDAO ccdao = new ClassCancleDAO();
+		int count = ccdao.srefundCount(storenum);
+	 
+		int pageCount = count / pageSize + (count%pageSize == 0? 0:1);
+	
+		int pageBlock=10;
+		
+		int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
+		int endPage = startPage + pageBlock -1;
+		if(endPage>pageCount) endPage=pageCount;
 		
 		// storenum -> class테이블 class_registrynum -> classcancle 조회
-		ClassCancleDAO ccdao = new ClassCancleDAO();
-		List<ClassCancleBean> StoreGetCancle = ccdao.StoreGetCancle(storenum);
+		List<ClassCancleBean> StoreGetCancle = ccdao.StoreGetCancle(storenum,startRow,endRow);
 		
+		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("pageNum", currentPage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("count", count);
 		request.setAttribute("StoreGetCancle", StoreGetCancle);
 		
 		return "store/refundList.jsp";

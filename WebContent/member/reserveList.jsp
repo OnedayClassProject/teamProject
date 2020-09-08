@@ -96,13 +96,19 @@
 	           				<input type="hidden" value="${list.class_registrynum }" class="class_registrynum"><!-- 클래스등록번호 -->
 	           				<input type="hidden" value="${list.rating }" class="reservationnum"> <!-- 예약번호 -->
 	           				<input type="hidden" value="${list.level }" class="reservation_date"><!-- 예약날짜 -->
-	           				<c:if test="${list.reviewCheck eq 0 }">
-	           				<button class="reserveInfo6" >후기작성</button>
+	           				
+	           				<c:if test="${list.reservation_count  eq 0}"> <!-- 환불체크 1이면 환불완료 -->
+		           				<c:if test="${list.reviewCheck eq 0 }">
+		           					<button class="reserveInfo6" >후기작성</button>
+		           				</c:if>
+		           				<c:if test="${list.reviewCheck ne 0 }">
+		           					<div>작성완료</div>
+		           				</c:if>
+		           					<button class="refund_request">환불신청</button>
 	           				</c:if>
-	           				<c:if test="${list.reviewCheck ne 0 }">
-	           				<div>작성완료</div>
+	           				<c:if test="${list.reservation_count eq 1 }">
+	           					<div>환불완료</div>
 	           				</c:if>
-	           				<button class="refund_request">환불신청</button>
 	           			</div>
 	           		</div>
            		</c:forEach>
@@ -168,9 +174,7 @@
 		
 		var p = $(this).parents(".reserveInfo2");
 		console.log(p);
-		var class_registrynum = p.find(".class_registrynum").val();
 		var reservationnum = p.find(".reservationnum").val();
-		var time = p.find(".time").text(); //  수업일 / 수업시간
 		
 		var price = p.find(".price").text();
 		
@@ -181,18 +185,17 @@
 			url:"${pageContext.request.contextPath}/memberRefundAction.do",
 			dateType:"text",
 			data : {
-				class_registrynum : class_registrynum,
 				reservationnum : reservationnum,
 				price : price,
-				time : time ,
 				reservation_date : reservation_date
 			},
-			success:function(){
-				if(data = 1){
+			success:function(data,status){
+				console.log(data);
+				if(data == 1){
 					alert("환불 신청 되었습니다.");
-				}else if(data = 2){
-					alert("환불 진행중입니다.");
-				}else if(data = 3){
+				}else if(data == 2){
+					alert("이미 환불 진행중입니다.");
+				}else if(data == 3){
 					alert("환불 신청이 불가능합니다..");
 				}
 			},

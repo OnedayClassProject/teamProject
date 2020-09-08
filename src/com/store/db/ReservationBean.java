@@ -20,6 +20,7 @@ public class ReservationBean {
 	private String content;
 	private String time;
 	private String user_name;
+	private int refundCheck;
 	
 	
 	public String getTime() {
@@ -157,6 +158,14 @@ public class ReservationBean {
 		this.user_name = user_name;
 	}
 
+	public int getRefundCheck() {
+		return refundCheck;
+	}
+
+	public void setRefundCheck(int refundCheck) {
+		this.refundCheck = refundCheck;
+	}
+	
 	
 
 	

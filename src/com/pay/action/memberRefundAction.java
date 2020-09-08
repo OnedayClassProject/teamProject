@@ -1,4 +1,4 @@
-package com.action;
+package com.pay.action;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.command.CommandHandler;
+import com.store.db.ClassCancleBean;
+import com.store.db.ClassCancleDAO;
 
 public class memberRefundAction implements CommandHandler{
 
@@ -20,15 +22,13 @@ public class memberRefundAction implements CommandHandler{
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 			
-			HttpSession session = request.getSession();
 			
-			String email = (String)session.getAttribute("userid");
-			int class_registrynum = Integer.parseInt(request.getParameter("class_registrynum"));
-			int reservationnum = Integer.parseInt(request.getParameter("reservationnum"));
-			double price = Integer.parseInt(request.getParameter("price"));
-			String time = request.getParameter("time");
 		
 			try {
+				
+				int reservationnum = Integer.parseInt(request.getParameter("reservationnum"));
+				String price = request.getParameter("price");
+				
 				//현재 날짜 가져오기
 				DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
 				Calendar cal1 = Calendar.getInstance();
@@ -85,44 +85,56 @@ public class memberRefundAction implements CommandHandler{
 				Date cur1 = format1.parse(cur);
 	
 				System.out.println(cur1);
-
-				//환불비교
-	
-				if(cur1.before(d1) || cur1.equals(d1)) {
-					request.setAttribute("check", 1);
-					System.out.println("100%환불입니다.");
+				
+				int check = 0;
+				ClassCancleDAO ccdao = new ClassCancleDAO();
+				
+				// 환불 테이블에서 조회해서 환불 여부 확인. 1이면 환불 테이블에 존재
+				int result = ccdao.getClassCancle(reservationnum);
+				System.out.println("result"+result);
+				if(result != 1){ 
 					
-				} else if(cur1.equals(d2)) {
-					request.setAttribute("check", 1);
-					price = price * 0.95;
-					System.out.println("5% 차감 후 환불입니다.");
-	
-				} else if(cur1.equals(d3)) {
-					request.setAttribute("check", 1);
-					System.out.println("10% 차감 후 환불입니다.");
-	
-				} else if(cur1.equals(d4)) {
-					request.setAttribute("check", 1);
-					System.out.println("20% 차감 후 환불입니다.");
-	
-				} else if(cur1.equals(d5)) {
-					request.setAttribute("check", 1);
-					System.out.println("30% 차감 후 환불입니다.");
-	
-				} else if(cur1.equals(d)) {
-					request.setAttribute("check", 1);
-					System.out.println("환불이 되지 않습니다.");
-	
-				} else {
-					request.setAttribute("check", 3);
-					System.out.println("환불이 되지 않습니다.");
-	
+					
+					//환불비교
+					if(cur1.before(d1) || cur1.equals(d1)) {
+						System.out.println("100%환불입니다.");
+						
+					} else if(cur1.equals(d2)) {
+						price = Double.parseDouble(price) * 0.95+"";
+						System.out.println("5% 차감 후 환불입니다.");
+		
+					} else if(cur1.equals(d3)) {
+						price = Double.parseDouble(price) * 0.90+"";
+						System.out.println("10% 차감 후 환불입니다.");
+		
+					} else if(cur1.equals(d4)) {
+						price = Double.parseDouble(price) * 0.80+"";
+						System.out.println("20% 차감 후 환불입니다.");
+		
+					} else if(cur1.equals(d5)) {
+						price = Double.parseDouble(price)*0.70+"";
+						System.out.println("30% 차감 후 환불입니다.");
+		
+					} else if(cur1.equals(d)) {
+						check = 3;
+						System.out.println("환불이 되지 않습니다.");
+					}
+					
+					if(check == 0){
+						// 환불 테이블에 추가
+						check = ccdao.addRefund(reservationnum,price);
+					}
+					
+				}else {
+					check = 2;
+					System.out.println("환불 진행중");
 				}
+				System.out.println("check"+check);
+				request.setAttribute("check", check);
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		return "member/loginCheck";
+		return "member/loginCheck.jsp";
 	}
 	
 	

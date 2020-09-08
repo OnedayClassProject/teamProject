@@ -69,19 +69,20 @@
 	           			<div class="class_name">
 		           			<div>${list.category }</div>
 		           			<div>${list.class_name }</div>
-		           			<div>${list.refund_price }</div>
+		           			
            				</div>
            			</div>
            			<div>${list.user_name }</div>
            			<div class="reserveInfo4">${list.reservation_personnel }</div>
-           			<div class="reserveInfo5">${list.time }</div>
+           			<div class="reserveInfo5">${list.reservation_date} / ${list.time }</div>
+           			<div>${list.refund_price }</div>
            			<div>${list.request_day }</div>
            			<div>${list.refund_date }</div>
-           			<div>
-           				
+           			<div class="state">
+           				<input type="hidden" class="refundnum" value="${list.refundnum }">
            				<c:if test="${list.state eq 0 }" >
            					<div>대기</div>
-           					<button>환불취소</button>
+           					<button class="refund_cancle">환불취소</button>
            				</c:if>
            				<c:if test="${list.state eq 1 }">
            					<div>환불완료</div>
@@ -116,5 +117,28 @@
         </div>
 </section>
 <jsp:include page="../footer.jsp" />
+<script>
+	$(".refund_cancle").on("click",function(){
+		var refundnum = $(this).parents(".state").find(".refundnum").val();
+		console.log(refundnum);
+		
+		$.ajax({
+			type:"post",
+			url:"${pageContext.request.contextPath}/RefundCancle.do",
+			dataType:"text",
+			data :{ refundnum : refundnum},
+			success:function(data,status){
+				if(data == 1){
+					alert("환불 요청이 취소 되었습니다.");
+					location.href="${pageContext.request.contextPath}/memberRefund.do";
+				}
+			},
+			error:function(data,status){
+				alert("에러가 발생했습니다.");
+			}
+		});
+		
+	});
+</script>
 </body>
 </html>
