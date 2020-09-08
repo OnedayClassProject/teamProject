@@ -17,7 +17,7 @@
 					location.href="${pageContext.request.contextPath}/helpPage.do?num="+num +"&pageNum="+pageNum;
 				}else{
 					alert("작성자가 아닙니다.");
-					location.href="${pageContext.request.contextPath}/helpPage.do?&pageNum="+pageNum;
+					location.href="${pageContext.request.contextPath}/helpMainPage.do?&pageNum="+pageNum;
 				}
 			}, error:function(e){
 				alert(e);
