@@ -8,7 +8,14 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/store/myclass.css">
 </head>
-<body><jsp:include page="../header.jsp"/>
+<body>
+<jsp:include page="../header.jsp"/>
+<c:if test="${empty sessionScope.storeid }">
+<script type="text/javascript">
+	alert("로그인해주세요!!");
+    location.href="${pageContext.request.contextPath}/login.do";
+</script>
+</c:if>
 <section>
 <div class="pic"></div>
     <div class="my_wrap">

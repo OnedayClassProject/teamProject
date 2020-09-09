@@ -413,5 +413,17 @@ public class memberDAO {
 			return 0;
 		}
 		
-	
+	//vip 만료
+	public void vipFinish(String email) {
+		
+		try {
+			con = getConnection();
+			String sql = "update member set membership = 'basic', vip_startdate = '0',vip_finish = '0' where useremail = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

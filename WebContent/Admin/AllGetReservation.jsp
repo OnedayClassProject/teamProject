@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/allGetMember.css">
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/member/mypage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/member/reserveList.css">
 
 </head>
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
@@ -32,35 +32,28 @@
             <hr>
         </div>
         <div class="my_main">
-        	<div>회원 리스트</div>
+        	<div>업체 리스트</div>
         	<hr>
         	<div>
         		<div class="reserveInfo">
-        			<div>회원 이메일</div>
-        			<div>회원 이름</div>
-        			<div>전화번호</div>
-        			<div>주소</div>
-        			<div>우편번호</div>
-        			<div>가입날짜</div>
-        			<div>포인트</div>
-        			<div>회원등급</div>
-        			<div>VIP 가입 날짜</div>
-        			<div>VIP 종료 날짜</div>
+        			<div>업체 이메일</div>
+        			<div>업체 이름</div>
+        			<div>업체 전화번호</div>
+        			<div>업체 주소</div>
+        			<div>업체 우편번호</div>
+        			<div>업체 가입날짜</div>
         		</div>
         		<div class="line"></div>
         		<!-- 회원 목록 반복 -->
-        		<c:forEach var="getMem" items="${AllGetMem }">
+        		<c:forEach var="getStore" items="${AllGetStore }">
         		<div class="reserveInfo">
-        			<div>${getMem.useremail }</div>
-        			<div>${getMem.username }</div>
-        			<div>${getMem.phone }</div>
-        			<div>${getMem.address}</div>
-        			<div>${getMem.postcode }</div>
-        			<div>${fn:substring(getMem.joindate,0,10) }</div>
-        			<div>${getMem.point }</div>
-        			<div>${getMem.membership }</div>
-        			<div>${getMem.vip_startdate }</div>
-        			<div>${getMem.vip_finish }</div>
+        			<div>${getStore.storeemail }</div>
+        			<div>${getStore.storename }</div>
+        			<div>${getStore.storetel }</div>
+        			<div>${getStore.storeaddress1}</div>
+        			<div>${getStore.storepostcode }</div>
+        			<div>${getStore.store_joindate }</div>
+        			
         		</div>
         		<hr>
         		</c:forEach>

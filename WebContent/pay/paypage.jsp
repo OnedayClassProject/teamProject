@@ -13,44 +13,56 @@
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
+<c:if test="${empty sessionScope.userid and empty reservation_personnel}">
+<script type="text/javascript">
+	alert("잘못된접근방법입니다.");
+    location.href="${pageContext.request.contextPath}/main.do";
+</script>
+</c:if>
 <section>
 		<div class="classview_wrap">
 			<div class="class_wrap2">
 				<div class="class_wrap3">
-					<div>예약 결제하기</div>
-					<div>
-					<div>예약고객</div>
-					<div>이름(전화번호)</div>
-					<div>${mbean.username}(${mbean.phone })</div>
+					<div class="rePay">예약 결제하기</div>
+					<div class="rePeople">
+						<div class="reserveCus">예약고객</div>
+						<div class="reserveCus2">${mbean.username}(${mbean.phone })</div>
 					</div>
-					<div>
-						<div>예약정보</div>
-						<div>예약자</div>
+					<div class="reserve_info">
+						<div class="reserveCus">예약정보</div>
+						<div class="reserve_info2">예약자</div>	
 						<input type="text" id="user_name" value="${mbean.username }"> 
-						<div>연락처</div>
+						<div class="reserve_info2">연락처</div>
 						<input type="text" class="phone" value="${mbean.phone }">
-						<div>요청사항</div>
-						<textarea rows="10" cols="10" id="content"></textarea>
+						<div class="reserve_info2">요청사항</div>
+						<textarea rows="8" cols="50" id="content" style="resize: none;"></textarea>
 					</div>
-					<div>
-						<div>클래스정보</div>
-						<div>클래스카테고리 ${cbean.category }</div>
-						<div>클래스명 ${cbean.class_name }</div>
-						<div>날짜&예약시간&인원수</div>
-						<div>${reserve_date}/${time }/${person_num }</div>
+					<div class="classInfo">
+						<div class="reserveCus">클래스정보</div>
+						<div>${cbean.category }</div>
+						<div>${cbean.class_name }</div>
+						<div class="reserve_info2">날짜</div>
+						<div >${reserve_date}</div>
+						<div class="reserve_info2">시간</div>
+						<div>${time }</div>
+						<div class="reserve_info2">인원수</div>
+						<div>${person_num }명</div>
 					</div>
-					<div>아이디어스 할인 혜택</div>
-					<div>아이디어스 적립금</div>
-					<input type="text" value="0" class="point">
-					<input type="button" class="all_point2"value="사용">
-					<div>보유중인 적립금</div>
-					<div class='all_point'>${mbean.point }</div>
-					<div>결제수단</div>
-					<input type="radio" name="pay_met" class="pay_met" value="card" checked>신용카드	
-					<input type="radio" name="pay_met" class="pay_met" value="samsung">삼성페이	
-					<input type="radio" name="pay_met" class="pay_met" value="trans">실시간계좌이체	
-					<input type="radio" name="pay_met" class="pay_met" value="vbank">가상계좌	
-					<input type="radio" name="pay_met" class="pay_met" value="phone">휴대폰소액결제	
+					<div class="class_point">
+						<div>클래스플러스 적립금</div>
+						<input type="text" value="0" class="point">
+						<input type="button" class="all_point2"value="사용">
+						<div>보유중인 적립금</div>
+						<div class='all_point'>${mbean.point }</div>
+					</div>
+					<div class="class_pay">
+						<div class="reserveCus">결제수단</div>
+						<div><input type="radio" name="pay_met" class="pay_met" value="card" checked>신용카드</div>	
+						<div><input type="radio" name="pay_met" class="pay_met" value="samsung">삼성페이</div>	
+						<div><input type="radio" name="pay_met" class="pay_met" value="trans">실시간계좌이체</div>	
+						<div><input type="radio" name="pay_met" class="pay_met" value="vbank">가상계좌</div>
+						<div><input type="radio" name="pay_met" class="pay_met" value="phone">휴대폰소액결제</div>	
+					</div>
 				</div>
 				<div class="reserve_bar">
 					<div class="category_tag">카테고리 ${cbean.category }</div>
@@ -69,9 +81,9 @@
 							<input type="hidden" class='sum_price2'>
 						</c:if>
 					</div>
-				</div>
-				<div class="pay_btn">
+					<div class="pay_btn">
 					<button class="pay_btn2">결제하기</button>
+				</div>
 				</div>
 			</div>
 		</div>

@@ -17,7 +17,11 @@
 					location.href="${pageContext.request.contextPath}/helpPage.do?num="+num +"&pageNum="+pageNum;
 				}else{
 					alert("작성자가 아닙니다.");
+<<<<<<< HEAD
 					location.href="${pageContext.request.contextPath}/helpMainPage.do?&pageNum="+pageNum;
+=======
+					/* location.href="${pageContext.request.contextPath}/helpPage.do?&pageNum="+pageNum; */
+>>>>>>> ggyu
 				}
 			}, error:function(e){
 				alert(e);
