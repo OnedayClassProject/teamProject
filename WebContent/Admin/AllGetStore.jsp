@@ -7,8 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/member/mypage.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/member/reserveList.css">
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/allGetStore.css">
 
 </head>
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
@@ -19,19 +18,16 @@
 		<div class="side_menu">
             <div class="side_detail">
                 <a href='${pageContext.request.contextPath}/AllGetMember.do'><div>회원조회</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                <a href='${pageContext.request.contextPath}/AllGetStore.do'><div>업체조회</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                 <a href='${pageContext.request.contextPath}/AllGetReservation.do'><div>예약조회</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
@@ -41,7 +37,7 @@
         	<div>업체 리스트</div>
         	<hr>
         	<div>
-        		<div class="reserveInfo1">
+        		<div class="reserveInfo">
         			<div>업체 이메일</div>
         			<div>업체 이름</div>
         			<div>업체 전화번호</div>

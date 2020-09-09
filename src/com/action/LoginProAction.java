@@ -21,7 +21,6 @@ public class LoginProAction implements CommandHandler{
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
-		System.out.println(email+password);
 		memberDAO mdao = new memberDAO();
 		int check = mdao.loginCheck(email,password);
 		

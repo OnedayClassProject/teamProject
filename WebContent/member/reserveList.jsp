@@ -11,19 +11,12 @@
 <body>
 <jsp:include page="../header.jsp"/>
 <section>
-
-<c:choose>
-    <c:when test="${check eq 0}">
-        <script>alert("리뷰작성기간이 아닙니다.")</script>
-    </c:when>
-    
-    <c:when test="${check eq 1}">
-  		<script>alert("리뷰작성기간이 지났습니다.")</script>
-    </c:when>
-    
-    <c:otherwise> </c:otherwise>
-</c:choose>
-
+<c:if test="${empty sessionScope.userid}">
+<script type="text/javascript">
+	alert("잘못된접근방법입니다.");
+    location.href="${pageContext.request.contextPath}/main.do";
+</script>
+</c:if>
 <div class="pic"></div>
     <div class="my_wrap">
         <div class="side_menu">

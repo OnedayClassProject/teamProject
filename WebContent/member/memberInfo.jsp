@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
@@ -10,37 +11,38 @@
 <body>
 
 <jsp:include page="../header.jsp"/>
+<c:if test="${empty sessionScope.userid}">
+<script type="text/javascript">
+	alert("잘못된접근방법입니다.");
+    location.href="${pageContext.request.contextPath}/main.do";
+</script>
+</c:if>
 <section>
 <div class="pic"></div>
     <div class="my_wrap">
         <div class="side_menu">
            <div class="side_detail">
                 <a href='${pageContext.request.contextPath}/memberReserve.do'><div>예약확인</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                <a href='${pageContext.request.contextPath}/memberRefund.do'><div>환불확인</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                 <a href='${pageContext.request.contextPath}/MemberCheckInfoPage.do'><div>정보보기</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                  <a href='${pageContext.request.contextPath}/MemberCheckInfoPage2.do'><div>수정하기</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                  <a href='${pageContext.request.contextPath}/MemberCheckInfoPage3.do'><div>탈퇴하기</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>

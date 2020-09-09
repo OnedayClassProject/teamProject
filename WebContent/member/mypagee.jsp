@@ -103,7 +103,7 @@
                 				<c:when test="${getMember.membership eq 'VIP'}">
                 					<div class="pay_btn">
                 					<c:set var="now" value="<%=new java.util.Date()%>" />
-                					<c:set var="nowTime"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set>
+                					<c:set var="nowTime"><fmt:formatDate value="${now }" pattern="yyyy-MM-dd" /></c:set>
                 					<fmt:parseDate var="strPlanDate" value="${nowTime }" pattern="yyyy-MM-dd"/>
                 					<fmt:parseNumber var="strDate" value="${strPlanDate.time / (1000*60*60*24)}" integerOnly="true" ></fmt:parseNumber>
                 					<fmt:parseDate  var="endPlanDate" value="${getMember.vip_finish }" pattern="yyyy-MM-dd"/>

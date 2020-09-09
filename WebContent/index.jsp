@@ -57,8 +57,23 @@
                 $(".sub_background").stop().animate({height : "0px",opacity:"0"}, 500,function () {
                     $(".sub_background").css("display","none");
                 })
-            })
-        })
+            });
+            
+            $.ajax({
+            	
+            	type:"post",
+            	url:"${pageContext.request.contextPath}/vipDateCheck.do",
+            	dataType:"text",
+            	success:function(data,status){
+            		if(data == 1){
+            		alert("VIP가 만료되셨습니다.");
+            		}
+            	},
+            	error:function(data, status){
+					alert("에러");            		
+            	}
+            });
+        });
     </script>
 </head>
 <body>

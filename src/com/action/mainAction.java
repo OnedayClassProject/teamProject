@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.command.CommandHandler;
+import com.member.db.memberBean;
+import com.member.db.memberDAO;
 import com.store.db.ClassBean;
 import com.store.db.ClassDAO;
 

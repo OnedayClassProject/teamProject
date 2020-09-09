@@ -173,6 +173,12 @@
 <body>
 <div id="calander_backcolor"></div>
 <jsp:include page="/header.jsp"/>
+<c:if test="${empty sessionScope.storeid }">
+<script type="text/javascript">
+	alert("로그인해주세요!!");
+    location.href="${pageContext.request.contextPath}/login.do";
+</script>
+</c:if>
 <section>
 <form method="post" enctype="multipart/form-data">
 <div class="class_wrap">

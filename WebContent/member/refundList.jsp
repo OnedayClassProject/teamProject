@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,12 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/member/reserveList.css">
 </head>
 <body><jsp:include page="../header.jsp"/>
+<c:if test="${empty sessionScope.userid}">
+<script type="text/javascript">
+	alert("잘못된접근방법입니다.");
+    location.href="${pageContext.request.contextPath}/main.do";
+</script>
+</c:if>
 <section>
 <div class="pic"></div>
     <div class="my_wrap">

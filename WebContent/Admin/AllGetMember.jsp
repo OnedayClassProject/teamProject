@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/member/mypage.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/member/reserveList.css">
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/Admin/allGetMember.css">
 
 </head>
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
@@ -17,19 +17,16 @@
 		<div class="side_menu">
             <div class="side_detail">
                 <a href='${pageContext.request.contextPath}/AllGetMember.do'><div>회원조회</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                <a href='${pageContext.request.contextPath}/AllGetStore.do'><div>업체조회</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                 <a href='${pageContext.request.contextPath}/AllGetReservation.do'><div>예약조회</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
@@ -60,7 +57,7 @@
         			<div>${getMem.phone }</div>
         			<div>${getMem.address}</div>
         			<div>${getMem.postcode }</div>
-        			<div>${getMem.joindate }</div>
+        			<div>${fn:substring(getMem.joindate,0,10) }</div>
         			<div>${getMem.point }</div>
         			<div>${getMem.membership }</div>
         			<div>${getMem.vip_startdate }</div>

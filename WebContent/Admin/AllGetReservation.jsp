@@ -58,12 +58,10 @@
         			<div>${getStore.storepostcode }</div>
         			<div>${getStore.store_joindate }</div>
         			
-        			
         		</div>
         		<hr>
         		</c:forEach>
         		<!-- 반복 -->
-        		
         	</div>
         </div>
 	</div>
