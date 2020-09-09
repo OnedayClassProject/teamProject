@@ -111,12 +111,11 @@
 		            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/MemberLike.do?pageNum=${pageCount}'"> >> </div>
 		            	</c:if>
 		            </div>
-            </div>
            		<c:if test="${count == 0 }">
 	          		<div class="no_list">LIST가 없습니다.</div>
 	          	</c:if>
             </div>
-        
+        </div>
 </section>
 <jsp:include page="../footer.jsp" />
 <script>

@@ -82,9 +82,6 @@
 	           			<div>
 	           			<input type="button" onclick ="location.href ='${pageContext.request.contextPath}/MyClassUpdate.do?class_registrynum=${classBean.class_registrynum}&storenum=${storenum}'" value="수정"/>
 	            	 	</div>
-	            	 	<div>
-	           			<input type="button" onclick ="location.href ='${pageContext.request.contextPath}/MyClassUpdate.do?class_registrynum=${classBean.class_registrynum}&storenum=${storenum}'" value="삭제"/>
-	            	 	</div>
             	 	</div>
             	 </div>
         	   	<br>
