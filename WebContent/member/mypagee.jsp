@@ -79,6 +79,12 @@
                  <a href='${pageContext.request.contextPath}/MemberReview.do'><div>리뷰관리</div>
                 </a>
             </div>
+            <hr>
+            <div class="side_detail">
+                 <a href='${pageContext.request.contextPath}/MemberFavor.do'><div>즐겨찾기 관리</div>
+                </a>
+            </div>
+            <hr>
         </div>
             <div class="my_main">
                 <div class="my_subject">MY PAGE</div>
@@ -144,9 +150,11 @@
                         	</div>
                     	</div>
                 	</c:forEach>
-                    <div class="move_reserveList">
-                    <div>더보기</div>
-                    </div>
+                	<c:if test="${fn:length(myList) >=3}">
+	                    <div class="move_reserveList">
+	                    	<div class="more_reserve">더보기</div>
+	                    </div>
+                    </c:if>
                 </div>
                 <hr>
                 <div class="reserve_list">
@@ -166,13 +174,15 @@
                         	</div>
                     	</div>
                 	</c:forEach>
+                	<c:if test="${fn:length(refundList) >=3}">
                     <div class="move_reserveList">
-                        <div>더보기</div>
+                        <div class="more_refund">더보기</div>
                     </div>
+                    </c:if>
                 </div>
                 <hr>
                 <div class="reserve_list">
-                    MY 좋아요 리스트
+                    MY 즐겨찾기 리스트
                 </div>
                 <div class="reserve_list2">
                     <c:forEach var="classBean" items="${favorList}">
@@ -188,9 +198,11 @@
                         	</div>
                     	</div>
                 	</c:forEach>
-                    <div class="move_reserveList">
-                        <div>더보기</div>
-                    </div>
+                	<c:if test="${fn:length(favorList) >=3}">
+	                    <div class="move_reserveList">
+	                        <div class="more_favor">더보기</div>
+	                    </div>
+                    </c:if>
                 </div>
             </div>
         </div>
@@ -287,6 +299,14 @@ $(function () {
 
 	});
 });
-	
+$(".more_reserve").on("click",function(){
+	location.href="${pageContext.request.contextPath}/memberReserve.do";
+});
+$(".more_refund").on("click",function(){
+	location.href="${pageContext.request.contextPath}/memberRefund.do";
+});
+$(".more_favor").on("click",function(){
+	location.href="${pageContext.request.contextPath}/MemberFavor.do";
+});
 </script>
 </html>

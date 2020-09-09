@@ -1165,7 +1165,7 @@ public class ClassDAO {
 			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
 			con=getConnection();
 			//쿼리준비 : 전체 차량 레코드 검색
-			String sql="select class_registrynum,thumbnail,category,class_name,rating,price,personnel,level,storenum from class where storenum=? limit ?,?";
+			String sql="select class_registrynum,thumbnail,category,class_name,rating,price,personnel,level,storenum from class where storenum=? order by reservation_count desc limit ?,?";
 			//쿼리를 실행할 수 있는 객체 선언
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, storenum);

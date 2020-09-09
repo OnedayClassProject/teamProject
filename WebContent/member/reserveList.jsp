@@ -58,6 +58,12 @@
                  <a href='${pageContext.request.contextPath}/MemberReview.do'><div>리뷰관리</div>
                 </a>
             </div>
+            <hr>
+            <div class="side_detail">
+                 <a href='${pageContext.request.contextPath}/MemberFavor.do'><div>즐겨찾기 관리</div>
+                </a>
+            </div>
+            <hr>
         </div>
             <div class="my_main">
             <div>예약리스트</div>
@@ -200,7 +206,7 @@
 				}else if(data == 2){
 					alert("이미 환불 진행중입니다.");
 				}else if(data == 3){
-					alert("환불 신청이 불가능합니다..");
+					alert("환불 신청이 불가능합니다.");
 				}
 			},
 			error:function(data,status){

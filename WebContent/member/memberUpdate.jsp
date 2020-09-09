@@ -114,31 +114,26 @@
         <div class="side_menu">
            <div class="side_detail">
                 <a href='${pageContext.request.contextPath}/memberReserve.do'><div>예약확인</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                <a href='${pageContext.request.contextPath}/memberRefund.do'><div>환불확인</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                 <a href='${pageContext.request.contextPath}/MemberCheckInfoPage.do'><div>정보보기</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                  <a href='${pageContext.request.contextPath}/MemberCheckInfoPage2.do'><div>수정하기</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
             <div class="side_detail">
                  <a href='${pageContext.request.contextPath}/MemberCheckInfoPage3.do'><div>탈퇴하기</div>
-                <div class="side_detail2">></div>
                 </a>
             </div>
             <hr>
@@ -146,6 +141,12 @@
                  <a href='${pageContext.request.contextPath}/MemberReview.do'><div>리뷰관리</div>
                 </a>
             </div>
+            <hr>
+            <div class="side_detail">
+                 <a href='${pageContext.request.contextPath}/MemberFavor.do'><div>즐겨찾기 관리</div>
+                </a>
+            </div>
+            <hr>
         </div>
             <div class="my_main">
                 <div class="member_update">

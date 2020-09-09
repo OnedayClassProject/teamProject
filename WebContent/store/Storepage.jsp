@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <html>
 <head>
     <title>Title</title>
@@ -71,106 +74,41 @@
                 </div>
                 <hr>
                 <div class="reserve_list">
-                    STORE 예약
+                    	인기 클래스
                 </div>
                 <div class="reserve_list2">
-                    <div class="best-class">
-                        <div class="thumbnail">사진</div>
-                        <div class="class-name">
-                            <div class="class-name1">카테고리 난이도</div>
-                            <div class="class-name2">클래스명</div>
-                            <div class="class-name3">업체명</div>
-                        </div>
-                    </div>
-                    <div class="best-class">
-                        <div class="thumbnail">사진</div>
-                        <div class="class-name">
-                            <div class="class-name1">카테고리 난이도</div>
-                            <div class="class-name2">클래스명</div>
-                            <div class="class-name3">업체명</div>
-                        </div>
-                    </div>
-                    <div class="best-class">
-                        <div class="thumbnail">사진</div>
-                        <div class="class-name">
-                            <div class="class-name1">카테고리 난이도</div>
-                            <div class="class-name2">클래스명</div>
-                            <div class="class-name3">업체명</div>
-                        </div>
-                    </div>
-                    <div class="move_reserveList">
-                    <div>더보기</div>
-                    </div>
+                	<c:if test = "${count ne 0 }">
+                		<c:forEach var="list" items="${list }">
+		                    <div class="best-class">
+		                        <a href="${pageContext.request.contextPath}/ClassInfo.do?class_registrynum=${list.class_registrynum}">
+		           					<img src="${pageContext.request.contextPath}/thumbnailImage/${list.thumbnail}" class="thumbnail">
+		           				</a>
+		                        <div class="class-name">
+		                       		<div class="class-name2">${list.category }</div>
+		                            <div class="class-name3">${list.class_name }</div>
+		                            <div class="class-name1">${list.level }</div>
+		                        </div>
+		                    </div>
+		                </c:forEach>
+	                 </c:if>
+                    
+                    <c:if test="${fn:length(list) >= 3 }">
+	                    <div class="move_reserveList">
+	                    	<div class="more_class">더보기</div>
+	                    </div>
+                    </c:if>
                 </div>
-                <hr>
-                <div class="reserve_list">
-                    STORE 환불
-                </div>
-                <div class="reserve_list2">
-                    <div class="best-class">
-                        <div class="thumbnail">사진</div>
-                        <div class="class-name">
-                            <div class="class-name1">카테고리 난이도</div>
-                            <div class="class-name2">클래스명</div>
-                            <div class="class-name3">업체명</div>
-                        </div>
-                    </div>
-                    <div class="best-class">
-                        <div class="thumbnail">사진</div>
-                        <div class="class-name">
-                            <div class="class-name1">카테고리 난이도</div>
-                            <div class="class-name2">클래스명</div>
-                            <div class="class-name3">업체명</div>
-                        </div>
-                    </div>
-                    <div class="best-class">
-                        <div class="thumbnail">사진</div>
-                        <div class="class-name">
-                            <div class="class-name1">카테고리 난이도</div>
-                            <div class="class-name2">클래스명</div>
-                            <div class="class-name3">업체명</div>
-                        </div>
-                    </div>
-                    <div class="move_reserveList">
-                        <div>더보기</div>
-                    </div>
-                </div>
-                <hr>
-                <div class="reserve_list">
-                    STORE 좋아요
-                </div>
-                <div class="reserve_list2">
-                    <div class="best-class">
-                        <div class="thumbnail">사진</div>
-                        <div class="class-name">
-                            <div class="class-name1">카테고리 난이도</div>
-                            <div class="class-name2">클래스명</div>
-                            <div class="class-name3">업체명</div>
-                        </div>
-                    </div>
-                    <div class="best-class">
-                        <div class="thumbnail">사진</div>
-                        <div class="class-name">
-                            <div class="class-name1">카테고리 난이도</div>
-                            <div class="class-name2">클래스명</div>
-                            <div class="class-name3">업체명</div>
-                        </div>
-                    </div>
-                    <div class="best-class">
-                        <div class="thumbnail">사진</div>
-                        <div class="class-name">
-                            <div class="class-name1">카테고리 난이도</div>
-                            <div class="class-name2">클래스명</div>
-                            <div class="class-name3">업체명</div>
-                        </div>
-                    </div>
-                    <div class="move_reserveList">
-                        <div>더보기</div>
-                    </div>
-                </div>
+                
+                
+                
             </div>
         </div>
 </section>
 <jsp:include page="../footer.jsp" />
+<script>
+	$(".more_class").on("click",function(){
+		location.href="${pageContext.request.contextPath}/storeMyClassInfo.do";
+	});
+</script>
 </body>
 </html>

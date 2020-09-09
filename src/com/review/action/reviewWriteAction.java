@@ -68,7 +68,11 @@ public class reviewWriteAction implements CommandHandler{
 		int sumRating = rdao.sumRating(class_reg);
 		int count = rdao.reviewCount(class_reg); 
 		double div = sumRating/count;
-		int sum = (int)((double)Math.round(div*100));
+		int sum = (int)div;
+		
+		System.out.println("recount"+count);
+		System.out.println("div"+div);
+		
 		rdao.ratingUpdate(class_reg, sum);
 		
 		rdao.reviewComplete(reserveNum);

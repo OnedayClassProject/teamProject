@@ -46,6 +46,12 @@
                  <a href='${pageContext.request.contextPath}/MemberReview.do'><div>리뷰관리</div>
                 </a>
             </div>
+            <hr>
+            <div class="side_detail">
+                 <a href='${pageContext.request.contextPath}/MemberFavor.do'><div>즐겨찾기 관리</div>
+                </a>
+            </div>
+            <hr>
         </div>
             <div class="my_main">
             <div>리뷰리스트</div>

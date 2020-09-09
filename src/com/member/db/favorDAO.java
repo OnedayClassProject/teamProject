@@ -4,10 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+import com.store.db.ClassBean;
 
 public class favorDAO {
 	Connection con;
@@ -106,6 +109,68 @@ public class favorDAO {
 		}
 		return result;
 		
+	}
+	
+	public int favorCount(String email) {
+		int count = 0;
+		
+		try {
+			con = getConnection();
+			
+			sql = "select count(*) from favor where useremail=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				count = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			resourceClose();
+		}
+		
+		return count;
+	}
+	public ArrayList<ClassBean> favorList(String email, int startRow, int endRow) {
+		
+		ArrayList<ClassBean> list = new ArrayList<ClassBean>();
+		
+		try {
+			con = getConnection();
+			
+			sql = "select c.category,c.class_name,c.rating,c.thumbnail,c.class_registrynum"
+					+ " from class as c join favor as f on f.class_registrynum = c.class_registrynum where f.useremail=? limit ?,?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				ClassBean vo = new ClassBean();
+				
+				vo.setCategory(rs.getString("category"));
+				vo.setClass_name(rs.getString("class_name"));
+				vo.setRating(rs.getInt("rating"));
+				vo.setThumbnail(rs.getString("thumbnail"));
+				vo.setClass_registrynum(rs.getInt("class_registrynum"));
+				
+				list.add(vo);
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			resourceClose();
+		}
+		
+		return list;
 	}
 }
 

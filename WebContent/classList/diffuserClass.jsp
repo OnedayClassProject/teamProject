@@ -99,12 +99,13 @@
             		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/diffuserClass.do?pageNum=${pageCount}'"> >> </div>
             	</c:if>
             </div>
-                   
+            
+             <c:if test="${count == 0}">
+          		<div class="no_list"> NO LIST </div>
+         	 </c:if>      
            </div> 
          
-          <c:if test="${count == 0}">
-          	<div class="no_list"> NO LIST </div>
-          </c:if>
+          
 
         </div>
 </section>

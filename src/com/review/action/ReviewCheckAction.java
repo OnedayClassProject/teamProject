@@ -33,6 +33,7 @@ public class ReviewCheckAction implements CommandHandler {
 			
 			//예약 날짜
 			String review =request.getParameter("date");
+			//String review = "2020-09-07";
 			DateFormat review1 = new SimpleDateFormat("yyyy-MM-dd");
 			
 			
