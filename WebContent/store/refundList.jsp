@@ -86,21 +86,21 @@
 	           		</c:forEach>
 	           		<div class="pageNum">
 	            	<c:if test="${pageNum > 1}">
-	            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${1}'"> << </div>
+	            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/storeRefund.do?pageNum=${1}'"> << </div>
 	            	</c:if>
 	            	<c:if test="${pageNum > startPage}">
-	            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${pageNum-1}'"> < </div>
+	            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/storeRefund.do?pageNum=${pageNum-1}'"> < </div>
 	            	</c:if>
 	            	<c:forEach var = "i" begin="${startPage}" end ="${endPage}">
-	            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${i}'">${i}</div>
+	            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/storeRefund.do?pageNum=${i}'">${i}</div>
 	            	</c:forEach>
 	            	<c:if test="${pageNum < pageCount}">
-	            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${pageNum+1}'"> > </div>
+	            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/storeRefund.do?pageNum=${pageNum+1}'"> > </div>
 	            	</c:if>
 	            	<c:if test="${pageNum < pageCount}">
-	            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/memberReserve.do?pageNum=${pageCount}'"> >> </div>
+	            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/storeRefund.do?pageNum=${pageCount}'"> >> </div>
 	            	</c:if>
-	            </div>
+	            	</div>
            		</c:if>
            	</div>
            		<c:if test="${count == 0 }">

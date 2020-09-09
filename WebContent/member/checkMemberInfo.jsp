@@ -71,6 +71,11 @@
                 </a>
             </div>
             <hr>
+             <div class="side_detail">
+                 <a href='${pageContext.request.contextPath}/MemberReview.do'><div>리뷰관리</div>
+                </a>
+            </div>
+            
         </div>
             <div class="my_main">
                 <div class="member_join">

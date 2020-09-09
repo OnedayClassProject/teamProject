@@ -54,6 +54,10 @@
                 </a>
             </div>
             <hr>
+             <div class="side_detail">
+                 <a href='${pageContext.request.contextPath}/MemberReview.do'><div>리뷰관리</div>
+                </a>
+            </div>
         </div>
             <div class="my_main">
             <div>예약리스트</div>
@@ -143,10 +147,10 @@
 <script>
 	$('.reserveInfo6').on("click", function(){
 		
-		 var date  = $(this).parent().prev().text();
-		 var classnum = $(this).next().val();
-		 var reservenum = $(this).prev().val();
-		
+		 var date  = $(this).parents(".reserveInfo8").find(".reservation_date").val();
+		 var classnum = $(this).parents(".reserveInfo8").find(".class_registrynum").val();
+		 var reservenum = $(this).parents(".reserveInfo8").find(".reservationnum").val();
+		console.log(date);
 		 $.ajax({
 			 type:"post",
 			 url:"${pageContext.request.contextPath}/reviewCheck.do",
@@ -156,7 +160,7 @@
 				if(data == 1){
 					alert("리뷰를 쓸 수 있습니다.");
 					if(confirm('한번 작성하면 다시 작성하지 못합니다.(수정불가)') == true){
-						location.href='${pageContext.request.contextPath}/boardWrite.do?class_registrynum='+classnum+'&reservnum='+reservenum+'&date='+date;
+						location.href='${pageContext.request.contextPath}/boardWrite.do?class_registrynum='+classnum+'&reservenum='+reservenum+'&date='+date;
 					}
 				} else if(data == 2){
 					alert("기간이 지나서 쓰실 수 없습니다.");

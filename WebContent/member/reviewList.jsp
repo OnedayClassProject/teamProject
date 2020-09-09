@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
     
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,7 @@
 <div class="pic"></div>
     <div class="my_wrap">
         <div class="side_menu">
-        <div class="current_menu">환불리스트</div>	
+        <div class="current_menu">리뷰리스트</div>	
         <div class="line"></div>
             <div class="side_detail">
                 <a href='${pageContext.request.contextPath}/memberReserve.do'><div>예약확인</div>
@@ -47,23 +48,22 @@
             </div>
         </div>
             <div class="my_main">
-            <div>환불리스트</div>
+            <div>리뷰리스트</div>
             <hr>
            	<div>
            		<div class="reserveInfo">
-           			<div>클래스정보</div>
-           			<div>예약자 명</div>
-           			<div>예약인원</div>
-           			<div>예약날짜</div>
-           			<div>환불금액</div>
-           			<div>환불신청날짜</div>
-           			<div>환불승인날짜</div>
-           			<div>환불 진행사항</div>
+           			<div>리뷰정보</div>
+           			<div>수업날짜</div>
+           			<div>리뷰작성일</div>
+           			<div>기타</div>
+           			
            		</div>
            		<div class="line"></div>
            		<c:if test ="${count != 0 }">
            		<c:forEach var = "list" items="${list }">
            		<div class="reserveInfo2">
+           			<input type="hidden" class="class_registrynum" value="${list.class_registrynum }">
+           			<input type="hidden" class="reviewNum" value="${list.reviewnum }">
            			<div class="reserveInfo3">
 	           			<div class="class_pic">
 							<a href="${pageContext.request.contextPath}/ClassInfo.do?class_registrynum=${list.class_registrynum}">
@@ -71,45 +71,39 @@
 	           				</a>
 						</div>
 	           			<div class="class_name">
-		           			<div>${list.category }</div>
 		           			<div>${list.class_name }</div>
-		           			
+		           			<div>${list.subject }</div>
+		           			<input type="hidden" class="rating" value="${list.rating }">
+		           			<div class = "starRev">
+					        	<input class="staR" value="1">
+					        	<input class="staR" value="2">
+					        	<input class="staR" value="3">
+					        	<input class="staR" value="4">
+					        	<input class="staR" value="5">
+     						</div>
            				</div>
            			</div>
-           			<div>${list.user_name }</div>
-           			<div class="reserveInfo4">${list.reservation_personnel }</div>
-           			<div class="reserveInfo5">${list.reservation_date} / ${list.time }</div>
-           			<div>${list.refund_price }</div>
-           			<div>${list.request_day }</div>
-           			<div>${list.refund_date }</div>
-           			<div class="state">
-           				<input type="hidden" class="refundnum" value="${list.refundnum }">
-           				<c:if test="${list.state eq 0 }" >
-           					<div>대기</div>
-           					<button class="refund_cancle">환불취소</button>
-           				</c:if>
-           				<c:if test="${list.state eq 1 }">
-           					<div>환불완료</div>
-           				</c:if>
-           			</div>
+           			<div class="reserveInfo5">${list.reservation_date}</div>
+           			<div>${list.reviewdate }</div>
+           			<div><button class="deleteReview">삭제</button></div>
            		</div>
            
             </c:forEach>
 	            <div class="pageNum">
 	            	<c:if test="${pageNum > 1}">
-	            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/memberRefund.do?pageNum=${1}'"> << </div>
+	            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/MemberReview.do?pageNum=${1}'"> << </div>
 	            	</c:if>
 	            	<c:if test="${pageNum > startPage}">
-	            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberRefund.do?pageNum=${pageNum-1}'"> < </div>
+	            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/MemberReview.do?pageNum=${pageNum-1}'"> < </div>
 	            	</c:if>
 	            	<c:forEach var = "i" begin="${startPage}" end ="${endPage}">
-	            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberRefund.do?pageNum=${i}'">${i}</div>
+	            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/MemberReview.do?pageNum=${i}'">${i}</div>
 	            	</c:forEach>
 	            	<c:if test="${pageNum < pageCount}">
-	            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/memberRefund.do?pageNum=${pageNum+1}'"> > </div>
+	            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/MemberReview.do?pageNum=${pageNum+1}'"> > </div>
 	            	</c:if>
 	            	<c:if test="${pageNum < pageCount}">
-	            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/memberRefund.do?pageNum=${pageCount}'"> >> </div>
+	            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/MemberReview.do?pageNum=${pageCount}'"> >> </div>
 	            	</c:if>
 	            </div>
             </c:if>
@@ -121,20 +115,39 @@
         </div>
 </section>
 <jsp:include page="../footer.jsp" />
+
 <script>
-	$(".refund_cancle").on("click",function(){
-		var refundnum = $(this).parents(".state").find(".refundnum").val();
-		console.log(refundnum);
+	
+	for(var i = 0; i<"${fn:length(list)}"; i++){
+		
+		var current = $(".starRev").eq(i);
+		var rating  = $(".rating").eq(i).val();
+		
+		if(rating == "0"){
+			var rating1 = current.children(".staR").eq(rating)
+		} else {
+			var rating1 = current.children(".staR").eq(rating-1)
+            rating1.parent().children("input").removeClass("on");
+            rating1.addClass("on").prevAll("input").addClass("on");
+		}
+	}
+	
+	$(".deleteReview").on("click",function(){
+		var class_registrynum = $(this).parents(".reserveInfo2").find(".class_registrynum").val();
+		var reviewNum = $(this).parents(".reserveInfo2").find(".reviewNum").val();
 		
 		$.ajax({
 			type:"post",
-			url:"${pageContext.request.contextPath}/RefundCancle.do",
-			dataType:"text",
-			data :{ refundnum : refundnum},
+			url:"${pageContext.request.contextPath}/DeleteReview.do",
+			dateType:"text",
+			data : {
+				class_registrynum : class_registrynum,
+				reviewNum : reviewNum	
+			},
 			success:function(data,status){
-				if(data == 1){
-					alert("환불 요청이 취소 되었습니다.");
-					location.href="${pageContext.request.contextPath}/memberRefund.do";
+				if(data == 1 ){
+					alert("리뷰가 삭제 되었습니다.");
+					location.href="${pageContext.request.contextPath}/MemberReview.do";
 				}
 			},
 			error:function(data,status){

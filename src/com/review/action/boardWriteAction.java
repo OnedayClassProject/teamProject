@@ -30,7 +30,7 @@ public class boardWriteAction implements CommandHandler {
 		request.setCharacterEncoding("UTF-8");
 		
 			int classnum = Integer.parseInt(request.getParameter("class_registrynum"));
-			int reservenum = Integer.parseInt(request.getParameter("reservnum"));
+			int reservenum = Integer.parseInt(request.getParameter("reservenum"));
 			String date = request.getParameter("date");
 			
 			StoreDAO sd = new StoreDAO();

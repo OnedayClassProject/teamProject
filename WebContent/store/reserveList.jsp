@@ -62,26 +62,43 @@
            		</div>
            		<div class="line"></div>
            		
-           		
-           		<c:forEach var="GetReserve" items="${GetReserve }">
-           			
-		           		<div class="reserveInfo2">
-			           			
-				           	<div>${GetReserve.class_name }</div>
-				           	<div>${GetReserve.reservation_price }</div>
-		           				
-		           			<div>${GetReserve.user_name }</div>
-		           			<div class="reserveInfo4">${GetReserve.reservation_personnel }</div>
-		           			<div class="reserveInfo5">${GetReserve.reservation_date }/${GetReserve.time }</div>
-		           			<div class="reserveInfo4">${GetReserve.reservation_tel}</div>
-		           			<div class="reserveInfo4">${GetReserve.content }</div>
-		           			<c:if test="${GetReserve.refundCheck eq 1 }">
-		           				<div>환불완료</div>
-		           			</c:if>
-		           		</div>
-           			
-           		</c:forEach>
-           		
+           		<c:if test = "${count != 0 }">
+	           		<c:forEach var="GetReserve" items="${GetReserve }">
+	           			
+			           		<div class="reserveInfo2">
+				           			
+					           	<div>${GetReserve.class_name }</div>
+					           	<div>${GetReserve.reservation_price }</div>
+			           				
+			           			<div>${GetReserve.user_name }</div>
+			           			<div class="reserveInfo4">${GetReserve.reservation_personnel }</div>
+			           			<div class="reserveInfo5">${GetReserve.reservation_date }/${GetReserve.time }</div>
+			           			<div class="reserveInfo4">${GetReserve.reservation_tel}</div>
+			           			<div class="reserveInfo4">${GetReserve.content }</div>
+			           			<c:if test="${GetReserve.refundCheck eq 1 }">
+			           				<div>환불완료</div>
+			           			</c:if>
+			           		</div>
+	           			
+	           		</c:forEach>
+	           		<div class="pageNum">
+	            	<c:if test="${pageNum > 1}">
+	            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/storeReserve.do?pageNum=${1}'"> << </div>
+	            	</c:if>
+	            	<c:if test="${pageNum > startPage}">
+	            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/storeReserve.do?pageNum=${pageNum-1}'"> < </div>
+	            	</c:if>
+	            	<c:forEach var = "i" begin="${startPage}" end ="${endPage}">
+	            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/storeReserve.do?pageNum=${i}'">${i}</div>
+	            	</c:forEach>
+	            	<c:if test="${pageNum < pageCount}">
+	            		<div class="pageNum2" onclick="location.href='${pageContext.request.contextPath}/storeReserve.do?pageNum=${pageNum+1}'"> > </div>
+	            	</c:if>
+	            	<c:if test="${pageNum < pageCount}">
+	            		<div class="pageNum3" onclick="location.href='${pageContext.request.contextPath}/storeReserve.do?pageNum=${pageCount}'"> >> </div>
+	            	</c:if>
+	            	</div>
+           		</c:if>
            		
            	</div>
             </div>

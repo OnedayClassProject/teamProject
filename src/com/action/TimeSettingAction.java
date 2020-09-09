@@ -29,6 +29,9 @@ public class TimeSettingAction implements CommandHandler {
 		StoreDAO sdao = new StoreDAO();
 		ArrayList<TimeSaveBean> list = sdao.getAllDate(date, num);
 		
+		System.out.println(num);
+		System.out.println(date);
+		
 		JSONObject object = new JSONObject();
 		JSONArray array = new JSONArray();
 		for(int i=0; i < list.size(); i++) {

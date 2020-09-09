@@ -1,6 +1,7 @@
 package com.review.action;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.servlet.ServletContext;
@@ -40,7 +41,6 @@ public class reviewWriteAction implements CommandHandler{
 		String class_name = multipartRequest.getParameter("class_name");
 		String subject = multipartRequest.getParameter("subject");
 		String email = (String)session.getAttribute("userid");
-//		email = "skdms@naver.com";
 		String res_date = multipartRequest.getParameter("reservation_date");
 		int rating = Integer.parseInt(multipartRequest.getParameter("rating"));
 		String content = multipartRequest.getParameter("content");
@@ -59,7 +59,8 @@ public class reviewWriteAction implements CommandHandler{
 		rbean.setContent(content);
 		rbean.setThumbnail(fileImage);
 		rbean.setSubject(subject);
-		rbean.setReviewdate(new Timestamp(System.currentTimeMillis()));
+		rbean.setReviewdate(new Date(System.currentTimeMillis()));
+		rbean.setReservationnum(reserveNum);
 		
 		ReviewDAO rdao = new ReviewDAO();
 		int result = rdao.reviewWrite(rbean);

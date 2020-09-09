@@ -163,3 +163,18 @@ section{
 .reserveInfo8{
 	width: 120px;
 }
+
+.staR{
+  background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+  background-size: auto 100%;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  text-indent: -9999px;
+  border: 0;
+	margin: 0;
+}
+.staR.on{
+	background-position:0 0;
+	
+}

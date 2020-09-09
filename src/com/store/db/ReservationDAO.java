@@ -63,7 +63,7 @@ public class ReservationDAO {
 			
 			System.out.println("result"+result);
 			if(result != 0){
-				// 클래스 예약자 수 +1
+				// 클래스 예약자 팀 +1
 				sql = "update class set reservation_count = reservation_count+1 where class_registrynum=?";
 				pstmt = con.prepareStatement(sql);
 				
@@ -124,7 +124,7 @@ public class ReservationDAO {
 		}
 		return bean;
 	}
-	public List<ReservationBean> GetReserve(int storenum) {
+	public List<ReservationBean> GetReserve(int storenum,int startRow,int endRow) {
 		
 		List<ReservationBean> list = new ArrayList<ReservationBean>();
 		
@@ -139,9 +139,11 @@ public class ReservationDAO {
 			
 			while(rs.next()){
 				System.out.println("class"+rs.getInt("class_registrynum"));
-				sql ="select* from classreservation where class_registrynum=?";
+				sql ="select* from classreservation where class_registrynum=? order by reservationnum desc limit ?,?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, rs.getString("class_registrynum"));
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
 				
 				ResultSet rs2 = pstmt.executeQuery();
 				
@@ -233,6 +235,36 @@ public class ReservationDAO {
 			}
 			
 			return list;
+		}
+		public int sReserveCount(int storenum) {
+			int count = 0;
+			
+			try {
+				con = getConnection();
+				
+				sql = "select* from class where storenum=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, storenum);
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()){
+					sql = "select count(*) from classreservation where class_registrynum=?";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, rs.getInt("class_registrynum"));
+					
+					ResultSet rss = pstmt.executeQuery();
+					if(rss.next()){
+						count = count + rss.getInt(1);
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				resourceClose();
+			}
+			
+			return count;
 		}
 		
 		

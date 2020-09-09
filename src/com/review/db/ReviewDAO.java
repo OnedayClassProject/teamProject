@@ -39,8 +39,8 @@ public class ReviewDAO {
 		
 		try {
 			con = getConnection();
-			sql = "insert into review(class_registrynum,storenum,company_name,class_name,useremail,reservation_date,subject,content,thumbnail,rating,reviewdate) "
-					+ "values(?,?,?,?,?,?,?,?,?,?,?)";
+			sql = "insert into review(class_registrynum,storenum,company_name,class_name,useremail,reservation_date,subject,content,thumbnail,rating,reviewdate,reservationnum) "
+					+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
 
 			pstmt = con.prepareStatement(sql);
 			
@@ -54,7 +54,8 @@ public class ReviewDAO {
 			pstmt.setString(8, rbean.getContent());
 			pstmt.setString(9, rbean.getThumbnail());
 			pstmt.setInt(10, rbean.getRating());
-			pstmt.setTimestamp(11, rbean.getReviewdate());
+			pstmt.setDate(11, rbean.getReviewdate());
+			pstmt.setInt(12, rbean.getReservationnum());
 			
 			result = pstmt.executeUpdate();
 			
@@ -147,6 +148,7 @@ public int sumRating(int class_num) {
 			
 			while(rs.next()){
 				bean=new ReviewBean();
+				bean.setReservationnum(rs.getInt("reservationnum"));
 				bean.setReviewnum(rs.getInt("reviewnum"));
 				bean.setClass_registrynum(rs.getInt("class_registrynum"));
 				bean.setStorenum(rs.getString("storenum"));
@@ -155,7 +157,7 @@ public int sumRating(int class_num) {
 				bean.setThumbnail(rs.getString("thumbnail"));
 				bean.setSubject(rs.getString("subject"));
 				bean.setContent(rs.getString("content"));
-				bean.setReviewdate(rs.getTimestamp("reviewdate"));
+				bean.setReviewdate(rs.getDate("reviewdate"));
 				bean.setRating(rs.getInt("rating"));
 				bean.setReservation_date(rs.getString("reservation_date"));
 				list.add(bean);
@@ -192,21 +194,101 @@ public int sumRating(int class_num) {
 		System.out.println(reviewId);
 		try {
 			con = getConnection();
-			String sql = "delete from review where class_registrynum=? and reviewnum=? and useremail=?";
+			
+			sql = "select* from review where reviewnum=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, reviewNum);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				sql = "update classreservation set reviewCheck=0 where reservationnum=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, rs.getInt("reservationnum"));
+				pstmt.executeUpdate();
+				
+			}
+			
+			sql = "delete from review where class_registrynum=? and reviewnum=? and useremail=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, class_registrynum);
 			pstmt.setInt(2, reviewNum);
 			pstmt.setString(3, reviewId);
 			pstmt.executeUpdate();
+			
+			
 			result=1;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
 			resourceClose();
 		}
 		
-		
-		
 		return result;
 	}
+	public int mReviewCount(String email) {
+		int count = 0;
+		
+		try {
+			con = getConnection();
+			sql ="select count(*) from review where useremail =?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				count = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			resourceClose();
+		}
+		
+		return count;
+	}
+	public ArrayList<ReviewBean> MyReview(String email, int startRow, int endRow) {
+		
+		ArrayList<ReviewBean> list = new ArrayList<ReviewBean>();
+		
+		try {
+			con = getConnection();
+			sql = "select * from review where useremail =? order by reviewdate desc limit ?,?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				ReviewBean rbean = new ReviewBean();
+				
+				rbean.setThumbnail(rs.getString("thumbnail"));
+				rbean.setClass_name(rs.getString("class_name"));
+				rbean.setSubject(rs.getString("subject"));
+				rbean.setRating(rs.getInt("rating"));
+				rbean.setReservation_date(rs.getString("reservation_date"));
+				rbean.setReviewdate(rs.getDate("reviewdate"));
+				rbean.setClass_registrynum(rs.getInt("class_registrynum"));
+				rbean.setReviewnum(rs.getInt("reviewnum"));
+				rbean.setReservationnum(rs.getInt("reservationnum"));
+				
+				list.add(rbean);
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			resourceClose();
+		}
+		
+		return list;
+	}
+	
+	
+	
 }

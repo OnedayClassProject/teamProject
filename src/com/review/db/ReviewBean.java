@@ -1,12 +1,14 @@
 package com.review.db;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class ReviewBean {
 	private String company_name,storenum,class_name,useremail,reservation_date,subject,content,thumbnail;
-	private int reviewnum,class_registrynum;
+	private int reviewnum,class_registrynum,reservationnum;
 	private int rating;
-	private Timestamp reviewdate;
+	private Date reviewdate;
+	
 	
 	public String getSubject() {
 		return subject;
@@ -75,11 +77,17 @@ public class ReviewBean {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-	public Timestamp getReviewdate() {
+	public Date getReviewdate() {
 		return reviewdate;
 	}
-	public void setReviewdate(Timestamp reviewdate) {
+	public void setReviewdate(Date reviewdate) {
 		this.reviewdate = reviewdate;
+	}
+	public int getReservationnum() {
+		return reservationnum;
+	}
+	public void setReservationnum(int reservationnum) {
+		this.reservationnum = reservationnum;
 	}
 	
 	

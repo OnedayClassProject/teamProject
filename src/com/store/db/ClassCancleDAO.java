@@ -50,7 +50,7 @@ public class ClassCancleDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
-				sql = "select* from classcancle where class_registrynum=?  order by request_day desc limit ?,? ";
+				sql = "select* from classcancle where class_registrynum=? order by request_day desc limit ?,? ";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, rs.getInt("class_registrynum"));
 				pstmt.setInt(2, startRow);
@@ -290,12 +290,12 @@ public class ClassCancleDAO {
 		try {
 			con = getConnection();
 			
-			sql = "update classcancle set state = ? where refundnum=?";
+			sql = "update classcancle set state = ?,refund_date = now() where refundnum=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "1");
 			pstmt.setInt(2, refundnum);
 			
-			data = pstmt.executeUpdate();
+			pstmt.executeUpdate();
 			
 			sql ="select* from classcancle where refundnum=?";
 			pstmt = con.prepareStatement(sql);
@@ -308,6 +308,25 @@ public class ClassCancleDAO {
 				pstmt.setInt(2,rs.getInt("reservationnum"));
 				
 				pstmt.executeUpdate();
+				
+				sql = "update member set point =point - ? where useremail=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, rs.getString("point"));
+				pstmt.setString(2, rs.getString("useremail"));
+				
+				pstmt.executeUpdate();
+				
+				sql = "update operationdate set currentpersonal = currentpersonal -? "
+						+ "where class_date = substring_index(?,'-',2) and class_day = substring_index(?,'-',-1) and class_starttime = substring_index(?,'~',1)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, rs.getInt("reservation_personnel"));
+				pstmt.setString(2, rs.getString("reservation_date"));
+				pstmt.setString(3, rs.getString("reservation_date"));
+				pstmt.setString(4, rs.getString("time"));
+				
+				pstmt.executeUpdate();
+				
+				data = 1;
 			}
 			
 		} catch (Exception e) {

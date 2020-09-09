@@ -161,6 +161,7 @@
         <div class="review_buttons">
         <button type="button" id ="review_create">등록</button>
         <button type="button">취소</button>
+        <!-- 예약번호 -->
         <input type="hidden" name='reserveNum' value='${reserveNum }'>
         </div>
     </div>
