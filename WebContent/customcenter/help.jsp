@@ -17,11 +17,8 @@
 					location.href="${pageContext.request.contextPath}/helpPage.do?num="+num +"&pageNum="+pageNum;
 				}else{
 					alert("작성자가 아닙니다.");
-<<<<<<< HEAD
 					location.href="${pageContext.request.contextPath}/helpMainPage.do?&pageNum="+pageNum;
-=======
 					/* location.href="${pageContext.request.contextPath}/helpPage.do?&pageNum="+pageNum; */
->>>>>>> ggyu
 				}
 			}, error:function(e){
 				alert(e);
@@ -94,16 +91,16 @@
         		<button onclick="checkSession()">글쓰기</button>
         		</div>
         	</div>
-        	<div>
+        	<div style="text-align: center;">
 	        	<c:if test="${count!=0}">
 	        		<c:if test="${startPage > pageBlock}">
-	        			<a href="${pageContext.request.contextPath}/helpMainPage.do?pageNum=${startPage - pageBlock}">Prev</a>
+	        			<a href="${pageContext.request.contextPath}/helpMainPage.do?pageNum=${startPage - pageBlock}">Prev </a>
 	        		</c:if>
 	       			<c:forEach var= "i" begin="${startPage }" end="${endPage}">
 	       				<a href="${pageContext.request.contextPath}/helpMainPage.do?pageNum=${i}">${i}</a>
 	       			</c:forEach>
 	        		<c:if test="${endPage < pageCount }">
-	        			<a href="${pageContext.request.contextPath}/helpMainPage.do?pageNum=${startPage+pageBlock}">Next</a>
+	        			<a href="${pageContext.request.contextPath}/helpMainPage.do?pageNum=${startPage+pageBlock}"> Next</a>
 	        		</c:if>
 	        	</c:if>
         	</div>

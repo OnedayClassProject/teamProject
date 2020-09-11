@@ -30,7 +30,7 @@ public class helpMainPage implements CommandHandler{
 		int startRow = (currentPage - 1) * pageSize;
 		int pageCount =count/pageSize+(count%pageSize==0?0:1);
 		//한화면에 보여줄 페이지수 설정
-		int pageBlock=1;
+		int pageBlock=5;
 		// 한화면에 보여줄 시작페이지 구하기  1~10  => 1  /  11~20 => 11
 		int startPage=((currentPage-1)/pageBlock)*pageBlock+1;
 		// 한화면에 보여줄 끝페이지 구하기
