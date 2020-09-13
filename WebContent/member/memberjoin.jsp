@@ -12,7 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/member/memberjoin.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 <script>
 		$(document).ready(function(){
 			$("#email").on("change",function(){
@@ -30,7 +34,7 @@
 		    
 			if($("#email").val().trim() == ""){
 				$("#check_result").empty();
-				$("#check_result").append("이메일을 입력하세요.");
+				Swal.fire("이메일을 입력하세요.");
 				$("#email").focus();
 			}else{
 				$.ajax('${pageContext.request.contextPath}/memberCheck.do',{
@@ -40,23 +44,22 @@
 						
 						if(data == 1){
 							$("#check_result").empty();
-							$("#check_result").text("이미 가입된 이메일입니다.");
+							Swal.fire("이미 가입된 이메일입니다.");
 							
 						}else{
 							if(result1 != true){
 								$("#check_result").empty();
-								$("#check_result").text("이메일을 정확하게 입력해주세요");
+								Swal.fire("이메일을 정확하게 입력해주세요");
 								
 							}else{
 								$("#check_result").empty();
-								$("#check_result").text("사용가능한 이메일입니다.");
+								Swal.fire("사용가능한 이메일입니다.");
 								$("#check").val("true"); // 이메일 중복체크 확인 후 사용가능하면 true로 바꾸기
 							}
 						}
 					},
 					error:function(data){
-						alert("에러가 발생했습니다.");
-						console.log(data);
+						Swal.fire("에러가 발생했습니다.");
 					}
 				});
 			
@@ -95,68 +98,68 @@
 		    // 이메일 확인
 		    var result1 = reg1.test(email);
 		    if(email == ""){
-		    	alert("이메일을 입력해주세요");
+		    	Swal.fire("이메일을 입력해주세요");
 		    	return false;
 		    }else if( result1 != true){
-		    	alert("이메일을 정확하게 입력해주세요");
+		    	Swal.fire("이메일을 정확하게 입력해주세요");
 		    	return false;
 		    }
 		    
 		    // 이메일 중복체크 여부 확인
 		    if(check == "false"){
-		    	alert("이메일 중복체크를 해주세요.");
+		    	Swal.fire("이메일 중복체크를 해주세요.");
 		    	return false;
 		    }
 		    
 		    // 비밀번호 확인
 		    var result2 = reg2.test(userpassword);
 		    if (userpassword != pwdcheck){ // 비밀번호와 비밀번호확인란의 입력값이 같은지 확인
-		    	alert("비밀번호를 확인해주세요.");
+		    	Swal.fire("비밀번호를 확인해주세요.");
 		    	return false;
 		    }else if(userpassword == ""){
-		    	alert("비밀번호를 입력해주세요.");
+		    	Swal.fire("비밀번호를 입력해주세요.");
 		    	return false;
 		    }else if(pwdcheck == ""){
-		    	alert("비밀번호를 확인해주세요.");
+		    	Swal.fire("비밀번호를 확인해주세요.");
 		    	return false;
 		    }else if(result2 != true){
-		    	alert("비밀번호를 정확하게 입력해주세요.(6~20자 영어대소문자,숫자 혼합)");
+		    	Swal.fire("비밀번호를 정확하게 입력해주세요.(6~20자 영어대소문자,숫자 혼합)");
 		    	return false;
 		    }
 		    
 		    // 이름 확인
 		    var result3 = reg3.test(username);
 		    if(username == ""){
-		    	alert("이름을 입력해주세요.");
+		    	Swal.fire("이름을 입력해주세요.");
 		    	return false;
 		    } else if(result3 != true){
-		    	alert("이름을 정확하게 입력해주세요");
+		    	Swal.fire("이름을 정확하게 입력해주세요");
 		    	return false;
 		    }
 		    
 		    // 전화번호 확인
 		    var result4 = reg4.test(phone);
 		    if(phone == ""){
-		    	alert("전화번호를 입력해주세요.");
+		    	Swal.fire("전화번호를 입력해주세요.");
 		    	return false;
 		    } else if(result4 != true){
-		    	alert("전화번호를 정확하게 입력해주세요.");
+		    	Swal.fire("전화번호를 정확하게 입력해주세요.");
 		    	return false;
 		    }
 		    
 		    // 우편번호 확인
 		    var result5 = reg5.test(detailadd); // 상세주소
 		    if(postcode == ""){
-		    	alert("우편번호를 입력해주세요.");
+		    	Swal.fire("우편번호를 입력해주세요.");
 		    	return false;
 		    }else if(address == ""){
-		    	alert("주소를 입력해주세요.");
+		    	Swal.fire("주소를 입력해주세요.");
 		    	return false;
 		    }else if(detailadd == ""){
-		    	alert("상세주소를 입력해주세요.");
+		    	Swal.fire("상세주소를 입력해주세요.");
 		    	return false;
 		    }else if(result5 != true){
-		    	alert("상세주소를 정확하게 입력해주세요.");
+		    	Swal.fire("상세주소를 정확하게 입력해주세요.");
 		    	return false;
 		    }
 		    
@@ -170,7 +173,8 @@
 <section>
     <div class="member_join">
         <form action="${pageContext.request.contextPath}/memberjoinPro.do" method="post" onsubmit="return Check()">
-            <div>회원가입</div>
+        <div ><img class="logo_pic" src="${pageContext.request.contextPath}/images/logo_copy.png"></div>
+            <div class="join_sub">회원가입</div>
             <hr>
             <div class="join_main">
                 <div class="join_text2">
@@ -185,7 +189,7 @@
                 <div><input class="join_text" type="text" id="phone" name="phone" placeholder="PHONE NUMBER"></div>
                 <div class="join_text2">
                     <input type="text" id="sample6_postcode" class="postcode" name="postcode" placeholder="우편번호">
-                    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+                    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호">
                 </div>
                 <input class="join_text" type="text" id="sample6_address" class="address"name="address" placeholder="주소">
                 <div class="join_text3">
@@ -193,7 +197,7 @@
                     <input type="text" id="sample6_extraAddress" id="extraadd" name="extraadd" placeholder="참고항목">
                 </div>
                 <div class="join_text4">
-                    <input type="submit" value="CREATE">
+                    <input type="submit" value="회원가입">
                 </div>
             </div>
         </form>
@@ -249,6 +253,46 @@
             }
         }).open();
     }
+    <!-- Channel Plugin Scripts -->
+    (function() {
+      var w = window;
+      if (w.ChannelIO) {
+        return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
+      }
+      var ch = function() {
+        ch.c(arguments);
+      };
+      ch.q = [];
+      ch.c = function(args) {
+        ch.q.push(args);
+      };
+      w.ChannelIO = ch;
+      function l() {
+        if (w.ChannelIOInitialized) {
+          return;
+        }
+        w.ChannelIOInitialized = true;
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+        s.charset = 'UTF-8';
+        var x = document.getElementsByTagName('script')[0];
+        x.parentNode.insertBefore(s, x);
+      }
+      if (document.readyState === 'complete') {
+        l();
+      } else if (window.attachEvent) {
+        window.attachEvent('onload', l);
+      } else {
+        window.addEventListener('DOMContentLoaded', l, false);
+        window.addEventListener('load', l, false);
+      }
+    })();
+    ChannelIO('boot', {
+      "pluginKey": "23441f9e-c08a-4bd9-8ec4-21d31c9851cf"
+    });
+  <!-- End Channel Plugin -->
 </script>
 </body>
 </html>

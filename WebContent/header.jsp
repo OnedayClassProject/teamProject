@@ -51,7 +51,7 @@
         	</c:if>
         </div>
      <div class="nav_wrap">
-            <div class="main_logo"><a href="${pageContext.request.contextPath}/main.do">CLASS+</a></div>
+            <div class="main_logo"><a href="${pageContext.request.contextPath}/main.do"><img src="${pageContext.request.contextPath}/images/logo.png" width="100%"></a></div>
             <%--        <div class="search-bar">--%>
             <%--            <form>--%>
             <%--                <div class="search-title">SEARCH</div>--%>

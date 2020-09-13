@@ -10,8 +10,22 @@
 <head>
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <link rel="stylesheet" href="../header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/store/storejoin.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <script src="sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#email").on("change",function(){
+			$("#checkemail").val("emailUnCheck");
+		});
+	});
+	
+	</script>
 </head>
 <body>
 
@@ -19,7 +33,8 @@
 <section>
     <div class="member_join">
         <form id = "joinform" method="post">
-            <div>가게 회원가입</div>
+        <div ><img class="logo_pic" src="${pageContext.request.contextPath}/images/logo_copy.png"></div>
+            <div class="join_sub">강사등록</div>
             <hr>
             <div class="join_main">
                 <div class="join_text2">
@@ -33,7 +48,7 @@
                 <div><input class="join_text" type="text" id = "tel" name="storetel" placeholder="PHONE NUMBER"></div>
                 <div class="join_text2">
                     <input type="text" name = "storepostcode" id="sample6_postcode" placeholder="우편번호">
-                    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+                    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호">
                 </div>
                 <input class="join_text" type="text" name ="storeaddress1" id="sample6_address" placeholder="주소">
                 <div class="join_text3">
@@ -41,7 +56,7 @@
                     <input type="text" name ="storeaddress3" id="sample6_extraAddress" placeholder="참고항목">
                 </div>
                 <div class="join_text4">
-                    <input type="button" onclick = "return checkForm()" value="CREATE">
+                    <input type="button" onclick = "return checkForm()" value="강사등록">
                 </div>
             </div>
         </form>
@@ -102,22 +117,30 @@
     function checkEmail(){
     	var email = $("#email").val();
     	var check = document.getElementById("checkemail"); 
+		 //이메일
+	    var reg1 = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+	    var result1 = reg1.test(email);
     	if(email == ""){
-    		alert("이메일을 입력하세요");
+    		Swal.fire("이메일을 입력하세요");
     		$("#email").focus();
-	   	}else{
+    		return;
+	   	}else if(result1 != true){
+	   		Swal.fire("이메일을 정확하게 입력하세요.");
+    		$("#email").focus();
+    		return;
+	   	}else {
 	   		$.ajax({
 				type: "post",
 				url : "${pageContext.request.contextPath}/StoreCheckEmail.do",
 				data : { email : $('#email').val()},
 				success : function(data) {
 					if(data == 0){
-						alert("이메일이 존재합니다");
+						Swal.fire("이메일이 존재합니다");
 						$('#storeemail').focus();
 						$('#storeemail').val("");
 					}
 					else if(data==1){
-						alert("이메일을 사용할 수 있습니다.");
+						Swal.fire("이메일을 사용할 수 있습니다.");
 						check.value = "emailCheck";
 					}
 				}
@@ -127,7 +150,7 @@
     function checkForm(){
     	   	
    		var email = $("#email").val();
-    	var check = document.getElementById("checkemail"); 
+    	var check = $("#checkemail").val(); 
 		var password = $("#pass1").val();
 		var pwdcheck = $("#pass2").val();
 		var name = $("#name").val();
@@ -142,7 +165,7 @@
 		//비밀번호
 	    var reg2 = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,20}$/; // 6~20문자 영대소문자, 숫자 혼합
 	    //이름
-	    var reg3 = /^[가-힣]{2,5}$/;
+	    var reg3 = /^[가-힣a-zA-Z]{2,10}$/;
 	    //전화번호
 	    var reg4 = /^01(?:0|1|[6-9])[-]?(\d{3}|\d{4})[-]?(\d{4})$/; // 010-(3자리 또는 4자리 0부터 9까지)-(4자리 0부터 9까지)
 	    //우편번호
@@ -153,30 +176,28 @@
 	    // 이메일 확인
 	    var result1 = reg1.test(email);
 	    if(email == ""){
-	    	alert("이메일을 입력해주세요");
+	    	Swal.fire("이메일을 입력해주세요");
 	    	return false;
-	    }else if(check.value=="emailUnCheck"){
-    		alert("아이디 중복체크를 해주세요");
+	    }else if( check == "emailUnCheck"){
+	    	Swal.fire("아이디 중복체크를 해주세요");
     		return false;
     	}
 	    
 	    // 비밀번호 확인
 	    var result2 = reg2.test(password);
 	    if (password != pwdcheck){ // 비밀번호와 비밀번호확인란의 입력값이 같은지 확인
-	    	alert("비밀번호가 서로다릅니다.");
+	    	Swal.fire("비밀번호가 서로다릅니다.");
 	    	return false;
 	    }else if(password == ""){
-	    	alert("비밀번호를 입력해주세요.");
+	    	Swal.fire("비밀번호를 입력해주세요.");
 	    	$("#pass1").focus();
 	    	return false;
 	    }else if(pwdcheck == ""){
-	    	alert("비밀번호를 확인해주세요.");
+	    	Swal.fire("비밀번호를 확인해주세요.");
 	    	$("#pass2").focus();
 	    	return false;
 	    }else if(result2 != true){
-	    	alert(password);
-	    	alert(pwdcheck);
-	    	alert("비밀번호를 정확하게 입력해주세요.(6~20자 영어대소문자,숫자 혼합)");
+	    	Swal.fire("비밀번호를 정확하게 입력해주세요.(6~20자 영어대소문자,숫자 혼합)");
 	    	$("#pass1").val("");
 	    	$("#pass2").val("");
 	    	return false;
@@ -185,11 +206,11 @@
 	    // 이름 확인
 	    var result3 = reg3.test(name);
 	    if(name == ""){
-	    	alert("이름을 입력해주세요.");
+	    	Swal.fire("이름을 입력해주세요.");
 	    	$("#name").focus();
 	    	return false;
 	    } else if(result3 != true){
-	    	alert("이름을 정확하게 입력해주세요");
+	    	Swal.fire("이름을 정확하게 입력해주세요");
 	    	$("#name").focus();
 	    	$("#name").val("");
 	    	return false;
@@ -198,11 +219,11 @@
 	    // 전화번호 확인
 	    var result4 = reg4.test(tel);
 	    if(tel == ""){
-	    	alert("전화번호를 입력해주세요.");
+	    	Swal.fire("전화번호를 입력해주세요.");
 	    	$("#tel").focus();
 	    	return false;
 	    } else if(result4 != true){
-	    	alert("전화번호를 정확하게 입력해주세요.");
+	    	Swal.fire("전화번호를 정확하게 입력해주세요.");
 	    	$("#tel").focus();
 	    	$("#tel").val("");
 	    	return false;
@@ -211,16 +232,16 @@
 	    // 우편번호 확인
 	    var result5 = reg5.test(detailadd); // 상세주소
 	    if(postcode == ""){
-	    	alert("우편번호를 입력해주세요.");
+	    	Swal.fire("우편번호를 입력해주세요.");
 	    	return false;
 	    }else if(address == ""){
-	    	alert("주소를 입력해주세요.");
+	    	Swal.fire("주소를 입력해주세요.");
 	    	return false;
 	    }else if(detailadd == ""){
-	    	alert("상세주소를 입력해주세요.");
+	    	Swal.fire("상세주소를 입력해주세요.");
 	    	return false;
 	    }else if(result5 != true){
-	    	alert("상세주소를 정확하게 입력해주세요.");
+	    	Swal.fire("상세주소를 정확하게 입력해주세요.");
 	    	return false;
 	    }
 	    
@@ -236,13 +257,12 @@
    			data:form,
    			success:function(data){
    				if(data == 1){
-   					alert("회원가입에 성공하셨습니다.");
    					location.href="${pageContext.request.contextPath}/login.do"
    				}else{
-   					alert("회원가입 실패.");
+   					Swal.fire("회원가입 실패.");
    				}
    			}, error:function(data){
-   				alert("에러가 발생했습니다.");
+   				Swal.fire("에러가 발생했습니다.");
    			}
    		});
     }

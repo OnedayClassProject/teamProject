@@ -9,28 +9,50 @@ body{
     width: 1000px;
     margin: auto;
     text-align: center;
-    margin-top: 60px;
+    padding-top: 200px;
+}
+section{
+	background:linear-gradient(
+            to top,
+            rgba(255, 255, 255, 0) 10%,
+            rgba(255, 255, 255, 0.25) 25%,
+            rgba(255, 255, 255, 0.5) 50%,
+            rgba(255, 255, 255, 0.75) 75%,
+            rgba(255, 255, 255, 1) 100%
+          ),url("../images/workspace-5517761_1920.jpg");
+	background-size: cover;
+}
+.join a{
+	color:gray;
 }
 .member, .store{
     display: inline-block;
     width:300px;
     height: 250px;
-    line-height: 250px;
     border: 1px solid black;
+    vertical-align: middle;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid white;
+    border-radius: 5px;
 }
-
+.member_sub{
+ 	height: 30px;
+ 	line-height: 30px;
+}
+.member img{
+	margin-top:70px;
+	width: 60px;
+	height:	60px;
+}
+.store_sub{
+ 	height: 30px;
+ 	line-height: 30px;
+}
+.store img{
+	margin-top:70px;
+	width: 60px;
+	height:	60px;
+}
 section{
 	min-height: 100%;
-}
-@media (max-width: 800px) {
-    .join{
-        width: 100%;
-    }
-    .member, .store{
-        display: inline-block;
-        width:200px;
-        height: 150px;
-        line-height: 150px;
-        border: 1px solid black;
-    }
 }

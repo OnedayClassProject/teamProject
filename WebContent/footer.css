@@ -11,9 +11,11 @@ footer{
     background: #eaeaea;
     text-align: center;
 }
-
+.footer_logo img{
+	width: 200px;
+	height: 80px;
+}
 .footer_logo{
-	font-size: 35px;
 	padding-bottom: 20px;
 }
 .footer_menu{

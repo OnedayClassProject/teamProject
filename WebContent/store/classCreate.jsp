@@ -203,6 +203,11 @@
             	} 
 			});
             
+    		$('.main').on('click', function(){
+    			
+				location.href='${pageContext.request.contextPath}/main.do';    			
+    		});        
+	            
         });
         function handleImgFileSelect(e) {
             var files = e.target.files;
@@ -377,6 +382,7 @@
             <div class="timesetting"></div>
         </div>
         <div class="store">
+        	<div class="main">메인</div>
             <div class="send">저장</div>
             <div class="cal_close">닫기</div>
         </div>
@@ -532,17 +538,22 @@
     var plus = document.getElementById("plus");
     $("#plus").on("click", function name() {
     	if ($(".timeSet").length <= 5) {
-            $(".timesetting").append("<div class='timeSet'><input type=\"text\"  class='timeStart'> ~ <input type=\"text\" class='timeend'></div>");
-        /*      document.getElementById("time_start").flatpickr(
+            $(".timesetting").append("<div class='timeSet'><input type=\"text\" id='time_start1' class='timeStart'> ~ <input type=\"text\" id='time_end1' class='timeend'></div>"
+            						+"<div class='timeSet'><input type=\"text\" id='time_start2' class='timeStart'> ~ <input type=\"text\" id='time_end2' class='timeend'></div>"
+            						+"<div class='timeSet'><input type=\"text\" id='time_start3' class='timeStart'> ~ <input type=\"text\" id='time_end3' class='timeend'></div>"
+            						+"<div class='timeSet'><input type=\"text\" id='time_start4' class='timeStart'> ~ <input type=\"text\" id='time_end4' class='timeend'></div>"
+            						+"<div class='timeSet'><input type=\"text\" id='time_start5' class='timeStart'> ~ <input type=\"text\" id='time_end5' class='timeend'></div>"
+            						+"<div class='timeSet'><input type=\"text\" id='time_start6' class='timeStart'> ~ <input type=\"text\" id='time_end6' class='timeend'></div>");
+            $(".timeStart").flatpickr(
             		{ enableTime: true,
                 noCalendar: true,
                 dateFormat: "H:i",
             		});
-            document.getElementById("time_end").flatpickr({
+            $(".timeend").flatpickr({
                 enableTime: true,
                 noCalendar: true,
                 dateFormat: "H:i",
-            });  */
+            });  
         }
 	});
         
@@ -577,6 +588,8 @@
              }
          }); 
     } 
+    
+    
 </script>
 </body>
 </html>

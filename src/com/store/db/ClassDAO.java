@@ -104,7 +104,7 @@ public class ClassDAO {
 			con = getConnection();
 			
 			// level 중 하(easy)를 가져옴 
-			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail,rating "
+			String sql = "select storenum,class_company, class_registrynum, class_name, category, level, thumbnail,rating "
 					+ "from class "
 					+ "where level = 'easy' limit ?,?";
 			
@@ -122,6 +122,7 @@ public class ClassDAO {
 			cbean.setCategory(rs.getString("category"));
 			cbean.setLevel(rs.getString("level"));
 			cbean.setThumbnail(rs.getString("thumbnail"));
+			cbean.setClass_company(rs.getString("class_company"));
 			cbean.setRating(rs.getInt("rating"));
 			
 			// vector에 classbean 객체 저장 

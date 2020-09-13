@@ -96,13 +96,9 @@
         	<div><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></div>
         	</c:if>
         </div>
-        <div class="click_event">클릭</div>
-        <div class="sidemenu"></div>
-            <div class="side_menu">
-                <div class="close_menu">X</div>
-            </div>
+           
      <div class="nav_wrap">
-            <div class="main_logo"><a href="${pageContext.request.contextPath}/main.do">CLASS+</a></div>
+            <div class="main_logo"><a href="${pageContext.request.contextPath}/main.do"><img src="${pageContext.request.contextPath}/images/logo.png" width="100%"></a></div>
             <%--        <div class="search-bar">--%>
             <%--            <form>--%>
             <%--                <div class="search-title">SEARCH</div>--%>
@@ -169,53 +165,59 @@
                 <div class="swiper-slide">
                     <div class="main_slide3"></div>
                 </div>
+                <div class="swiper-slide">
+                    <div class="main_slide4"></div>
+                </div>
             </div>
         </div>
         
-        <div class="best_sub">Best Class</div>
-        <div class="best-bar">
-            <div class="swiper-container best-bar1">
-                <div class="swiper-wrapper best-wrapper">
-                <c:forEach var="list" items="${list }">
-                    <div class="swiper-slide">
-                        <div class="best-class">
-                            <div class="thumbnail"><a href="ClassInfo.do?class_registrynum=${list.class_registrynum}">
-                            <img src="${pageContext.request.contextPath}/thumbnailImage/${list.thumbnail}"></a></div>
-                            <div class="class-name">
-                                <div class="class-name1">${list.category }</div>
-                                <div class="class-name2">${list.class_name }</div>
-                                <div class="class-name3">${list.class_company}</div>
-                            </div>
-                        </div>
-                    </div>
-                    </c:forEach>
-                </div>
-					<!-- 페이징 -->
-					<div class="swiper-pagination"></div>
-            </div>
+        <div class="best_wrap">
+                	<div class="best_sub"><img src="${pageContext.request.contextPath}/images/trophy.png" width="28px" height="28px">인기클래스</div>
+                	<c:set var="j" value="1"/> 
+                    <c:forEach var="list" items="${list }">
+                 		<div class="best_thumbnail">
+	                        <div class="best-class">
+	                            <div class="thumbnail"><a href="ClassInfo.do?class_registrynum=${list.class_registrynum}">
+	                            <img src="${pageContext.request.contextPath}/thumbnailImage/${list.thumbnail}"></a></div>
+	                            <div class="class-name">
+	                                <div class="class-name1">${list.category }</div>
+	                                <div class="class-name2">${list.class_name }</div>
+	                                <div class="class-name3">${list.class_company}</div>
+	                    		</div>
+		                    </div>
+	                    </div>
+          				<c:if test="${j%4==0}">
+	                    <br>
+	                    </c:if>
+                    <c:set var="j" value="${j+1}"/>
+                    </c:forEach> 
+                
+                <a href="${pageContext.request.contextPath}/popularClass.do" class="popular_btn">인기 클래스 더보기</a>
         </div>
         <hr>
-        <div class="best_sub">Beginner Class</div>
-        <div class="best-bar">
-            <div class="swiper-container best-bar2">
-                <div class="swiper-wrapper best-wrapper">
-                <c:forEach var="list" items="${list }">
-                    <div class="swiper-slide">
-                        <div class="best-class">
-                            <div class="thumbnail"><img src="${pageContext.request.contextPath}/thumbnailImage/${list.thumbnail}"></div>
-                            <div class="class-name">
-                                <div class="class-name1">${list.category }</div>
-                                <div class="class-name2">${list.class_name }</div>
-                                <div class="class-name3">${list.class_company}</div>
-                            </div>
-                        </div>
-                    </div>
-                    </c:forEach>
+       <div class="best_wrap">
+                	<div class="best_sub"><img src="${pageContext.request.contextPath}/images/Untitled.png" width="28px" height="28px">입문클래스</div>
+                	<c:set var="j" value="1"/> 
+                    <c:forEach var="list" items="${be }">
+                 		<div class="best_thumbnail">
+	                        <div class="best-class">
+	                            <div class="thumbnail"><a href="ClassInfo.do?class_registrynum=${list.class_registrynum}">
+	                            <img src="${pageContext.request.contextPath}/thumbnailImage/${list.thumbnail}"></a></div>
+	                            <div class="class-name">
+	                                <div class="class-name1">${list.category }</div>
+	                                <div class="class-name2">${list.class_name }</div>
+	                                <div class="class-name3">${list.class_company}</div>
+	                    		</div>
+		                    </div>
+	                    </div>
+          				<c:if test="${j%4==0}">
+	                    <br>
+	                    </c:if>
+                    <c:set var="j" value="${j+1}"/>
+                    </c:forEach> 
+                
+                <a href="${pageContext.request.contextPath}/beginnerClass.do" class="popular_btn">입문 클래스 더보기</a>
                 </div>
-					<!-- 페이징 -->
-					<div class="swiper-pagination"></div>
-            </div>
-        </div>
     </div>
 </section>
 <footer>
@@ -285,6 +287,46 @@
     		clickable : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
     	}
     });
+    <!-- Channel Plugin Scripts -->
+      (function() {
+        var w = window;
+        if (w.ChannelIO) {
+          return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
+        }
+        var ch = function() {
+          ch.c(arguments);
+        };
+        ch.q = [];
+        ch.c = function(args) {
+          ch.q.push(args);
+        };
+        w.ChannelIO = ch;
+        function l() {
+          if (w.ChannelIOInitialized) {
+            return;
+          }
+          w.ChannelIOInitialized = true;
+          var s = document.createElement('script');
+          s.type = 'text/javascript';
+          s.async = true;
+          s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+          s.charset = 'UTF-8';
+          var x = document.getElementsByTagName('script')[0];
+          x.parentNode.insertBefore(s, x);
+        }
+        if (document.readyState === 'complete') {
+          l();
+        } else if (window.attachEvent) {
+          window.attachEvent('onload', l);
+        } else {
+          window.addEventListener('DOMContentLoaded', l, false);
+          window.addEventListener('load', l, false);
+        }
+      })();
+      ChannelIO('boot', {
+        "pluginKey": "23441f9e-c08a-4bd9-8ec4-21d31c9851cf"
+      });
+    <!-- End Channel Plugin -->
 </script>
 </body>
 </html>

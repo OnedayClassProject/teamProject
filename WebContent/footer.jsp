@@ -19,7 +19,7 @@
     	<div>사이트이용약관</div>
     	<div>개인정보처리방침</div>
   	 </div>
-    	<div class="footer_logo">CLASS+</div>
+    	<div class="footer_logo"><img src="${pageContext.request.contextPath}/images/logo_copy.png"></div>
     	<div class="footer_detail">
     		<div>사업자 등록번호 : 109-86-10925&nbsp;&nbsp;&nbsp;대표전화 : 02-2065-0776FAX : 02-2065-7161&nbsp;&nbsp;&nbsp;개설문의 : 1588-0738</div>
 
