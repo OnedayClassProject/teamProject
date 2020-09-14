@@ -135,7 +135,7 @@ public int sumRating(int class_num) {
 			//커넥션 메소드 호출하여 DB연결객체 하나 얻기
 			con=getConnection();
 			//쿼리준비 : 전체 차량 레코드 검색
-			String sql="select reviewnum,class_registrynum,storenum,class_name,useremail,thumbnail,subject,content,reviewdate,rating,reservation_date from review where class_registrynum=? limit ?,?";
+			String sql="select reservationnum,reviewnum,class_registrynum,storenum,class_name,useremail,thumbnail,subject,content,reviewdate,rating,reservation_date from review where class_registrynum=? limit ?,?";
 			//쿼리를 실행할 수 있는 객체 선언
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, class_num);

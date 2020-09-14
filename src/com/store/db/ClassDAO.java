@@ -1414,7 +1414,7 @@ public class ClassDAO {
 				bean.setClass_company(rs.getString("user_name"));
 				bean.setClass_registrynum(rs.getInt("class_registrynum"));
 				bean.setPersonnel(rs.getString("reservation_personnel"));
-				bean.setTime(rs.getString("reservation_date")+" / "+rs.getString("time"));
+				bean.setTime(rs.getString("reservation_date")+"<br>"+rs.getString("time"));
 				bean.setLevel(rs.getString("reservation_date"));
 				bean.setContent(rs.getString("content"));
 				bean.setRating(rs.getInt("reservationnum"));

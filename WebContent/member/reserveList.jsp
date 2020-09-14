@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/member/reserveList.css">
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@700&family=Noto+Sans+JP:wght@500&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
@@ -17,7 +18,7 @@
     location.href="${pageContext.request.contextPath}/main.do";
 </script>
 </c:if>
-<div class="pic"></div>
+<div class="pic"><div>MYPAGE</div></div>
     <div class="my_wrap">
         <div class="side_menu">
         <div class="current_menu">예약리스트</div>	
@@ -69,7 +70,6 @@
            			<div>예약날짜</div>
            			<div>전화번호</div>
            			<div>위치</div>
-           			<div>요청사항</div>
            			<div>기타</div>
            		</div>
            		<div class="line"></div>
@@ -88,12 +88,12 @@
 			           			<div class="price">${list.price }</div> <!-- 결제금액 -->
 	           				</div>
 	           			</div>
-	           			<div >${list.class_company }</div> <!-- 예약자명 -->
+	           			<div class="class_companyInfo">${list.class_company }</div> <!-- 예약자명 -->
 	           			<div class="reserveInfo4 ">${list.personnel }</div>
 	           			<div class="reserveInfo5 time">${list.time }</div> <!-- 예약날짜/시간 -->
-	           			<div>${list.sale }</div><!-- 예약자 전화번호 -->
-	           			<div>${list.location }</div><!-- 위치 -->
-	           			<div>${list.content }</div> <!-- 요청사항 -->
+	           			<div class="reserveInfo5">${list.sale }</div><!-- 예약자 전화번호 -->
+	           			<div class="reserveInfo5">${list.location }</div><!-- 위치 -->
+	           			<%-- <div>${list.content }</div> --%> <!-- 요청사항 -->
 	           			<div class="reserveInfo8">
 	           			
 	           				<input type="hidden" value="${list.class_registrynum }" class="class_registrynum"><!-- 클래스등록번호 -->
@@ -105,12 +105,12 @@
 		           					<button class="reserveInfo6" >후기작성</button>
 		           				</c:if>
 		           				<c:if test="${list.reviewCheck ne 0 }">
-		           					<div>작성완료</div>
+		           					<div class="com">작성완료</div>
 		           				</c:if>
 		           					<button class="refund_request">환불신청</button>
 	           				</c:if>
 	           				<c:if test="${list.reservation_count eq 1 }">
-	           					<div>환불완료</div>
+	           					<div class="com">환불완료</div>
 	           				</c:if>
 	           			</div>
 	           		</div>

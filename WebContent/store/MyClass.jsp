@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/store/myclass.css">
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@700&family=Noto+Sans+JP:wght@500&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
@@ -17,7 +18,7 @@
 </script>
 </c:if>
 <section>
-<div class="pic"></div>
+<div class="pic"><div>STOREPAGE</div></div>
     <div class="my_wrap">
         <div class="side_menu">
             <div class="side_detail">

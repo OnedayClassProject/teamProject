@@ -147,14 +147,14 @@
 					<div class="storeName_tag">${cb.class_company }</div>
 					<c:if test="${cb.sale eq '안함'}">
 					<div class="price_tag">
-						<div>${cb.price }</div>
+						<div>가격 ${cb.price }</div>
 					</div>
 					</c:if>
 					<c:if test="${cb.sale ne '안함'}">
 					<div class="price_tag">
 						<div>할인율</div>
 						<div>할인된가격</div>
-						<div>${cb.price }</div>
+						<div>가격 ${cb.price }</div>
 					</div>
 					</c:if>
 					<div class="class_info">
@@ -210,9 +210,6 @@
              <div id="dateInput"></div>
              <div id="timebox">
              <div id="timeChoice">시간선택</div>
-             <div >
-             <div id="push_text">  << 눌러주세요</div>
-             </div>
              <div id="timeChoice2">
              	<div class="time_wrap">
              		<%-- <div class="time_detail">
@@ -472,7 +469,9 @@
 	            	 var all = result.all;
 	            	 if(all.length != 0 ){
 	                  for(var i = 0; i < all.length; i++){
-	                	  $(".abled_td").eq(all[i].day - 1).css("background","red");
+	                	  $(".abled_td").eq(all[i].day - 1).css("background","#FACB87");
+	                	  $(".abled_td").eq(all[i].day - 1).css("border-radius","50%");
+	                	  
 	                 } 
 	            	 }
 	             },
@@ -483,7 +482,7 @@
 	    }
 	    function checkbox(i) {
 	    	
-			$('.timedetail'+i+'').css("background-color", "gray");
+			$('.timedetail'+i+'').css("background-color", "#FACB87");
 			$('.timedetail'+i+'').addClass('person_count');
 			$(".time_detail").not($('.timedetail'+i+'')).css("background-color", "white");
 			$(".time_detail").not($('.timedetail'+i+'')).removeClass('person_count');

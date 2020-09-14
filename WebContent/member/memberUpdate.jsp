@@ -12,12 +12,12 @@
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/member/memberjoin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/member/memberinfo.css">
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/store/storepage.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/store/storeUpdate.css">
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@700&family=Noto+Sans+JP:wght@500&family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <script>
     function Check() {
 			
@@ -116,7 +116,7 @@
 </script>
 </c:if>
 <section>
-<div class="pic"></div>
+<div class="pic"><div>MYPAGE</div></div>
     <div class="my_wrap">
         <div class="side_menu">
            <div class="side_detail">

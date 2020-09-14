@@ -194,7 +194,7 @@ public class ClassCancleDAO {
 			if(rs.next()){
 				sql = "insert into classcancle(class_company,category,class_name,thumbnail,class_registrynum,useremail"
 						+ ",reservationnum,reservation_date,reservation_pay,point,pay_date,reservation_personnel"
-						+ ",time,user_name,request_day,refund_price) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,now(),?)";
+						+ ",time,user_name,request_day,refund_price,refund_date) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,now(),?,now())";
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setString(1, rs.getString("class_company"));

@@ -1,0 +1,84 @@
+.member_join{
+    margin: auto;
+    width: 400px;
+    text-align: center;
+    padding-top: 60px;
+}
+.join_sub{
+	font-size: 25px;
+	letter-spacing: 3px;
+}
+.join_main{
+    margin-top: 20px;
+}
+.join_text{
+	border-radius: 5px;
+	letter-spacing: 2px;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 10px;
+    padding-left: 8px;
+    font-size: 17px;
+    padding-left: 8px;
+}
+.join_text2{
+    margin-bottom: 10px;
+}
+.join_text2 input[type=email]{
+	border-radius: 5px;
+	letter-spacing: 2px;
+    width: 70%;
+    height: 50px;
+    font-size: 17px;
+    padding-left: 8px;
+}
+.join_text2 input[type=text]{
+	border-radius: 5px;
+	letter-spacing: 2px;
+    width: 70%;
+    height: 50px;
+    font-size: 17px;
+    padding-left: 8px;
+}
+.join_text2 input[type=button]{
+	border-radius: 5px;
+	letter-spacing: 2px;
+    width: 28.5%;
+    height: 50px;
+    font-size: 17px;
+    bor
+}
+.join_text3 input:nth-child(1){
+	border-radius: 5px;
+	letter-spacing: 2px;
+    width: 60%;
+    height: 50px;
+    font-size: 17px;
+    padding-left: 8px;
+}
+.join_text3 input:nth-child(2){
+	border-radius: 5px;
+	letter-spacing: 2px;
+    width: 38.5%;
+    height: 50px;
+    font-size: 17px;
+    padding-left: 8px;
+}
+.join_text4 input{
+	background:rgba(255, 255, 255, 0.5);
+	border-radius: 5px;
+	letter-spacing: 2px;
+    width: 100%;
+    height: 50px;
+    margin-top: 15px;
+    font-size: 25px;
+    letter-spacing: 4px;
+}
+.logo_pic{
+	width: 200px;
+	height: 70px;
+	margin-bottom: 20px;
+}
+section {
+	min-height: 100%;
+}

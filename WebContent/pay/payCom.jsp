@@ -26,16 +26,15 @@
 				<div class="pay_info">
 					<div><img src="${pageContext.request.contextPath}/thumbnailImage/${cbean.thumbnail }"></div>
 					<div>
-						<div>클래스명 ${cbean.class_name }</div>
-						<div>결제 금액${reservation_price }</div>
-						<div>예약날짜${reservation_date }</div>
-						<div>예약자명${user_name }</div>
-						<div>예약자 수${reservation_personnel }</div>
+						<div>클래스명&nbsp;&nbsp;&nbsp;&nbsp;${cbean.class_name }</div>
+						<div>결제금액&nbsp;&nbsp;&nbsp;&nbsp;${reservation_price }</div>
+						<div>예약날짜&nbsp;&nbsp;&nbsp;&nbsp;${reservation_date }</div>
+						<div>예약자명&nbsp;&nbsp;&nbsp;&nbsp;${user_name }</div>
+						<div>예약자수&nbsp;&nbsp;&nbsp;&nbsp;${reservation_personnel }</div>
 					</div>
 				</div>
-				<div>요청사항 ${content }</div>
 				<div class="pay_btn">
-					<button onclick="location.href='${pageContext.request.contextPath}/main.do'">메인페이지이동</button>
+					<button onclick="location.href='${pageContext.request.contextPath}/main.do'">메인페이지</button>
 				</div>
 		</div>
 </section>

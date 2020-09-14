@@ -1,0 +1,195 @@
+@charset "UTF-8";
+
+
+.pic{
+	width: 100%;
+	height: 200px;
+	background-image: url("../images/sky-5534319_1920.jpg");
+	background-repeat: no-repeat;
+}
+.pic div{
+	width: 100%;
+	height: 200px;
+	background: rgba(255,255,255,0.5);
+	line-height: 200px;
+	text-align: center;
+	font-size: 50px;
+	letter-spacing: 10px;
+	font-family: 'Kumbh Sans', sans-serif;
+}
+.my_wrap{
+    padding-top: 70px;
+    display: flex;
+    width: 1300px;
+    margin: auto;
+}
+.side_menu{
+    width: 150px;
+}
+.side_detail div{
+    display: inline-block;
+}
+.side_detail a{
+	color: gray;
+	font-size: 13px;
+	font-weight: bold;
+}
+.side_detail2{
+    padding-left: 75px;
+}
+.my_main{
+   
+    width: 1100px;
+    margin: auto;
+}
+.line{
+	width : 100%;
+	height: 1px;
+	border: 1px solid black;
+}
+.reserveInfo{
+	margin-top:20px;
+	margin-bottom : 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+.reserveInfo1{
+	margin-top:20px;
+	margin-bottom : 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}.reserveInfo1 div:nth-child(1)  {
+	width: 300px;
+}
+.reserveInfo1 div:nth-child(3){
+	width:140px;	
+}
+.reserveInfo1 div{
+	width: 120px;
+}
+.reserveInfo div:nth-child(1)  {
+	width: 300px;
+}
+.reserveInfo div{
+	width: 120px;
+}
+.class_companyInfo{
+	text-align: center;
+	width: 120px;
+}
+.reserveInfo2{
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+}
+.reserveInfo3{
+	display: flex;
+	width: 300px;
+	align-items: center;
+}
+.class_pic{
+	width:150px;
+	border: 1px solid black;
+	height: 140px;
+}
+.class_pic img{
+	width:100%;
+	height: 100%;
+}
+.reserveInfo4{
+	width: 120px;
+	text-align: center;
+}
+.reserveInfo5{
+	width: 120px;
+	text-align: center;
+}
+.class_name{
+	padding-left: 5px;
+}
+.class_name div{
+	width: 150px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.reserveInfo6, .com{
+	text-align: center;
+}
+.reserveInfo8{
+	text-align: center;
+}
+section{
+	min-height: 100%;
+}
+.pageNum{
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.pageNum div{
+	text-align:center;
+	display: inline-block;
+}
+.pageNum2{
+	color:white;
+	border: 1px solid black;
+	border-radius: 5px;
+	width:20px;
+	height:20px;
+	font-size: 17px;
+	line-height :  20px;
+	background: black;
+}
+.pageNum2{
+	cursor: pointer;
+}
+.pageNum3{
+	padding-right:2px;
+	letter-spacing:-3px;
+	color:white;
+	border: 1px solid black;
+	border-radius: 5px;
+	width:20px;
+	height:20px;
+	font-size: 17px;
+	line-height :  20px;
+	background: black;
+}
+.pageNum3{
+	cursor: pointer;
+}
+.current_menu{
+	font-weight: bold;
+	font-size: 20px;
+}
+.line{
+	margin-top : 15px;
+	border: 1px solid black;
+	width:100%;
+	height: 1px;
+	margin-bottom: 10px;
+}
+.reserveInfo8{
+	width: 120px;
+}
+
+.staR{
+  background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+  background-size: auto 100%;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  text-indent: -9999px;
+  border: 0;
+	margin: 0;
+}
+.staR.on{
+	background-position:0 0;
+	
+}

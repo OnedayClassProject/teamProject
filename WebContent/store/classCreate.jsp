@@ -544,12 +544,62 @@
             						+"<div class='timeSet'><input type=\"text\" id='time_start4' class='timeStart'> ~ <input type=\"text\" id='time_end4' class='timeend'></div>"
             						+"<div class='timeSet'><input type=\"text\" id='time_start5' class='timeStart'> ~ <input type=\"text\" id='time_end5' class='timeend'></div>"
             						+"<div class='timeSet'><input type=\"text\" id='time_start6' class='timeStart'> ~ <input type=\"text\" id='time_end6' class='timeend'></div>");
-            $(".timeStart").flatpickr(
+            document.getElementById('time_start1').flatpickr(
             		{ enableTime: true,
                 noCalendar: true,
                 dateFormat: "H:i",
             		});
-            $(".timeend").flatpickr({
+            document.getElementById('time_end1').flatpickr({
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            });  
+            document.getElementById('time_start2').flatpickr(
+            		{ enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            		});
+            document.getElementById('time_end2').flatpickr({
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            });  
+            document.getElementById('time_start3').flatpickr(
+            		{ enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            		});
+            document.getElementById('time_end3').flatpickr({
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            });  
+            document.getElementById('time_start4').flatpickr(
+            		{ enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            		});
+            document.getElementById('time_end4').flatpickr({
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            });  
+            document.getElementById('time_start5').flatpickr(
+            		{ enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            		});
+            document.getElementById('time_end5').flatpickr({
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            });  
+            document.getElementById('time_start6').flatpickr(
+            		{ enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            		});
+            document.getElementById('time_end6').flatpickr({
                 enableTime: true,
                 noCalendar: true,
                 dateFormat: "H:i",
@@ -579,7 +629,8 @@
             	 var all = result.all;
             	 if(all.length != 0 ){
                   for(var i = 0; i < all.length; i++){
-                	  $(".abled_td").eq(all[i].day - 1).css("background","red");
+                	  $(".abled_td").eq(all[i].day - 1).css("background","#FACB87");
+                	  $(".abled_td").eq(all[i].day - 1).css("border-radius","50%");
                  } 
             	 }
              },

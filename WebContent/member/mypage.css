@@ -26,9 +26,17 @@
 }
 .my_subject{
     padding: 10px;
-    border: 1px solid black;
     height: 70px;
-    line-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.my_subject div{
+	
+}
+.my_subject img{
+	width: 50px;
+	margin-left: 10px;
 }
 .my_main2{
     display: flex;
@@ -40,15 +48,14 @@
 .my_main3{
     padding: 10px;
     height: 80px;
-    border: 1px solid blue;
     padding-top: 20px;
+    text-align: center;
 }
 .reserve_list{
     margin-top: 30px;
 }
 .reserve_list2{
     width: 100%;
-    border: 1px solid black;
     height: 330px;
     text-align: center;
     margin-top: 15px;
@@ -56,7 +63,6 @@
 }
 .best-class{
     display: inline-block;
-    border: 1px solid red;
     margin-left: 10px;
     margin-right: 10px;
     width: 180px;
@@ -66,7 +72,6 @@
 .thumbnail{
     width: 180px;
     height: 170px;
-    border: 1px solid black;
 }
 .thumbnail img{
 	width: 100%;

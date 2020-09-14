@@ -102,7 +102,6 @@
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <jsp:include page="../header.jsp"/>
 <section>
-<div class="pic"></div>
     <div class="my_wrap">
         <div class="side_menu">
            <div class="side_detail">
@@ -129,9 +128,9 @@
        		<div class="comments">
        			<c:if test="${count !=0 }">
        				<form id ="commentForm" method="post">
-       					<table border="1px solid">
+       					<table>
        						<tr>
-       							<td>이메일</td><td></td><td>날짜</td><td></td>
+       							<td>이메일</td><td>내용</td><td>날짜</td><td></td>
        						</tr>
        						<c:forEach var = "v" items="${list}">
        						<c:set var = "date" value ="${v.date }"/>

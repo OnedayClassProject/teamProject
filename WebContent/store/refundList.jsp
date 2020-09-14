@@ -7,7 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/member/reserveList.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/store/refundList.css">
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@700&family=Noto+Sans+JP:wght@500&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
@@ -18,7 +19,7 @@
 </script>
 </c:if>
 <section>
-<div class="pic"></div>
+<div class="pic"><div>STOREPAGE</div></div>
     <div class="my_wrap">
         <div class="side_menu">
             <div class="side_detail">
@@ -72,12 +73,12 @@
            		<c:if test="${count != 0 }">
 	           		<c:forEach var="GetRefund" items="${StoreGetCancle }">
 		           		<div class="reserveInfo2">
-		           			<div>${GetRefund.class_name }</div>
-		           			<div>${GetRefund.refund_price }</div>
-		           			<div class="reserveInfo4">${GetRefund.reservation_personnel }</div>
-		           			<div class="reserveInfo5">${GetRefund.reservation_date} / ${GetRefund.time }</div>
-		           			<div>${GetRefund.request_day }</div>
-		           			<div>${GetRefund.refund_date }</div>
+		           			<div class="reserveInfo3">${GetRefund.class_name }</div>
+		           			<div class="reserveInfo4">${GetRefund.refund_price }</div>
+		           			<div class="reserveInfo5">${GetRefund.reservation_personnel }</div>
+		           			<div class="reserveInfo4">${GetRefund.reservation_date}<br>${GetRefund.time }</div>
+		           			<div class="reserveInfo4">${GetRefund.request_day }</div>
+		           			<div class="reserveInfo4">${GetRefund.refund_date }</div>
 		           			<div class="state">
 		           				<input type="hidden" class="refundnum" value="${GetRefund.refundnum }">
 		           				<c:if test="${GetRefund.state eq 0 }">

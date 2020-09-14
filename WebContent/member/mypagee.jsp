@@ -87,26 +87,24 @@
             <hr>
         </div>
             <div class="my_main">
-                <div class="my_subject">MY PAGE</div>
+                <div class="my_subject">
+	                <div>MY PAGE</div>
+	                <c:if test="${getMember.membership eq 'VIP'}">
+	                <img src="${pageContext.request.contextPath}/images/tickets.png">
+	                </c:if>
+                </div>
+                <hr>
                 <div class="my_main2">
                     <div class="my_main3">
                         <div>포인트</div>
-                        <div>${getMember.point }</div>
+                        <div><fmt:parseNumber var="point" value="${getMember.point }" integerOnly="true"/>${point }</div>
                     </div>
                     <div class="my_main3">
                         <div>등급</div>
                         <div>${getMember.membership }</div>
                     </div>
-                    <div class="my_main3">
-                        <div>예약</div>
-                        <div>0</div>
-                    </div>
-                    <div class="my_main3">
-                        <div>환불</div>
-                        <div>0</div>
-                    </div>
                 </div>
-                <div class="reserve_list2">
+                <div class="reserve_list3">
                 	<div align="center">
                 		<div class="pay_btn">
                 			<c:choose>
@@ -124,9 +122,8 @@
                 				</c:when>
 			                	<c:otherwise>
 		                			<button class="pay_btn2">VIP 가입하기</button><br>
-		                			<div class ="tooltip"> VIP란?
-		                				<span class="tooltip-text">vip에대한 설명</span>
-		                			</div>
+		                			<div class ="tooltip"> VIP란?</div>
+		                			<div class="tooltip-text">전 클래스 20% 할인</div>
 	                			</c:otherwise>
                 			</c:choose>
                 		</div>

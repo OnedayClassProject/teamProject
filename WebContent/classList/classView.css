@@ -7,13 +7,15 @@
  	 position: relative; 
  	overflow: hidden;
 }
+.class_wrap3{
+	width: 540px;
+}
 .class_wrap2{
 	display: flex;
 }
 .main_pic{
 	width: 520px;
 	height: 520px;
-	border: 1px solid black;
 }
 .main_pic img{
 	width: 100%;
@@ -38,21 +40,20 @@
  .reserve_bar{
 	/*  position: absolute; */
 	  position:sticky; 
-	border: 1px solid black;
-	width: 470px;
+	width: 440px;
 	height: 395px;
 	 top:0; 
 	padding: 10px 10px;
-	margin-left: auto;
+	margin-left: 0;
+	box-shadow: 1px 2px 8px 0px black;
+	border-radius: 5px;
  }
  .cancle_policy{
- 	background: lightgray;
  }
  .cancle_policy td{
  	width: 300px;
  	font-size: 18px;
  	height: 30px;
- 	border: 1px solid gray;
  }
 /* .reserve_barfixed{
 	position: absolute; 
@@ -65,14 +66,14 @@
 	padding: 10px 10px;
 } */
 .category_tag, .className_tag, .storeName_tag{
-	
 	height: 30px;
 	line-height: 30px;
 	margin-top: 5px;
 	margin-bottom: 5px;
-	
 }
-
+.category_tag{
+	color: gray;
+}
 .price_tag{
 	margin-bottom: 10px;
 }
@@ -85,19 +86,18 @@
 
 .class_info{
 	display: flex;
-	width: 440px;
+	width: 420px;
 	height: 100px;
 	margin: auto;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
 	border: 1px solid lightgray;
-	background: lightgray;
-	
+	margin-top:25px;
 }
 .class_info div{
 	width: 35%;
-	border-right: 1px solid gray;
+	border-right: 1px solid lightgray;
 }
 .class_info div:nth-child(3){
 	border-right:0;
@@ -109,14 +109,17 @@
 	border-right: 0;
 }
 .reserve_btn{
-	margin-top: 20px;
+	margin-top: 30px;
 }
 .reserve_btn button{
+	letter-spacing:3px;
+	color:white;
 	width: 100%;
 	height: 50px;
 	font-size: 25px;
 	border-radius: 10px;
-	border: 1px solid lightgray;
+	border: 1px solid #d24729;
+	background: #d24729;
 }
 #map{
 	z-index:0;
@@ -240,7 +243,7 @@
 }
 .content-right{
 	
-	width:800px;
+	width:530px;
     float: left;
     /* width: 53%; */
     padding: 10px;
@@ -250,10 +253,9 @@
 }
 .content-right td{
     /* width: 70px; */
-    height: 90px;
+    height: 60px;
     text-align: center;
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 20px;
 }
 .active{
     background: #0b0809;
@@ -268,11 +270,11 @@
     cursor: pointer;
 }
 .abled_td:HOVER{
-    background-color: greenyellow;
+    background-color: #FACB87;
     border-radius: 55%;
 }
 .clicked_td{
-    border: 3px solid greenyellow;
+    border: 3px solid #FACB87;
     border-radius: 55%;
 }
 .dateInput{
@@ -332,7 +334,7 @@
 #timeChoice{
 	border: 1px solid black;
 	height: 70px;
-	width: 300px;
+	width: 600px;
 	line-height: 70px;
 }
 #timebox{
@@ -349,7 +351,7 @@
 }
 #timeChoice2{
 	position:absolute;
-	width: 600px;
+	width: 510px;
 	/* height:361px; */
 	height: 0;
 	border: 1px solid black;
@@ -361,11 +363,9 @@
 
 }
 .time_wrap{
-	width: 300px;
-	border: 1px solid black;
+	width: 250px;
 }
 .time_detail{
-	border: 1px solid black;
 	height: 60xp;
 	padding: 10px 10px;
 }
@@ -380,17 +380,14 @@
 	display: inline-block;
 }
 .time_detail2 div:nth-child(2){
-     margin-left: 140px;
+     margin-left: 120px;
 }
 .pay_button{
 	width: 300px;
 }
-
-
 section {
 	min-height: 100%;
 }
-
 .staR{
   background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
   background-size: auto 100%;
@@ -433,10 +430,9 @@ section {
 } */
 .topReview5{
 	display:none;
-	width: 200px;
-	height: 200px;
+	width: 300px;
+	height: auto
 	border: 1px solid black;
-	
 	}
 .topReviewALL div{
 	display:inline-block;

@@ -7,7 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/member/reserveList.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/store/reserveList.css">
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@700&family=Noto+Sans+JP:wght@500&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
@@ -18,7 +19,7 @@
 </script>
 </c:if>
 <section>
-	<div class="pic"></div>
+	<div class="pic"><div>STOREPAGE</div></div>
     <div class="my_wrap">
         <div class="side_menu">
            <div class="side_detail">
@@ -64,7 +65,6 @@
            			<div>예약인원</div>
            			<div>예약날짜</div>
            			<div>전화번호</div>
-           			<div>요청사항</div>
            			<div>기타</div>
            		</div>
            		<div class="line"></div>
@@ -74,16 +74,18 @@
 	           			
 			           		<div class="reserveInfo2">
 				           			
-					           	<div>${GetReserve.class_name }</div>
-					           	<div>${GetReserve.reservation_price }</div>
+					           	<div class="reserveInfo3">${GetReserve.class_name }</div>
+					           	<div class="reserveInfo4">${GetReserve.reservation_price }</div>
 			           				
-			           			<div>${GetReserve.user_name }</div>
+			           			<div class="reserveInfo5">${GetReserve.user_name }</div>
 			           			<div class="reserveInfo4">${GetReserve.reservation_personnel }</div>
-			           			<div class="reserveInfo5">${GetReserve.reservation_date }/${GetReserve.time }</div>
+			           			<div class="reserveInfo4">${GetReserve.reservation_date }<br>${GetReserve.time }</div>
 			           			<div class="reserveInfo4">${GetReserve.reservation_tel}</div>
-			           			<div class="reserveInfo4">${GetReserve.content }</div>
 			           			<c:if test="${GetReserve.refundCheck eq 1 }">
-			           				<div>환불완료</div>
+			           				<div class="reserveInfo4">환불완료</div>
+			           			</c:if>
+			           			<c:if test="${GetReserve.refundCheck eq 0 }">
+			           				<div class="reserveInfo4"></div>
 			           			</c:if>
 			           		</div>
 	           			

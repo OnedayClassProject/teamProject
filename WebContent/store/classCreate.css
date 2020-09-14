@@ -219,11 +219,11 @@ table{
     cursor: pointer;
 }
 .abled_td:HOVER{
-    background-color: greenyellow;
+    background-color: #FACB87;
     border-radius: 55%;
 }
 .clicked_td{
-    border: 3px solid greenyellow;
+    border: 3px solid #FACB87;
     border-radius: 55%;
 }
 .box{

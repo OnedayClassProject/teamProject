@@ -8,11 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/member/reserveList.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/member/reviewList.css">
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@700&family=Noto+Sans+JP:wght@500&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body><jsp:include page="../header.jsp"/>
 <section>
-<div class="pic"></div>
+<div class="pic"><div>MYPAGE</div></div>
     <div class="my_wrap">
         <div class="side_menu">
         <div class="current_menu">리뷰리스트</div>	
@@ -90,8 +91,8 @@
            				</div>
            			</div>
            			<div class="reserveInfo5">${list.reservation_date}</div>
-           			<div>${list.reviewdate }</div>
-           			<div><button class="deleteReview">삭제</button></div>
+           			<div class="reserveInfo5">${list.reviewdate }</div>
+           			<div class="reserveInfo5"><button class="deleteReview">삭제</button></div>
            		</div>
            
             </c:forEach>

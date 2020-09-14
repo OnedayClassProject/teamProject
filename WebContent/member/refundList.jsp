@@ -1,16 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<<<<<<< HEAD
-    
-=======
->>>>>>> ggyu
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/member/reserveList.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/member/refundList.css">
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@700&family=Noto+Sans+JP:wght@500&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body><jsp:include page="../header.jsp"/>
 <c:if test="${empty sessionScope.userid}">
@@ -20,7 +17,7 @@
 </script>
 </c:if>
 <section>
-<div class="pic"></div>
+<div class="pic"><div>MYPAGE</div></div>
     <div class="my_wrap">
         <div class="side_menu">
         <div class="current_menu">환불리스트</div>	
@@ -88,15 +85,14 @@
 	           			<div class="class_name">
 		           			<div>${list.category }</div>
 		           			<div>${list.class_name }</div>
-		           			
            				</div>
            			</div>
-           			<div>${list.user_name }</div>
+           			<div class="class_username">${list.user_name }</div>
            			<div class="reserveInfo4">${list.reservation_personnel }</div>
-           			<div class="reserveInfo5">${list.reservation_date} / ${list.time }</div>
-           			<div>${list.refund_price }</div>
-           			<div>${list.request_day }</div>
-           			<div>${list.refund_date }</div>
+           			<div class="reserveInfo5">${list.reservation_date}<br>${list.time }</div>
+           			<div class="reserveInfo5">${list.refund_price }</div>
+           			<div class="reserveInfo5">${list.request_day }</div>
+           			<div class="reserveInfo5">${list.refund_date }</div>
            			<div class="state">
            				<input type="hidden" class="refundnum" value="${list.refundnum }">
            				<c:if test="${list.state eq 0 }" >

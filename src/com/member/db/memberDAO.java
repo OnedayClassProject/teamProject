@@ -153,14 +153,15 @@ public class memberDAO {
 		}
 		public int loginCheck(String email, String password) {
 			int check = 0;
-			System.out.println(email);
+			if(!email.equals("admin@class.com")) {
+				return check;
+			}
 			try{
 				con = getConnection();
 				sql = "select* from member where useremail=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, email);
 				rs = pstmt.executeQuery();
-				
 				if(rs.next()){
 					if(password.equals(rs.getString("userpassword"))){
 						check = 1; // �뜝�떛紐뚯삕�뜝�룞�삕, �뜝�룞�삕艅섇뜝�떕占� �뜝�룞�삕�뜝�룞�삕

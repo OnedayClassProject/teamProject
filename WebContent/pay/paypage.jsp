@@ -49,7 +49,7 @@
 						<div>${person_num }명</div>
 					</div>
 					<div class="class_point">
-						<div>클래스플러스 적립금</div>
+						<div class="reserveCus">클래스플러스 적립금</div>
 						<input type="text" value="0" class="point">
 						<input type="button" class="all_point2"value="사용">
 						<div>보유중인 적립금</div>
@@ -57,11 +57,11 @@
 					</div>
 					<div class="class_pay">
 						<div class="reserveCus">결제수단</div>
-						<div><input type="radio" name="pay_met" class="pay_met" value="card" checked>신용카드</div>	
-						<div><input type="radio" name="pay_met" class="pay_met" value="samsung">삼성페이</div>	
-						<div><input type="radio" name="pay_met" class="pay_met" value="trans">실시간계좌이체</div>	
-						<div><input type="radio" name="pay_met" class="pay_met" value="vbank">가상계좌</div>
-						<div><input type="radio" name="pay_met" class="pay_met" value="phone">휴대폰소액결제</div>	
+						<div class="class_pay2"><input type="radio" name="pay_met" class="pay_met" value="card" checked>신용카드</div>	
+						<div class="class_pay2"><input type="radio" name="pay_met" class="pay_met" value="samsung">삼성페이</div>	
+						<div class="class_pay2"><input type="radio" name="pay_met" class="pay_met" value="trans">실시간계좌이체</div>	
+						<div class="class_pay2"><input type="radio" name="pay_met" class="pay_met" value="vbank">가상계좌</div>
+						<div class="class_pay2"><input type="radio" name="pay_met" class="pay_met" value="phone">휴대폰소액결제</div>	
 					</div>
 				</div>
 				<div class="reserve_bar">
@@ -69,7 +69,9 @@
 					<div class="className_tag">클래스명 ${cbean.class_name }</div>
 					<div class="storeName_tag">업체명 ${cbean.class_company }</div>
 					<div class="price_tag">
-						<c:if test="${mbean.membership eq 'vip' }">
+					
+						<c:if test="${mbean.membership eq 'VIP' }">
+						<c:out value="${mbean.membership}"/>할인
 							<div>가격</div>
 							<div class="origin_price">${sum_price }</div>
 							<input type="hidden" class='sum_price2'>
@@ -95,15 +97,15 @@ $(function () {
 	if( '${mbean.membership}' == 'basic'){
 		$(".sum_price2").val('${sum_price}');
 		$(".sum_price").text('${sum_price}');
-	}else if('${mbean.membership}' == 'vip'){
-		if(new Date('${mbean.vip_finish }'+" 23:59:59") > new Date()) {
-			var dis_price = ${sum_price} * 0.8;
+	}else if('${mbean.membership}' == 'VIP'){
+		/* if(new Date('${mbean.vip_finish }'+" 23:59:59") > new Date())  */
+			var dis_price = Number(${param.sum_price}) * 0.8;
+			console.log(dis_price);
 			$(".sum_price2").val(dis_price);
 			$(".sum_price").text(dis_price);
-		}else{
+		/* else{
 			$(".origin_price").css("text-decoration","none");
-			
-		}
+		} */
 	}
 	
 	

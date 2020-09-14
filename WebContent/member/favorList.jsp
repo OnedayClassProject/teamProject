@@ -8,13 +8,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/member/reserveList.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/classList/seoulClass.css">
 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/classList/seoulClass.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/member/reserveList.css">
+<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@700&family=Noto+Sans+JP:wght@500&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body><jsp:include page="../header.jsp"/>
 <section>
-<div class="pic"></div>
+	<div class="pic"><div>MYPAGE</div></div>
     <div class="my_wrap">
         <div class="side_menu">
         <div class="current_menu">즐겨찾기 관리</div>	
@@ -88,7 +89,7 @@
 			                 	<img class="favor" src="${pageContext.request.contextPath}/images/star2.png">
 			                 	</div>
 		            	 </div>
-		            	<c:if test="${j%3==0}">
+		            	<c:if test="${j%4==0}">
         	   			<br>
         	   			</c:if>
              			<c:set var="j" value="${j+1}"/>

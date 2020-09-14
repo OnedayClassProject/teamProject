@@ -13,7 +13,7 @@
 <body>
 <jsp:include page="../header.jsp"/>
 <section>
-<div class="pic"></div>
+<div class="pic" style="background-image: url('${pageContext.request.contextPath}/images/class2.png');"></div>
     <div class="my_wrap">
         <div class="side_menu">
            <div class="side_detail">

@@ -12,15 +12,7 @@ body{
     padding-top: 200px;
 }
 section{
-	background:linear-gradient(
-            to top,
-            rgba(255, 255, 255, 0) 10%,
-            rgba(255, 255, 255, 0.25) 25%,
-            rgba(255, 255, 255, 0.5) 50%,
-            rgba(255, 255, 255, 0.75) 75%,
-            rgba(255, 255, 255, 1) 100%
-          ),url("../images/workspace-5517761_1920.jpg");
-	background-size: cover;
+	min-height: 100%;
 }
 .join a{
 	color:gray;

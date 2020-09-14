@@ -45,13 +45,13 @@
         	<div><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></div>
         	</c:if>
         	<c:if test="${not empty sessionScope.storeid}">
-        	<div><a href="${pageContext.request.contextPath}/storeInfoCheck.do">내정보</a></div>
+        	<div><a href="${pageContext.request.contextPath}/storeReserve.do">내정보</a></div>
         	<div><a href="${pageContext.request.contextPath}/classCreate.do">클래스개설</a></div>
         	<div><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></div>
         	</c:if>
         </div>
      <div class="nav_wrap">
-            <div class="main_logo"><a href="${pageContext.request.contextPath}/main.do"><img src="${pageContext.request.contextPath}/images/logo.png" width="100%"></a></div>
+            <div class="main_logo"><a href="${pageContext.request.contextPath}/main.do"><img src="${pageContext.request.contextPath}/images/logo_copy.png" width="100%"></a></div>
             <%--        <div class="search-bar">--%>
             <%--            <form>--%>
             <%--                <div class="search-title">SEARCH</div>--%>

@@ -60,7 +60,6 @@
             });
             
             $.ajax({
-            	
             	type:"post",
             	url:"${pageContext.request.contextPath}/vipDateCheck.do",
             	dataType:"text",
@@ -80,25 +79,31 @@
 <header>
     <div class="head">
     <div class="login_bar">
-    <c:out value="${sessionScope.storenum }"/>
         <c:if test="${empty sessionScope.userid && empty sessionScope.storeid}">
             <div><a href="${pageContext.request.contextPath}/login.do">로그인</a></div>
             <div><a href="${pageContext.request.contextPath}/memberOrStore.do">회원가입</a></div>
         </c:if>
             <c:if test="${not empty sessionScope.userid}">
-        	<div><a href="${pageContext.request.contextPath}/mypage.do">내정보</a></div>
-        	<div><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></div>
-        	<c:out value="${sessionScope.storenum }"/>
+            	<c:if test="${sessionScope.userid eq 'admin@class.com'}">
+            		<div><a href="${pageContext.request.contextPath}/AllGetMember.do">관리자페이지</a></div>
+        			<div><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></div>
+            	</c:if>
+            	<c:if test="${sessionScope.userid ne 'admin@class.com'}">
+		        	<div><a href="${pageContext.request.contextPath}/mypage.do">내정보</a></div>
+		        	<div><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></div>
+		        </c:if>
+        		<c:out value="${sessionScope.storenum }"/>
         	</c:if>
         	<c:if test="${not empty sessionScope.storeid}">
-        	<div><a href="${pageContext.request.contextPath}/storeInfoCheck.do">내정보</a></div>
+        	<div><a href="${pageContext.request.contextPath}/storeReserve.do">내정보</a></div>
         	<div><a href="${pageContext.request.contextPath}/classCreate.do">클래스개설</a></div>
         	<div><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></div>
         	</c:if>
+        	
         </div>
            
      <div class="nav_wrap">
-            <div class="main_logo"><a href="${pageContext.request.contextPath}/main.do"><img src="${pageContext.request.contextPath}/images/logo.png" width="100%"></a></div>
+            <div class="main_logo"><a href="${pageContext.request.contextPath}/main.do"><img src="${pageContext.request.contextPath}/images/logo_copy.png" width="100%"></a></div>
             <%--        <div class="search-bar">--%>
             <%--            <form>--%>
             <%--                <div class="search-title">SEARCH</div>--%>
@@ -231,7 +236,7 @@
     	<div>사이트이용약관</div>
     	<div>개인정보처리방침</div>
   	 </div>
-    	<div class="footer_logo">CLASS+</div>
+    	<div class="footer_logo"><img src="${pageContext.request.contextPath}/images/logo_copy.png"></div>
     	<div class="footer_detail">
     		<div>사업자 등록번호 : 109-86-10925&nbsp;&nbsp;&nbsp;대표전화 : 02-2065-0776FAX : 02-2065-7161&nbsp;&nbsp;&nbsp;개설문의 : 1588-0738</div>
 
