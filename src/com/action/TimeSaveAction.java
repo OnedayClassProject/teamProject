@@ -25,10 +25,6 @@ public class TimeSaveAction implements CommandHandler {
 		int personal = Integer.parseInt(request.getParameter("personal"));
 		int num = Integer.parseInt(request.getParameter("num"));
 		
-		System.out.println(Arrays.toString(list));
-		System.out.println(Arrays.toString(list1));
-		System.out.println(date);
-		System.out.println(day);
 		
 		StoreDAO sdao = new StoreDAO();
 		for(int i = 0; i < list.length; i++) {
@@ -42,6 +38,7 @@ public class TimeSaveAction implements CommandHandler {
 			bean.setCalnum(i+1);
 			sdao.insetTime(bean);
 		}
+		sdao.deleteSpaceTime();
 		
 		request.setAttribute("data", 1);
 		

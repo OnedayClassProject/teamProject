@@ -262,8 +262,8 @@
              	<input type="button" value="-" class="person_sub">
              	<div class="reserve_date"></div>
              	<div class="sum_price"></div>
-             	<div class="pay_button" onclick="pay()"> 결제하기</div>
-				<div class="back_button">이전</div>           
+             		<div class="pay_button2"><input type="button" class="pay_button" onclick="pay()" value="결제하기"></div>
+					<div class="pay_button2"><input type="button" class="back_button" value="이전"></div>
              	</div>
              </div>
              </div>

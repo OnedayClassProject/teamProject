@@ -22,7 +22,7 @@ public class AdminLoginProAction implements CommandHandler{
 		String password = request.getParameter("password");
 		
 		memberDAO mdao = new memberDAO();
-		int check = mdao.loginCheck(email,password);
+		int check = mdao.loginAdminCheck(email,password);
 		
 		if(check == 1){
 			session.setAttribute("userid", email);

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -53,7 +54,7 @@
 						<input type="text" value="0" class="point">
 						<input type="button" class="all_point2"value="사용">
 						<div>보유중인 적립금</div>
-						<div class='all_point'>${mbean.point }</div>
+						<div class="all_point"><fmt:parseNumber var="point" value="${mbean.point }" integerOnly="true"/>${point }</div>
 					</div>
 					<div class="class_pay">
 						<div class="reserveCus">결제수단</div>
@@ -65,9 +66,9 @@
 					</div>
 				</div>
 				<div class="reserve_bar">
-					<div class="category_tag">카테고리 ${cbean.category }</div>
-					<div class="className_tag">클래스명 ${cbean.class_name }</div>
-					<div class="storeName_tag">업체명 ${cbean.class_company }</div>
+					<div class="category_tag">${cbean.category }</div>
+					<div class="className_tag">${cbean.class_name }</div>
+					<div class="storeName_tag">${cbean.class_company }</div>
 					<div class="price_tag">
 					
 						<c:if test="${mbean.membership eq 'VIP' }">
@@ -153,8 +154,9 @@ $(function () {
 		var user_name = $("#user_name").val(); // 수강자명
 		var content = $("#content").val(); // 요청사항
 		var time = "${time }" //수업시간
-		
-		
+		var usePoint = Number($(".all_point").text())-Number($(".point").val());//포인트사용
+		console.log(usePoint);
+		point = point + usePoint;
 		//var class_registrynum = ${cbean.class_registrynum}; // 클래스번호
 	var IMP = window.IMP; // 생략가능
 	IMP.init('imp12575424');
@@ -199,7 +201,7 @@ $(function () {
 	
 	name: '주문명:결제테스트',
 	//결제창에서 보여질 이름
-	amount:/* $(".sum_price").text() */ 1000,
+	amount:Number($(".sum_price").text()),
 	//가격
 	buyer_email: '${mbean.useremail}',
 	buyer_name: '${mbean.username}',

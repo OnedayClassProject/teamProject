@@ -211,6 +211,21 @@ public class StoreDAO {
 			pstmt.setInt(8, 0);
 			pstmt.executeUpdate();
 			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resourceClose();
+		}
+	}
+	//등록안된시간삭제
+	public void deleteSpaceTime(){
+		try {
+			con = getConnection();
+			String sql = "delete from operationdate where class_starttime = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "");
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

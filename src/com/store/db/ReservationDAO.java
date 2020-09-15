@@ -73,7 +73,7 @@ public class ReservationDAO {
 				
 				
 				// 멤버 포인트 적립
-				sql = "update member set point = point+? where useremail=?";
+				sql = "update member set point = ? where useremail=?";
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setString(1, rbean.getPoint());

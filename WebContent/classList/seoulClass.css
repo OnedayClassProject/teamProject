@@ -38,7 +38,8 @@ section{
     width: 220px;
     border-radius: 15px;
     margin-top: 30px;
-    box-shadow: 0px 2px 2px 1px gray;
+    border: 1px solid #d9d9d9;
+    box-shadow: 0 1px 3px 0 hsla(0,0%,86.3%,.3);
     position: relative;
 }
 
@@ -87,6 +88,11 @@ section{
 .class-name{
     text-align: left;
     padding: 5px;
+}
+.class-name1{
+	color: #d24729;
+	font-size: 12px;
+	font-weight: bold;
 }
 .class-name2{
 	margin-bottom: 20px;

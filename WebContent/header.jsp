@@ -41,8 +41,14 @@
             <div><a href="${pageContext.request.contextPath}/memberOrStore.do">회원가입</a></div>
         </c:if>
             <c:if test="${not empty sessionScope.userid}">
-        	<div><a href="${pageContext.request.contextPath}/mypage.do">내정보</a></div>
-        	<div><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></div>
+        	<c:if test="${sessionScope.userid eq 'admin@class.com'}">
+            		<div><a href="${pageContext.request.contextPath}/AllGetMember.do">관리자페이지</a></div>
+        			<div><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></div>
+            	</c:if>
+            	<c:if test="${sessionScope.userid ne 'admin@class.com'}">
+		        	<div><a href="${pageContext.request.contextPath}/mypage.do">내정보</a></div>
+		        	<div><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></div>
+		        </c:if>
         	</c:if>
         	<c:if test="${not empty sessionScope.storeid}">
         	<div><a href="${pageContext.request.contextPath}/storeReserve.do">내정보</a></div>

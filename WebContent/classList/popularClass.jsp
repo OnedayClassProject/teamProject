@@ -43,8 +43,8 @@
                  	 <img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}"></a>
                  </div>
                  <div class="class-name">
-                    <div class="class-name1">카테고리 : ${classBean.category}</div>
-                    <div class="class-name2">클래스명 : ${classBean.class_name}</div>
+                    <div class="class-name1">${classBean.category}</div>
+                    <div class="class-name2">${classBean.class_name}</div>
                   	<input type="hidden" class="rating" value="${classBean.rating }">
                    	<div class = "starRev">
 			        	<input class="staR" value="1">
@@ -57,7 +57,7 @@
 					<div class="like_image"> 
 	                	<img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
 						<input type="hidden" value="${classBean.class_registrynum}" class="num">
-						<img class="favor" src="${pageContext.request.contextPath}/images/star2.png">
+						<img class="favor" src="${pageContext.request.contextPath}/images/KakaoTalk_Photo_2020-09-14-14-23-37.png">
 					</div>
             	</div>
             	
@@ -197,8 +197,8 @@
 		console.log(num);
 	         
 		if( '${sessionScope.userid}' != ""){
-			if(ima == '${pageContext.request.contextPath}/images/star2.png'){
-				$(this).attr('src','${pageContext.request.contextPath}/images/star1.png');
+			if(ima == '${pageContext.request.contextPath}/images/KakaoTalk_Photo_2020-09-14-14-23-37.png'){
+				$(this).attr('src','${pageContext.request.contextPath}/images/KakaoTalk_Photo_2020-09-14-14-23-41.png');
 				$.ajax({
 					type:"post",
 					url:"${pageContext.request.contextPath}/favorReg.do",
@@ -218,8 +218,8 @@
 			}
 		});
 	         
-			}else if(ima=="${pageContext.request.contextPath}/images/star1.png"){
-				$(this).attr('src','${pageContext.request.contextPath}/images/star2.png');
+			}else if(ima=="${pageContext.request.contextPath}/images/KakaoTalk_Photo_2020-09-14-14-23-41.png"){
+				$(this).attr('src','${pageContext.request.contextPath}/images/KakaoTalk_Photo_2020-09-14-14-23-37.png');
 					$.ajax({
 						type:"post",
 						url:"${pageContext.request.contextPath}/favorCancle.do",
@@ -257,7 +257,7 @@
 	            success:function(data,status){
 	               console.log(data);
 	               if(data==1){
-	                  cla.children('.favor').attr("src","${pageContext.request.contextPath}/images/star1.png")
+	                  cla.children('.favor').attr("src","${pageContext.request.contextPath}/images/KakaoTalk_Photo_2020-09-14-14-23-41.png")
 	               }
 	            },error:function(data,status){
 	               alert('에러발생');

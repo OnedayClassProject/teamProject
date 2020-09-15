@@ -81,11 +81,11 @@
 		           			<div class="reserveInfo4">${GetRefund.refund_date }</div>
 		           			<div class="state">
 		           				<input type="hidden" class="refundnum" value="${GetRefund.refundnum }">
-		           				<c:if test="${GetRefund.state eq 0 }">
+		           				<c:if test="${GetRefund.state == 0 }">
 		           					<div class="reserveInfo4">대기</div>
 		           					<button class="refund_com">환불승인</button>
 		           				</c:if>
-		           				<c:if test="${GetRefund.state eq 1 }">
+		           				<c:if test="${GetRefund.state == 1 }">
 		           					<div class="reserveInfo4">환불완료</div>
 		           				</c:if>
 		           			</div>

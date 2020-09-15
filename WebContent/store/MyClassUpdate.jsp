@@ -81,9 +81,6 @@
             	} else if($('#p_content').val().trim() == ""){
             		alert("내용을 입력해주세요");
             		return;
-            	} else  if ($("#input_img").val() == '') {
-                    alert("이미지파일을 선택해주세요.")
-                    return;
                 } else {
             	 var form = $("form")[0];
                  var form1 = new FormData(form);
@@ -114,27 +111,9 @@
             
         	});
             $("#cancle_back").on("click", function () {
-				
-            	var num = ${cbean.class_registrynum }
-            	
-            	$.ajax({
-                    type: "post",
-                    url: "${pageContext.request.contextPath}/classCancle.do",
-                    data: {num :  num},
-                    dataType: "text",
-                    success:function(data, status){
-							  if(data == 1){                  	 
-                   	 		alert('삭제성공^^');
-		                     	} else {
-		                     	alert('실패!!!!ㅜㅜㅜㅜㅜㅜㅜ');
-		                    	}
-                    		},
-                    error:function(data,status){
-                   	 alert("에러");
-                    }
-                    	});
-            	
-			});
+				history.back();
+        	});
+            
         });
         function handleImgFileSelect(e) {
             var files = e.target.files;
@@ -246,7 +225,7 @@
         <div class="file_box">
             <label for="input_img">+</label>
             <input type="file" accept="image/jpg,image/jpeg,image/png,image/gif," name="image" id="input_img"
-                   onchange="fileCheck(this)">
+                   onchange="fileCheck(this)" value="${pageContext.request.contextPath}/thumbnailImage/${cbean.thumbnail }">
         </div>
         <div class="imgMain">
             <img id="img" src="${pageContext.request.contextPath}/thumbnailImage/${cbean.thumbnail }"/>
@@ -433,17 +412,73 @@
     var plus = document.getElementById("plus");
     $("#plus").on("click", function name() {
     	if ($(".timeSet").length <= 5) {
-            $(".timesetting").append("<div class='timeSet'><input type=\"text\"  class='timeStart'> ~ <input type=\"text\" class='timeend'></div>");
-        /*      document.getElementById("time_start").flatpickr(
+    		$(".timesetting").empty();
+            $(".timesetting").append("<div class='timeSet'><input type=\"text\" id='time_start1' class='timeStart'> ~ <input type=\"text\" id='time_end1' class='timeend'></div>"
+            						+"<div class='timeSet'><input type=\"text\" id='time_start2' class='timeStart'> ~ <input type=\"text\" id='time_end2' class='timeend'></div>"
+            						+"<div class='timeSet'><input type=\"text\" id='time_start3' class='timeStart'> ~ <input type=\"text\" id='time_end3' class='timeend'></div>"
+            						+"<div class='timeSet'><input type=\"text\" id='time_start4' class='timeStart'> ~ <input type=\"text\" id='time_end4' class='timeend'></div>"
+            						+"<div class='timeSet'><input type=\"text\" id='time_start5' class='timeStart'> ~ <input type=\"text\" id='time_end5' class='timeend'></div>"
+            						+"<div class='timeSet'><input type=\"text\" id='time_start6' class='timeStart'> ~ <input type=\"text\" id='time_end6' class='timeend'></div>");
+            document.getElementById('time_start1').flatpickr(
             		{ enableTime: true,
                 noCalendar: true,
                 dateFormat: "H:i",
             		});
-            document.getElementById("time_end").flatpickr({
+            document.getElementById('time_end1').flatpickr({
                 enableTime: true,
                 noCalendar: true,
                 dateFormat: "H:i",
-            });  */
+            });  
+            document.getElementById('time_start2').flatpickr(
+            		{ enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            		});
+            document.getElementById('time_end2').flatpickr({
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            });  
+            document.getElementById('time_start3').flatpickr(
+            		{ enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            		});
+            document.getElementById('time_end3').flatpickr({
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            });  
+            document.getElementById('time_start4').flatpickr(
+            		{ enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            		});
+            document.getElementById('time_end4').flatpickr({
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            });  
+            document.getElementById('time_start5').flatpickr(
+            		{ enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            		});
+            document.getElementById('time_end5').flatpickr({
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            });  
+            document.getElementById('time_start6').flatpickr(
+            		{ enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            		});
+            document.getElementById('time_end6').flatpickr({
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+            });  
         }
 	});
         
@@ -469,7 +504,8 @@
             	 var all = result.all;
             	 if(all.length != 0 ){
                   for(var i = 0; i < all.length; i++){
-                	  $(".abled_td").eq(all[i].day - 1).css("background","red");
+                	  $(".abled_td").eq(all[i].day - 1).css("background","#FACB87");
+                	  $(".abled_td").eq(all[i].day - 1).css("border-radius","50%");
                   }                
                   }
              },
@@ -538,15 +574,15 @@
 								+"<input type='hidden' class='getCalNum' value='"+time[i].calnum+"'></div>");
 			}
 			$('.store').empty();
-			$('.store').append("<div class='update' onclick='update()'>수정</div>"
-					            +"<div class='delete' onclick='delete1()'>삭제</div>" 
+			$('.store').append("<input type='button' class='update' onclick='update()' value='수정'>"
+					            +"<input type='button' class='delete' onclick='delete1()' value='삭제'>" 
 					            +"<input type='button' onclick='main()' value='메인'>"
-					            +"<div onclick='close1()'>닫기</div>")
+					            +"<input type='button' onclick='close1()' value='닫기'>")
 			} else {
 				$('.store').empty();
-				$('.store').append("<div class='save' onclick='save()'>저장</div>"
+				$('.store').append("<input type='button' class='save' onclick='save()' value='저장'>"
 						+"<input type='button' onclick='main()' value='메인'>"
-			            +"<div onclick='close1()'>닫기</div>")
+			            +"<input type='button' onclick='close1()' value='닫기'>")
 			}
 		},
 		error:function(data,status){

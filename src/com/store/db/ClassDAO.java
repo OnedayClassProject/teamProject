@@ -230,7 +230,7 @@ public class ClassDAO {
 			// location 중 '전남','전북'을 가져옴 
 			String sql = "select storenum, class_registrynum, class_name, category, level, thumbnail,rating "
 					+ "from class "
-					+ "where location LIKE '%전남%' or location LIKE '%전북%' limit ?,?";
+					+ "where location LIKE '%전남%' or location LIKE '%전북%' or location LIKE '%광주%' limit ?,?";
 						
 			
 			pstmt = con.prepareStatement(sql);

@@ -138,3 +138,11 @@
 section {
 	min-height: 100%;
 }
+.category_tag{
+	font-size: 13px;
+	color: #d24729;
+	font-weight: bold;
+}
+.className_tag{
+	line-height: 1px;
+}

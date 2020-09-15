@@ -71,8 +71,8 @@
 			
 			                 </div>
 			                 <div class="class-name">
-			                         <div class="class-name1">카테고리 : ${classBean.category}</div>
-			                         <div class="class-name2">클래스명 : ${classBean.class_name}</div>
+			                         <div class="class-name1">${classBean.category}</div>
+			                         <div class="class-name2">${classBean.class_name}</div>
 			                         	<input type="hidden" class="rating" value="${classBean.rating }">
 			                         	<div class = "starRev">
 								        	<input class="staR" value="1">

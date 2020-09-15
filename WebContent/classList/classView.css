@@ -380,7 +380,7 @@
 	display: inline-block;
 }
 .time_detail2 div:nth-child(2){
-     margin-left: 120px;
+     margin-left: 90px;
 }
 .pay_button{
 	width: 300px;
@@ -439,4 +439,23 @@ section {
 }
 #subject{
 	display: block;
+}
+.reserve_date{
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+.pay_button,.back_button{
+	width: 100px;
+	height:30px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	letter-spacing:2px;
+	color:white;
+	font-size: 15px;
+	border-radius: 10px;
+	border: 1px solid #d24729;
+	background: #d24729;
+}
+.pay_button2{
+	width: 300px;
 }

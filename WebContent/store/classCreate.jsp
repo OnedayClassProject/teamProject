@@ -382,9 +382,9 @@
             <div class="timesetting"></div>
         </div>
         <div class="store">
-        	<div class="main">메인</div>
-            <div class="send">저장</div>
-            <div class="cal_close">닫기</div>
+        	<input type="button" class="main" value="메인">
+            <input type="button" class="send" value="저장">
+            <input type="button" class="cal_close" value="닫기">
         </div>
         <div class="class_registryNum"></div>
     </div>
@@ -538,6 +538,7 @@
     var plus = document.getElementById("plus");
     $("#plus").on("click", function name() {
     	if ($(".timeSet").length <= 5) {
+    		$(".timesetting").empty();
             $(".timesetting").append("<div class='timeSet'><input type=\"text\" id='time_start1' class='timeStart'> ~ <input type=\"text\" id='time_end1' class='timeend'></div>"
             						+"<div class='timeSet'><input type=\"text\" id='time_start2' class='timeStart'> ~ <input type=\"text\" id='time_end2' class='timeend'></div>"
             						+"<div class='timeSet'><input type=\"text\" id='time_start3' class='timeStart'> ~ <input type=\"text\" id='time_end3' class='timeend'></div>"

@@ -61,8 +61,8 @@
                  	 <img src="${pageContext.request.contextPath}/thumbnailImage/${classBean.thumbnail}"></a>
                  </div>
                  <div class="class-name">
-                    <div class="class-name1">카테고리 : ${classBean.category}</div>
-                    <div class="class-name2">클래스명 : ${classBean.class_name}</div>
+                    <div class="class-name1">${classBean.category}</div>
+                    <div class="class-name2">${classBean.class_name}</div>
                   	<input type="hidden" class="rating" value="${classBean.rating }">
                    	<div class = "starRev">
 			        	<input class="staR" value="1">
@@ -73,9 +73,9 @@
      				</div>
 				</div>
 					<div class="like_image"> 
-	                	<img class="like" src="${pageContext.request.contextPath}/images/heart_empty.png">
+	                	<img class="like" src="${pageContext.request.contextPath}/images/KakaoTalk_Photo_2020-09-14-14-19-16.png">
 						<input type="hidden" value="${classBean.class_registrynum}" class="num">
-						<img class="favor" src="${pageContext.request.contextPath}/images/star2.png">
+						<img class="favor" src="${pageContext.request.contextPath}/images/KakaoTalk_Photo_2020-09-14-14-23-37.png">
 					</div>
             	</div>
             	
@@ -119,8 +119,8 @@
 $(".like").on("click",function(){
 	var image = $(this).attr("src");
 	var num = $(this).next().val();
-	var likeOn = "${pageContext.request.contextPath}/images/heart_full.png";
-	var likeOff = "${pageContext.request.contextPath}/images/heart_empty.png"
+	var likeOn = "${pageContext.request.contextPath}/images/KakaoTalk_Photo_2020-09-14-14-19-23.png";
+	var likeOff = "${pageContext.request.contextPath}/images/KakaoTalk_Photo_2020-09-14-14-19-16.png"
 	console.log(num);
          
 	if( '${sessionScope.userid}' != ""){
@@ -196,7 +196,7 @@ function like(){
 		success : function(data,status){
 		console.log("data" + data);
 			if(data == 1){
-				cla.children(".like").attr("src","${pageContext.request.contextPath}/images/heart_full.png")
+				cla.children(".like").attr("src","${pageContext.request.contextPath}/images/KakaoTalk_Photo_2020-09-14-14-19-23.png")
 				console.log(cla.children(".like").attr("src"))
 			}
 		},
@@ -215,8 +215,8 @@ $(".favor").on("click",function(){
 	console.log(num);
          
 	if( '${sessionScope.userid}' != ""){
-		if(ima == '${pageContext.request.contextPath}/images/star2.png'){
-			$(this).attr('src','${pageContext.request.contextPath}/images/star1.png');
+		if(ima == '${pageContext.request.contextPath}/images/KakaoTalk_Photo_2020-09-14-14-23-37.png'){
+			$(this).attr('src','${pageContext.request.contextPath}/images/KakaoTalk_Photo_2020-09-14-14-23-41.png');
 			$.ajax({
 				type:"post",
 				url:"${pageContext.request.contextPath}/favorReg.do",
@@ -236,8 +236,8 @@ $(".favor").on("click",function(){
 		}
 	});
          
-		}else if(ima=="${pageContext.request.contextPath}/images/star1.png"){
-			$(this).attr('src','${pageContext.request.contextPath}/images/star2.png');
+		}else if(ima=="${pageContext.request.contextPath}/images/KakaoTalk_Photo_2020-09-14-14-23-41.png"){
+			$(this).attr('src','${pageContext.request.contextPath}/images/KakaoTalk_Photo_2020-09-14-14-23-37.png');
 				$.ajax({
 					type:"post",
 					url:"${pageContext.request.contextPath}/favorCancle.do",
@@ -275,7 +275,7 @@ $(".favor").on("click",function(){
             success:function(data,status){
                console.log(data);
                if(data==1){
-                  cla.children('.favor').attr("src","${pageContext.request.contextPath}/images/star1.png")
+                  cla.children('.favor').attr("src","${pageContext.request.contextPath}/images/KakaoTalk_Photo_2020-09-14-14-23-41.png")
                }
             },error:function(data,status){
                alert('에러발생');
