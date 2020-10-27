@@ -205,7 +205,7 @@
             
     		$('.main').on('click', function(){
     			
-				location.href='${pageContext.request.contextPath}/main.do';    			
+				location.href='${pageContext.request.contextPath}/storeMyClassInfo.do';    			
     		});        
 	            
         });
@@ -382,7 +382,7 @@
             <div class="timesetting"></div>
         </div>
         <div class="store">
-        	<input type="button" class="main" value="메인">
+        	<input type="button" class="main" value="마이페이지">
             <input type="button" class="send" value="저장">
             <input type="button" class="cal_close" value="닫기">
         </div>

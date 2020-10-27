@@ -60,7 +60,7 @@
 	        		<div class="nolist">목록이 없습니다.</div>
 	        	</c:if>
         			<div class="write_button">
-        		<c:if test="${sessionScope.userid == 'admin' }">
+        		<c:if test="${sessionScope.userid == 'admin@class.com' }">
         			<button onclick="location.href='${pageContext.request.contextPath}/noticeWrite.do'">공지쓰기</button>
         		</c:if>
         		</div>

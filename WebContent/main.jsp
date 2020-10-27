@@ -9,7 +9,9 @@
 <body>
 	<script type="text/javascript">
 	
-	location.href='${pageContext.request.contextPath}/main.do';
+		location.href='${pageContext.request.contextPath}/main.do';
+		
+		
 	</script>
 </body>
 </html>

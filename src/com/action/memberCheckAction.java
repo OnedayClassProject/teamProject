@@ -27,7 +27,6 @@ public class memberCheckAction implements CommandHandler{
 		
 		request.setAttribute("result", result);
 		
-		
 		return "member/memberCheck.jsp";
 		
 	}
