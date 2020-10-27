@@ -1,2 +1,2 @@
-# teamProject
-3조 팀프로젝트
+# OneDayClass+ / 2020.08 - 2020.09
+<p align="center"> Main Page Preview </p>
