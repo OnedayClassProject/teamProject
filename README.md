@@ -2,3 +2,34 @@
 <p align="center"> Main Page Preview </p>
 <p align="center"> <img src="https://user-images.githubusercontent.com/59688264/97297778-d359bf00-1895-11eb-98cd-b57bda2e9c93.gif" width="800px"> </p>
 <br>
+
+## 주제
+* **원데이클래스**
+
+## 개발환경
+* 개발도구
+  * Eclipse
+  * MySQL 8.0.19
+  <br>
+* 언어
+  * JAVA 8 (JDK1.8)
+  * JSP(model1)
+  * HTML5 / CSS3
+  * JavaScript / jQuery
+  * JSTL
+  * Ajax
+  <br>
+* 서버
+  * Apache Tomcat v 9.0.38
+  
+## 개요
+
+### OneDayClass+ 소개
+강사들이 하루체험 할 수 있는 공방들을 등록하여 고객들이 예약 할 수 있는 서비스웹사이트
+
+### 주요기능
+* 강사는 교육일정과 클래스내용을 등록가능
+* 일반회원은 VIP이용권 구매와 클래스예약가능
+* 관리자는 회원목록과 강사들이 등록한 클래스를 볼 수 있습니다.
+
+## 회원가입 및 로그인
