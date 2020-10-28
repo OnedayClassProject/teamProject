@@ -33,5 +33,7 @@
 * 관리자는 회원목록과 강사들이 등록한 클래스를 볼 수 있습니다.
 
 ## 회원가입 및 로그인
+* 강사와 일반 회원가입할 수 있도록 구현
+* 로그인창에서 관리자 / 일반 / 강사로 로그인할 수 있도록 구현
 <p align="center"> <img src="https://user-images.githubusercontent.com/59688264/97301849-98f32080-189b-11eb-9e01-8822f729d1a9.gif" width="800px"> </p>
-<p align="center"> <img src="https://user-images.githubusercontent.com/59688264/97301849-98f32080-189b-11eb-9e01-8822f729d1a9.gif" width="800px"> </p>
+<p align="center"> <img src="https://user-images.githubusercontent.com/59688264/97389647-2aa37200-191e-11eb-939f-f4eec53b2341.gif" width="800px"> </p>
