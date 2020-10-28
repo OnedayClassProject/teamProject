@@ -37,3 +37,8 @@
 * 로그인창에서 관리자 / 일반 / 강사로 로그인할 수 있도록 구현
 <p align="center"> <img src="https://user-images.githubusercontent.com/59688264/97301849-98f32080-189b-11eb-9e01-8822f729d1a9.gif" width="800px"> </p>
 <p align="center"> <img src="https://user-images.githubusercontent.com/59688264/97390156-7e628b00-191f-11eb-9755-069aa8c89c09.png" width="800px"> </p>
+<br>
+
+## 클래스등록
+* 시간 / 예약 / 인원수 / 글내용 등록가능
+<p align="center"> <img src="https://user-images.githubusercontent.com/59688264/97389647-2aa37200-191e-11eb-939f-f4eec53b2341.gif" width="700px"> </p>
