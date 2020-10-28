@@ -56,3 +56,8 @@
 <p align="center"> <img src="https://user-images.githubusercontent.com/59688264/97391792-5a08ad80-1923-11eb-91e4-ebf97ade3337.png" width="700px"> </p>
 <p align="center"> <img src="https://user-images.githubusercontent.com/59688264/97391800-5e34cb00-1923-11eb-9696-57d0efd06feb.png" width="700px"> </p>
 <br>
+
+## 라이센스
+Copyright © 2020 teamProject <br>
+This project is ITWILL Busan licensed.
+<hr>
