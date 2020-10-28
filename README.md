@@ -42,3 +42,5 @@
 ## 클래스등록
 * 시간 / 예약 / 인원수 / 글내용 등록가능
 <p align="center"> <img src="https://user-images.githubusercontent.com/59688264/97389647-2aa37200-191e-11eb-939f-f4eec53b2341.gif" width="700px"> </p>
+<p align="center"> <img src="https://user-images.githubusercontent.com/59688264/97390586-9555ad00-1920-11eb-917e-df1f7a0ebc2f.png" width="700px"> </p>
+<br>
