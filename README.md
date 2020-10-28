@@ -13,7 +13,7 @@
   <br>
 * 언어
   * JAVA 8 (JDK1.8)
-  * JSP(model1)
+  * JSP(model2)/Servlet
   * HTML5 / CSS3
   * JavaScript / jQuery
   * JSTL
