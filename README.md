@@ -41,6 +41,18 @@
 
 ## 클래스등록
 * 시간 / 예약 / 인원수 / 글내용 등록가능
+* 마이페이지에서 등록한 클래스 확인가능
+* 고객이 예약 또는 환불하면 조회가능
 <p align="center"> <img src="https://user-images.githubusercontent.com/59688264/97389647-2aa37200-191e-11eb-939f-f4eec53b2341.gif" width="700px"> </p>
 <p align="center"> <img src="https://user-images.githubusercontent.com/59688264/97390586-9555ad00-1920-11eb-917e-df1f7a0ebc2f.png" width="700px"> </p>
+<br>
+
+## 일반회원
+* 마이페이지 - 예약 / 환불 확인가능
+* 예약날짜로부터 5일이내 리뷰쓰기가능 
+* 환불은 5일전 100% / 4일전 10%차감 후 / 3일전 20%차감 후 / 2일전 30% 차감 후 / 1일전과 당일 환불불가능
+* VIP(30일)가입하면 전 클래스 20% 할인
+* KG이니시스 결제시스템을 이용하여 결제기능구현
+<p align="center"> <img src="https://user-images.githubusercontent.com/59688264/97391792-5a08ad80-1923-11eb-91e4-ebf97ade3337.png" width="700px"> </p>
+<p align="center"> <img src="https://user-images.githubusercontent.com/59688264/97391800-5e34cb00-1923-11eb-9696-57d0efd06feb.png" width="700px"> </p>
 <br>
